@@ -1,12 +1,18 @@
-# Goalfinder
+# Pages branch
 
-## Project structure
+This branch is used for hosting Goalfinder's website and therefore only contains assets relevant for the web page.
+Following other branches can be helpful:
+ - Current development state: `development`
+ - Latest release: `main`
+
+## Branch structure
 
     .
     ├── .vscode                 Configuration files for Visual Studio Code
+    ├── assets                  Assets for the content of the web page
     ├── doc-alt                 Documentation from the previous repository
     ├── web                     Development directory for the web-based access point
-    │   ├── assets                  Assets for the web page
+    │   ├── assets                  Assets for the technical aspect of the webpage. Other assets are found in the assets directory in root
     │   │   ├── fonts                   Fonts
     │   │   ├── img                     Images
     │   │   └── pages                   Pages
