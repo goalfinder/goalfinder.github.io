@@ -4,10 +4,15 @@
 	font-display: swap;
 }
 
+/* Variables */
+
 :root {
-    --text: #fefefe;
+    --text: #080808;
+    --text-introduction: #fefefe;
     --text-block-shadow: #020202;
 }
+
+/* Elements */
 
 body {
     margin: 0;
@@ -17,6 +22,8 @@ body {
 html, body {
 	height: 100%;
 }
+
+/* Classes */
 
 .pager {
 	position: relative;
@@ -28,6 +35,8 @@ html, body {
 	overflow: hidden;
 	color: var(--text);
 }
+
+/* Introduction */
 
 #introduction-img {
 	position: absolute;
@@ -46,6 +55,7 @@ html, body {
 
 #introduction-header,
 #introduction-text {
+    color: var(--text-introduction) !important;
 	position: relative;
 	z-index: 1;
 	margin: 0.2rem;
@@ -68,7 +78,36 @@ html, body {
     animation: fadeUp 0.8s cubic-bezier(.2,.8,.2,1) 0.6s both;
 }
 
-/* Subtle entrance animations */
+/* About */
+
+#introduction-text-container {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+}
+
+.pager#about {
+	height: auto;
+	min-height: fit-content;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+#about-img {
+	width: 33%;
+	height: auto;
+	object-fit: cover;
+	-o-object-fit: cover;
+	flex-shrink: 0;
+    margin: 0;
+}
+
+#about-text-container {
+    padding: 5vw;
+}
+
+/* Keyframes */
+
 @keyframes fadeUp {
 	from { opacity: 0; transform: translateY(12px); }
 	to   { opacity: 1; transform: translateY(0); }
@@ -78,10 +117,18 @@ html, body {
 	from { transform: scale(1.06); }
 	to   { transform: scale(1.12); }
 }
-#introduction-text-container {
-	font-family: 'league-spartan' monospace;
-	position: relative;
-	z-index: 1;
-	display: inline-block;
-	padding: 0.9rem 1.4rem;
+
+/* Media */
+
+@media (max-width: 900px) {
+	/* About */
+    
+    #about-img {
+        visibility: collapse;
+        width: 0%;
+	}
+
+    #about-text-container {
+        padding: 10vw;
+    }
 }
