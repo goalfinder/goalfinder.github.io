@@ -18,7 +18,7 @@ html, body {
 	height: 100%;
 }
 
-.text-img-bg {
+.pager {
 	position: relative;
 	height: 100vh;
 	width: 100%;
@@ -26,7 +26,7 @@ html, body {
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
-	color: #fff;
+	color: var(--text);
 }
 
 #introduction-img {
@@ -39,16 +39,9 @@ html, body {
 	z-index: 0;
 	filter: blur(6px);
 	-webkit-filter: blur(6px);
-	transform: scale(1.06);
 	transform-origin: center;
-	transition: filter 300ms ease, transform 300ms ease;
-	will-change: filter, transform;
-}
-
-@media (max-width: 600px) {
-    #introduction-img {
-        transform: scale(1.1);
-    }
+	will-change: transform;
+	animation: slow-zoom 20s ease-in-out infinite alternate;
 }
 
 #introduction-header,
@@ -62,6 +55,8 @@ html, body {
 #introduction-header {
 	font-size: clamp(2rem, 7vw, 6rem);
     letter-spacing: 1vw;
+    opacity: 0;
+    animation: fadeUp 1s cubic-bezier(.2,.8,.2,1) 0.2s both;
 }
 
 #introduction-text {
@@ -69,10 +64,22 @@ html, body {
 	font-weight: 600;
 	margin-top: 0.5rem;
     letter-spacing: 0.2vw;
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(.2,.8,.2,1) 0.6s both;
 }
 
+/* Subtle entrance animations */
+@keyframes fadeUp {
+	from { opacity: 0; transform: translateY(12px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slow-zoom {
+	from { transform: scale(1.06); }
+	to   { transform: scale(1.12); }
+}
 #introduction-text-container {
-    font-family: 'league-spartan' monospace;
+	font-family: 'league-spartan' monospace;
 	position: relative;
 	z-index: 1;
 	display: inline-block;
