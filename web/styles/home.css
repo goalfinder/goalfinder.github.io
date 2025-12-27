@@ -1,0 +1,80 @@
+@font-face {
+	font-family: "league-spartan";
+	src: url("../assets/fonts/league-spartan/LeagueSpartan-VariableFont_wght.ttf");
+	font-display: swap;
+}
+
+:root {
+    --text: #fefefe;
+    --text-block-shadow: #020202;
+}
+
+body {
+    margin: 0;
+    font-family: 'league-spartan';
+}
+
+html, body {
+	height: 100%;
+}
+
+.text-img-bg {
+	position: relative;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	color: #fff;
+}
+
+#introduction-img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	-o-object-fit: cover;
+	z-index: 0;
+	filter: blur(6px);
+	-webkit-filter: blur(6px);
+	transform: scale(1.06);
+	transform-origin: center;
+	transition: filter 300ms ease, transform 300ms ease;
+	will-change: filter, transform;
+}
+
+@media (max-width: 600px) {
+    #introduction-img {
+        transform: scale(1.1);
+    }
+}
+
+#introduction-header,
+#introduction-text {
+	position: relative;
+	z-index: 1;
+	margin: 0.2rem;
+	text-align: center;
+}
+
+#introduction-header {
+	font-size: clamp(2rem, 7vw, 6rem);
+    letter-spacing: 1vw;
+}
+
+#introduction-text {
+	font-size: clamp(1rem, 2.5vw, 1.6rem);
+	font-weight: 600;
+	margin-top: 0.5rem;
+    letter-spacing: 0.2vw;
+}
+
+#introduction-text-container {
+    font-family: 'league-spartan' monospace;
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	padding: 0.9rem 1.4rem;
+}
