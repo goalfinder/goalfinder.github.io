@@ -9,7 +9,8 @@
 :root {
     --text: #080808;
     --text-introduction: #fefefe;
-    --text-block-shadow: #020202;
+	--border: #e0e0e0;
+	--shadow: #e2e2e2;
 }
 
 /* Elements */
@@ -50,7 +51,7 @@ html, body {
 	-webkit-filter: blur(6px);
 	transform-origin: center;
 	will-change: transform;
-	animation: slow-zoom 20s ease-in-out infinite alternate;
+	scale: 1.05;
 }
 
 #introduction-header,
@@ -63,19 +64,20 @@ html, body {
 }
 
 #introduction-header {
-	font-size: clamp(2rem, 7vw, 6rem);
+	font-size: clamp(3rem, 6vw, 6.5rem);
     letter-spacing: 1vw;
     opacity: 0;
     animation: fadeUp 1s cubic-bezier(.2,.8,.2,1) 0.2s both;
 }
 
 #introduction-text {
-	font-size: clamp(1rem, 2.5vw, 1.6rem);
+	font-size: clamp(1.2rem, 3vw, 2.5rem);
 	font-weight: 600;
 	margin-top: 0.5rem;
     letter-spacing: 0.2vw;
     opacity: 0;
     animation: fadeUp 0.8s cubic-bezier(.2,.8,.2,1) 0.6s both;
+	padding: 0 10vw;
 }
 
 /* About */
@@ -106,6 +108,61 @@ html, body {
     padding: 5vw;
 }
 
+#about-text-container p {
+	font-size: clamp(1.2rem, 6vw, 2.2rem);
+}
+
+#about-text-container h2 {
+	font-size: clamp(1.7rem, 6vw, 3rem);
+}
+
+/* Mission */
+
+.cards {
+	padding: 4vh 5vw;
+	align-items: center;
+	text-align: center;
+}
+
+.cards h2 {
+	font-size: clamp(1.5rem, 6vw, 3.2rem);
+}
+
+.card-container {
+	margin: 5vh 0;
+}
+
+.card {
+	text-align: left !important;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	max-width: 100%;
+	width: fit-content;
+	white-space: normal;
+	padding: 1vh 1vw;
+	margin: 1vh 0;
+	border: 2px solid var(--border);
+	box-shadow: 0px 0px 20px var(--shadow);
+	border-radius: 10px;
+	margin: 0 auto;
+}
+
+.card img {
+	flex: 0 0 auto;
+	aspect-ratio: 1 / 1;
+	height: 80%;
+	width: auto;
+	object-fit: cover; 
+	border-radius: 6px;
+	margin-right: 10%;
+}
+
+.card-text {
+	flex: 1 1 auto;
+	min-width: 0; 
+}
+
 /* Keyframes */
 
 @keyframes fadeUp {
@@ -113,14 +170,9 @@ html, body {
 	to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slow-zoom {
-	from { transform: scale(1.06); }
-	to   { transform: scale(1.12); }
-}
-
 /* Media */
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
 	/* About */
     
     #about-img {
@@ -131,4 +183,9 @@ html, body {
     #about-text-container {
         padding: 10vw;
     }
+
+	/* Card */
+	.card {
+		width: 75vw;
+	}
 }
