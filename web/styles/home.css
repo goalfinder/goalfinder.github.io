@@ -18,6 +18,7 @@
 body {
     margin: 0;
     font-family: 'league-spartan';
+    scroll-behavior: smooth;
 }
 
 html, body {
@@ -106,6 +107,7 @@ html, body {
 
 #about-text-container {
     padding: 5vw;
+    animation: slideInRight 0.8s cubic-bezier(.2,.8,.2,1) both;
 }
 
 #about-text-container p {
@@ -148,6 +150,7 @@ html, body {
 	box-shadow: 0px 0px 20px var(--shadow);
 	border-radius: 10px;
 	margin: 0 auto;
+	transform: translateY(20px);
 }
 
 .card img {
@@ -156,6 +159,7 @@ html, body {
 	object-fit: contain;
 	border-radius: 6px;
 	margin: 0 20px;
+	transition: transform 0.3s ease;
 }
 
 .card-text {
