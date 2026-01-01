@@ -1,9 +1,13 @@
-const defaultLang = "de";
-
+/** Current translation data */
 let translations = [];
+/** Current language */
 let currentLang = "en";
 
-async function loadLang(lang) {
+/** 
+ * Loads the specified language and applies it
+ * @param {string} lang The language to load
+ */
+export async function loadLang(lang) {
     try {
         const response = await fetch(`../locales/${lang}.json`);
         translations = await response.json();
@@ -14,13 +18,32 @@ async function loadLang(lang) {
     }
 }
 
+/**
+ * Translates a key
+ * @param {} key Key to translate
+ * @returns Translated key 
+ */
 function t(key) {
-    return translations[key] || key;
+    const keys = key.split(".");
+    let value = translations;
+    
+    for (let k of keys) {
+        if (value[k] !== undefined) {
+            value = value[k];
+        } else {
+            return key;
+        }
+    }
+
+    return value;
 }
 
-function translatePage(lang) {
+/**
+ * Translates all keys in a page
+ */
+function translatePage() {
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
-        el.textContent = t(key);
+        el.textContent = t(key);    
     });   
 }
