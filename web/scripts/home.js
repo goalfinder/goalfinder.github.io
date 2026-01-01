@@ -1,7 +1,7 @@
 import { loadLang } from './i18n.js';
 
 /** Default page language */
-const defaultLang = "en";
+const defaultLang = "de";
 
 document.addEventListener("DOMContentLoaded", () => {
     // Load the default language
