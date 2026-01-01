@@ -34,7 +34,7 @@
 	--sponsor-logo-background: rgba(150, 150, 150, 0.05);
 
 	--introduction-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-	--button-hover-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+	--button-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 	--item-child-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 
 	--transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -99,7 +99,7 @@ body {
 	font-weight: 600;
 	letter-spacing: 0.5px;
 	transition: all 0.3s var(--transition-smooth);
-	box-shadow: var(--button-hover-shadow);
+	box-shadow: var(--button-shadow);
 	overflow: hidden;
 }
 
@@ -124,7 +124,7 @@ body {
 .btn-container a:hover,
 .btn-container a:focus {
 	transform: translateY(-2px);
-	box-shadow: var(--button-hover-shadow);
+	box-shadow: var(--button-shadow);
 }
 
 .btn-container a:active {
@@ -845,7 +845,6 @@ body {
 	color: var(--gradient-start);
 	text-decoration: none;
 	font-weight: 600;
-	margin-left: 0.5rem;
 }
 
 .site-footer a:hover {
