@@ -9,12 +9,12 @@ let currentLang = "en";
  */
 export async function loadLang(lang) {
     try {
-        const response = await fetch(`../locales/${lang}.json`);
+        const response = await fetch(`./locales/${lang}.json`);
         translations = await response.json();
         currentLang = lang;
         translatePage();
     } catch (err) {
-        console.err("Failed to load language:", lang, err);
+        console.error("Failed to load language:", lang, err);
     }
 }
 
