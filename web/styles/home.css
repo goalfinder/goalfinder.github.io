@@ -8,15 +8,17 @@
 
 :root {
     --text: #080808;
-    --text-introduction: #fefefe;
+    --text-inverted: #fefefe;
 	--border: #e0e0e0;
 	--shadow: #e2e2e2;
+	--accent: #dddddd;
+	--accent-inverted: #1c1c1c;
 }
 
 /* Elements */
 
 body {
-    margin: 0;
+	margin: 0;
     font-family: 'league-spartan';
     scroll-behavior: smooth;
 }
@@ -38,6 +40,30 @@ html, body {
 	color: var(--text);
 }
 
+.btn-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1vw;
+	justify-content: center;
+	max-width: 80vw;
+	margin: 0 auto;
+}
+
+.btn-container a {
+	width: fit-content;
+	padding: 1vw;
+	background-color: var(--accent);
+	color: var(--text);
+	text-decoration: none;
+	border-radius: 8px;
+	transition: 100ms ease-in-out;
+}
+
+.btn-container a:hover,
+.btn-container a:focus {
+	text-decoration: underline;
+}
+
 /* Introduction */
 
 #introduction-img {
@@ -57,7 +83,7 @@ html, body {
 
 #introduction-header,
 #introduction-text {
-    color: var(--text-introduction) !important;
+    color: var(--text-inverted) !important;
 	position: relative;
 	z-index: 1;
 	margin: 0.2rem;
@@ -116,6 +142,54 @@ html, body {
 
 #about-text-container h2 {
 	font-size: clamp(2rem, 6vw, 3.2rem);
+}
+
+/* Documentation */
+
+.pager#doc {
+	height: auto;
+	min-height: fit-content;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+#doc-img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	-o-object-fit: cover;
+	z-index: 0;
+	filter: blur(6px);
+	-webkit-filter: blur(6px);
+	transform-origin: center;
+	will-change: transform;
+	scale: 1.05;
+}
+
+#doc-text-container {
+	text-align: center;
+	z-index: 1;
+    padding: 5vw;
+    animation: slideInRight 0.8s cubic-bezier(.2,.8,.2,1) both;
+	color: var(--text-inverted);
+}
+
+#doc-text-container p {
+	font-size: clamp(1.2rem, 6vw, 2.2rem);
+}
+
+#doc-text-container h2 {
+	font-size: clamp(2rem, 6vw, 3.2rem);
+}
+
+#doc-buttons {
+	margin-top: 5vh;
+}
+
+#doc-buttons a {
+	font-size: clamp(0.8rem, 6vw, 1.2rem);
 }
 
 /* Mission */
@@ -216,5 +290,14 @@ html, body {
 	.card-text {
 		text-align: center;
 		padding: 0 5vw;
+	}
+
+	/* Button */
+	.btn-container {
+		gap: 1vh;
+	}
+	
+	.btn-container a {
+		padding: 1vh;
 	}
 }
