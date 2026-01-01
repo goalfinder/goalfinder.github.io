@@ -1,6 +1,6 @@
 {
-  "cSpell.words": [
-    "Goalfinder",
-    "wght"
-  ]
+  "prettier.configPath": ".vscode/.prettierrc",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "cSpell.words": ["Goalfinder", "Haberlander", "HTBLA", "Leonding", "UNIKATE", "wght"]
 }

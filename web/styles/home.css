@@ -315,12 +315,12 @@ html, body {
 .cards h2::after {
 	content: '';
 	position: absolute;
-	bottom: -0.5rem;
+	bottom: -1rem;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 80px;
 	height: 4px;
-	background: var(--main-gradient);
+	background: var(--variable-gradient);
 	border-radius: 2px;
 }
 

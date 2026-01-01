@@ -24,18 +24,7 @@ export async function loadLang(lang) {
  * @returns Translated key 
  */
 function t(key) {
-    const keys = key.split(".");
-    let value = translations;
-    
-    for (let k of keys) {
-        if (value[k] !== undefined) {
-            value = value[k];
-        } else {
-            return key;
-        }
-    }
-
-    return value;
+    return translations[key] || key;
 }
 
 /**

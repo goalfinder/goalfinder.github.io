@@ -1,3 +1,48 @@
 {
-  
+  "sub-title": "ASSISTIVE BASKETBALL DEVICE FOR VISUALLY IMPAIRED",
+
+  "about-title": "About",
+  "about-content": "About Placeholder",
+
+  "mission-title": "Our Mission",
+  "mission-0-title": "Accessibility",
+  "mission-0-content": "Placeholder",
+  "mission-1-title": "Open Source",
+  "mission-1-content": "Placeholder",
+  "mission-2-title": "Community",
+  "mission-2-content": "Placeholder",
+
+  "features-title": "How It Works",
+  "features-step-1-title": "Step 1",
+  "features-step-1-content": "Placeholder",
+  "features-step-2-title": "Step 2",
+  "features-step-2-content": "Placeholder",
+  "features-step-3-title": "Step 3",
+  "features-step-3-content": "Placeholder",
+
+  "quote": "„Mit dem Projekt Goalfinder zeigen die Schüler der HTL Leonding eindrucksvoll, was Innovation bewegen kann. ... Dieses Projekt verbindet modernste Technologie mit sozialer Verantwortung – und leistet damit einen wertvollen Beitrag für unsere Gesellschaft.“",
+  "quote-cite": "— Christine Haberlander, Landeshauptmann-Stellvertreterin",
+
+  "doc-title": "Documentation",
+  "doc-content": "Placeholder",
+  "doc-btn-0": "User documentation",
+  "doc-btn-1": "Technical documentation",
+
+  "awards-title": "Awards & Recognition",
+  "award-0-title-0": "UNIKATE Award",
+  "award-0-title-1": "2025 Winner",
+  "award-0-content": "New technologies for people with disabilities",
+  "award-1-title-0": "mission humanity",
+  "award-1-title-1": "2025 Winner",
+  "award-1-content": "Raise social awareness in today's society",
+
+  "support-title": "Support & Cooperation",
+  "sponsor-0": "HTBLA Leonding",
+  "sponsor-1": "University Vienna",
+
+  "cta-title": "Ready to Get Involved?",
+  "cta-content": "Join our community and help make basketball accessible for everyone.",
+  "cta-btn": "Learn More",
+  "credits": "Credits",
+  "help": "Help"
 }
