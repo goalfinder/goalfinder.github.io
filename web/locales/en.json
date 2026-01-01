@@ -23,11 +23,6 @@
   "quote": "With the Goalfinder project, the students of HTL Leonding impressively demonstrate what innovation can achieve. ... This project combines cutting-edge technology with social responsibility – thereby making a valuable contribution to our society.",
   "quote-cite": "— Christine Haberlander, Vice Governor",
 
-  "doc-title": "Documentation",
-  "doc-content": "As a open source project we want to provide a as detailed as possible documentation. Both for casual or new users in a non tech focused way as well as for those interested in the GoalFinder's technology.",
-  "doc-btn-0": "User documentation",
-  "doc-btn-1": "Technical documentation",
-
   "awards-title": "Awards & Recognition",
   "award-0-title-0": "UNIKATE Award",
   "award-0-title-1": "2025 Winner",
@@ -35,6 +30,11 @@
   "award-1-title-0": "mission humanity",
   "award-1-title-1": "2025 Winner",
   "award-1-content": "Promoting social engagement and societal awareness among youth",
+
+  "doc-title": "Documentation",
+  "doc-content": "As a open source project we want to provide a as detailed as possible documentation. Both for casual or new users in a non tech focused way as well as for those interested in the GoalFinder's technology.",
+  "doc-btn-0": "User documentation",
+  "doc-btn-1": "Technical documentation",
 
   "support-title": "Support & Cooperation",
   "sponsor-0": "HTBLA Leonding",

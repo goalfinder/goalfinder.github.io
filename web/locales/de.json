@@ -20,15 +20,9 @@
   "features-step-3-title": "Feedback erhalten",
   "features-step-3-content": "Der GoalFinder liefert sowohl akustisches als auch visuelles Feedback zu Treffern und Fehlwürfen und gibt gleichzeitig Echtzeit-Einblicke ins Spielgeschehen.",
 
-
   "quote": "„Mit dem Projekt Goalfinder zeigen die Schüler der HTL Leonding eindrucksvoll, was Innovation bewegen kann. ... Dieses Projekt verbindet modernste Technologie mit sozialer Verantwortung – und leistet damit einen wertvollen Beitrag für unsere Gesellschaft.“",
   "quote-cite": "— Christine Haberlander, Landeshauptmann-Stellvertreterin",
-
-  "doc-title": "Dokumentation",
-  "doc-content": "Als Open-Source-Projekt möchten wir so detaillierte Dokumentation wie möglich bereitstellen Sowohl für tagtäglich Nutzer*innen in einer leicht verständlichen, nicht-technischen Form als auch für alle, die sich für die zugrunde liegende Technologie des GoalFinders interessieren.",
-  "doc-btn-0": "Benutzerdokumentation",
-  "doc-btn-1": "Technische Dokumentation",
-
+  
   "awards-title": "Wettbewerbe & Anerkennung",
   "award-0-title-0": "UNIKATE Award",
   "award-0-title-1": "Gewinner 2025",
@@ -36,6 +30,11 @@
   "award-1-title-0": "mission humanity",
   "award-1-title-1": "Gewinner 2025",
   "award-1-content": "Förderung von sozialem Engagement und gesellschaftlichem Bewusstsein bei Jugendlichen",
+
+  "doc-title": "Dokumentation",
+  "doc-content": "Als Open-Source-Projekt möchten wir so detaillierte Dokumentation wie möglich bereitstellen Sowohl für tagtäglich Nutzer*innen in einer leicht verständlichen, nicht-technischen Form als auch für alle, die sich für die zugrunde liegende Technologie des GoalFinders interessieren.",
+  "doc-btn-0": "Benutzerdokumentation",
+  "doc-btn-1": "Technische Dokumentation",
 
   "support-title": "Unterstützung & Kooperation",
   "sponsor-0": "HTBLA Leonding",
