@@ -1,7 +1,7 @@
 /**
  * MarkdownConverter - Converts markdown text to HTML with support for tables,
  * code blocks, syntax highlighting, and custom signature blocks (alerts).
- * 
+ *
  * Features:
  * - Converts markdown syntax (headings, lists, bold, italic, etc.)
  * - Handles code blocks with syntax highlighting
@@ -9,7 +9,7 @@
  * - Generates tables with proper styling
  * - Navigation links between pages
  * - Source references with expandable list (#src[text](link))
- * 
+ *
  * Required global functions (must be defined in the consuming application):
  * - copyCodeBlock(button) - Handles copying code block content to clipboard
  * - toggleSources(id) - Toggles the expanded state of a sources block
@@ -21,20 +21,20 @@
  */
 class MarkdownConverter {
 	/** @type {path} - The path where the image assets are found */
-	imagePath = `../../assets/img/`;
+	imagePath = `../assets/img/svg/`;
 
 	/** @type {number} - Counter for unique heading IDs */
 	headingCount;
-	
+
 	/** @type {string[]} - Flat array of all page paths for navigation */
 	flatStructure;
-	
+
 	/** @type {Object[]} - Hierarchical structure of pages for sidebar navigation */
 	contentStructure;
-	
+
 	/** @type {number} - Index of currently displayed page */
 	currentPageIndex;
-	
+
 	/** @type {string[]} - Stores extracted code block content for copy functionality */
 	codeBlocks;
 
@@ -81,7 +81,7 @@ class MarkdownConverter {
 		this.codeBlocks = [];
 		const lines = md.split("\n");
 		const htmlLines = [];
-		
+
 		// Track state for different block types (lists, code blocks, tables, etc.)
 		let inUnorderedList = false;
 		let inOrderedList = false;
@@ -144,19 +144,79 @@ class MarkdownConverter {
 				calculationContent = [];
 			} else if (inCalculation) {
 				// Accumulate calculation content
-				calculationContent.push(this.escapeHtml(line));		} else if (/^#src\[([^\]]+)\]\(([^)]+)\)/.test(line)) {
-			// Source reference - collect consecutive sources
-			const match = line.match(/^#src\[([^\]]+)\]\(([^)]+)\)/);
-			pendingSources.push({ text: match[1], link: match[2] });
-		} else if (pendingSources.length > 0) {
-			// Non-source line encountered - flush pending sources
-			htmlLines.push(this.generateSourcesHTML(pendingSources));
-			pendingSources = [];
-			// Continue processing current line
-			if (this.isTableRow(line)) {
-				// Handle table parsing (check for headers and separators)
-				if (!inTable) {
-					// Close any open lists
+				calculationContent.push(this.escapeHtml(line));
+			} else if (/^#src\[([^\]]+)\]\(([^)]+)\)/.test(line)) {
+				// Source reference - collect consecutive sources
+				const match = line.match(/^#src\[([^\]]+)\]\(([^)]+)\)/);
+				pendingSources.push({ text: match[1], link: match[2] });
+			} else if (pendingSources.length > 0) {
+				// Non-source line encountered - flush pending sources
+				htmlLines.push(this.generateSourcesHTML(pendingSources));
+				pendingSources = [];
+				// Continue processing current line
+				if (this.isTableRow(line)) {
+					// Handle table parsing (check for headers and separators)
+					if (!inTable) {
+						// Close any open lists
+						if (inUnorderedList) {
+							htmlLines.push("</ul>");
+							inUnorderedList = false;
+						}
+						if (inOrderedList) {
+							htmlLines.push("</ol>");
+							inOrderedList = false;
+						}
+
+						// Check if next line is separator to determine if this is a header
+						const nextLineIndex = lines.indexOf(line) + 1;
+						const nextLine = nextLineIndex < lines.length ? lines[nextLineIndex] : "";
+
+						if (this.isTableSeparator(nextLine)) {
+							htmlLines.push('<table class="markdown-table">');
+							htmlLines.push("<thead>");
+							htmlLines.push(this.parseTableRow(line, true));
+							htmlLines.push("</thead>");
+							htmlLines.push("<tbody>");
+							inTable = true;
+							tableHeaders = this.extractTableHeaders(line);
+						} else {
+							htmlLines.push('<table class="markdown-table">');
+							htmlLines.push("<tbody>");
+							htmlLines.push(this.parseTableRow(line, false));
+							inTable = true;
+						}
+					} else {
+						if (!this.isTableSeparator(line)) {
+							htmlLines.push(this.parseTableRow(line, false));
+						}
+					}
+				} else if (/^(\*|\-|\+)\s/.test(line)) {
+					if (!inUnorderedList) {
+						htmlLines.push('<ul class="markdown-list">');
+						inUnorderedList = true;
+					}
+					if (inOrderedList) {
+						htmlLines.push("</ol>");
+						inOrderedList = false;
+					}
+					htmlLines.push(this.parseLine(line));
+				} else if (/^\d+\.\s/.test(line)) {
+					if (!inOrderedList) {
+						htmlLines.push('<ol class="markdown-ordered-list-spaced">');
+						inOrderedList = true;
+					}
+					if (inUnorderedList) {
+						htmlLines.push("</ul>");
+						inUnorderedList = false;
+					}
+					htmlLines.push(this.parseLine(line));
+				} else {
+					if (inTable) {
+						htmlLines.push("</tbody>");
+						htmlLines.push("</table>");
+						inTable = false;
+						tableHeaders = [];
+					}
 					if (inUnorderedList) {
 						htmlLines.push("</ul>");
 						inUnorderedList = false;
@@ -165,67 +225,9 @@ class MarkdownConverter {
 						htmlLines.push("</ol>");
 						inOrderedList = false;
 					}
-
-					// Check if next line is separator to determine if this is a header
-					const nextLineIndex = lines.indexOf(line) + 1;
-					const nextLine = nextLineIndex < lines.length ? lines[nextLineIndex] : "";
-
-					if (this.isTableSeparator(nextLine)) {
-						htmlLines.push('<table class="markdown-table">');
-						htmlLines.push("<thead>");
-						htmlLines.push(this.parseTableRow(line, true));
-						htmlLines.push("</thead>");
-						htmlLines.push("<tbody>");
-						inTable = true;
-						tableHeaders = this.extractTableHeaders(line);
-					} else {
-						htmlLines.push('<table class="markdown-table">');
-						htmlLines.push("<tbody>");
-						htmlLines.push(this.parseTableRow(line, false));
-						inTable = true;
-					}
-				} else {
-					if (!this.isTableSeparator(line)) {
-						htmlLines.push(this.parseTableRow(line, false));
-					}
+					htmlLines.push(this.parseLine(line));
 				}
-			} else if (/^(\*|\-|\+)\s/.test(line)) {
-				if (!inUnorderedList) {
-					htmlLines.push('<ul class="markdown-list">');
-					inUnorderedList = true;
-				}
-				if (inOrderedList) {
-					htmlLines.push("</ol>");
-					inOrderedList = false;
-				}
-				htmlLines.push(this.parseLine(line));
-			} else if (/^\d+\.\s/.test(line)) {
-				if (!inOrderedList) {
-					htmlLines.push('<ol class="markdown-ordered-list-spaced">');
-					inOrderedList = true;
-				}
-				if (inUnorderedList) {
-					htmlLines.push("</ul>");
-					inUnorderedList = false;
-				}
-				htmlLines.push(this.parseLine(line));
-			} else {
-				if (inTable) {
-					htmlLines.push("</tbody>");
-					htmlLines.push("</table>");
-					inTable = false;
-					tableHeaders = [];
-				}
-				if (inUnorderedList) {
-					htmlLines.push("</ul>");
-					inUnorderedList = false;
-				}
-				if (inOrderedList) {
-					htmlLines.push("</ol>");
-					inOrderedList = false;
-				}
-				htmlLines.push(this.parseLine(line));
-			}			} else if (/^```/.test(line)) {
+			} else if (/^```/.test(line)) {
 				// Toggle standard code block on/off
 				if (inCodeBlock) {
 					htmlLines.push("</pre>");
@@ -663,32 +665,34 @@ class MarkdownConverter {
 	 */
 	parseInline(text) {
 		// Process inline markdown elements in order of precedence
-		return text
-			// Images with optional dimensions: ![alt](src) or ![alt](src)(300x200)
-			.replace(/!\[([^\]]*)\]\(([^)]+)\)(\(([^)]+)\))?/g, (match, alt, src, _, dimensions) => {
-				let imgTag = `<img src="${src}" alt="${alt}" class="markdown-image"`;
+		return (
+			text
+				// Images with optional dimensions: ![alt](src) or ![alt](src)(300x200)
+				.replace(/!\[([^\]]*)\]\(([^)]+)\)(\(([^)]+)\))?/g, (match, alt, src, _, dimensions) => {
+					let imgTag = `<img src="${src}" alt="${alt}" class="markdown-image"`;
 
-				if (dimensions) {
-					// Parse dimensions like "300x200" or "300" (width only)
-					const dimMatch = dimensions.match(/^(\d+)(?:x(\d+))?$/);
-					if (dimMatch) {
-						const width = dimMatch[1];
-						const height = dimMatch[2];
-						imgTag += ` width="${width}"`;
-						if (height) {
-							imgTag += ` height="${height}"`;
+					if (dimensions) {
+						// Parse dimensions like "300x200" or "300" (width only)
+						const dimMatch = dimensions.match(/^(\d+)(?:x(\d+))?$/);
+						if (dimMatch) {
+							const width = dimMatch[1];
+							const height = dimMatch[2];
+							imgTag += ` width="${width}"`;
+							if (height) {
+								imgTag += ` height="${height}"`;
+							}
 						}
 					}
-				}
 
-				return imgTag + " />";
-			}) // Images with optional dimensions
-			.replace(/\[\[([^\]]+)\]\(([^)]+)\)\]/g, '<span id="$2" class="markdown-button">$1</span>') // Button links with ID
-			.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="markdown-link">$1</a>') // Links
-			.replace(/~~(.*?)~~/g, '<del class="markdown-strikethrough">$1</del>') // Strikethrough
-			.replace(/\*\*(.*?)\*\*/g, '<strong class="markdown-bold">$1</strong>') // Bold
-			.replace(/\*(.*?)\*/g, '<em class="markdown-italic">$1</em>') // Italic
-			.replace(/`(.*?)`/g, '<code class="markdown-code">$1</code>'); // Inline code
+					return imgTag + " />";
+				}) // Images with optional dimensions
+				.replace(/\[\[([^\]]+)\]\(([^)]+)\)\]/g, '<span id="$2" class="markdown-button">$1</span>') // Button links with ID
+				.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="markdown-link">$1</a>') // Links
+				.replace(/~~(.*?)~~/g, '<del class="markdown-strikethrough">$1</del>') // Strikethrough
+				.replace(/\*\*(.*?)\*\*/g, '<strong class="markdown-bold">$1</strong>') // Bold
+				.replace(/\*(.*?)\*/g, '<em class="markdown-italic">$1</em>') // Italic
+				.replace(/`(.*?)`/g, '<code class="markdown-code">$1</code>')
+		); // Inline code
 	}
 
 	/**
@@ -912,7 +916,7 @@ class MarkdownConverter {
 			.split("|")
 			.map((cell) => cell.trim())
 			.filter((cell) => cell.length > 0);
-		
+
 		// Use <th> for header rows, <td> for data rows
 		const tag = isHeader ? "th" : "td";
 		const className = isHeader ? "markdown-table-header" : "markdown-table-cell";

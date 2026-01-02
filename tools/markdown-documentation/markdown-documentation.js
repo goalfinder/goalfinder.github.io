@@ -1,8 +1,8 @@
 // Comment to commit on new branch
 
 // Import necessary modules for content browsing and markdown conversion
-import MarkdownConverter from "../../tools/markdown-converter/markdown-converter.js";
-import ContentBrowser from "../../tools/content-browser/content-browser.js";
+import MarkdownConverter from "../markdown-converter/markdown-converter.js";
+import ContentBrowser from "../content-browser/content-browser.js";
 
 // Global variable to store current markdown content
 let currentMarkdownContent = ""; // for copy button
@@ -82,10 +82,10 @@ function searchbarBlur() {
 		// On mobile collapse the search bar back to icon-only
 		try {
 			if (window.innerWidth <= 768) {
-				const bar = document.querySelector('.header-search-bar');
+				const bar = document.querySelector(".header-search-bar");
 				if (bar) {
-					bar.classList.remove('expanded');
-					bar.classList.add('mobile-collapsed');
+					bar.classList.remove("expanded");
+					bar.classList.add("mobile-collapsed");
 				}
 			}
 		} catch (e) {
@@ -95,52 +95,52 @@ function searchbarBlur() {
 }
 
 // Mobile search icon toggle: collapse to icon, expand on click to reveal input
-document.addEventListener('DOMContentLoaded', () => {
-	const searchBar = document.querySelector('.header-search-bar');
-	const searchIcon = document.querySelector('.header-search-bar .search-icon');
-	const searchInput = document.getElementById('searchInput');
+document.addEventListener("DOMContentLoaded", () => {
+	const searchBar = document.querySelector(".header-search-bar");
+	const searchIcon = document.querySelector(".header-search-bar .search-icon");
+	const searchInput = document.getElementById("searchInput");
 
 	function applyMobileState() {
 		if (!searchBar) return;
 		if (window.innerWidth <= 768) {
 			// default collapsed state on mobile
-			if (!searchBar.classList.contains('expanded')) {
-				searchBar.classList.add('mobile-collapsed');
+			if (!searchBar.classList.contains("expanded")) {
+				searchBar.classList.add("mobile-collapsed");
 			}
 		} else {
 			// remove mobile-only classes on larger screens
-			searchBar.classList.remove('mobile-collapsed');
-			searchBar.classList.remove('expanded');
+			searchBar.classList.remove("mobile-collapsed");
+			searchBar.classList.remove("expanded");
 		}
 	}
 
 	applyMobileState();
 
-	window.addEventListener('resize', applyMobileState);
+	window.addEventListener("resize", applyMobileState);
 
 	if (searchIcon) {
-		searchIcon.addEventListener('click', (e) => {
+		searchIcon.addEventListener("click", (e) => {
 			if (window.innerWidth > 768) return; // default behavior on desktop
 
-			const bar = searchIcon.closest('.header-search-bar');
+			const bar = searchIcon.closest(".header-search-bar");
 			if (!bar) return;
 
-			if (bar.classList.contains('expanded')) {
+			if (bar.classList.contains("expanded")) {
 				// collapse
-				bar.classList.remove('expanded');
-				bar.classList.add('mobile-collapsed');
+				bar.classList.remove("expanded");
+				bar.classList.add("mobile-collapsed");
 				if (searchInput) searchInput.blur();
 			} else {
 				// expand and focus
-				bar.classList.remove('mobile-collapsed');
-				bar.classList.add('expanded');
+				bar.classList.remove("mobile-collapsed");
+				bar.classList.add("expanded");
 				// slight delay to allow CSS transition
 				setTimeout(() => {
 					if (searchInput) {
 						searchInput.focus();
 						// open popup too
-						const popup = document.getElementById('searchPopup');
-						if (popup) popup.classList.add('visible');
+						const popup = document.getElementById("searchPopup");
+						if (popup) popup.classList.add("visible");
 					}
 				}, 160);
 			}
@@ -184,7 +184,7 @@ async function searchbarSearch() {
 				if (item.type === "page" || (item.type === "category" && item.path)) {
 					// This item has a markdown file to search
 					try {
-						const markdown = await converter.loadMarkdown( item.path);
+						const markdown = await converter.loadMarkdown(item.path);
 						const lowerMarkdown = markdown.toLowerCase();
 
 						if (lowerMarkdown.includes(searchTerm)) {
@@ -399,13 +399,13 @@ async function navigateToSearchResult(path, searchTerm) {
 	}
 
 	// Load and display the content
-	const md = await converter.loadMarkdown( path);
+	const md = await converter.loadMarkdown(path);
 	currentMarkdownContent = md;
 	const html = converter.convert(md, path);
 	preview.innerHTML = html;
 
 	const rightPanelHeader = document.getElementById("right-panel-header");
-	const headings = await getMarkdownHeaders( path);
+	const headings = await getMarkdownHeaders(path);
 	rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 	setupRightPanelListeners(rightPanelHeader);
 	setupEndButtonListeners();
@@ -479,11 +479,11 @@ function lightDarkModeToggle() {
 
 	// Toggle mode switch button content (only update src and text, preserve DOM for smooth transition)
 	if (html.classList.contains("dark-mode")) {
-		toggleIcon.src = "../../assets/img/light.svg";
+		toggleIcon.src = "../assets/img/svg/light.svg";
 		toggleText.textContent = "Light Mode";
 		localStorage.setItem("theme", "dark");
 	} else {
-		toggleIcon.src = "../../assets/img/dark.svg";
+		toggleIcon.src = "../assets/img/svg/dark.svg";
 		toggleText.textContent = "Dark Mode";
 		localStorage.setItem("theme", "light");
 	}
@@ -670,13 +670,13 @@ async function restoreSelectedPage(savedPagePath, savedCategoryName) {
 			currentlySelectedTopic = pageButton;
 
 			// Load the content
-			const md = await converter.loadMarkdown( savedPagePath);
+			const md = await converter.loadMarkdown(savedPagePath);
 			currentMarkdownContent = md;
 			const html = converter.convert(md, savedPagePath);
 			preview.innerHTML = html;
 
 			const rightPanelHeader = document.getElementById("right-panel-header");
-			const headings = await getMarkdownHeaders( savedPagePath);
+			const headings = await getMarkdownHeaders(savedPagePath);
 			rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 			setupRightPanelListeners(rightPanelHeader);
 			setupEndButtonListeners();
@@ -691,13 +691,13 @@ async function restoreSelectedPage(savedPagePath, savedCategoryName) {
 			// Load the category content if it has a path
 			const categoryItem = findCategoryByName(browser.contentStructure, savedCategoryName);
 			if (categoryItem && categoryItem.path) {
-				const md = await converter.loadMarkdown( categoryItem.path);
+				const md = await converter.loadMarkdown(categoryItem.path);
 				currentMarkdownContent = md;
 				const html = converter.convert(md, categoryItem.path);
 				preview.innerHTML = html;
 
 				const rightPanelHeader = document.getElementById("right-panel-header");
-				const headings = await getMarkdownHeaders( categoryItem.path);
+				const headings = await getMarkdownHeaders(categoryItem.path);
 				rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 				setupRightPanelListeners(rightPanelHeader);
 				setupEndButtonListeners();
@@ -801,7 +801,7 @@ function setupEventListenersForNewElements() {
 		if (!button.querySelector(".category-arrow")) {
 			const arrow = document.createElement("span");
 			arrow.classList.add("category-arrow");
-			arrow.innerHTML = '<img src="../../assets/img/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">';
+			arrow.innerHTML = '<img src="../assets/img/svg/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">';
 			button.appendChild(arrow);
 		}
 
@@ -865,13 +865,13 @@ function setupEventListenersForNewElements() {
 			button.classList.add("topic-selected");
 			currentlySelectedTopic = button;
 
-			const md = await converter.loadMarkdown( button.dataset.path);
+			const md = await converter.loadMarkdown(button.dataset.path);
 			currentMarkdownContent = md; // for copy button
 			const html = converter.convert(md, button.dataset.path);
 			preview.innerHTML = html;
 
 			const rightPanelHeader = document.getElementById("right-panel-header");
-			const headings = await getMarkdownHeaders( button.dataset.path);
+			const headings = await getMarkdownHeaders(button.dataset.path);
 			rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 			setupRightPanelListeners(rightPanelHeader);
 			setupEndButtonListeners();
@@ -911,13 +911,13 @@ function setupEndButtonListeners() {
 					currentlySelectedTopic = targetButton;
 
 					// Load and display the content
-					const md = await converter.loadMarkdown( path);
+					const md = await converter.loadMarkdown(path);
 					currentMarkdownContent = md;
 					const html = converter.convert(md, path);
 					preview.innerHTML = html;
 
 					const rightPanelHeader = document.getElementById("right-panel-header");
-					const headings = await getMarkdownHeaders( path);
+					const headings = await getMarkdownHeaders(path);
 					rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 					setupRightPanelListeners(rightPanelHeader);
 
@@ -959,13 +959,13 @@ function setupEndButtonListeners() {
 					currentlySelectedTopic = targetButton;
 
 					// Load and display the content
-					const md = await converter.loadMarkdown( path);
+					const md = await converter.loadMarkdown(path);
 					currentMarkdownContent = md;
 					const html = converter.convert(md, path);
 					preview.innerHTML = html;
 
 					const rightPanelHeader = document.getElementById("right-panel-header");
-					const headings = await getMarkdownHeaders( path);
+					const headings = await getMarkdownHeaders(path);
 					rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 					setupRightPanelListeners(rightPanelHeader);
 
@@ -1005,7 +1005,7 @@ async function setupEventListeners() {
 		if (!button.querySelector(".category-arrow")) {
 			const arrow = document.createElement("span");
 			arrow.classList.add("category-arrow");
-			arrow.innerHTML = '<img src="../../assets/img/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">';
+			arrow.innerHTML = '<img src="../assets/img/svg/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">';
 			button.appendChild(arrow);
 		}
 
@@ -1125,7 +1125,7 @@ async function setupEventListeners() {
 			preview.innerHTML = html;
 
 			const rightPanelHeader = document.getElementById("right-panel-header");
-			const headings = await getMarkdownHeaders( button.dataset.path);
+			const headings = await getMarkdownHeaders(button.dataset.path);
 			rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 			setupRightPanelListeners(rightPanelHeader);
 			setupEndButtonListeners();
@@ -1190,7 +1190,7 @@ async function onToggle(button) {
 			preview.innerHTML = html;
 
 			const rightPanelHeader = document.getElementById("right-panel-header");
-			const headings = await getMarkdownHeaders( categoryItem.path);
+			const headings = await getMarkdownHeaders(categoryItem.path);
 			rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 			setupRightPanelListeners(rightPanelHeader);
 			setupEndButtonListeners();
@@ -1298,7 +1298,7 @@ async function refresh() {
 function selectInitialLoadedTopic(path) {
 	converter.loadMarkdown(path).then((md) => {
 		currentMarkdownContent = md; // for copy button
-		const html = converter.convert(md, 	);
+		const html = converter.convert(md, path);
 		preview.innerHTML = html;
 	});
 
@@ -1309,19 +1309,29 @@ function selectInitialLoadedTopic(path) {
 		setupRightPanelListeners(rightPanelHeader);
 	});
 
-	const dataPath = path.replace("../../assets/", "");
+	const dataPath = path;
 	const targetButton = document.querySelector(`[data-path="${dataPath}"]`);
 	targetButton.classList.remove("topic-unselected");
 	targetButton.classList.add("topic-selected");
 	currentlySelectedTopic = targetButton;
 }
 
-document.addEventListener("DOMContentLoaded", async (event) => {
+/**
+ * Initialize the markdown documentation system
+ * @param {Object} config - Configuration options
+ * @param {string} config.contentStructurePath - Path to the content structure JSON file
+ * @param {string} config.defaultPagePath - Path to the default page to load
+ * @param {string} config.lightIconPath - Path to the light mode icon
+ * @param {string} config.copyIconPath - Path to the copy icon
+ */
+async function initMarkdownDocumentation(config = {}) {
+	const { contentStructurePath = "../content/user-content-structure.json", defaultPagePath = "../content/user/introduction.md", lightIconPath = "../assets/img/svg/light.svg", copyIconPath = "../assets/img/svg/copy.svg" } = config;
+
 	// Get reference to the topic browser container
 	browserContainer = document.querySelector(".topic-selector");
 
 	// Fetch and load topic structure
-	await browser.fetchStructure("../content-structure.json");
+	await browser.fetchStructure(contentStructurePath);
 
 	// Load saved content structure state from localStorage
 	const savedState = loadContentStructureState();
@@ -1345,7 +1355,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 	if (savedPagePath || savedCategoryName) {
 		await restoreSelectedPage(savedPagePath, savedCategoryName);
 	} else {
-		selectInitialLoadedTopic("../content/introduction.md");
+		selectInitialLoadedTopic(defaultPagePath);
 	}
 
 	const savedTheme = localStorage.getItem("theme");
@@ -1353,8 +1363,8 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 		const toggleButton = document.getElementById("lightDarkToggle");
 		const copyButton = document.getElementById("copyButton");
 		if (toggleButton) {
-			toggleButton.innerHTML = '<img class="icon" src="../../assets/img/light.svg"><span class="icon-text">Light Mode</span>';
-			copyButton.innerHTML = '<img class="icon" src="../../assets/img/copy.svg"></img><span class="icon-text">Copy</span>';
+			toggleButton.innerHTML = `<img class="icon" src="${lightIconPath}"><span class="icon-text">Light Mode</span>`;
+			copyButton.innerHTML = `<img class="icon" src="${copyIconPath}"></img><span class="icon-text">Copy</span>`;
 		}
 	}
 
@@ -1367,50 +1377,53 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 	});
 
 	// Sidebar toggle
-	const topicToggle = document.getElementById('topicToggle');
-	const sidebarOverlay = document.getElementById('sidebarOverlay');
-	const topicClose = document.getElementById('topicClose');
+	const topicToggle = document.getElementById("topicToggle");
+	const sidebarOverlay = document.getElementById("sidebarOverlay");
+	const topicClose = document.getElementById("topicClose");
 
 	function openSidebar() {
-		document.body.classList.add('sidebar-open');
-		const firstTopic = document.querySelector('.topic-selector button, .topic-selector a');
+		document.body.classList.add("sidebar-open");
+		const firstTopic = document.querySelector(".topic-selector button, .topic-selector a");
 		if (firstTopic) firstTopic.focus();
 		try {
-			if (topicToggle) topicToggle.setAttribute('aria-expanded', 'true');
+			if (topicToggle) topicToggle.setAttribute("aria-expanded", "true");
 		} catch (e) {}
 	}
 
 	function closeSidebar() {
-		document.body.classList.remove('sidebar-open');
+		document.body.classList.remove("sidebar-open");
 		try {
-			if (topicToggle) topicToggle.setAttribute('aria-expanded', 'false');
+			if (topicToggle) topicToggle.setAttribute("aria-expanded", "false");
 		} catch (e) {}
 	}
 
 	if (topicToggle) {
-		topicToggle.addEventListener('click', (ev) => {
+		topicToggle.addEventListener("click", (ev) => {
 			ev.stopPropagation();
-			if (document.body.classList.contains('sidebar-open')) closeSidebar();
+			if (document.body.classList.contains("sidebar-open")) closeSidebar();
 			else openSidebar();
 		});
 	}
 
 	if (sidebarOverlay) {
-		sidebarOverlay.addEventListener('click', () => closeSidebar());
+		sidebarOverlay.addEventListener("click", () => closeSidebar());
 	}
 
 	if (topicClose) {
-		topicClose.addEventListener('click', (e) => {
+		topicClose.addEventListener("click", (e) => {
 			e.stopPropagation();
 			closeSidebar();
 		});
 	}
 
-	document.addEventListener('keydown', (e) => {
-		if (e.key === 'Escape') closeSidebar();
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape") closeSidebar();
 	});
 
-	window.addEventListener('resize', () => {
+	window.addEventListener("resize", () => {
 		if (window.innerWidth > 768) closeSidebar();
 	});
-});
+}
+
+export { initMarkdownDocumentation };
+export default initMarkdownDocumentation;
