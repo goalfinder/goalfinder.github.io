@@ -1,9 +1,9 @@
 {
   "sub-title": "ASSISTIVE BASKETBALL DEVICE FOR VISUALLY IMPAIRED",
-
+  
   "about-title": "About",
   "about-content": "The GoalFinder device assists visually impaired players by playing sounds and illuminating a target strip to indicate the basket, and by providing visual and auditory feedback for successful or missed shots. It’s easy to configure through the GoalFinder Web App, which lets users set up and play different games and challenges.",
-
+  
   "mission-title": "Our Mission",
   "mission-0-title": "Accessibility",
   "mission-0-content": "People with visual impairments should be full members of society, not a burden—equally included in everyday life and in sports. That's why we created the GoalFinder device, to make it easier for blind and low‑vision players to enjoy basketball.",
@@ -11,7 +11,7 @@
   "mission-1-content": "GoalFinder should serve its purpose efficiently while remaining accessible to everyone. By making the project 100% open source, we ensure that the full functionality is available to all, maximizing its impact and usefulness.",
   "mission-2-title": "Community",
   "mission-2-content": "A real open source project thrives only when supported by its community. We deeply appreciate feedback from our users and encourage developers to contribute their ideas and skills.",
-
+  
   "features-title": "How It Works",
   "features-step-1-title": "Set Up",
   "features-step-1-content": "Mount and set up the GoalFinder. Use the Web App to make further adjustments and launch games or challenges",
@@ -19,10 +19,10 @@
   "features-step-2-content": "With the GoalFinder, a customizable sound and flashing light strip guides players to the basket.",
   "features-step-3-title": "Get Feedback on Gameplay",
   "features-step-3-content": "The GoalFinder provides both auditory and visual feedback for hits and misses, while also giving real-time insights into the gameplay",
-
+  
   "quote": "With the Goalfinder project, the students of HTL Leonding impressively demonstrate what innovation can achieve. ... This project combines cutting-edge technology with social responsibility – thereby making a valuable contribution to our society.",
   "quote-cite": "— Christine Haberlander, Vice Governor",
-
+  
   "awards-title": "Awards & Recognition",
   "award-0-title-0": "UNIKATE Award",
   "award-0-title-1": "2025 Winner",
@@ -30,19 +30,31 @@
   "award-1-title-0": "mission humanity",
   "award-1-title-1": "2025 Winner",
   "award-1-content": "Promoting social engagement and societal awareness among youth",
-
+  
   "doc-title": "Documentation",
   "doc-content": "As a open source project we want to provide a as detailed as possible documentation. Both for casual or new users in a non tech focused way as well as for those interested in the GoalFinder's technology.",
   "doc-btn-0": "User documentation",
   "doc-btn-1": "Technical documentation",
-
+  
   "support-title": "Support & Cooperation",
   "sponsor-0": "HTBLA Leonding",
   "sponsor-1": "University Vienna",
-
+  
   "cta-title": "Ready to Get Involved?",
   "cta-content": "Join our community and help make basketball accessible for everyone.",
   "cta-btn": "Learn More",
   "credits": "Credits",
-  "help": "Help"
+  "help": "Help",
+  "search": "Search documentation...",
+  "search-hint": "Type at least 2 characters to search...",
+  "search-loading": "Searching...",
+  "search-no-results": "No results found",
+  "copy": "Copy",
+  "dark-mode": "Dark Mode",
+  "light-mode": "Light Mode",
+  
+  "td-title": "GoalFinder Technical Documentation",
+  "td-title-short": "Technical Documentation",
+  "ud-title": "GoalFinder User Documentation",
+  "ud-title-short": "User Documentation"
 }

@@ -7,6 +7,65 @@ import ContentBrowser from "../content-browser/content-browser.js";
 // Global variable to store current markdown content
 let currentMarkdownContent = ""; // for copy button
 
+// Translation data
+let translations = {};
+
+/**
+ * Translate a key using the current translations
+ * @param {string} key - The translation key
+ * @returns {string} - The translated text or the key if not found
+ */
+function t(key) {
+	return translations[key] || key;
+}
+
+/**
+ * Update translations and re-render static UI elements
+ * @param {Object} newTranslations - The new translations object
+ */
+function updateMarkdownDocumentationTranslations(newTranslations) {
+	translations = newTranslations;
+
+	// Update search input placeholder
+	const searchInput = document.getElementById("searchInput");
+	if (searchInput) {
+		searchInput.placeholder = t("search");
+	}
+
+	// Update copy button text
+	const copyButton = document.getElementById("copyButton");
+	if (copyButton) {
+		const copyText = copyButton.querySelector(".icon-text");
+		if (copyText) {
+			copyText.textContent = t("copy");
+		}
+	}
+
+	// Update light/dark mode toggle text
+	const toggleButton = document.getElementById("lightDarkToggle");
+	if (toggleButton) {
+		const toggleText = toggleButton.querySelector(".icon-text");
+		const html = document.documentElement;
+		if (toggleText) {
+			if (html.classList.contains("dark-mode")) {
+				toggleText.textContent = t("light-mode");
+			} else {
+				toggleText.textContent = t("dark-mode");
+			}
+		}
+	}
+
+	// Re-render search results if the search popup is visible
+	const searchPopup = document.getElementById("searchPopup");
+
+	if (searchPopup && searchPopup.classList.contains("visible")) {
+		searchbarSearch();
+	}
+}
+
+// Make updateMarkdownDocumentationTranslations globally available
+window.updateMarkdownDocumentationTranslations = updateMarkdownDocumentationTranslations;
+
 // Global content browser instance
 let browser = new ContentBrowser();
 
@@ -168,13 +227,14 @@ async function searchbarSearch() {
 
 	// If search term is empty, clear results
 	if (searchTerm.length < 2) {
-		searchResults.innerHTML = '<li class="search-no-results">Type at least 2 characters to search...</li>';
+		searchResults.innerHTML = `<li class="search-no-results">${t("search-hint")}</li>`;
 		return;
 	}
 
 	// Debounce: wait 300ms after user stops typing
 	searchDebounceTimer = setTimeout(async () => {
-		searchResults.innerHTML = '<li class="search-loading">Searching...</li>';
+		searchResults.innerHTML = `<li class="search-loading">${t("search-loading")}</li>`;
+		// Note: 'search-loading' translation key may need to be added to locales
 
 		const resultsByCategory = {};
 
@@ -277,7 +337,7 @@ function displaySearchResults(resultsByCategory, container, searchTerm) {
 	const categories = Object.keys(resultsByCategory);
 
 	if (categories.length === 0) {
-		container.innerHTML = '<li class="search-no-results">No results found</li>';
+		container.innerHTML = `<li class="search-no-results">${t("search-no-results")}</li>`;
 		return;
 	}
 
@@ -480,11 +540,11 @@ function lightDarkModeToggle() {
 	// Toggle mode switch button content (only update src and text, preserve DOM for smooth transition)
 	if (html.classList.contains("dark-mode")) {
 		toggleIcon.src = "../assets/img/svg/light.svg";
-		toggleText.textContent = "Light Mode";
+		toggleText.textContent = t("light-mode");
 		localStorage.setItem("theme", "dark");
 	} else {
 		toggleIcon.src = "../assets/img/svg/dark.svg";
-		toggleText.textContent = "Dark Mode";
+		toggleText.textContent = t("dark-mode");
 		localStorage.setItem("theme", "light");
 	}
 }
@@ -1276,13 +1336,13 @@ async function copyCodeBlock(button) {
 		await navigator.clipboard.writeText(code);
 		// Show feedback
 		setTimeout(() => {
-			textSpan.textContent = "Copy";
+			textSpan.textContent = t("copy");
 		}, 2000);
 	} catch (err) {
 		console.error("Failed to copy code: ", err);
 		textSpan.textContent = "Failed";
 		setTimeout(() => {
-			textSpan.textContent = "Copy";
+			textSpan.textContent = t("copy");
 		}, 2000);
 	}
 }
@@ -1425,5 +1485,5 @@ async function initMarkdownDocumentation(config = {}) {
 	});
 }
 
-export { initMarkdownDocumentation };
+export { initMarkdownDocumentation, updateMarkdownDocumentationTranslations };
 export default initMarkdownDocumentation;
