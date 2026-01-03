@@ -23,8 +23,11 @@ Following other branches can be helpful:
     ├── content                 Markdown content for user and technical documentation
     │   ├── user                    User documentation content
     │   ├── technical               Technical documentation content
-    │   ├── user-content-structure.json         Content structure for the user documentation
-    │   └── technical-content-structure.json    Content structure for the technical documentation
+    │   └── content-structures      Content structures for different documentation and different languages 
+    │       ├── user-content-structure-de.json      German content structure for the user documentation
+    │       ├── user-content-structure-en.json      English content structure for the user documentation
+    │       ├── technical-content-structure-de.json German content structure for the technical documentation
+    │       └── technical-content-structure-en.json English content structure for the technical documentation
     ├── doc-alt                 Documentation from the previous repository
     ├── locales                 Localization files for different languages
     ├── pages                   HTML pages for the website
