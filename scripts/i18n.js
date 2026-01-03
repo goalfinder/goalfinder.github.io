@@ -1,7 +1,9 @@
 /** Current translation data */
 let translations = [];
+/** The default page language */
+const defaultLang = "de"
 /** Current language */
-let currentLang = "en";
+let currentLang = defaultLang;
 
 /**
  * Loads the specified language and applies it
@@ -36,6 +38,14 @@ export function getTranslations() {
  */
 export function getCurrentLang() {
 	return currentLang;
+}
+
+/**
+ * Set the current language
+ * @param {string} lang The lang to set the current language to
+ */
+export function setCurrentLang(lang) {
+	currentLang = lang;
 }
 
 /**

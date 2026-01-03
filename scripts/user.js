@@ -1,14 +1,10 @@
 import { initMarkdownDocumentation } from "../tools/markdown-documentation/markdown-documentation.js";
-import { loadLang, getTranslations } from "./i18n.js";
+import { loadLang, setCurrentLang, getCurrentLang, getTranslations } from "./i18n.js";
 
 /** Default page language */
-const defaultLang = "de";
-let currentLang;
-
 document.addEventListener("DOMContentLoaded", async () => {
 	// Load language first before initializing markdown documentation
-	currentLang = defaultLang;
-	await loadLang(currentLang);
+	await loadLang(getCurrentLang());
 
 	// Now initialize markdown documentation with translations already loaded
 	await initMarkdownDocumentation({

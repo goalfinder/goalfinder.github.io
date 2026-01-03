@@ -4,11 +4,6 @@
 	font-display: swap;
 }
 
-/* Use border-box everywhere to avoid unexpected overflow */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
 :root {
 	--bg-color: #f6f6f6;
 	--text-color: #0a0a0a;
@@ -33,6 +28,10 @@
 	--topic-selected-color: rgb(79, 128, 235);
 	--topic-selected-hover-bg: rgba(79, 128, 235, 0.2);
     --end-border-color: rgba(255,255,255,0.08);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 .markdown-end-previous,

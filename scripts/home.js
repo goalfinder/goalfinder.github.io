@@ -1,23 +1,19 @@
-import { loadLang } from './i18n.js';
+import { loadLang, setCurrentLang, getCurrentLang, getTranslations } from "./i18n.js";
 
 /** Default page language */
-const defaultLang = "de";
 let langButton;
-let currentLang;
 
 function switchLang() {
-    currentLang = currentLang === "de" ? "en" : "de";
-    loadLang(currentLang)
+    setCurrentLang(getCurrentLang() == "de" ? "en" : "de");
+    loadLang(getCurrentLang());
     
     if (langButton) {
-        langButton.innerHTML = currentLang.toUpperCase();
+        langButton.innerHTML = getCurrentLang().toUpperCase();
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Load the default language
-    currentLang = defaultLang;
-    loadLang(currentLang);
+    loadLang(getCurrentLang());
 
     // Get language switch button
     langButton = document.getElementById("lang-button");
