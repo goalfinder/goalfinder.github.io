@@ -541,19 +541,18 @@ function lightDarkModeToggle() {
 	const headerIcon = document.getElementById("header-icon");
 
 	html.classList.toggle("dark-mode"); // Change page appearance
-	console.log("mode was switched")
 
 	// Toggle mode switch button content (only update src and text, preserve DOM for smooth transition)
 	if (html.classList.contains("dark-mode")) {
 		toggleIcon.src = "../assets/img/svg/light.svg";
 		toggleText.textContent = t("light-mode");
 		localStorage.setItem("theme", "dark");
-		headerIcon.src = "../../assets/img/logos/goalfinder/logo-shadow.png"
+		headerIcon.src = "../../assets/img/logos/goalfinder/logo-shadow.png";
 	} else {
 		toggleIcon.src = "../assets/img/svg/dark.svg";
 		toggleText.textContent = t("dark-mode");
 		localStorage.setItem("theme", "light");
-		headerIcon.src = "../../assets/img/logos/goalfinder/logo-black-shadow.png"
+		headerIcon.src = "../../assets/img/logos/goalfinder/logo-black-shadow.png";
 	}
 }
 
@@ -1398,7 +1397,6 @@ async function initMarkdownDocumentation(config = {}) {
 	// Get reference to the topic browser container
 	browserContainer = document.querySelector(".topic-selector");
 	const contentPath = `${contentStructurePath}${doc}-content-structure-${getCurrentLang()}.json`;
-	console.log(contentPath);
 
 	// Fetch and load topic structure
 	await browser.fetchStructure(contentPath);
@@ -1429,6 +1427,7 @@ async function initMarkdownDocumentation(config = {}) {
 	}
 
 	const savedTheme = localStorage.getItem("theme");
+	const headerIcon = document.getElementById("header-icon");
 	if (savedTheme === "dark") {
 		const toggleButton = document.getElementById("lightDarkToggle");
 		const copyButton = document.getElementById("copyButton");
@@ -1436,6 +1435,9 @@ async function initMarkdownDocumentation(config = {}) {
 			toggleButton.innerHTML = `<img class="icon" src="${lightIconPath}"><span class="icon-text">Light Mode</span>`;
 			copyButton.innerHTML = `<img class="icon" src="${copyIconPath}"></img><span class="icon-text">Copy</span>`;
 		}
+		headerIcon.src = "../../assets/img/logos/goalfinder/logo-shadow.png";
+	} else {
+		headerIcon.src = "../../assets/img/logos/goalfinder/logo-black-shadow.png";
 	}
 
 	document.addEventListener("click", (e) => {
