@@ -1397,7 +1397,7 @@ async function initMarkdownDocumentation(config = {}) {
 	console.log(contentPath);
 
 	// Fetch and load topic structure
-	await browser.fetchStructure(contentStructurePath);
+	await browser.fetchStructure(contentPath);
 
 	// Load saved content structure state from localStorage
 	const savedState = loadContentStructureState();

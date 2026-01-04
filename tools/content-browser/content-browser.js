@@ -14,11 +14,23 @@ class ContentBrowser {
 	async fetchStructure(path) {
 		const res = await fetch(path);
 		if (!res.ok) {
-			console.error(`Failed to fetch content structure: ${res.statusText}`);
+			console.error(`Failed to fetch content structure (${res.status}): ${res.statusText} for ${path}`);
 			return null;
-		} else {
 		}
-		this.contentStructure = await res.json(); // Parse and store the content structure
+
+		const contentType = res.headers.get("content-type") || "";
+		if (!contentType.includes("application/json")) {
+			const text = await res.text();
+			console.error(`Expected JSON but got '${contentType}' from ${path}. Response starts with: ${text.slice(0, 200)}`);
+			return null;
+		}
+
+		try {
+			this.contentStructure = await res.json(); // Parse and store the content structure
+		} catch (err) {
+			console.error(`Failed to parse JSON from ${path}:`, err);
+			return null;
+		}
 	}
 
 	/**
