@@ -1394,9 +1394,10 @@ async function initMarkdownDocumentation(config = {}) {
 	// Get reference to the topic browser container
 	browserContainer = document.querySelector(".topic-selector");
 	const contentPath = `${contentStructurePath}${doc}-content-structure-${getCurrentLang()}.json`;
+	console.log(contentPath);
 
 	// Fetch and load topic structure
-	await browser.fetchStructure(contentPath);
+	await browser.fetchStructure(contentStructurePath);
 
 	// Load saved content structure state from localStorage
 	const savedState = loadContentStructureState();

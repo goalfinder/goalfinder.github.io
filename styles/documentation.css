@@ -30,7 +30,7 @@
 	--button-bg: var(--accent);
 	--button-text: var(--text);
 	--topic-selected-color: var(--primary);
-	--topic-selected-hover-bg: rgba(59, 130, 246, 0.1);
+	--topic-selected-hover-bg: rgba(128, 73, 255, 0.1);
 	--end-border-color: var(--border);
 }
 
@@ -43,7 +43,7 @@
 	--button-bg: #16183e;
 	--button-text: #e0e0e0;
 	--topic-selected-color: var(--primary);
-	--topic-selected-hover-bg: rgba(59, 130, 246, 0.2);
+	--topic-selected-hover-bg: rgba(134, 59, 246, 0.2);
 	--end-border-color: rgba(255, 255, 255, 0.08);
 }
 
