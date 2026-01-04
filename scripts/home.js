@@ -1,4 +1,4 @@
-import { loadLang, setCurrentLang, getCurrentLang, getTranslations } from "./i18n.js";
+import { loadLang, setCurrentLang, getCurrentLang } from "./i18n.js";
 
 /** Default page language */
 let langButton;

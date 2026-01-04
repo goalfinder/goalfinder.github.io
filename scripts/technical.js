@@ -1,5 +1,5 @@
 import { initMarkdownDocumentation } from "../tools/markdown-documentation/markdown-documentation.js";
-import { loadLang, setCurrentLang, getCurrentLang, getTranslations } from "./i18n.js";
+import { loadLang, getCurrentLang, getTranslations } from "./i18n.js";
 
 /** Default page language */
 document.addEventListener("DOMContentLoaded", async () => {

@@ -3,7 +3,7 @@
 // Import necessary modules for content browsing and markdown conversion
 import MarkdownConverter from "../markdown-converter/markdown-converter.js";
 import ContentBrowser from "../content-browser/content-browser.js";
-import { getCurrentLang } from "../../scripts/i18n.js";
+import { loadLang, setCurrentLang, getCurrentLang, getTranslations } from "../../scripts/i18n.js";
 
 // Global variable to store current markdown content
 let currentMarkdownContent = ""; // for copy button
@@ -24,8 +24,8 @@ const preview = document.getElementById("markdown-container");
 let browserContainer;
 
 // Track currently selected elements for O(1) deselection
-let currentlySelectedTopic = null;
-let currentlySelectedCategory = null;
+let currentlySelectedTopic;
+let currentlySelectedCategory;
 
 // Assign mode switch variable to the button for improved onclick event
 window.lightDarkModeToggle = lightDarkModeToggle;
@@ -43,6 +43,15 @@ window.searchbarSearch = searchbarSearch;
 
 /** The path to the content structures */
 const contentStructurePath = "../../content/content-structures/";
+
+/** The initial config gets saved here */
+let initialConfig;
+
+/** Language switch button */
+let langToggle;
+// Track current doc so language switch can reload the right structure
+let currentDoc = "user";
+let currentDefaultPagePath = "../../content/user/introduction.md";
 
 /**
  * Translate a key using the current translations
@@ -1384,6 +1393,47 @@ function selectInitialLoadedTopic(path) {
 }
 
 /**
+ * Switches the current language
+ */
+async function switchLang() {
+	const newLang = getCurrentLang() == "en" ? "de" : "en";
+	setCurrentLang(newLang);
+
+	// Load the new language
+	await loadLang(newLang);
+
+	// Update module translations and UI labels
+	try {
+		const translations = getTranslations();
+		updateMarkdownDocumentationTranslations(translations);
+	} catch (e) {
+		console.warn("Failed to update module translations:", e);
+	}
+
+	// Update lang-toggle display text (e.g., DE/EN)
+	const langText = document.getElementById("lang-toggle-text");
+	if (langText) langText.textContent = newLang.toUpperCase();
+
+	// Reload content structure for the current doc in the new language
+	try {
+		const newContentPath = `${contentStructurePath}${currentDoc}-content-structure-${newLang}.json`;
+		await browser.fetchStructure(newContentPath);
+
+		// Rebuild converter with new flat structure and refresh UI
+		const flatStructure = browser.flattenStructure();
+		converter = new MarkdownConverter(flatStructure, browser.contentStructure);
+
+		// Clear current selection so refresh selects the new first topic
+		currentlySelectedTopic = null;
+		currentlySelectedCategory = null;
+
+		await refresh();
+	} catch (err) {
+		console.warn("Failed to reload content structure for language switch:", err);
+	}
+}
+
+/**
  * Initialize the markdown documentation system
  * @param {Object} config - Configuration options
  * @param {string} config.contentStructurePath - Path to the content structure JSON file
@@ -1393,6 +1443,11 @@ function selectInitialLoadedTopic(path) {
  */
 async function initMarkdownDocumentation(config = {}) {
 	const { doc = "user", defaultPagePath = "../../content/user/introduction.md", lightIconPath = "../../assets/img/svg/light.svg", copyIconPath = "../../assets/img/svg/copy.svg" } = config;
+
+	// remember which doc we're showing so switchLang can reload the correct structure
+	currentDoc = doc;
+	currentDefaultPagePath = defaultPagePath;
+	initialConfig = config;
 
 	// Get reference to the topic browser container
 	browserContainer = document.querySelector(".topic-selector");
@@ -1495,6 +1550,23 @@ async function initMarkdownDocumentation(config = {}) {
 	window.addEventListener("resize", () => {
 		if (window.innerWidth > 768) closeSidebar();
 	});
+
+	langToggle = document.getElementById("lang-toggle");
+	if (langToggle) {
+		langToggle.addEventListener("click", switchLang);
+	}
+
+	// Initialize lang-toggle text and module translations from current i18n state
+	try {
+		const currentTrans = getTranslations();
+		if (currentTrans && Object.keys(currentTrans).length) {
+			updateMarkdownDocumentationTranslations(currentTrans);
+		}
+		const langTextInit = document.getElementById("lang-toggle-text");
+		if (langTextInit) langTextInit.textContent = getCurrentLang().toUpperCase();
+	} catch (e) {
+		// ignore
+	}
 }
 
 export { initMarkdownDocumentation, updateMarkdownDocumentationTranslations };
