@@ -1,7 +1,7 @@
 /** Current translation data */
 let translations = [];
 /** The default page language */
-const defaultLang = "de"
+const defaultLang = "de";
 /** Current language */
 let currentLang = defaultLang;
 
@@ -14,6 +14,7 @@ export async function loadLang(lang, onComplete = null) {
 	try {
 		const response = await fetch(`../locales/${lang}.json`);
 		translations = await response.json();
+		flattenStructure();
 		currentLang = lang;
 		translatePage();
 		if (onComplete) {
@@ -46,6 +47,32 @@ export function getCurrentLang() {
  */
 export function setCurrentLang(lang) {
 	currentLang = lang;
+}
+
+/**
+ * Used to flatten the translation file
+ */
+function flattenStructure() {
+	let flatTranslations = {};
+
+	function recurse(node) {
+		if (Array.isArray(node)) {
+			node.forEach((child) => recurse(child));
+			
+		} else if (node && typeof node === "object") {
+			Object.entries(node).forEach(([k, v]) => {
+				if (v && typeof v === "object") {
+					recurse(v);
+				} else {
+					flatTranslations[k] = v;
+				}
+			});
+		}
+	}
+
+	recurse(translations);
+	translations = flatTranslations;
+	console.log("flat: ", flatTranslations);
 }
 
 /**

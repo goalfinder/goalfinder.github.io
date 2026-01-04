@@ -2,5 +2,6 @@
   "prettier.configPath": ".vscode/.prettierrc",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "cSpell.words": ["Goalfinder", "Haberlander", "HTBLA", "Leonding", "modeswitch", "UNIKATE", "wght"]
+  "cSpell.language": "en,de-de",
+  "cSpell.words": ["Goalfinder", "Haberlander", "HTBLA", "Leonding", "modeswitch", "sehbeeinträchtigte", "sehgeschwächte", "UNIKATE", "wght"]
 }
