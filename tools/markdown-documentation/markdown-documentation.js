@@ -3,12 +3,46 @@
 // Import necessary modules for content browsing and markdown conversion
 import MarkdownConverter from "../markdown-converter/markdown-converter.js";
 import ContentBrowser from "../content-browser/content-browser.js";
+import { getCurrentLang } from "../../scripts/i18n.js";
 
 // Global variable to store current markdown content
 let currentMarkdownContent = ""; // for copy button
 
 // Translation data
 let translations = {};
+
+// Make updateMarkdownDocumentationTranslations globally available
+window.updateMarkdownDocumentationTranslations = updateMarkdownDocumentationTranslations;
+
+// Global content browser instance
+let browser = new ContentBrowser();
+
+// Global markdown converter instance
+let converter;
+const preview = document.getElementById("markdown-container");
+
+let browserContainer;
+
+// Track currently selected elements for O(1) deselection
+let currentlySelectedTopic = null;
+let currentlySelectedCategory = null;
+
+// Assign mode switch variable to the button for improved onclick event
+window.lightDarkModeToggle = lightDarkModeToggle;
+
+// Make function available globally for onclick handler
+window.copyButtonTrigger = copyButtonTrigger;
+
+// Make copy code block function available globally for onclick handler
+window.copyCodeBlock = copyCodeBlock;
+
+// Make searchbar functions available globally for onfocus/onblur/oninput handlers
+window.searchbarFocus = searchbarFocus;
+window.searchbarBlur = searchbarBlur;
+window.searchbarSearch = searchbarSearch;
+
+/** The path to the content structures */
+const contentStructurePath = "../../content/content-structures/";
 
 /**
  * Translate a key using the current translations
@@ -62,36 +96,6 @@ function updateMarkdownDocumentationTranslations(newTranslations) {
 		searchbarSearch();
 	}
 }
-
-// Make updateMarkdownDocumentationTranslations globally available
-window.updateMarkdownDocumentationTranslations = updateMarkdownDocumentationTranslations;
-
-// Global content browser instance
-let browser = new ContentBrowser();
-
-// Global markdown converter instance
-let converter;
-const preview = document.getElementById("markdown-container");
-
-let browserContainer;
-
-// Track currently selected elements for O(1) deselection
-let currentlySelectedTopic = null;
-let currentlySelectedCategory = null;
-
-// Assign mode switch variable to the button for improved onclick event
-window.lightDarkModeToggle = lightDarkModeToggle;
-
-// Make function available globally for onclick handler
-window.copyButtonTrigger = copyButtonTrigger;
-
-// Make copy code block function available globally for onclick handler
-window.copyCodeBlock = copyCodeBlock;
-
-// Make searchbar functions available globally for onfocus/onblur/oninput handlers
-window.searchbarFocus = searchbarFocus;
-window.searchbarBlur = searchbarBlur;
-window.searchbarSearch = searchbarSearch;
 
 /**
  * Gets all the markdown headings to display in the right panel
@@ -1385,13 +1389,15 @@ function selectInitialLoadedTopic(path) {
  * @param {string} config.copyIconPath - Path to the copy icon
  */
 async function initMarkdownDocumentation(config = {}) {
-	const { contentStructurePath = "../content/user-content-structure.json", defaultPagePath = "../content/user/introduction.md", lightIconPath = "../assets/img/svg/light.svg", copyIconPath = "../assets/img/svg/copy.svg" } = config;
+	const { doc = "user", defaultPagePath = "../../content/user/introduction.md", lightIconPath = "../../assets/img/svg/light.svg", copyIconPath = "../../assets/img/svg/copy.svg" } = config;
 
 	// Get reference to the topic browser container
 	browserContainer = document.querySelector(".topic-selector");
+	const contentPath = `${contentStructurePath}${doc}-content-structure-${getCurrentLang()}.json`;
+	console.log(contentPath);
 
 	// Fetch and load topic structure
-	await browser.fetchStructure(contentStructurePath);
+	await browser.fetchStructure(contentPath);
 
 	// Load saved content structure state from localStorage
 	const savedState = loadContentStructureState();

@@ -1,16 +1,16 @@
 [
   {
     "type": "page",
-    "name": "MarkDown Converter Showcase",
+    "name": "MarkDown Umwandler Beispiel",
     "path": "../content/technical/introduction.md"
   },
   {
     "type": "category",
-    "name": "Category",
+    "name": "Kategorie",
     "children": [
       {
         "type": "category",
-        "name": "Topic Category",
+        "name": "Kategorie mit Inhalt",
         "path": "../content/technical/topic-category.md",
         "collapsed": true,
         "children": []

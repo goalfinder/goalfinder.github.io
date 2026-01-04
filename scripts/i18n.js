@@ -1,7 +1,7 @@
 /** Current translation data */
 let translations = [];
 /** The default page language */
-const defaultLang = "de"
+const defaultLang = "en"
 /** Current language */
 let currentLang = defaultLang;
 

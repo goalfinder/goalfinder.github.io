@@ -16,6 +16,7 @@ class ContentBrowser {
 		if (!res.ok) {
 			console.error(`Failed to fetch content structure: ${res.statusText}`);
 			return null;
+		} else {
 		}
 		this.contentStructure = await res.json(); // Parse and store the content structure
 	}

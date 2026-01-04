@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 	// Now initialize markdown documentation with translations already loaded
 	await initMarkdownDocumentation({
-		contentStructurePath: "../content/user-content-structure.json",
+		doc: "technical",
 		defaultPagePath: "../content/user/introduction.md",
 		lightIconPath: "../assets/img/svg/light.svg",
 		copyIconPath: "../assets/img/svg/copy.svg",
