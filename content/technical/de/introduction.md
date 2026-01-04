@@ -1,4 +1,4 @@
-# MarkDown Doc User
+# MarkDown Doc Technical Deutsch
 
 Here you can find actual examples of elements that can be used from the [MarkDown Converter](https://github.com/MarkusHarnusek/MarkDownConverter)
 Like a special element? Check out the signature in `introduction.md` or visit the [MarkDown Converter GitHub Repository](https://github.com/MarkusHarnusek/MarkDownConverter)
