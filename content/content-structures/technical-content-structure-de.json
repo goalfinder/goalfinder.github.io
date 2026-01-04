@@ -1,20 +1,7 @@
 [
   {
     "type": "page",
-    "name": "MarkDown Umwandler Beispiel",
-    "path": "../content/technical/introduction.md"
-  },
-  {
-    "type": "category",
-    "name": "Kategorie",
-    "children": [
-      {
-        "type": "category",
-        "name": "Kategorie mit Inhalt",
-        "path": "../content/technical/topic-category.md",
-        "collapsed": true,
-        "children": []
-      }
-    ]
+    "name": "Wilkommen",
+    "path": "../../content/technical/introduction.md"
   }
 ]

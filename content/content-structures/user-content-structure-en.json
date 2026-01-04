@@ -1,20 +1,7 @@
 [
   {
     "type": "page",
-    "name": "MarkDown Converter Showcase",
-    "path": "../content/user/introduction.md"
-  },
-  {
-    "type": "category",
-    "name": "Category",
-    "children": [
-      {
-        "type": "category",
-        "name": "Topic Category",
-        "path": "../content/user/topic-category.md",
-        "collapsed": true,
-        "children": []
-      }
-    ]
+    "name": "Welcome",
+    "path": "../../content/user/introduction.md"
   }
 ]
