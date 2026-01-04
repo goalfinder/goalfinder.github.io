@@ -538,18 +538,22 @@ function lightDarkModeToggle() {
 	const toggleButton = document.getElementById("lightDarkToggle");
 	const toggleIcon = toggleButton.querySelector(".icon");
 	const toggleText = toggleButton.querySelector(".icon-text");
+	const headerIcon = document.getElementById("header-icon");
 
 	html.classList.toggle("dark-mode"); // Change page appearance
+	console.log("mode was switched")
 
 	// Toggle mode switch button content (only update src and text, preserve DOM for smooth transition)
 	if (html.classList.contains("dark-mode")) {
 		toggleIcon.src = "../assets/img/svg/light.svg";
 		toggleText.textContent = t("light-mode");
 		localStorage.setItem("theme", "dark");
+		headerIcon.src = "../../assets/img/logos/goalfinder/logo-shadow.png"
 	} else {
 		toggleIcon.src = "../assets/img/svg/dark.svg";
 		toggleText.textContent = t("dark-mode");
 		localStorage.setItem("theme", "light");
+		headerIcon.src = "../../assets/img/logos/goalfinder/logo-black-shadow.png"
 	}
 }
 
