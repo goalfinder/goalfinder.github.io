@@ -72,6 +72,9 @@
     "dark-mode": "Dunkler Modus",
     "light-mode": "Heller Modus"
   },
-  "credits": {},
-  "help": {}
-}
+  "credits": {
+    "c-title": "Credits"
+  },
+  "help": {
+    "h-title": "Hilfe"
+  }}

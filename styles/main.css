@@ -851,7 +851,36 @@ body {
 	text-decoration: underline;
 }
 
+/* Other pages (Help & Credits) */
+
+.other-page {
+	background-color: var(--background-gradient);
+}
+
+.other-page h1,
+.other-page h2,
+.other-page h3,
+.other-page h4 {
+	text-align: center;
+	font-size: clamp(1rem, 6vw, 2.5rem);
+	position: relative;
+}
+
+.other-page h1::after,
+.other-page h2::after {
+	content: "";
+	position: absolute;
+	bottom: -0.5rem;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 60px;
+	height: 4px;
+	background: var(--variable-gradient);
+	border-radius: 2px;
+}
+
 /* Keyframes */
+
 @keyframes fadeUp {
 	from {
 		opacity: 0;

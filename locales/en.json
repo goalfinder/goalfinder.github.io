@@ -72,6 +72,10 @@
     "dark-mode": "Dark Mode",
     "light-mode": "Light Mode"
   },
-  "credits": {},
-  "help": {}
+  "credits": {
+    "c-title": "Credits"
+  },
+  "help": {
+    "h-title": "Help"
+  }
 }
