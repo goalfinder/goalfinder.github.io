@@ -1,57 +1,69 @@
 {
-  "sub-title": "Basketballhilfe für Sehbeeinträchtigte",
-  "about": {
-    "about-title": "Über das Projekt",
-    "about-content": "Mit dem GoalFinder können sehbeeinträchtigte oder sehgeschwächte Spieler Basketball spielen, da er den Korb durch einen Ton und eine beleuchtete Lichtleiste im Korbbereich leicht auffindbar macht. Außerdem gibt er audiovisuelles Feedback zu jedem Treffer oder Fehlschuss. Die Web App des GoalFinders ermöglicht eine einfaches Einrichtung sowie das Starten unterschiedlicher Spiele und Szenarien."
+  "home": {
+    "sub-title": "Basketballhilfe für Sehbeeinträchtigte",
+    "about": {
+      "about-title": "Über das Projekt",
+      "about-content": "Mit dem GoalFinder können sehbeeinträchtigte oder sehgeschwächte Spieler Basketball spielen, da er den Korb durch einen Ton und eine beleuchtete Lichtleiste im Korbbereich leicht auffindbar macht. Außerdem gibt er audiovisuelles Feedback zu jedem Treffer oder Fehlschuss. Die Web App des GoalFinders ermöglicht eine einfaches Einrichtung sowie das Starten unterschiedlicher Spiele und Szenarien."
+    },
+    "mission": {
+      "mission-title": "Unsere Motivation",
+      "mission-0-title": "Barrierefreiheit",
+      "mission-0-content": "Menschen mit Sehbeeinträchtigungen sollten vollwertige Mitglieder der Gesellschaft sein, nicht eine Last. Gleichberechtigt nicht nur im Alltag sondern auch im Sport. Genau aus diesem Grund haben wir den GoalFinder entwickelt, um es blinden und sehgeschwächten Spieler:innen zu erleichtern, Basketball zu genießen.",
+      "mission-1-title": "Open Source",
+      "mission-1-content": "Der GoalFinder soll nicht nur seinen Zweck effizient erfüllen, sondern gleichzeitig zugänglich für alle bleiben. Indem wir das Projekt zu 100% Open Source machen, stellen wir sicher, dass die volle Funktionalität für alle verfügbar ist und der Nutzen sowie die Wirkung maximiert werden.",
+      "mission-2-title": "Gemeinschaft",
+      "mission-2-content": "Ein echtes Open-Source-Projekt lebt von seiner Gemeinschaft. Wir schätzen das Feedback unserer Nutzer:innen und ermutigen Entwickler:innen, ihre Ideen und Fähigkeiten einzubringen."
+    },
+    "features": {
+      "features-title": "So funktioniert es",
+      "features-step-1-title": "Einrichten",
+      "features-step-1-content": "Befestige und richte den GoalFinder ein. Nutze die Web App, um weitere Einstellungen vorzunehmen und Spiele oder Herausforderungen zu starten.",
+      "features-step-2-title": "Den Korb finden",
+      "features-step-2-content": "Mit dem GoalFinder weisen ein anpassbarer Ton und eine blinkende Lichtleiste den Spieler:innen den Weg zum Korb.",
+      "features-step-3-title": "Feedback erhalten",
+      "features-step-3-content": "Der GoalFinder liefert sowohl akustisches als auch visuelles Feedback zu Treffern und Fehlwürfen und gibt gleichzeitig Echtzeit-Einblicke ins Spielgeschehen."
+    },
+    "quote": {
+      "quote": "„Mit dem Projekt Goalfinder zeigen die Schüler der HTL Leonding eindrucksvoll, was Innovation bewegen kann. ... Dieses Projekt verbindet modernste Technologie mit sozialer Verantwortung – und leistet damit einen wertvollen Beitrag für unsere Gesellschaft.“",
+      "quote-cite": "— Christine Haberlander, Landeshauptmann-Stellvertreterin"
+    },
+    "awards": {
+      "awards-title": "Wettbewerbe & Anerkennung",
+      "award-0-title-0": "UNIKATE Award",
+      "award-0-title-1": "Gewinner 2025",
+      "award-0-content": "Neue Technologien für mehr Inklusion von Menschen mit Behinderungen",
+      "award-1-title-0": "mission humanity",
+      "award-1-title-1": "Gewinner 2025",
+      "award-1-content": "Förderung von sozialem Engagement und gesellschaftlichem Bewusstsein bei Jugendlichen"
+    },
+    "documentation-about": {
+      "doc-title": "Dokumentation",
+      "doc-content": "Als Open-Source-Projekt möchten wir so detaillierte Dokumentation wie möglich bereitstellen Sowohl für tagtäglich Nutzer*innen in einer leicht verständlichen, nicht-technischen Form als auch für alle, die sich für die zugrunde liegende Technologie des GoalFinders interessieren.",
+      "doc-btn-0": "Benutzerdokumentation",
+      "doc-btn-1": "Technische Dokumentation"
+    },
+    "support-sponsors": {
+      "support-title": "Unterstützung & Kooperation",
+      "sponsor-0": "HTBLA Leonding",
+      "sponsor-1": "Universität Wien"
+    },
+    "cta": {
+      "cta-title": "Bereit mitzumachen?",
+      "cta-content": "Werde Teil unserer Gemeinschaft und hilf dabei, Basketball für Menschen mit Sehbeeinträchtigungen zugänglicher zu machen.",
+      "cta-btn": "Erfahre mehr"
+    },
+    "documentation": {
+      "td-title": "GoalFinder Technische Dokumentation",
+      "td-title-short": "Technische Dokumentation",
+      "ud-title": "GoalFinder Benutzerdokumentation",
+      "ud-title-short": "Benutzerdokumentation"
+    }
   },
-  "mission": {
-    "mission-title": "Unsere Motivation",
-    "mission-0-title": "Barrierefreiheit",
-    "mission-0-content": "Menschen mit Sehbeeinträchtigungen sollten vollwertige Mitglieder der Gesellschaft sein, nicht eine Last. Gleichberechtigt nicht nur im Alltag sondern auch im Sport. Genau aus diesem Grund haben wir den GoalFinder entwickelt, um es blinden und sehgeschwächten Spieler:innen zu erleichtern, Basketball zu genießen.",
-    "mission-1-title": "Open Source",
-    "mission-1-content": "Der GoalFinder soll nicht nur seinen Zweck effizient erfüllen, sondern gleichzeitig zugänglich für alle bleiben. Indem wir das Projekt zu 100% Open Source machen, stellen wir sicher, dass die volle Funktionalität für alle verfügbar ist und der Nutzen sowie die Wirkung maximiert werden.",
-    "mission-2-title": "Gemeinschaft",
-    "mission-2-content": "Ein echtes Open-Source-Projekt lebt von seiner Gemeinschaft. Wir schätzen das Feedback unserer Nutzer:innen und ermutigen Entwickler:innen, ihre Ideen und Fähigkeiten einzubringen."
+  "misc": {
+    "credits": "Credits",
+    "help": "Hilfe"
   },
-  "features": {
-    "features-title": "So funktioniert es",
-    "features-step-1-title": "Einrichten",
-    "features-step-1-content": "Befestige und richte den GoalFinder ein. Nutze die Web App, um weitere Einstellungen vorzunehmen und Spiele oder Herausforderungen zu starten.",
-    "features-step-2-title": "Den Korb finden",
-    "features-step-2-content": "Mit dem GoalFinder weisen ein anpassbarer Ton und eine blinkende Lichtleiste den Spieler:innen den Weg zum Korb.",
-    "features-step-3-title": "Feedback erhalten",
-    "features-step-3-content": "Der GoalFinder liefert sowohl akustisches als auch visuelles Feedback zu Treffern und Fehlwürfen und gibt gleichzeitig Echtzeit-Einblicke ins Spielgeschehen."
-  },
-  "quote": {
-    "quote": "„Mit dem Projekt Goalfinder zeigen die Schüler der HTL Leonding eindrucksvoll, was Innovation bewegen kann. ... Dieses Projekt verbindet modernste Technologie mit sozialer Verantwortung – und leistet damit einen wertvollen Beitrag für unsere Gesellschaft.“",
-    "quote-cite": "— Christine Haberlander, Landeshauptmann-Stellvertreterin"
-  },
-  "awards": {
-    "awards-title": "Wettbewerbe & Anerkennung",
-    "award-0-title-0": "UNIKATE Award",
-    "award-0-title-1": "Gewinner 2025",
-    "award-0-content": "Neue Technologien für mehr Inklusion von Menschen mit Behinderungen",
-    "award-1-title-0": "mission humanity",
-    "award-1-title-1": "Gewinner 2025",
-    "award-1-content": "Förderung von sozialem Engagement und gesellschaftlichem Bewusstsein bei Jugendlichen"
-  },
-  "documentation-about": {
-    "doc-title": "Dokumentation",
-    "doc-content": "Als Open-Source-Projekt möchten wir so detaillierte Dokumentation wie möglich bereitstellen Sowohl für tagtäglich Nutzer*innen in einer leicht verständlichen, nicht-technischen Form als auch für alle, die sich für die zugrunde liegende Technologie des GoalFinders interessieren.",
-    "doc-btn-0": "Benutzerdokumentation",
-    "doc-btn-1": "Technische Dokumentation"
-  },
-  "support-sponsors": {
-    "support-title": "Unterstützung & Kooperation",
-    "sponsor-0": "HTBLA Leonding",
-    "sponsor-1": "Universität Wien"
-  },
-  "cta": {
-    "cta-title": "Bereit mitzumachen?",
-    "cta-content": "Werde Teil unserer Gemeinschaft und hilf dabei, Basketball für Menschen mit Sehbeeinträchtigungen zugänglicher zu machen.",
-    "cta-btn": "Erfahre mehr"
-  },
-  "md-documentation": {
+  "documentations": {
     "search": "Dokumentation durchsuchen...",
     "search-hint": "Mindestens 2 Zeichen benötigt, um zu suchen...",
     "search-loading": "Suche läuft...",
@@ -60,14 +72,6 @@
     "dark-mode": "Dunkler Modus",
     "light-mode": "Heller Modus"
   },
-  "misc": {
-    "credits": "Credits",
-    "help": "Hilfe"
-  },
-  "documentation": {
-    "td-title": "GoalFinder Technische Dokumentation",
-    "td-title-short": "Technische Dokumentation",
-    "ud-title": "GoalFinder Benutzerdokumentation",
-    "ud-title-short": "Benutzerdokumentation"
-  }
+  "credits": {},
+  "help": {}
 }
