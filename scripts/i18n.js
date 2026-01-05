@@ -58,7 +58,6 @@ function flattenStructure() {
 	function recurse(node) {
 		if (Array.isArray(node)) {
 			node.forEach((child) => recurse(child));
-			
 		} else if (node && typeof node === "object") {
 			Object.entries(node).forEach(([k, v]) => {
 				if (v && typeof v === "object") {
@@ -72,7 +71,6 @@ function flattenStructure() {
 
 	recurse(translations);
 	translations = flatTranslations;
-	console.log("flat: ", flatTranslations);
 }
 
 /**

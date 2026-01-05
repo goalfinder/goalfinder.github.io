@@ -1,7 +1,31 @@
 [
   {
     "type": "page",
-    "name": "Wilkommen",
-    "path": "../../content/technical/de/introduction.md"
+    "name": "Willkommen",
+    "path": ""
+  },
+  {
+    "type": "category",
+    "name": "Technik",
+    "children": [
+      {
+        "type": "page",
+        "name": "Einleitung",
+        "path": ""
+      },
+      {
+        "type": "category",
+        "name": "Software",
+        "path": "",
+        "collapsed": false,
+        "children": [
+          {
+            "type": "page",
+            "name": "Einleitung",
+            "path": ""
+          }
+        ]
+      }
+    ]
   }
 ]
