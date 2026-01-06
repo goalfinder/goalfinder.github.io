@@ -73,8 +73,11 @@
     "light-mode": "Heller Modus"
   },
   "credits": {
-    "c-title": "Credits"
+    "c-title": "Credits",
+    "c-desc": "Diese Seite enthält eine Anerkennung externer Ressourcen für GoalFinder: Recherchequellen, die Website, das Gerät und alle damit verbundenen Soft- und Hardwarekomponenten."
   },
   "help": {
-    "h-title": "Hilfe"
-  }}
+    "h-title": "Hilfe",
+    "h-desc": "Diese enthält verschiedene Hilfestellungen"
+  }
+}

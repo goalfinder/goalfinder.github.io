@@ -3,5 +3,5 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "cSpell.language": "en,de-de",
-  "cSpell.words": ["Goalfinder", "Haberlander", "HTBLA", "Leonding", "modeswitch", "sehbeeinträchtigte", "sehgeschwächte", "UNIKATE", "wght"]
+  "cSpell.words": ["Goalfinder", "Haberlander", "HTBLA", "Leonding", "modeswitch", "sehbeeinträchtigte", "sehgeschwächte", "sehgeschwächten", "UNIKATE", "wght"]
 }

@@ -879,6 +879,13 @@ body {
 	border-radius: 2px;
 }
 
+.center-text {
+	text-align: center;
+	margin-top: 3vh;
+	padding: 0 5vw;
+	font-size: clamp(0.6rem, 4vw, 1.6rem);
+}
+
 /* Keyframes */
 
 @keyframes fadeUp {
@@ -979,6 +986,11 @@ body {
 		width: 100%;
 		max-width: 300px;
 		text-align: center;
+	}
+
+	/* Other pages */
+	.center-text {
+		padding: 0 5vw;
 	}
 }
 

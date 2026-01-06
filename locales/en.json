@@ -73,9 +73,11 @@
     "light-mode": "Light Mode"
   },
   "credits": {
-    "c-title": "Credits"
+    "c-title": "Credits",
+    "c-desc": "This page lists and credits all external resources used for GoalFinder, including research sources, the website, the device, and associated software and hardware."
   },
   "help": {
-    "h-title": "Help"
+    "h-title": "Help",
+    "h-desc": "This page contains help with the web page"
   }
 }
