@@ -74,7 +74,14 @@
   },
   "credits": {
     "c-title": "Credits",
-    "c-desc": "This page lists and credits all external resources used for GoalFinder, including research sources, the website, the device, and associated software and hardware."
+    "c-desc": "This page lists and credits all external resources used for GoalFinder, including research sources, the website, the device, and associated software and hardware.",
+    "c-icons": "Icons",
+    "c-main-site": "Main Page",
+    "c-main-site-desc": "Icons used in the main page",
+    "c-documentation": "Documentation",
+    "c-documentation-desc": "Icons used in the MarkDown Documentation Suite",
+    "c-icons-flaticon": "Icons from Flaticon",
+    "c-icons-fontawesome": "Icons from FontAwesome"
   },
   "help": {
     "h-title": "Help",

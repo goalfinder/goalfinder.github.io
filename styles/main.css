@@ -862,8 +862,17 @@ body {
 .other-page h3,
 .other-page h4 {
 	text-align: center;
-	font-size: clamp(1rem, 6vw, 2.5rem);
 	position: relative;
+}
+
+.other-page h1 {
+	font-size: clamp(1rem, 6vw, 2.5rem) !important;
+	font-weight: 700;
+}
+
+.other-page h2 {
+	font-size: clamp(0.6rem, 6vw, 2rem) !important;
+	font-weight: 600;
 }
 
 .other-page h1::after,
@@ -879,9 +888,13 @@ body {
 	border-radius: 2px;
 }
 
+.other-page ul {
+	list-style: none;
+}
+
 .center-text {
 	text-align: center;
-	margin-top: 3vh;
+	margin-top: 1rem;
 	padding: 0 5vw;
 	font-size: clamp(0.6rem, 4vw, 1.6rem);
 }

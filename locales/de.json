@@ -74,7 +74,14 @@
   },
   "credits": {
     "c-title": "Credits",
-    "c-desc": "Diese Seite enthält eine Anerkennung externer Ressourcen für GoalFinder: Recherchequellen, die Website, das Gerät und alle damit verbundenen Soft- und Hardwarekomponenten."
+    "c-desc": "Diese Seite enthält eine Anerkennung externer Ressourcen für GoalFinder: Recherchequellen, die Website, das Gerät und alle damit verbundenen Soft- und Hardwarekomponenten.",
+    "c-icons": "Icons",
+    "c-main-site": "Hauptseite",
+    "c-main-site-desc": "Icons die in der Hauptseite verwendet wurden",
+    "c-documentation": "Dokumentation",
+    "c-documentation-desc": "Icons die in der MarkDown Dokumentations Suite verwendet wurden",
+    "c-icons-flaticon": "Flaticon Icons",
+    "c-icons-fontawesome": "FontAwesome Icons"
   },
   "help": {
     "h-title": "Hilfe",
