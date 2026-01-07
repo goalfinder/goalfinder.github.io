@@ -26,6 +26,7 @@ let browserContainer;
 // Track currently selected elements for O(1) deselection
 let currentlySelectedTopic;
 let currentlySelectedCategory;
+let suppressInitialSelection = false;
 
 // Assign mode switch variable to the button for improved onclick event
 window.lightDarkModeToggle = lightDarkModeToggle;
@@ -1212,7 +1213,7 @@ async function setupEventListeners() {
 	});
 
 	// Select first topic-button on load if none selected and no category is expanded
-	if (topicButtons.length > 0 && !currentlySelectedTopic && !currentlySelectedCategory) {
+	if (topicButtons.length > 0 && !currentlySelectedTopic && !currentlySelectedCategory && !suppressInitialSelection) {
 		topicButtons[0].classList.remove("topic-unselected");
 		topicButtons[0].classList.add("topic-selected");
 		currentlySelectedTopic = topicButtons[0];
@@ -1404,11 +1405,23 @@ function selectInitialLoadedTopic(path) {
  * Switches the current language
  */
 async function switchLang() {
-	const newLang = getCurrentLang() == "en" ? "de" : "en";
-	setCurrentLang(newLang);
+	setCurrentLang(getCurrentLang() == "de" ? "en" : "de");
+
+	// Save currently open page (try topic first, then category) so we can restore equivalent
+	let currentPagePath = null;
+	try {
+		if (currentlySelectedTopic && currentlySelectedTopic.dataset && currentlySelectedTopic.dataset.path) {
+			currentPagePath = currentlySelectedTopic.dataset.path;
+		} else if (currentlySelectedCategory) {
+			const cat = findCategoryByName(browser.contentStructure, currentlySelectedCategory.textContent);
+			if (cat && cat.path) currentPagePath = cat.path;
+		}
+	} catch (e) {}
+
+	setCurrentLang(getCurrentLang());
 
 	// Load the new language
-	await loadLang(newLang);
+	await loadLang(getCurrentLang());
 
 	// Update module translations and UI labels
 	try {
@@ -1418,24 +1431,75 @@ async function switchLang() {
 		console.warn("Failed to update module translations:", e);
 	}
 
-	// Update lang-toggle display text (e.g., DE/EN)
 	const langText = document.getElementById("lang-toggle-text");
-	if (langText) langText.textContent = newLang.toUpperCase();
+	if (langText) langText.textContent = getCurrentLang().toUpperCase();
 
 	// Reload content structure for the current doc in the new language
 	try {
-		const newContentPath = `${contentStructurePath}${currentDoc}-content-structure-${newLang}.json`;
+		const newContentPath = `${contentStructurePath}${currentDoc}-content-structure-${getCurrentLang()}.json`;
 		await browser.fetchStructure(newContentPath);
 
-		// Rebuild converter with new flat structure and refresh UI
+		// Rebuild converter with new flat structure
 		const flatStructure = browser.flattenStructure();
 		converter = new MarkdownConverter(flatStructure, browser.contentStructure);
 
-		// Clear current selection so refresh selects the new first topic
+		// Clear selection so refresh will build new DOM
 		currentlySelectedTopic = null;
 		currentlySelectedCategory = null;
+		suppressInitialSelection = true;
 
-		await refresh();
+		try {
+			await refresh();
+
+			if (currentPagePath) {
+				const filename = currentPagePath.split("/").pop();
+
+				const findByFilename = (items) => {
+					for (const item of items) {
+						if ((item.type === "page" || (item.type === "category" && item.path)) && item.path && item.path.endsWith(filename)) {
+							return item;
+						}
+						if (item.children) {
+							const found = findByFilename(item.children);
+							if (found) return found;
+						}
+					}
+					return null;
+				};
+
+				const matched = findByFilename(browser.contentStructure);
+				if (matched && matched.path) {
+					// Try to select the corresponding DOM button if present
+					const targetButton = document.querySelector(`[data-path="${matched.path}"]`);
+					if (targetButton) {
+						targetButton.classList.remove("topic-unselected");
+						targetButton.classList.add("topic-selected");
+						currentlySelectedTopic = targetButton;
+					}
+
+					// Load and display the matched content
+					try {
+						const md = await converter.loadMarkdown(matched.path);
+						currentMarkdownContent = md;
+						const html = converter.convert(md, matched.path);
+						preview.innerHTML = html;
+
+						const rightPanelHeader = document.getElementById("right-panel-header");
+						const headings = await getMarkdownHeaders(matched.path);
+						rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
+						setupRightPanelListeners(rightPanelHeader);
+						setupEndButtonListeners();
+
+						// Save new state
+						saveContentStructureState();
+					} catch (e) {
+						console.warn("Failed to load matched page after language switch:", e);
+					}
+				}
+			}
+		} finally {
+			suppressInitialSelection = false;
+		}
 	} catch (err) {
 		console.warn("Failed to reload content structure for language switch:", err);
 	}

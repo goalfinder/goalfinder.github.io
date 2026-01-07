@@ -1,8 +1,8 @@
 [
   {
     "type": "page",
-    "name": "Willkommen",
-    "path": "../content/technical/de/introduction.md"
+    "name": "Welcome",
+    "path": "../content/technical/en/introduction.md"
   },
   {
     "type": "category",
@@ -10,8 +10,8 @@
     "children": [
       {
         "type": "page",
-        "name": "Einleitung",
-        "path": "../content/technical/de/hardware-intro.md"
+        "name": "Introduction",
+        "path": "../content/technical/en/hardware-intro.md"
       }
     ]
   },
@@ -21,8 +21,8 @@
     "children": [
       {
         "type": "page",
-        "name": "Einleitung",
-        "path": "../content/technical/de/software-intro.md"
+        "name": "Introduction",
+        "path": "../content/technical/en/software-intro.md"
       }
     ]
   }
