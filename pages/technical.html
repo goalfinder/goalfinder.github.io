@@ -7,7 +7,7 @@
 
 		<link rel="stylesheet" href="../styles/documentation.css">
 		<link rel="stylesheet" href="../tools/markdown-converter/markdown-styles.css">
-		<link rel="icon" href="../assets/img/logos/goalfinder/logo-shadow.png" type="image">
+		<link rel="icon" href="../assets/img/logos/goalfinder/logo-shadow.png" type="image/png">
 
 		<script>
 			(function () {
@@ -43,7 +43,7 @@
 
 		<script type="module" src="../scripts/technical.js"></script>
 
-		<title data-i18n="td-title-short"></title>
+		<title data-i18n="td-title-short">User Documentation</title>
 	</head>
 
 	<body>
@@ -58,18 +58,18 @@
 				<p class="header-text" data-i18n="td-title"></p>
 				<div class="header-controls">
 					<div class="header-search-bar">
-						<img class="icon search-icon" src="../assets/img/svg/search.svg" alt="search-icon" />
-						<input type="text" onfocus="searchbarFocus()" onblur="searchbarBlur()" oninput="searchbarSearch()" id="searchInput" placeholder="Search documentation..." data-i18n="search" />
+						<img class="icon search-icon" src="../assets/img/svg/search.svg" alt="search-icon">
+						<input type="text" onfocus="searchbarFocus()" onblur="searchbarBlur()" oninput="searchbarSearch()" id="searchInput" placeholder="Search documentation..." data-i18n="search">
 						<div id="searchPopup" class="search-popup">
 							<!-- Popup content goes here -->
 							<ul class="search-results">
-								<li class="search-no-results" data-i18n="search-hint"></li>
+								<li class="search-no-results" data-i18n="search-hint">No results...</li>
 							</ul>
 						</div>
 					</div>
 					<button id="lightDarkToggle" onclick="lightDarkModeToggle()">
-						<img class="icon" src="../assets/img/svg/dark.svg" alt="modeswitch-icon" />
-						<span class="icon-text" data-i18n="dark-mode"></span>
+						<img class="icon" src="../assets/img/svg/dark.svg" alt="modeswitch-icon">
+						<span class="icon-text" data-i18n="dark-mode">Mode Text</span>
 					</button>
 					<button id="lang-toggle">
 						<span class="icon" id="lang-toggle-text">DE</span>
@@ -84,7 +84,7 @@
 			<div class="content-container">
 				<div class="topic-selector">
 					<button id="topicClose" class="topic-close" aria-label="Close sidebar">
-						<img src="../assets/img/svg/cancel.svg" alt="close" />
+						<img src="../assets/img/svg/cancel.svg" alt="close">
 					</button>
 					<!-- Loading of topics will use class "topic-category" for headers of categories -->
 				</div>
@@ -95,8 +95,8 @@
 				</div>
 				<div class="right-panel">
 					<button class="copy-button" id="copyButton" onclick="copyButtonTrigger()">
-						<img class="icon" src="../assets/img/svg/copy.svg" alt="copy-icon" />
-						<span class="icon-text" data-i18n="copy"></span>
+						<img class="icon" src="../assets/img/svg/copy.svg" alt="copy-icon">
+						<span class="icon-text" data-i18n="copy">Icon Text</span>
 					</button>
 					<div id="right-panel-header"></div>
 				</div>
