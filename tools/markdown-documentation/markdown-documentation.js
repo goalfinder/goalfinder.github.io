@@ -1386,7 +1386,15 @@ function selectInitialLoadedTopic(path) {
 	});
 
 	const dataPath = path;
-	const targetButton = document.querySelector(`[data-path="${dataPath}"]`);
+	let targetButton = document.querySelector(`[data-path="${dataPath}"]`);
+	if (!targetButton) {
+		console.warn(`Topic with data-path "${dataPath}" not found. Falling back to first topic.`);
+		targetButton = document.querySelector(".topic-button");
+		if (!targetButton) {
+			console.warn("No topic buttons present to select.");
+			return;
+		}
+	}
 	targetButton.classList.remove("topic-unselected");
 	targetButton.classList.add("topic-selected");
 	currentlySelectedTopic = targetButton;

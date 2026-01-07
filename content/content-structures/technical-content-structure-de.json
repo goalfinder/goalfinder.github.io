@@ -1,30 +1,28 @@
 [
   {
     "type": "page",
-    "name": "Willkommen",
-    "path": ""
+    "name": "Welcome",
+    "path": "../content/technical/en/introduction.md"
   },
   {
     "type": "category",
-    "name": "Technik",
+    "name": "Hardware",
     "children": [
       {
         "type": "page",
-        "name": "Einleitung",
-        "path": ""
-      },
+        "name": "Introduction",
+        "path": "../content/technical/en/hardware-intro.md"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "name": "Software",
+    "children": [
       {
-        "type": "category",
-        "name": "Software",
-        "path": "",
-        "collapsed": false,
-        "children": [
-          {
-            "type": "page",
-            "name": "Einleitung",
-            "path": ""
-          }
-        ]
+        "type": "page",
+        "name": "Introduction",
+        "path": "../content/technical/en/software-intro.md"
       }
     ]
   }
