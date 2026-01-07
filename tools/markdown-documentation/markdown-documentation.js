@@ -1639,6 +1639,21 @@ async function initMarkdownDocumentation(config = {}) {
 	} catch (e) {
 		// ignore
 	}
+
+	/**
+	 * Set up click handlers for inter page links
+	 */
+	const pageLinks = document.querySelectorAll(".markdown-page-link");
+
+	pageLinks.forEach((button) => {
+		if (button) {
+			button.addEventListener("click", () => {
+				const currentButton = button;
+				const path = currentButton.dataset.path;
+				navigateToSearchResult(path);
+			});
+		}
+	});
 }
 
 export { initMarkdownDocumentation, updateMarkdownDocumentationTranslations };
