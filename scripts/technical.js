@@ -1,5 +1,6 @@
 import { initMarkdownDocumentation } from "../tools/markdown-documentation/markdown-documentation.js";
 import { loadLang, getCurrentLang, getTranslations } from "./i18n.js";
+import { runTests } from "../tools/content-browser/content-checker.js";
 
 /** Default page language */
 document.addEventListener("DOMContentLoaded", async () => {
@@ -18,4 +19,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 	if (window.updateMarkdownDocumentationTranslations) {
 		window.updateMarkdownDocumentationTranslations(getTranslations());
 	}
+
+	runTests("../content/content-structures/technical-content-structure-en.json", "../content/content-structures/technical-content-structure-de.json");
 });
