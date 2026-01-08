@@ -1,1 +1,1 @@
-# GoalFinder User Dokumentation
+# User Dokumentation
