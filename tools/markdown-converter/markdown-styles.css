@@ -651,7 +651,7 @@ body {
 
 .markdown-end-previous:hover .markdown-end-title,
 .markdown-end-next:hover .markdown-end-title {
-	color: rgb(44, 98, 245);
+	color: var(--primary);
 }
 
 .markdown-end-previous {

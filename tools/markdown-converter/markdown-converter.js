@@ -630,12 +630,12 @@ class MarkdownConverter {
 				const previousPath = this.flatStructure[this.currentPageIndex - 1];
 				const previousName = this.getPageName(previousPath);
 				item += `<div class="markdown-end-next" data-path="${previousPath}">
-                            <img class="markdown-end-icon-previous" src="${imagePath}arrow.svg" alt="next-icon"></img>
-                            <div class="markdown-end-content-p">
-                                <p class="markdown-end-label">Previous</p>
-                                <p class="markdown-end-title">${previousName}</p>
-                            </div>
-                         </div>`;
+							<img class="markdown-end-icon-previous" src="${this.imagePath}arrow.svg" alt="next-icon"></img>
+							<div class="markdown-end-content-p">
+								<p class="markdown-end-label">Previous</p>
+								<p class="markdown-end-title">${previousName}</p>
+							</div>
+						 </div>`;
 			}
 
 			// If next item exists
