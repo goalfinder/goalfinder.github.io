@@ -25,5 +25,16 @@
         "path": "../content/technical/de/software-intro.md"
       }
     ]
+  },
+  {
+    "type": "category",
+    "name": "Mitwirken",
+    "children": [
+      {
+        "type": "page",
+        "name": "Überblick",
+        "path": "../content/technical/de/contribute-general.md"
+      }
+    ]
   }
 ]

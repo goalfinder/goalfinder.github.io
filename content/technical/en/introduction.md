@@ -1,3 +1,9 @@
-# Technical Dokumentation
+# Technical Documentation
+This page contains the technical documentation for the GoalFinder project.
+The documentation covers the following topics:
 
-This is the GoalFinder technical documentation.
+-   ^[Hardware](../content/technical/en/hardware-intro.md)
+-   ^[Software](../content/technical/en/software-intro.md)
+-   ^[Contribute](../content/technical/en/contribute-general.md)
+
+#end

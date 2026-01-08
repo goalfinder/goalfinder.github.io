@@ -12,7 +12,7 @@
 	--hover-bg: rgba(0, 0, 0, 0.1); /* Background on hover state */
 	--button-bg: #f0f0f0; /* Button and container background */
 	--button-text: #0a0a0a; /* Button text color */
-	--primary: #7133f6; /* Active/selected element color */
+	--primary: #6c35e4; /* Active/selected element color */
 
 	--primary-08: rgba(113, 51, 246, 0.8);
 
@@ -967,11 +967,11 @@ body {
 }
 
 .markdown-page-link {
-	color: var(--primary-08);
+	color: var(--primary);
 	text-decoration: underline;
 	cursor: pointer;
 }
 
 .markdown-page-link:hover {
-	color: var(--primary);
+	color: var(--primary-08);
 }
