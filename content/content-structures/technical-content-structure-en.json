@@ -23,6 +23,24 @@
         "type": "page",
         "name": "Introduction",
         "path": "../content/technical/en/software-intro.md"
+      },
+      {
+        "type": "page",
+        "name": "Web App",
+        "path": "../content/technical/en/webapp.md"
+      },
+      {
+        "type": "category",
+        "name": "Website",
+        "path": "../content/technical/en/website.md",
+        "collapsed": true,
+        "children": [
+          {
+            "type": "page",
+            "name": "Setup & Deploy",
+            "path": "../content/technical/en/jekyll-deploy.md"
+          }
+        ]
       }
     ]
   },
