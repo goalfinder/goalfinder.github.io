@@ -6,7 +6,54 @@ Following other branches can be helpful:
 -   Current development state: `development`
 -   Latest release: `main`
 
-## Updated Branch Structure
+## Local Development with Jekyll
+
+This site uses Jekyll for local development and GitHub Pages deployment. Follow these steps to run the site locally on Linux or WSL:
+
+### Prerequisites
+
+
+2. **Install Bundler and Jekyll**:
+    ```bash
+    gem install bundler jekyll
+    ```
+
+### Running Locally
+
+1. **Install dependencies**:
+
+    ```bash
+    bundle install
+    ```
+
+2. **Build**
+
+    ```bash
+    bundle exec jekyll build
+    ```
+
+3. **Execute**
+    ``` bash
+    bundle exec jekyll serve --host localhost --livereload
+    ```
+
+    Navigate to the server address
+
+### Available Pages
+
+-   `/user` - User Documentation (default/home page)
+-   `/home` - Home/Landing Page
+-   `/technical` - Technical Documentation
+-   `/credits` - Credits Page
+-   `/help` - Help Page
+
+### Notes
+
+-   The `--livereload` flag enables automatic browser refresh on file changes
+-   Use `bundle exec jekyll serve --host 0.0.0.0` to access from other devices on your network
+-   The site is configured to work both locally and on GitHub Pages
+
+## Branch Structure
 
     .
     ├── .vscode                 Configuration files for Visual Studio Code
@@ -16,14 +63,14 @@ Following other branches can be helpful:
     │       ├── assembly                Images of the assembly
     │       ├── design                  Images of the 3d design
     │       ├── logos                   Logos
-    │       │   └── goalfinder              Different variations of the GoalFinder logo 
+    │       │   └── goalfinder              Different variations of the GoalFinder logo
     │       ├── mission-cards           Icons for the home page's mission cards
     │       ├── showcase                General images of the GoalFinder
     │       └── svg                     Svg icons mainly for the documentation
     ├── content                 Markdown content for user and technical documentation
     │   ├── user                    User documentation content
     │   ├── technical               Technical documentation content
-    │   └── content-structures      Content structures for different documentation and different languages 
+    │   └── content-structures      Content structures for different documentation and different languages
     │       ├── user-content-structure-de.json      German content structure for the user documentation
     │       ├── user-content-structure-en.json      English content structure for the user documentation
     │       ├── technical-content-structure-de.json German content structure for the technical documentation

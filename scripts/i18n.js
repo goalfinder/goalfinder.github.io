@@ -5,6 +5,11 @@ const defaultLang = "de";
 /** Current language */
 let currentLang = defaultLang;
 
+/** Get the base URL for the site (set by Jekyll or defaults to empty) */
+function getBaseUrl() {
+	return window.siteBaseUrl || "";
+}
+
 /**
  * Loads the specified language and applies it
  * @param {string} lang The language to load
@@ -12,7 +17,7 @@ let currentLang = defaultLang;
  */
 export async function loadLang(lang, onComplete = null) {
 	try {
-		const response = await fetch(`../locales/${lang}.json`);
+		const response = await fetch(`${getBaseUrl()}/locales/${lang}.json`);
 		translations = await response.json();
 		flattenStructure();
 		currentLang = lang;

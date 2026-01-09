@@ -21,7 +21,7 @@
  */
 class MarkdownConverter {
 	/** @type {path} - The path where the image assets are found */
-	imagePath = `../assets/img/svg/`;
+	imagePath = `${window.siteBaseUrl || ""}/assets/img/svg/`;
 
 	/** @type {number} - Counter for unique heading IDs */
 	headingCount;

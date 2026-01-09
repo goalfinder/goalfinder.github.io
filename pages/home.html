@@ -1,15 +1,27 @@
+---
+layout: null
+permalink: /
+description: The GoalFinder device home page
+title: GoalFinder
+---
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="The GoalFinder device home page">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="{{ page.description }}" />
 
-		<script type="module" src="../scripts/main.js"></script>
-		<script type="module" src="../scripts/i18n.js"></script>
+		<!-- Base URL for JavaScript -->
+		<script>
+			window.siteBaseUrl = "{{ site.baseurl | default: '' }}";
+		</script>
 
-		<link rel="stylesheet" href="../styles/main.css">
-		<link rel="icon" href="../assets/img/logos/goalfinder/logo-shadow.png" type="image/png">
+		<script type="module" src="{{ site.baseurl }}/scripts/main.js"></script>
+		<script type="module" src="{{ site.baseurl }}/scripts/i18n.js"></script>
+
+		<link rel="stylesheet" href="{{ site.baseurl }}/styles/main.css" />
+		<link rel="icon" href="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-shadow.png" type="image/png" />
 
 		<title>GoalFinder</title>
 	</head>
@@ -17,7 +29,7 @@
 		<main>
 			<div class="pager" id="introduction">
 				<a id="lang-button" class="intro-top-button">DE</a>
-				<img id="introduction-img" src="../assets/img/showcase/P1440902.JPG" alt="Initial showcase image">
+				<img id="introduction-img" src="{{ site.baseurl }}/assets/img/showcase/P1440902.JPG" alt="Initial showcase image" />
 				<div id="introduction-text-container">
 					<h1 id="introduction-header">GOALFINDER</h1>
 					<p data-i18n="sub-title" id="introduction-text"></p>
@@ -25,7 +37,7 @@
 			</div>
 
 			<div class="pager" id="about">
-				<img id="about-img" src="../assets/img/showcase/P1440905.JPG" alt="Side image">
+				<img id="about-img" src="{{ site.baseurl }}/assets/img/showcase/P1440905.JPG" alt="Side image" />
 				<div id="about-text-container">
 					<h2 data-i18n="about-title">About</h2>
 					<p data-i18n="about-content"></p>
@@ -37,7 +49,7 @@
 
 				<div class="card-container" id="missions-container">
 					<div class="card">
-						<img src="../assets/img/mission-cards/accessibility.svg" alt="accessibility">
+						<img src="{{ site.baseurl }}/assets/img/mission-cards/accessibility.svg" alt="accessibility" />
 						<div class="card-text">
 							<h3 data-i18n="mission-0-title">Mission 0</h3>
 							<p data-i18n="mission-0-content"></p>
@@ -45,7 +57,7 @@
 					</div>
 
 					<div class="card">
-						<img src="../assets/img/mission-cards/open-source.svg" alt="open source">
+						<img src="{{ site.baseurl }}/assets/img/mission-cards/open-source.svg" alt="open source" />
 						<div class="card-text">
 							<h3 data-i18n="mission-1-title">Mission 1</h3>
 							<p data-i18n="mission-1-content"></p>
@@ -53,7 +65,7 @@
 					</div>
 
 					<div class="card">
-						<img src="../assets/img/mission-cards/community.svg" alt="">
+						<img src="{{ site.baseurl }}/assets/img/mission-cards/community.svg" alt="" />
 						<div class="card-text">
 							<h3 data-i18n="mission-2-title">Mission 2</h3>
 							<p data-i18n="mission-2-content"></p>
@@ -102,13 +114,13 @@
 				<h2 data-i18n="awards-title">Awards</h2>
 				<div class="awards-container">
 					<a href="https://www.behindertenrat.at/projekte/unikate-ideenwettbewerb/unikate-preisverleihung-2025-programm/" class="award-item" target="_blank">
-						<img src="../assets/img/logos/unikate.png" alt="UNIKATE Logo" class="award-logo">
+						<img src="{{ site.baseurl }}/assets/img/logos/unikate.png" alt="UNIKATE Logo" class="award-logo" />
 						<h3 data-i18n="award-0-title-0">Award 0</h3>
 						<h4 data-i18n="award-0-title-1">Award 0</h4>
 						<p class="award-org" data-i18n="award-0-content"></p>
 					</a>
 					<a href="https://www.missionhumanity.at/projekte/goalfinder" class="award-item" target="_blank">
-						<img src="../assets/img/logos/jrk.png" alt="Jugend Rot Kreuz Logo" class="award-logo">
+						<img src="{{ site.baseurl }}/assets/img/logos/jrk.png" alt="Jugend Rot Kreuz Logo" class="award-logo" />
 						<h3 data-i18n="award-1-title-0">Award 1</h3>
 						<h4 data-i18n="award-1-title-1">Award 1</h4>
 						<p class="award-org" data-i18n="award-1-content"></p>
@@ -117,13 +129,13 @@
 			</div>
 
 			<div class="pager" id="documentation">
-				<img id="doc-img" src="../assets/img/design/pcb.png" alt="Side image">
+				<img id="doc-img" src="{{ site.baseurl }}/assets/img/design/pcb.png" alt="Side image" />
 				<div id="doc-text-container">
 					<h2 data-i18n="doc-title">Documentation</h2>
 					<p data-i18n="doc-content"></p>
 					<div class="btn-container" id="doc-buttons">
-						<a target="_blank" href="./user.html" data-i18n="doc-btn-0"></a>
-						<a target="_blank" href="./technical.html" data-i18n="doc-btn-1"></a>
+						<a target="_blank" href="{{ site.baseurl }}/user" data-i18n="doc-btn-0"></a>
+						<a target="_blank" href="{{ site.baseurl }}/technical" data-i18n="doc-btn-1"></a>
 					</div>
 				</div>
 			</div>
@@ -133,11 +145,11 @@
 				<p class="sponsors-subtitle"></p>
 				<div class="sponsors-container">
 					<a href="https://www.htl-leonding.at/" class="sponsor-item" target="_blank">
-						<img src="../assets/img/logos/htlleonding.png" alt="HTL Leonding Logo" class="sponsor-logo">
+						<img src="{{ site.baseurl }}/assets/img/logos/htlleonding.png" alt="HTL Leonding Logo" class="sponsor-logo" />
 						<h3 data-i18n="sponsor-0">Sponsor 0</h3>
 					</a>
 					<a href="https://www.univie.ac.at/" class="sponsor-item" target="_blank">
-						<img src="../assets/img/logos/univie.png" alt="UNI Wien Logo" class="sponsor-logo">
+						<img src="{{ site.baseurl }}/assets/img/logos/univie.png" alt="UNI Wien Logo" class="sponsor-logo" />
 						<h3 data-i18n="sponsor-1">Sponsor 1</h3>
 					</a>
 				</div>
@@ -156,7 +168,7 @@
 
 			<footer class="site-footer">
 				<div class="footer-inner">
-					<p>© 2026 GoalFinder • <a href="./credits.html" data-i18n="credits"></a> • <a href="./help.html" data-i18n="help"></a></p>
+					<p>© 2026 GoalFinder • <a href="{{ site.baseurl }}/credits" data-i18n="credits"></a> • <a href="{{ site.baseurl }}/help" data-i18n="help"></a></p>
 				</div>
 			</footer>
 		</main>

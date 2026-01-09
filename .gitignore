@@ -3,6 +3,14 @@
 .pio
 backup/
 
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+Gemfile.lock
+vendor/
+
 # FreeCAD
 *.FCStd1
 *.FCStd2

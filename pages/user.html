@@ -1,13 +1,25 @@
+---
+layout: null
+permalink: /user
+description: The GoalFinder device user documentation page
+title: User Documentation
+---
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="The GoalFinder device user documentation page">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="{{ page.description }}" />
 
-		<link rel="stylesheet" href="../styles/documentation.css">
-		<link rel="stylesheet" href="../tools/markdown-converter/markdown-styles.css">
-		<link rel="icon" href="../assets/img/logos/goalfinder/logo-shadow.png" type="image/png">
+		<!-- Base URL for JavaScript -->
+		<script>
+			window.siteBaseUrl = "{{ site.baseurl | default: '' }}";
+		</script>
+
+		<link rel="stylesheet" href="{{ site.baseurl }}/styles/documentation.css" />
+		<link rel="stylesheet" href="{{ site.baseurl }}/tools/markdown-converter/markdown-styles.css" />
+		<link rel="icon" href="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-shadow.png" type="image/png" />
 
 		<script>
 			(function () {
@@ -22,7 +34,7 @@
 					if (toggleButton && savedTheme === "dark") {
 						const toggleIcon = toggleButton.querySelector(".icon");
 						const toggleText = toggleButton.querySelector(".icon-text");
-						toggleIcon.src = "../assets/img/svg/light.svg";
+						toggleIcon.src = (window.siteBaseUrl || "") + "/assets/img/svg/light.svg";
 						toggleText.textContent = "Light Mode";
 					}
 				}
@@ -41,8 +53,8 @@
 			}
 		</script>
 
-		<script type="module" src="../scripts/user.js"></script>
-		
+		<script type="module" src="{{ site.baseurl }}/scripts/user.js"></script>
+
 		<title data-i18n="ud-title-short">User Documentation</title>
 	</head>
 
@@ -52,14 +64,14 @@
 			<div class="header-logo">
 				<!-- Sidebar toggle as an icon-only control placed top-left -->
 				<button id="topicToggle" class="topic-toggle" aria-label="Toggle sidebar" aria-expanded="false">
-					<img class="topic-toggle-icon" src="../assets/img/svg/hamburger.svg" alt="menu">
+					<img class="topic-toggle-icon" src="{{ site.baseurl }}/assets/img/svg/hamburger.svg" alt="menu" />
 				</button>
-				<img src="../assets/img/logos/goalfinder/logo-shadow.png" class="header-image" id="header-icon" alt="Logo">
+				<img src="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-shadow.png" class="header-image" id="header-icon" alt="Logo" />
 				<p class="header-text" data-i18n="ud-title"></p>
 				<div class="header-controls">
 					<div class="header-search-bar">
-						<img class="icon search-icon" src="../assets/img/svg/search.svg" alt="search-icon">
-						<input type="text" onfocus="searchbarFocus()" onblur="searchbarBlur()" oninput="searchbarSearch()" id="searchInput" placeholder="Search documentation..." data-i18n="search">
+						<img class="icon search-icon" src="{{ site.baseurl }}/assets/img/svg/search.svg" alt="search-icon" />
+						<input type="text" onfocus="searchbarFocus()" onblur="searchbarBlur()" oninput="searchbarSearch()" id="searchInput" placeholder="Search documentation..." data-i18n="search" />
 						<div id="searchPopup" class="search-popup">
 							<!-- Popup content goes here -->
 							<ul class="search-results">
@@ -68,7 +80,7 @@
 						</div>
 					</div>
 					<button id="lightDarkToggle" onclick="lightDarkModeToggle()">
-						<img class="icon" src="../assets/img/svg/dark.svg" alt="modeswitch-icon">
+						<img class="icon" src="{{ site.baseurl }}/assets/img/svg/dark.svg" alt="modeswitch-icon" />
 						<span class="icon-text" data-i18n="dark-mode">Mode Text</span>
 					</button>
 					<button id="lang-toggle">
@@ -84,7 +96,7 @@
 			<div class="content-container">
 				<div class="topic-selector">
 					<button id="topicClose" class="topic-close" aria-label="Close sidebar">
-						<img src="../assets/img/svg/cancel.svg" alt="close">
+						<img src="{{ site.baseurl }}/assets/img/svg/cancel.svg" alt="close" />
 					</button>
 					<!-- Loading of topics will use class "topic-category" for headers of categories -->
 				</div>
@@ -95,7 +107,7 @@
 				</div>
 				<div class="right-panel">
 					<button class="copy-button" id="copyButton" onclick="copyButtonTrigger()">
-						<img class="icon" src="../assets/img/svg/copy.svg" alt="copy-icon">
+						<img class="icon" src="{{ site.baseurl }}/assets/img/svg/copy.svg" alt="copy-icon" />
 						<span class="icon-text" data-i18n="copy">Icon Text</span>
 					</button>
 					<div id="right-panel-header"></div>
@@ -103,8 +115,8 @@
 			</div>
 		</main>
 		<footer>
-			<a href="./credits.html">Credits</a>
-			<a href="./help.html">Help</a>
+			<a href="{{ site.baseurl }}/credits">Credits</a>
+			<a href="{{ site.baseurl }}/help">Help</a>
 		</footer>
 
 		<!-- Overlay for sliding sidebar on small screens -->

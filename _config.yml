@@ -1,0 +1,54 @@
+# Site settings
+title: GoalFinder
+description: The GoalFinder device website and documentation
+url: ""
+baseurl: "" # Subpath of your site, e.g. /blog (leave empty for root deployment)
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Permalink structure for pages
+permalink: pretty
+
+# Default front matter values
+defaults:
+    - scope:
+          path: "pages"
+          type: "pages"
+      values:
+          layout: "default"
+
+# Include these directories/files in the build
+include:
+    - assets
+    - content
+    - locales
+    - pages
+    - scripts
+    - styles
+    - tools
+
+# Exclude these from the build
+exclude:
+    - README.md
+    - LICENSE
+    - credits.md
+    - .gitignore
+    - .vscode
+    - doc-alt
+    - Gemfile
+    - Gemfile.lock
+    - vendor
+
+# Collections (if needed in future)
+collections_dir: .
+
+# Sass settings (if you use SCSS later)
+sass:
+    style: compressed
+
+# Development server settings
+host: 0.0.0.0
+port: 4000
+livereload: true

@@ -42,8 +42,15 @@ window.searchbarFocus = searchbarFocus;
 window.searchbarBlur = searchbarBlur;
 window.searchbarSearch = searchbarSearch;
 
-/** The path to the content structures */
-const contentStructurePath = "../../content/content-structures/";
+/** Get the base URL for the site (set by Jekyll or defaults to empty) */
+function getBaseUrl() {
+	return window.siteBaseUrl || "";
+}
+
+/** The path to the content structures (dynamically constructed) */
+function getContentStructurePath() {
+	return `${getBaseUrl()}/content/content-structures/`;
+}
 
 /** The initial config gets saved here */
 let initialConfig;
@@ -52,7 +59,7 @@ let initialConfig;
 let langToggle;
 // Track current doc so language switch can reload the right structure
 let currentDoc = "user";
-let currentDefaultPagePath = "../../content/user/introduction.md";
+let currentDefaultPagePath = ""; // Will be set dynamically
 
 /**
  * Translate a key using the current translations
@@ -549,20 +556,21 @@ function lightDarkModeToggle() {
 	const toggleIcon = toggleButton.querySelector(".icon");
 	const toggleText = toggleButton.querySelector(".icon-text");
 	const headerIcon = document.getElementById("header-icon");
+	const baseUrl = getBaseUrl();
 
 	html.classList.toggle("dark-mode"); // Change page appearance
 
 	// Toggle mode switch button content (only update src and text, preserve DOM for smooth transition)
 	if (html.classList.contains("dark-mode")) {
-		toggleIcon.src = "../assets/img/svg/light.svg";
+		toggleIcon.src = `${baseUrl}/assets/img/svg/light.svg`;
 		toggleText.textContent = t("light-mode");
 		localStorage.setItem("theme", "dark");
-		headerIcon.src = "../../assets/img/logos/goalfinder/logo-shadow.png";
+		headerIcon.src = `${baseUrl}/assets/img/logos/goalfinder/logo-shadow.png`;
 	} else {
-		toggleIcon.src = "../assets/img/svg/dark.svg";
+		toggleIcon.src = `${baseUrl}/assets/img/svg/dark.svg`;
 		toggleText.textContent = t("dark-mode");
 		localStorage.setItem("theme", "light");
-		headerIcon.src = "../../assets/img/logos/goalfinder/logo-black-shadow.png";
+		headerIcon.src = `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.png`;
 	}
 }
 
@@ -878,7 +886,7 @@ function setupEventListenersForNewElements() {
 		if (!button.querySelector(".category-arrow")) {
 			const arrow = document.createElement("span");
 			arrow.classList.add("category-arrow");
-			arrow.innerHTML = '<img src="../assets/img/svg/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">';
+			arrow.innerHTML = `<img src="${getBaseUrl()}/assets/img/svg/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">`;
 			button.appendChild(arrow);
 		}
 
@@ -1082,7 +1090,7 @@ async function setupEventListeners() {
 		if (!button.querySelector(".category-arrow")) {
 			const arrow = document.createElement("span");
 			arrow.classList.add("category-arrow");
-			arrow.innerHTML = '<img src="../assets/img/svg/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">';
+			arrow.innerHTML = `<img src="${getBaseUrl()}/assets/img/svg/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">`;
 			button.appendChild(arrow);
 		}
 
@@ -1436,7 +1444,7 @@ async function switchLang() {
 
 	// Reload content structure for the current doc in the new language
 	try {
-		const newContentPath = `${contentStructurePath}${currentDoc}-content-structure-${getCurrentLang()}.json`;
+		const newContentPath = `${getContentStructurePath()}${currentDoc}-content-structure-${getCurrentLang()}.json`;
 		await browser.fetchStructure(newContentPath);
 
 		// Rebuild converter with new flat structure
@@ -1514,7 +1522,8 @@ async function switchLang() {
  * @param {string} config.copyIconPath - Path to the copy icon
  */
 async function initMarkdownDocumentation(config = {}) {
-	const { doc = "user", defaultPagePath = "../../content/user/introduction.md", lightIconPath = "../../assets/img/svg/light.svg", copyIconPath = "../../assets/img/svg/copy.svg" } = config;
+	const baseUrl = getBaseUrl();
+	const { doc = "user", defaultPagePath = `${baseUrl}/content/user/introduction.md`, lightIconPath = `${baseUrl}/assets/img/svg/light.svg`, copyIconPath = `${baseUrl}/assets/img/svg/copy.svg` } = config;
 
 	// remember which doc we're showing so switchLang can reload the correct structure
 	currentDoc = doc;
@@ -1523,7 +1532,7 @@ async function initMarkdownDocumentation(config = {}) {
 
 	// Get reference to the topic browser container
 	browserContainer = document.querySelector(".topic-selector");
-	const contentPath = `${contentStructurePath}${doc}-content-structure-${getCurrentLang()}.json`;
+	const contentPath = `${getContentStructurePath()}${doc}-content-structure-${getCurrentLang()}.json`;
 
 	// Fetch and load topic structure
 	await browser.fetchStructure(contentPath);
@@ -1555,6 +1564,7 @@ async function initMarkdownDocumentation(config = {}) {
 
 	const savedTheme = localStorage.getItem("theme");
 	const headerIcon = document.getElementById("header-icon");
+	const baseUrlInit = getBaseUrl();
 	if (savedTheme === "dark") {
 		const toggleButton = document.getElementById("lightDarkToggle");
 		const copyButton = document.getElementById("copyButton");
@@ -1562,9 +1572,9 @@ async function initMarkdownDocumentation(config = {}) {
 			toggleButton.innerHTML = `<img class="icon" src="${lightIconPath}"><span class="icon-text">Light Mode</span>`;
 			copyButton.innerHTML = `<img class="icon" src="${copyIconPath}"></img><span class="icon-text">Copy</span>`;
 		}
-		headerIcon.src = "../../assets/img/logos/goalfinder/logo-shadow.png";
+		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-shadow.png`;
 	} else {
-		headerIcon.src = "../../assets/img/logos/goalfinder/logo-black-shadow.png";
+		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-black-shadow.png`;
 	}
 
 	document.addEventListener("click", (e) => {
