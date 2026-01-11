@@ -577,7 +577,7 @@ main {
 
 .topic-category-button-selected .category-arrow {
 	opacity: 1;
-	color: var(--topic-selected-color);
+	color: var(--primary);
 }
 
 .category-arrow {
@@ -592,7 +592,7 @@ main {
 
 /* Purple arrow for selected state */
 .topic-category-button-selected .category-arrow img {
-	filter: brightness(0) saturate(100%) invert(29%) sepia(70%) saturate(1800%) hue-rotate(260deg) brightness(100%) contrast(95%);
+    filter: brightness(0) saturate(100%) invert(29%) sepia(70%) saturate(1800%) hue-rotate(260deg) brightness(75%) contrast(90%);
 }
 
 .topic-category {
