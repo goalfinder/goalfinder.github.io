@@ -670,7 +670,7 @@ function generateCategoryChildrenHTML(categoryItem) {
 }
 
 /**
- * Save the current content structure state and selected page to localStorage
+ * Save the current content structure state, selected page, and language to localStorage
  */
 function saveContentStructureState() {
 	try {
@@ -678,6 +678,7 @@ function saveContentStructureState() {
 			contentStructure: browser.contentStructure,
 			selectedPage: currentlySelectedTopic ? currentlySelectedTopic.dataset.path : null,
 			selectedCategory: currentlySelectedCategory ? currentlySelectedCategory.textContent : null,
+			language: getCurrentLang(),
 		};
 		localStorage.setItem("droneContentStructure", JSON.stringify(stateToSave));
 	} catch (error) {
@@ -698,7 +699,7 @@ function loadContentStructureState() {
 
 		// Handle legacy format (just array) vs new format (object with structure + page)
 		if (Array.isArray(parsed)) {
-			return { contentStructure: parsed, selectedPage: null, selectedCategory: null };
+			return { contentStructure: parsed, selectedPage: null, selectedCategory: null, language: null };
 		}
 
 		return parsed;
@@ -1531,13 +1532,14 @@ async function switchLang() {
 		const flatStructure = browser.flattenStructure();
 		converter = new MarkdownConverter(flatStructure, browser.contentStructure);
 
-		// Clear selection so refresh will build new DOM
 		currentlySelectedTopic = null;
 		currentlySelectedCategory = null;
 		suppressInitialSelection = true;
 
 		try {
 			await refresh();
+
+			currentlySelectedTopic = { sentinel: true };
 
 			if (currentPagePath) {
 				const filename = currentPagePath.split("/").pop();
@@ -1568,6 +1570,15 @@ async function switchLang() {
 					// Now try to select the corresponding DOM button
 					const targetButton = document.querySelector(`[data-path="${matched.path}"]`);
 					if (targetButton) {
+						if (currentlySelectedTopic && currentlySelectedTopic.sentinel) {
+							currentlySelectedTopic = null;
+						}
+
+						if (currentlySelectedTopic && !currentlySelectedTopic.sentinel) {
+							currentlySelectedTopic.classList.remove("topic-selected");
+							currentlySelectedTopic.classList.add("topic-unselected");
+						}
+
 						targetButton.classList.remove("topic-unselected");
 						targetButton.classList.add("topic-selected");
 						currentlySelectedTopic = targetButton;
@@ -1590,14 +1601,22 @@ async function switchLang() {
 						saveContentStructureState();
 					} catch (e) {
 						console.warn("Failed to load matched page after language switch:", e);
+						// Save state even if loading failed
+						saveContentStructureState();
 					}
+				} else {
+					currentlySelectedTopic = null;
+					saveContentStructureState();
 				}
+			} else {
+				currentlySelectedTopic = null;
 			}
 		} finally {
 			suppressInitialSelection = false;
 		}
 	} catch (err) {
 		console.warn("Failed to reload content structure for language switch:", err);
+		suppressInitialSelection = false;
 	}
 }
 
@@ -1618,6 +1637,13 @@ async function initMarkdownDocumentation(config = {}) {
 	currentDefaultPagePath = defaultPagePath;
 	initialConfig = config;
 
+	// Load saved language preference and apply it before loading content
+	const savedState = loadContentStructureState();
+	if (savedState && savedState.language) {
+		setCurrentLang(savedState.language);
+		await loadLang(savedState.language);
+	}
+
 	// Get reference to the topic browser container
 	browserContainer = document.querySelector(".topic-selector");
 	const contentPath = `${getContentStructurePath()}${doc}-content-structure-${getCurrentLang()}.json`;
@@ -1625,8 +1651,7 @@ async function initMarkdownDocumentation(config = {}) {
 	// Fetch and load topic structure
 	await browser.fetchStructure(contentPath);
 
-	// Load saved content structure state from localStorage
-	const savedState = loadContentStructureState();
+	// Load saved content structure state from localStorage (already loaded above for language)
 	let savedPagePath = null;
 	let savedCategoryName = null;
 
