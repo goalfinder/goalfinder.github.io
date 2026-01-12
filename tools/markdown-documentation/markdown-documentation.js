@@ -1410,10 +1410,92 @@ function selectInitialLoadedTopic(path) {
 }
 
 /**
+ * Find the path of parent categories for a given item path in the content structure
+ * @param {Array} structure - The content structure to search
+ * @param {string} targetPath - The path of the item to find parents for
+ * @param {Array} parentChain - Current chain of parent category names
+ * @returns {Array|null} - Array of parent category names or null if not found
+ */
+function findParentCategories(structure, targetPath, parentChain = []) {
+	for (const item of structure) {
+		if (item.path === targetPath) {
+			return parentChain;
+		}
+		if (item.type === "category" && item.children) {
+			const found = findParentCategories(item.children, targetPath, [...parentChain, item.name]);
+			if (found) return found;
+		}
+	}
+	return null;
+}
+
+/**
+ * Expand a category by name and add its children to the DOM
+ * @param {string} categoryName - Name of the category to expand
+ */
+async function expandCategoryByName(categoryName) {
+	const categoryItem = findCategoryByName(browser.contentStructure, categoryName);
+	if (!categoryItem) return;
+
+	// Find the category button in the DOM
+	const buttonId = categoryItem.path ? `topic-category-topic-${categoryName}` : `topic-category-${categoryName}`;
+	const button = document.getElementById(buttonId);
+	if (!button) return;
+
+	// Check if already expanded
+	if (button.dataset.toggled === "true") return;
+
+	// Expand the category
+	button.classList.remove("topic-category-button-collapsed");
+	button.classList.add("topic-category-button-expanded");
+	button.dataset.toggled = "true";
+
+	// Update the arrow
+	const arrow = button.querySelector(".category-arrow");
+	if (arrow) {
+		arrow.style.transform = "rotate(90deg)";
+		arrow.style.transition = "none";
+		setTimeout(() => {
+			arrow.style.transition = "transform 0.3s ease";
+		}, 10);
+	}
+
+	// Update content structure
+	updateCategoryCollapsedState(browser.contentStructure, categoryName, false);
+
+	// Check if children already exist in the DOM
+	let hasExistingChildren = false;
+	if (categoryItem.children && categoryItem.children.length > 0) {
+		const firstChild = categoryItem.children[0];
+		const firstChildId = firstChild.type === "page" ? `topic-button-${firstChild.name}` : firstChild.path ? `topic-category-topic-${firstChild.name}` : `topic-category-${firstChild.name}`;
+		hasExistingChildren = document.getElementById(firstChildId) !== null;
+	}
+
+	// Insert children if they don't exist
+	if (!hasExistingChildren) {
+		const childrenHTML = generateCategoryChildrenHTML(categoryItem);
+		const nextSibling = button.nextElementSibling;
+		const tempDiv = document.createElement("div");
+		tempDiv.innerHTML = childrenHTML;
+
+		while (tempDiv.firstChild) {
+			if (nextSibling) {
+				browserContainer.insertBefore(tempDiv.firstChild, nextSibling);
+			} else {
+				browserContainer.appendChild(tempDiv.firstChild);
+			}
+		}
+
+		setupEventListenersForNewElements();
+	}
+}
+
+/**
  * Switches the current language
  */
 async function switchLang() {
-	setCurrentLang(getCurrentLang() == "de" ? "en" : "de");
+	const newLang = getCurrentLang() === "de" ? "en" : "de";
+	setCurrentLang(newLang);
 
 	// Save currently open page (try topic first, then category) so we can restore equivalent
 	let currentPagePath = null;
@@ -1425,8 +1507,6 @@ async function switchLang() {
 			if (cat && cat.path) currentPagePath = cat.path;
 		}
 	} catch (e) {}
-
-	setCurrentLang(getCurrentLang());
 
 	// Load the new language
 	await loadLang(getCurrentLang());
@@ -1477,7 +1557,15 @@ async function switchLang() {
 
 				const matched = findByFilename(browser.contentStructure);
 				if (matched && matched.path) {
-					// Try to select the corresponding DOM button if present
+					// Find and expand parent categories so the topic button becomes visible
+					const parentCategories = findParentCategories(browser.contentStructure, matched.path);
+					if (parentCategories && parentCategories.length > 0) {
+						for (const categoryName of parentCategories) {
+							await expandCategoryByName(categoryName);
+						}
+					}
+
+					// Now try to select the corresponding DOM button
 					const targetButton = document.querySelector(`[data-path="${matched.path}"]`);
 					if (targetButton) {
 						targetButton.classList.remove("topic-unselected");
