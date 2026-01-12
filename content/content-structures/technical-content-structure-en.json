@@ -37,7 +37,7 @@
         "children": [
           {
             "type": "page",
-            "name": "Setup & Deploy",
+            "name": "Local Setup & Deploy",
             "path": "../content/technical/en/jekyll-deploy.md"
           }
         ]

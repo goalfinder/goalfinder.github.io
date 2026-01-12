@@ -37,7 +37,7 @@
         "children": [
           {
             "type": "page",
-            "name": "Aufsetzen & Ausführen",
+            "name": "Lokal Aufsetzen & Ausführen",
             "path": "../content/technical/de/jekyll-deploy.md"
           }
         ]
