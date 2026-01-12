@@ -1,6 +1,5 @@
 # Website
 ## Structure
-
 The website has the following layout:
 ```
 .

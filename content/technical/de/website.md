@@ -1,6 +1,5 @@
 # Website
 ## Struktur
-
 Die Webseite hat eine folgende Ordnerstruktur
 ```
 .

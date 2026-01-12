@@ -26,6 +26,11 @@
       },
       {
         "type": "page",
+        "name": "Aufsetzen",
+        "path": "../content/technical/de/software-setup.md"
+      },
+      {
+        "type": "page",
         "name": "Web App",
         "path": "../content/technical/de/webapp.md"
       },
