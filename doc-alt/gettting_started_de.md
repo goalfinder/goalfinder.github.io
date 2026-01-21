@@ -1,11 +1,14 @@
 # Erste Schritte - Anleitung
 
 ## Inhaltsverzeichnis
-- [Manuelles Flashen](#manuelles-flashen)
-   - [Voraussetzungen (Tools)](#voraussetzungen-tools)
-   - [Flashen des Systems](#flashen-des-systems)
-
-- [Update über Webapp](#update-über-webapp)
+- [Erste Schritte - Anleitung](#erste-schritte---anleitung)
+  - [Inhaltsverzeichnis](#inhaltsverzeichnis)
+  - [Manuelles Flashen](#manuelles-flashen)
+    - [Voraussetzungen (Tools)](#voraussetzungen-tools)
+      - [Installieren des Treibers](#installieren-des-treibers)
+      - [Installieren von Python und esptool.py](#installieren-von-python-und-esptoolpy)
+    - [Flashen des Systems](#flashen-des-systems)
+  - [Update über Webapp](#update-über-webapp)
 
 Wenn der GoalFinder noch nicht aufgesetzt wurde oder der Flash-Speicher zurückgesetzt wurde, muss man die Firmware und das Filesystem manuell auf den GoalFinder flashen. Ansonsten kann man die neuste Firmware und das neuste Filesystem auf den GoalFinder über die Webapp laden.
 

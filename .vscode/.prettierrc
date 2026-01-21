@@ -30,6 +30,12 @@
       "options": {
         "semi": true
       }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "tabWidth": 2
+      }
     }
   ]
 }
