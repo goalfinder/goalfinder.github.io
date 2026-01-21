@@ -202,7 +202,7 @@ class MarkdownConverter {
 					htmlLines.push(this.parseLine(line));
 				} else if (/^\d+\.\s/.test(line)) {
 					if (!inOrderedList) {
-						htmlLines.push('<ol class="markdown-ordered-list-spaced">');
+						htmlLines.push('<ol class="markdown-ordered-list">');
 						inOrderedList = true;
 					}
 					if (inUnorderedList) {
@@ -293,7 +293,7 @@ class MarkdownConverter {
 			} else if (/^\d+\.\s/.test(line)) {
 				// Ordered list item
 				if (!inOrderedList) {
-					htmlLines.push('<ol class="markdown-ordered-list-spaced">');
+					htmlLines.push('<ol class="markdown-ordered-list">');
 					inOrderedList = true;
 				}
 				// Close unordered list if active
