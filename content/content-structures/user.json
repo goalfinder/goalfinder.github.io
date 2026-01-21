@@ -1,0 +1,63 @@
+[
+    {
+        "type": "config",
+        "content-base-path": "../content/user/",
+        "default-page": "introduction.md"
+    },
+    {
+        "type": "page",
+        "de": "Willkommen",
+        "en": "Welcome",
+        "path": "introduction.md"
+    },
+    {
+        "type": "category",
+        "de": "Überblick",
+        "en": "General",
+        "children": [
+            {
+                "type": "page",
+                "de": "Inhaltsverzeichnis",
+                "en": "Table of Contents",
+                "path": "toc.md"
+            }
+        ]
+    },
+    {
+        "type": "category",
+        "de": "Aufsetzen",
+        "en": "Setup",
+        "children": [
+            {
+                "type": "page",
+                "de": "Kennenlernen des GoalFinders",
+                "en": "Getting to Know the GoalFinder",
+                "path": "getting-to-know.md"
+            },
+            {
+                "type": "page",
+                "de": "Montage",
+                "en": "Mounting",
+                "path": "mounting.md"
+            },
+            {
+                "type": "page",
+                "de": "Verbinden",
+                "en": "Connecting",
+                "path": "connecting.md"
+            }
+        ]
+    },
+    {
+        "type": "category",
+        "de": "Benutzung",
+        "en": "Usage",
+        "children": []
+    },
+    {
+        "type": "page",
+        "de": "Häufige Fragen",
+        "en": "FAQ",
+        "path": "faq.md"
+    }
+]
