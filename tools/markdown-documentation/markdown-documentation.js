@@ -21,7 +21,7 @@ let browser = new ContentBrowser();
 let converter;
 const preview = document.getElementById("markdown-container");
 
-let browserContainer;
+let topicSelector;
 
 // Track currently selected elements for O(1) deselection
 let currentlySelectedTopic;
@@ -264,8 +264,10 @@ async function searchbarSearch() {
 			for (const item of items) {
 				if (item.type === "page" || (item.type === "category" && item.path)) {
 					// This item has a markdown file to search
+					const itemPath = browser.getItemPath(item);
+					const itemName = browser.getItemName(item);
 					try {
-						const markdown = await converter.loadMarkdown(item.path);
+						const markdown = await converter.loadMarkdown(itemPath);
 						const lowerMarkdown = markdown.toLowerCase();
 
 						if (lowerMarkdown.includes(searchTerm)) {
@@ -277,20 +279,20 @@ async function searchbarSearch() {
 							}
 
 							resultsByCategory[parentCategory].push({
-								name: item.name,
-								path: item.path,
+								name: itemName,
+								path: itemPath,
 								snippets: snippets,
 							});
 						}
 					} catch (err) {
-						console.warn(`Failed to search in ${item.path}:`, err);
+						console.warn(`Failed to search in ${itemPath}:`, err);
 					}
 				}
 
 				// If it's a category, search its children
 				if (item.type === "category" && item.children) {
 					// Use this category's name as the parent for its children
-					await searchInStructure(item.children, item.name);
+					await searchInStructure(item.children, browser.getItemName(item));
 				}
 			}
 		};
@@ -618,7 +620,7 @@ function setupRightPanelListeners(rightPanelHeader) {
  */
 function findCategoryByName(structure, name) {
 	for (const item of structure) {
-		if (item.type === "category" && item.name === name) {
+		if (item.type === "category" && browser.getItemName(item) === name) {
 			return item;
 		}
 		if (item.children) {
@@ -639,19 +641,21 @@ function generateCategoryChildrenHTML(categoryItem) {
 
 	const traverse = (items, parentIsCategoryButton = false) => {
 		items.forEach((item) => {
+			const itemName = browser.getItemName(item);
 			if (item.type === "page") {
 				// Generate HTML for individual pages
 				const categoryClass = parentIsCategoryButton ? "topic-under-category" : "";
-				html += `<p class="topic-unselected topic-button ${categoryClass}" id="topic-button-${item.name}" data-path="${item.path}">${item.name}</p>`;
+				const itemPath = browser.getItemPath(item);
+				html += `<p class="topic-unselected topic-button ${categoryClass}" id="topic-button-${itemName}" data-path="${itemPath}">${itemName}</p>`;
 			} else if (item.type === "category") {
 				// Check if this category is a category button (has path property)
 				const isCategoryButton = !!item.path;
 
 				// Generate HTML for all categories - let DOM state management handle visibility
 				if (item.path) {
-					html += `<p class="topic-category-button-unselected topic-category-button" id="topic-category-topic-${item.name}">${item.name}</p>`;
+					html += `<p class="topic-category-button-unselected topic-category-button" id="topic-category-topic-${itemName}">${itemName}</p>`;
 				} else {
-					html += `<p class="topic-category" id="topic-category-${item.name}">${item.name}</p>`;
+					html += `<p class="topic-category" id="topic-category-${itemName}">${itemName}</p>`;
 				}
 
 				// Always include children in HTML generation - DOM will control visibility
@@ -674,9 +678,15 @@ function generateCategoryChildrenHTML(categoryItem) {
  */
 function saveContentStructureState() {
 	try {
+		// Check if currentlySelectedTopic is a valid DOM element (not a sentinel object)
+		let selectedPagePath = null;
+		if (currentlySelectedTopic && currentlySelectedTopic.dataset && currentlySelectedTopic.dataset.path) {
+			selectedPagePath = currentlySelectedTopic.dataset.path;
+		}
+
 		const stateToSave = {
 			contentStructure: browser.contentStructure,
-			selectedPage: currentlySelectedTopic ? currentlySelectedTopic.dataset.path : null,
+			selectedPage: selectedPagePath,
 			selectedCategory: currentlySelectedCategory ? currentlySelectedCategory.textContent : null,
 			language: getCurrentLang(),
 		};
@@ -717,7 +727,7 @@ function loadContentStructureState() {
  */
 function updateCategoryCollapsedState(structure, categoryName, collapsed) {
 	for (const item of structure) {
-		if (item.type === "category" && item.name === categoryName) {
+		if (item.type === "category" && browser.getItemName(item) === categoryName) {
 			item.collapsed = collapsed;
 			return true;
 		}
@@ -777,13 +787,14 @@ async function restoreSelectedPage(savedPagePath, savedCategoryName) {
 			// Load the category content if it has a path
 			const categoryItem = findCategoryByName(browser.contentStructure, savedCategoryName);
 			if (categoryItem && categoryItem.path) {
-				const md = await converter.loadMarkdown(categoryItem.path);
+				const categoryPath = browser.getItemPath(categoryItem);
+				const md = await converter.loadMarkdown(categoryPath);
 				currentMarkdownContent = md;
-				const html = converter.convert(md, categoryItem.path);
+				const html = converter.convert(md, categoryPath);
 				preview.innerHTML = html;
 
 				const rightPanelHeader = document.getElementById("right-panel-header");
-				const headings = await getMarkdownHeaders(categoryItem.path);
+				const headings = await getMarkdownHeaders(categoryPath);
 				rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 				setupRightPanelListeners(rightPanelHeader);
 				setupEndButtonListeners();
@@ -802,7 +813,12 @@ function mergeContentStructureStates(freshStructure, savedStructure) {
 	const mergeItems = (fresh, saved) => {
 		return fresh.map((freshItem) => {
 			// Find corresponding item in saved structure
-			const savedItem = saved.find((s) => s.name === freshItem.name && s.type === freshItem.type);
+			// Support both old format (name) and new format (de/en)
+			const freshItemName = browser.getItemName(freshItem);
+			const savedItem = saved.find((s) => {
+				const savedItemName = browser.getItemName(s);
+				return savedItemName === freshItemName && s.type === freshItem.type;
+			});
 
 			const mergedItem = { ...freshItem };
 
@@ -833,13 +849,14 @@ function removeCategoryChildren(categoryButton, categoryItem) {
 
 	const collectElementIds = (items) => {
 		items.forEach((item) => {
+			const itemName = browser.getItemName(item);
 			if (item.type === "page") {
-				elementsToRemove.push(`topic-button-${item.name}`);
+				elementsToRemove.push(`topic-button-${itemName}`);
 			} else if (item.type === "category") {
 				if (item.path) {
-					elementsToRemove.push(`topic-category-topic-${item.name}`);
+					elementsToRemove.push(`topic-category-topic-${itemName}`);
 				} else {
-					elementsToRemove.push(`topic-category-${item.name}`);
+					elementsToRemove.push(`topic-category-${itemName}`);
 				}
 				if (item.children) {
 					collectElementIds(item.children);
@@ -1102,7 +1119,8 @@ async function setupEventListeners() {
 			let hasChildrenInDOM = false;
 			if (categoryItem.children && categoryItem.children.length > 0) {
 				const firstChild = categoryItem.children[0];
-				const firstChildId = firstChild.type === "page" ? `topic-button-${firstChild.name}` : firstChild.path ? `topic-category-topic-${firstChild.name}` : `topic-category-${firstChild.name}`;
+				const firstChildName = browser.getItemName(firstChild);
+				const firstChildId = firstChild.type === "page" ? `topic-button-${firstChildName}` : firstChild.path ? `topic-category-topic-${firstChildName}` : `topic-category-${firstChildName}`;
 				hasChildrenInDOM = document.getElementById(firstChildId) !== null;
 			}
 
@@ -1270,13 +1288,14 @@ async function onToggle(button) {
 			button.classList.add("topic-category-button-selected");
 			currentlySelectedCategory = button;
 
-			const md = await converter.loadMarkdown(categoryItem.path);
+			const categoryPath = browser.getItemPath(categoryItem);
+			const md = await converter.loadMarkdown(categoryPath);
 			currentMarkdownContent = md; // for copy button
-			const html = converter.convert(md, categoryItem.path);
+			const html = converter.convert(md, categoryPath);
 			preview.innerHTML = html;
 
 			const rightPanelHeader = document.getElementById("right-panel-header");
-			const headings = await getMarkdownHeaders(categoryItem.path);
+			const headings = await getMarkdownHeaders(categoryPath);
 			rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 			setupRightPanelListeners(rightPanelHeader);
 			setupEndButtonListeners();
@@ -1289,7 +1308,8 @@ async function onToggle(button) {
 		let hasExistingChildren = false;
 		if (categoryItem.children && categoryItem.children.length > 0) {
 			const firstChild = categoryItem.children[0];
-			const firstChildId = firstChild.type === "page" ? `topic-button-${firstChild.name}` : firstChild.path ? `topic-category-topic-${firstChild.name}` : `topic-category-${firstChild.name}`;
+			const firstChildName = browser.getItemName(firstChild);
+			const firstChildId = firstChild.type === "page" ? `topic-button-${firstChildName}` : firstChild.path ? `topic-category-topic-${firstChildName}` : `topic-category-${firstChildName}`;
 			hasExistingChildren = document.getElementById(firstChildId) !== null;
 		}
 
@@ -1306,9 +1326,9 @@ async function onToggle(button) {
 			// Insert all children after the button
 			while (tempDiv.firstChild) {
 				if (nextSibling) {
-					browserContainer.insertBefore(tempDiv.firstChild, nextSibling);
+					topicSelector.insertBefore(tempDiv.firstChild, nextSibling);
 				} else {
-					browserContainer.appendChild(tempDiv.firstChild);
+					topicSelector.appendChild(tempDiv.firstChild);
 				}
 			}
 
@@ -1376,7 +1396,7 @@ async function copyCodeBlock(button) {
 // Refreshes MarkDown-Container and Topic-Container
 async function refresh() {
 	// Populate container with the generated topics
-	browserContainer.innerHTML = browser.generateTopicsHTML();
+	topicSelector.innerHTML = browser.generateTopicsHTML();
 	// Re-setup event listeners after DOM regeneration
 	setupEventListeners();
 }
@@ -1419,11 +1439,12 @@ function selectInitialLoadedTopic(path) {
  */
 function findParentCategories(structure, targetPath, parentChain = []) {
 	for (const item of structure) {
-		if (item.path === targetPath) {
+		const itemPath = browser.getItemPath(item);
+		if (itemPath === targetPath) {
 			return parentChain;
 		}
 		if (item.type === "category" && item.children) {
-			const found = findParentCategories(item.children, targetPath, [...parentChain, item.name]);
+			const found = findParentCategories(item.children, targetPath, [...parentChain, browser.getItemName(item)]);
 			if (found) return found;
 		}
 	}
@@ -1468,7 +1489,8 @@ async function expandCategoryByName(categoryName) {
 	let hasExistingChildren = false;
 	if (categoryItem.children && categoryItem.children.length > 0) {
 		const firstChild = categoryItem.children[0];
-		const firstChildId = firstChild.type === "page" ? `topic-button-${firstChild.name}` : firstChild.path ? `topic-category-topic-${firstChild.name}` : `topic-category-${firstChild.name}`;
+		const firstChildName = browser.getItemName(firstChild);
+		const firstChildId = firstChild.type === "page" ? `topic-button-${firstChildName}` : firstChild.path ? `topic-category-topic-${firstChildName}` : `topic-category-${firstChildName}`;
 		hasExistingChildren = document.getElementById(firstChildId) !== null;
 	}
 
@@ -1481,9 +1503,9 @@ async function expandCategoryByName(categoryName) {
 
 		while (tempDiv.firstChild) {
 			if (nextSibling) {
-				browserContainer.insertBefore(tempDiv.firstChild, nextSibling);
+				topicSelector.insertBefore(tempDiv.firstChild, nextSibling);
 			} else {
-				browserContainer.appendChild(tempDiv.firstChild);
+				topicSelector.appendChild(tempDiv.firstChild);
 			}
 		}
 
@@ -1524,8 +1546,9 @@ async function switchLang() {
 	if (langText) langText.textContent = getCurrentLang().toUpperCase();
 
 	// Reload content structure for the current doc in the new language
+	// Use the same structure file - paths are resolved dynamically based on current language
 	try {
-		const newContentPath = `${getContentStructurePath()}${currentDoc}-content-structure-${getCurrentLang()}.json`;
+		const newContentPath = `${getContentStructurePath()}${currentDoc}.json`;
 		await browser.fetchStructure(newContentPath);
 
 		// Rebuild converter with new flat structure
@@ -1559,8 +1582,9 @@ async function switchLang() {
 
 				const matched = findByFilename(browser.contentStructure);
 				if (matched && matched.path) {
+					const matchedPath = browser.getItemPath(matched);
 					// Find and expand parent categories so the topic button becomes visible
-					const parentCategories = findParentCategories(browser.contentStructure, matched.path);
+					const parentCategories = findParentCategories(browser.contentStructure, matchedPath);
 					if (parentCategories && parentCategories.length > 0) {
 						for (const categoryName of parentCategories) {
 							await expandCategoryByName(categoryName);
@@ -1568,7 +1592,7 @@ async function switchLang() {
 					}
 
 					// Now try to select the corresponding DOM button
-					const targetButton = document.querySelector(`[data-path="${matched.path}"]`);
+					const targetButton = document.querySelector(`[data-path="${matchedPath}"]`);
 					if (targetButton) {
 						if (currentlySelectedTopic && currentlySelectedTopic.sentinel) {
 							currentlySelectedTopic = null;
@@ -1586,13 +1610,13 @@ async function switchLang() {
 
 					// Load and display the matched content
 					try {
-						const md = await converter.loadMarkdown(matched.path);
+						const md = await converter.loadMarkdown(matchedPath);
 						currentMarkdownContent = md;
-						const html = converter.convert(md, matched.path);
+						const html = converter.convert(md, matchedPath);
 						preview.innerHTML = html;
 
 						const rightPanelHeader = document.getElementById("right-panel-header");
-						const headings = await getMarkdownHeaders(matched.path);
+						const headings = await getMarkdownHeaders(matchedPath);
 						rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 						setupRightPanelListeners(rightPanelHeader);
 						setupEndButtonListeners();
@@ -1630,11 +1654,10 @@ async function switchLang() {
  */
 async function initMarkdownDocumentation(config = {}) {
 	const baseUrl = getBaseUrl();
-	const { doc = "user", defaultPagePath = `${baseUrl}/content/user/introduction.md`, lightIconPath = `${baseUrl}/assets/img/svg/light.svg`, copyIconPath = `${baseUrl}/assets/img/svg/copy.svg` } = config;
+	const { doc = "user", lightIconPath = `${baseUrl}/assets/img/svg/light.svg`, copyIconPath = `${baseUrl}/assets/img/svg/copy.svg` } = config;
 
 	// remember which doc we're showing so switchLang can reload the correct structure
 	currentDoc = doc;
-	currentDefaultPagePath = defaultPagePath;
 	initialConfig = config;
 
 	// Load saved language preference and apply it before loading content
@@ -1645,11 +1668,11 @@ async function initMarkdownDocumentation(config = {}) {
 	}
 
 	// Get reference to the topic browser container
-	browserContainer = document.querySelector(".topic-selector");
-	const contentPath = `${getContentStructurePath()}${doc}-content-structure-${getCurrentLang()}.json`;
+	topicSelector = document.querySelector(".topic-selector");
+	const contentStructurePath = `${getContentStructurePath()}${doc}.json`;
 
 	// Fetch and load topic structure
-	await browser.fetchStructure(contentPath);
+	await browser.fetchStructure(contentStructurePath);
 
 	// Load saved content structure state from localStorage (already loaded above for language)
 	let savedPagePath = null;
@@ -1672,7 +1695,10 @@ async function initMarkdownDocumentation(config = {}) {
 	if (savedPagePath || savedCategoryName) {
 		await restoreSelectedPage(savedPagePath, savedCategoryName);
 	} else {
-		selectInitialLoadedTopic(defaultPagePath);
+		const defaultPagePath = browser.getDefaultPagePath();
+		if (defaultPagePath) {
+			selectInitialLoadedTopic(defaultPagePath);
+		}
 	}
 
 	const savedTheme = localStorage.getItem("theme");
