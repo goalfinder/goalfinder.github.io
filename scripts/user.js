@@ -1,6 +1,5 @@
 import { initMarkdownDocumentation } from "../tools/markdown-documentation/markdown-documentation.js";
 import { loadLang, getCurrentLang, getTranslations } from "./i18n.js";
-import { runTests } from "../tools/content-browser/content-checker.js";
 
 /** Get the base URL for the site (set by Jekyll or defaults to empty) */
 function getBaseUrl() {
@@ -25,4 +24,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 	if (window.updateMarkdownDocumentationTranslations) {
 		window.updateMarkdownDocumentationTranslations(getTranslations());
 	}
+
+	const headerLogo = document.getElementById("header-icon");
+	console.log(headerLogo);
+	headerLogo.addEventListener("click", function () {
+		window.location.href = baseUrl + "/";
+	});
 });

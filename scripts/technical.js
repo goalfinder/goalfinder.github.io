@@ -24,4 +24,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 	if (window.updateMarkdownDocumentationTranslations) {
 		window.updateMarkdownDocumentationTranslations(getTranslations());
 	}
+
+	const headerLogo = document.getElementById("header-icon");
+	console.log(headerLogo);
+	headerLogo.addEventListener("click", function () {
+		window.location.href = baseUrl + "/";
+	});
 });

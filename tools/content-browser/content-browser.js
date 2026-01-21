@@ -89,8 +89,6 @@ class ContentBrowser {
 			}
 			return true;
 		});
-
-		console.log(this.contentStructure);
 	}
 
 	/**
