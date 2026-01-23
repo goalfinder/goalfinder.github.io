@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 	}
 
 	const headerLogo = document.getElementById("header-icon");
-	console.log(headerLogo);
 	headerLogo.addEventListener("click", function () {
 		window.location.href = baseUrl + "/";
 	});

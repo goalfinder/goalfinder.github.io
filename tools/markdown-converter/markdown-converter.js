@@ -19,6 +19,8 @@
  *       if (element) element.classList.toggle('expanded');
  *   }
  */
+import { getCurrentLang } from "../../scripts/i18n.js";
+
 class MarkdownConverter {
 	/** @type {path} - The path where the image assets are found */
 	imagePath = `${window.siteBaseUrl || ""}/assets/img/svg/`;
@@ -826,10 +828,11 @@ class MarkdownConverter {
 	 * @returns {string} - Display name of the page or "Unknown Page"
 	 */
 	getPageName(path) {
+		const fileName = path.split('/').pop();
 		const findName = (items) => {
 			for (const item of items) {
-				if (item.path === path) {
-					return item.name;
+				if (item.path === fileName) {
+					return item[getCurrentLang()];
 				}
 				if (item.children) {
 					const found = findName(item.children);
