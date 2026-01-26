@@ -316,11 +316,10 @@ footer {
 
 #lightDarkToggle:hover {
 	background-color: var(--hover-bg);
-	transform: scale(1.025);
 }
 
 #lightDarkToggle:active {
-	transform: scale(0.95);
+	transform: none;
 }
 
 #lang-toggle {
@@ -346,11 +345,10 @@ footer {
 
 #lang-toggle:hover {
 	background-color: var(--hover-bg);
-	transform: scale(1.025);
 }
 
 #lang-toggle:active {
-	transform: scale(0.95);
+	transform: none;
 }
 
 #lang-toggle .icon {
@@ -488,6 +486,7 @@ footer {
 .search-icon {
 	width: 16px;
 	height: 16px;
+	cursor: pointer;
 	opacity: 0.7;
 	flex-shrink: 0;
 }
@@ -867,7 +866,7 @@ html {
 }
 
 .copy-button:active {
-	transform: scale(0.95);
+	transform: none;
 }
 
 footer {
@@ -965,6 +964,8 @@ footer a:hover {
 	#lightDarkToggle {
 		min-width: 0 !important;
 		padding: 0.4rem 0.6rem !important;
+		flex-shrink: 0;
+		order: 2;
 	}
 
 	#lightDarkToggle .icon-text {
@@ -974,24 +975,27 @@ footer a:hover {
 	#lang-toggle {
 		min-width: 0 !important;
 		padding: 0.4rem 0.6rem !important;
+		flex-shrink: 0;
+		order: 3;
 	}
 
 	.header-controls {
 		margin-right: 1.5%;
 		gap: 0.5rem;
-		position: relative;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		flex-wrap: nowrap;
 	}
 
 	.header-search-bar {
-		position: absolute;
-		right: 92px;
-		top: 50%;
-		transform: translateY(-50%);
-		z-index: 60;
+		order: 1;
+		flex-shrink: 1;
+		min-width: 40px;
 		transition:
 			background-color 0.3s ease,
 			color 0.3s ease,
-			transform 0.1s ease;
+			width 0.3s ease;
 	}
 
 	.header-search-bar.mobile-collapsed {
@@ -1003,8 +1007,6 @@ footer a:hover {
 		align-items: center;
 		justify-content: center;
 		gap: 0;
-		top: 50%;
-		transform: translateY(-50%);
 	}
 
 	.header-search-bar.mobile-collapsed input {
@@ -1013,9 +1015,8 @@ footer a:hover {
 
 	.header-search-bar.expanded {
 		width: 220px;
+		max-width: 220px;
 		padding: 0.4rem 0.6rem;
-		right: 92px;
-		transform: translateY(-50%);
 	}
 
 	.header-search-bar.expanded input {

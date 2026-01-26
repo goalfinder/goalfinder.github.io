@@ -1,0 +1,12 @@
+{
+  "name": "goalfinder-website",
+  "version": "1.0.0",
+  "description": "GoalFinder website - GitHub Pages",
+  "scripts": {
+    "dev": "node serve-local.js",
+    "serve": "node serve-local.js"
+  },
+  "keywords": ["goalfinder", "website", "jekyll"],
+  "author": "GoalFinder Team",
+  "license": "MIT"
+}

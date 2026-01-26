@@ -34,7 +34,9 @@ title: User Documentation
 					if (toggleButton && savedTheme === "dark") {
 						const toggleIcon = toggleButton.querySelector(".icon");
 						const toggleText = toggleButton.querySelector(".icon-text");
-						toggleIcon.src = (window.siteBaseUrl || "") + "/assets/img/svg/light.svg";
+					const baseUrl = window.siteBaseUrl || "";
+					const lightSrc = baseUrl ? `${baseUrl}/assets/img/svg/light.svg` : "/assets/img/svg/light.svg";
+					toggleIcon.src = lightSrc;
 						toggleText.textContent = "Light Mode";
 					}
 				}

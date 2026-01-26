@@ -564,15 +564,19 @@ function lightDarkModeToggle() {
 
 	// Toggle mode switch button content (only update src and text, preserve DOM for smooth transition)
 	if (html.classList.contains("dark-mode")) {
-		toggleIcon.src = `${baseUrl}/assets/img/svg/light.svg`;
+		const lightSrc = baseUrl ? `${baseUrl}/assets/img/svg/light.svg` : '/assets/img/svg/light.svg';
+		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-shadow.png` : '/assets/img/logos/goalfinder/logo-shadow.png';
+		toggleIcon.src = lightSrc;
 		toggleText.textContent = t("light-mode");
 		localStorage.setItem("theme", "dark");
-		headerIcon.src = `${baseUrl}/assets/img/logos/goalfinder/logo-shadow.png`;
+		if (headerIcon) headerIcon.src = logoSrc;
 	} else {
-		toggleIcon.src = `${baseUrl}/assets/img/svg/dark.svg`;
+		const darkSrc = baseUrl ? `${baseUrl}/assets/img/svg/dark.svg` : '/assets/img/svg/dark.svg';
+		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.png` : '/assets/img/logos/goalfinder/logo-black-shadow.png';
+		toggleIcon.src = darkSrc;
 		toggleText.textContent = t("dark-mode");
 		localStorage.setItem("theme", "light");
-		headerIcon.src = `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.png`;
+		if (headerIcon) headerIcon.src = logoSrc;
 	}
 }
 
@@ -1406,6 +1410,7 @@ function selectInitialLoadedTopic(path) {
 		currentMarkdownContent = md; // for copy button
 		const html = converter.convert(md, path);
 		preview.innerHTML = html;
+		setupEndButtonListeners();
 	});
 
 	const rightPanelHeader = document.getElementById("right-panel-header");
