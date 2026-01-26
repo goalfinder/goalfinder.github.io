@@ -971,6 +971,11 @@ footer a:hover {
 		display: none !important;
 	}
 
+	#lang-toggle {
+		min-width: 0 !important;
+		padding: 0.4rem 0.6rem !important;
+	}
+
 	.header-controls {
 		margin-right: 1.5%;
 		gap: 0.5rem;
@@ -979,7 +984,7 @@ footer a:hover {
 
 	.header-search-bar {
 		position: absolute;
-		right: 48px;
+		right: 92px;
 		top: 50%;
 		transform: translateY(-50%);
 		z-index: 60;
@@ -1009,7 +1014,7 @@ footer a:hover {
 	.header-search-bar.expanded {
 		width: 220px;
 		padding: 0.4rem 0.6rem;
-		right: 56px;
+		right: 92px;
 		transform: translateY(-50%);
 	}
 
