@@ -1,0 +1,79 @@
+[
+  {
+    "type": "config",
+    "content-base-path": "../content/technical/",
+    "default-page": "introduction.md"
+  },
+  {
+    "type": "page",
+    "de": "Willkommen",
+    "en": "Welcome",
+    "path": "introduction.md"
+  },
+  {
+    "type": "category",
+    "de": "Hardware",
+    "en": "Hardware",
+    "children": [
+      {
+        "type": "page",
+        "de": "Einleitung",
+        "en": "Introduction",
+        "path": "hardware-intro.md"
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "de": "Software",
+    "en": "Software",
+    "children": [
+      {
+        "type": "page",
+        "de": "Einleitung",
+        "en": "Introduction",
+        "path": "software-intro.md"
+      },
+      {
+        "type": "page",
+        "de": "Aufsetzen",
+        "en": "Setup",
+        "path": "software-setup.md"
+      },
+      {
+        "type": "page",
+        "de": "Web App",
+        "en": "Web App",
+        "path": "webapp.md"
+      },
+      {
+        "type": "category",
+        "de": "Website",
+        "en": "Website",
+        "path": "website.md",
+        "collapsed": true,
+        "children": [
+          {
+            "type": "page",
+            "de": "Lokal Aufsetzen & Ausführen",
+            "en": "Local Setup and Execution",
+            "path": "jekyll-deploy.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "de": "Mitwirken",
+    "en": "Collaborate",
+    "children": [
+      {
+        "type": "page",
+        "de": "Allgemein",
+        "en": "General",
+        "path": "contribute-general.md"
+      }
+    ]
+  }
+]

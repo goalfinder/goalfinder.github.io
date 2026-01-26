@@ -9,7 +9,11 @@
   "arrowParens": "always",
   "overrides": [
     {
-      "files": "*.html"
+      "files": "*.html",
+      "options": {
+        "parser": "html",
+        "htmlWhitespaceSensitivity": "css"
+      }
     },
     {
       "files": "*.css"
@@ -25,6 +29,12 @@
       "files": "*.js",
       "options": {
         "semi": true
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "tabWidth": 2
       }
     }
   ]

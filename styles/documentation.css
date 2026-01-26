@@ -61,7 +61,10 @@
 	border: 1px solid var(--end-border-color);
 	color: var(--text-color);
 	border-radius: 8px;
-	transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease border-color 0.2s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		transform 0.1s ease border-color 0.2s ease;
 }
 
 :root.dark-mode .markdown-end-previous,
@@ -95,7 +98,9 @@ body {
 	height: 100vh;
 	margin: 0;
 	overflow: hidden;
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 /* Smooth transitions for theme changes (match copy-button feel) */
@@ -111,7 +116,12 @@ body {
 .code-copy-button,
 .search-popup,
 footer {
-	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.25s ease, box-shadow 0.25s ease, filter 0.3s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		border-color 0.25s ease,
+		box-shadow 0.25s ease,
+		filter 0.3s ease;
 }
 
 .search-popup {
@@ -126,7 +136,9 @@ footer {
 	color: var(--text-color);
 	border: 1px solid var(--border-color);
 	border-radius: 12px;
-	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+	box-shadow:
+		0 12px 40px rgba(0, 0, 0, 0.15),
+		0 4px 12px rgba(0, 0, 0, 0.1);
 	z-index: 100;
 	max-height: 350px;
 	overflow-y: auto;
@@ -134,7 +146,11 @@ footer {
 	/* Animation - initially hidden */
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+	transition:
+		opacity 0.2s ease,
+		transform 0.2s ease,
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 .search-popup.visible {
@@ -227,7 +243,9 @@ footer {
 	background: var(--button-bg);
 	border-radius: 6px;
 	cursor: pointer;
-	transition: background-color 0.15s ease, transform 0.1s ease;
+	transition:
+		background-color 0.15s ease,
+		transform 0.1s ease;
 	border-left: 3px solid transparent;
 }
 
@@ -282,7 +300,13 @@ footer {
 	cursor: pointer;
 	font-family: league-spartan;
 	font-size: 14px;
-	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.25s ease, box-shadow 0.25s ease, filter 0.3s ease, transform 0.1s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		border-color 0.25s ease,
+		box-shadow 0.25s ease,
+		filter 0.3s ease,
+		transform 0.1s ease;
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
@@ -292,11 +316,10 @@ footer {
 
 #lightDarkToggle:hover {
 	background-color: var(--hover-bg);
-	transform: scale(1.025);
 }
 
 #lightDarkToggle:active {
-	transform: scale(0.95);
+	transform: none;
 }
 
 #lang-toggle {
@@ -308,7 +331,13 @@ footer {
 	cursor: pointer;
 	font-family: league-spartan;
 	font-size: 14px;
-	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.25s ease, box-shadow 0.25s ease, filter 0.3s ease, transform 0.1s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		border-color 0.25s ease,
+		box-shadow 0.25s ease,
+		filter 0.3s ease,
+		transform 0.1s ease;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -316,11 +345,10 @@ footer {
 
 #lang-toggle:hover {
 	background-color: var(--hover-bg);
-	transform: scale(1.025);
 }
 
 #lang-toggle:active {
-	transform: scale(0.95);
+	transform: none;
 }
 
 #lang-toggle .icon {
@@ -362,6 +390,7 @@ footer {
 	width: 32px;
 	height: 32px;
 	margin-right: 0.5%;
+	cursor: pointer;
 }
 
 .header-text,
@@ -370,7 +399,9 @@ footer {
 	font-weight: 600;
 	font-family: league-spartan;
 	color: var(--header-text-color);
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 .header-controls {
@@ -415,16 +446,22 @@ footer {
 	border: 1px solid var(--border-color);
 	border-radius: 5px;
 	padding: 0.5rem 1rem;
-	transition: background-color 0.3s ease, border-color 0.2s ease;
+	transition:
+		background-color 0.3s ease,
+		border-color 0.2s ease;
 }
 
 .header-search-bar:focus-within {
 	border-color: var(--topic-selected-color);
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.15),
+		0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 :root.dark-mode .header-search-bar:focus-within {
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.4),
+		0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .header-search-bar input {
@@ -449,6 +486,7 @@ footer {
 .search-icon {
 	width: 16px;
 	height: 16px;
+	cursor: pointer;
 	opacity: 0.7;
 	flex-shrink: 0;
 }
@@ -592,7 +630,7 @@ main {
 
 /* Purple arrow for selected state */
 .topic-category-button-selected .category-arrow img {
-    filter: brightness(0) saturate(100%) invert(29%) sepia(70%) saturate(1800%) hue-rotate(260deg) brightness(75%) contrast(90%);
+	filter: brightness(0) saturate(100%) invert(29%) sepia(70%) saturate(1800%) hue-rotate(260deg) brightness(75%) contrast(90%);
 }
 
 .topic-category {
@@ -616,7 +654,9 @@ main {
 }
 
 .topic-selector {
-	transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1), visibility 240ms;
+	transition:
+		transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+		visibility 240ms;
 }
 
 .sidebar-overlay {
@@ -666,7 +706,9 @@ body.sidebar-open .topic-selector {
 }
 
 .topic-selector {
-	transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms ease;
+	transition:
+		transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+		box-shadow 180ms ease;
 }
 
 .topic-selector.open {
@@ -767,7 +809,9 @@ body.sidebar-open .topic-selector {
 	opacity: 0.8;
 	transition: opacity 0.2s ease;
 	word-wrap: break-word;
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 .right-bar-items:hover {
@@ -784,7 +828,9 @@ body.sidebar-open .topic-selector {
 
 .markdown-code-block {
 	background-color: var(--md-code-bg-color);
-	transition: background-color 0.2s ease, color 0.2s ease;
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
 }
 
 .copy-button {
@@ -805,7 +851,10 @@ body.sidebar-open .topic-selector {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		transform 0.1s ease;
 }
 
 html {
@@ -817,7 +866,7 @@ html {
 }
 
 .copy-button:active {
-	transform: scale(0.95);
+	transform: none;
 }
 
 footer {
@@ -835,7 +884,10 @@ footer a {
 	color: var(--text-color);
 	text-decoration: none;
 	opacity: 0.7;
-	transition: opacity 0.2s ease, color 0.3s ease, border-color 0.3s ease;
+	transition:
+		opacity 0.2s ease,
+		color 0.3s ease,
+		border-color 0.3s ease;
 }
 
 footer a:hover {
@@ -912,25 +964,38 @@ footer a:hover {
 	#lightDarkToggle {
 		min-width: 0 !important;
 		padding: 0.4rem 0.6rem !important;
+		flex-shrink: 0;
+		order: 2;
 	}
 
 	#lightDarkToggle .icon-text {
 		display: none !important;
 	}
 
+	#lang-toggle {
+		min-width: 0 !important;
+		padding: 0.4rem 0.6rem !important;
+		flex-shrink: 0;
+		order: 3;
+	}
+
 	.header-controls {
 		margin-right: 1.5%;
 		gap: 0.5rem;
-		position: relative;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		flex-wrap: nowrap;
 	}
 
 	.header-search-bar {
-		position: absolute;
-		right: 48px;
-		top: 50%;
-		transform: translateY(-50%);
-		z-index: 60;
-		transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+		order: 1;
+		flex-shrink: 1;
+		min-width: 40px;
+		transition:
+			background-color 0.3s ease,
+			color 0.3s ease,
+			width 0.3s ease;
 	}
 
 	.header-search-bar.mobile-collapsed {
@@ -942,8 +1007,6 @@ footer a:hover {
 		align-items: center;
 		justify-content: center;
 		gap: 0;
-		top: 50%;
-		transform: translateY(-50%);
 	}
 
 	.header-search-bar.mobile-collapsed input {
@@ -952,9 +1015,8 @@ footer a:hover {
 
 	.header-search-bar.expanded {
 		width: 220px;
+		max-width: 220px;
 		padding: 0.4rem 0.6rem;
-		right: 56px;
-		transform: translateY(-50%);
 	}
 
 	.header-search-bar.expanded input {
