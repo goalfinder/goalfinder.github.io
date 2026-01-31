@@ -39,7 +39,7 @@ $newPath = "$env:USERPROFILE\gems\bin;$oldPath"
 4. Install Jekyll using `gem install bundler jekyll`
 
 ## Linux
-Installation instruction for Debian based Linux operation systems
+Installation instruction for Debian based Linux operating systems
 
 ## Python and esptool
 1. Update package list using `sudo apt update`

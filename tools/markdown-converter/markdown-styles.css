@@ -80,7 +80,7 @@
 	--hover-bg: rgba(255, 255, 255, 0.1); /* Light hover background */
 	--button-bg: #2d2d2d; /* Dark button background */
 	--button-text: #e0e0e0; /* Light button text */
-	--topic-selected-hover-bg: rgba(79, 128, 235, 0.2); /* Selected element hover background */
+	--topic-selected-hover-bg: rgba(134, 59, 246, 0.2); /* Selected element hover background */
 	--primary: #9362fd; /* Active/selected element color */
 
 	--primary-08: rgba(113, 51, 246, 0.8);

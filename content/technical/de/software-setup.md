@@ -7,7 +7,7 @@ Installationsanleitungen für Windows (primär für Windows 10 und 11)
 ### CP210x Driver
 1. [CP210x Universal Windows Geräte-Driver](https://www.silabs.com/documents/public/software/CP210x_Universal_Windows_Driver.zip) herunterladen.
 2. Entpacken und öffnen Sie den Ordner
-3. Mit der rechten Maustaste auf die Datei `silabser.inf` und `Installieren` wählen aus.
+3. Mit der rechten Maustaste auf die Datei `silabser.inf` und `Installieren` auswählen.
 4. Den Anweisungen der Anwendung folgen.
 
 ### Python und esptool
