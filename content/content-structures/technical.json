@@ -42,6 +42,12 @@
       },
       {
         "type": "page",
+        "de": "Verzeichnis",
+        "en": "Repository",
+        "path": "repo.md"
+      },
+      {
+        "type": "page",
         "de": "Web App",
         "en": "Web App",
         "path": "webapp.md"
@@ -73,12 +79,6 @@
         "de": "Allgemein",
         "en": "General",
         "path": "contribute-general.md"
-      },
-      {
-        "type": "page",
-        "de": "Git Verzeichnis",
-        "en": "Git Repository",
-        "path": "git-repo.md"
       },
       {
         "type": "page",
