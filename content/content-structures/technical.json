@@ -73,6 +73,18 @@
         "de": "Allgemein",
         "en": "General",
         "path": "contribute-general.md"
+      },
+      {
+        "type": "page",
+        "de": "Git Verzeichnis",
+        "en": "Git Repository",
+        "path": "git-repo.md"
+      },
+      {
+        "type": "page",
+        "de": "GitHub Projekte",
+        "en": "GitHub Projects",
+        "path": "projects.md"
       }
     ]
   }
