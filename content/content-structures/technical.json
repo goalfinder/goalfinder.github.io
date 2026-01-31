@@ -85,6 +85,12 @@
         "de": "GitHub Projekte",
         "en": "GitHub Projects",
         "path": "projects.md"
+      },
+      {
+        "type": "page",
+        "de": "Versionierung",
+        "en": "Versioning",
+        "path": "versioning.md"
       }
     ]
   }
