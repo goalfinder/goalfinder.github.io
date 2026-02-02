@@ -16,6 +16,6 @@ Forken Sie das Repository und reichen Sie einen Pull Request mit einer prägnant
 
 ### Bereits ein Projektmitglied?
 
-Siehe den ^[Beitragsleitfaden](./doc/contribute.mdmd) für detaillierte Anweisungen.
+Lies dir die Dokumentation zu unserem ^[GitHub Verzeichnis](github.md) durch, für detaillierte Anweisungen.
 
 #end

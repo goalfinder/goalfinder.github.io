@@ -82,9 +82,9 @@
       },
       {
         "type": "page",
-        "de": "GitHub Projekte",
-        "en": "GitHub Projects",
-        "path": "projects.md"
+        "de": "GitHub",
+        "en": "GitHub",
+        "path": "github.md"
       },
       {
         "type": "page",

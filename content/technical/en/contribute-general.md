@@ -16,6 +16,6 @@ Fork the repository and submit a pull request with a concise summary of your cha
 
 ### Already a project member?
 
-Read the documentation on our ^[GitHub Projects](projects.md) for more detailed instructions.
+Read the documentation on our ^[GitHub](github.md) setup for more detailed instructions.
 
 #end
