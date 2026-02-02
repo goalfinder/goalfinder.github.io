@@ -30,7 +30,7 @@
 	--button-bg: var(--accent);
 	--button-text: var(--text);
 	--topic-selected-color: var(--primary);
-	--topic-selected-hover-bg: rgba(128, 73, 255, 0.1);
+	--topic-selected-hover-bg: rgba(135, 86, 184, 0.15);
 	--end-border-color: var(--border);
 }
 
@@ -518,7 +518,7 @@ main {
 
 .topic-under-category {
 	margin-left: 1.15rem;
-	border-left: 2px solid rgba(59, 130, 246, 0.3);
+	border-left: 2px solid rgba(134, 59, 246, 0.3);
 	padding-left: 1rem;
 	border-radius: 0px;
 	position: relative;
@@ -559,7 +559,7 @@ main {
 	top: -0.25rem;
 	width: 2px;
 	height: 0.25rem;
-	background-color: rgba(81, 59, 246, 0.3);
+	background-color: rgba(134, 59, 246, 0.3);
 }
 
 .topic-selected {
@@ -567,7 +567,7 @@ main {
 	color: var(--topic-selected-color);
 }
 
-.topic-selected:hover {
+.topic-button.topic-selected:hover {
 	background-color: var(--topic-selected-hover-bg);
 }
 
