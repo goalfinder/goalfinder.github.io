@@ -335,7 +335,7 @@ body {
 	padding: 6rem 5vw;
 	align-items: center;
 	text-align: center;
-	background: var(--secondary-gradient);
+	background: var(--background);
 }
 
 .cards h2 {
@@ -422,7 +422,7 @@ body {
 
 .features {
 	padding: 2rem 5vw 6rem 5vw;
-	background: var(--secondary-gradient);
+	background: var(--background);
 	color: var(--text);
 }
 
@@ -507,7 +507,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: var(--accent);
+	background: var(--background);
 	padding: 6rem 5vw;
 	position: relative;
 	overflow: hidden;
@@ -671,7 +671,7 @@ body {
 
 .sponsors {
 	padding: 6rem 5vw;
-	background: var(--90-bg);
+	background: var(--background);
 	text-align: center;
 }
 
@@ -780,7 +780,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	padding: 0rem 5vw;
-	background: var(--background-gradient);
+	background: var(--background);
 	position: relative;
 }
 
