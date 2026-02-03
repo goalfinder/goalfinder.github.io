@@ -12,19 +12,6 @@
   },
   {
     "type": "category",
-    "de": "Überblick",
-    "en": "General",
-    "children": [
-      {
-        "type": "page",
-        "de": "Inhaltsverzeichnis",
-        "en": "Table of Contents",
-        "path": "toc.md"
-      }
-    ]
-  },
-  {
-    "type": "category",
     "de": "Aufsetzen",
     "en": "Setup",
     "children": [
