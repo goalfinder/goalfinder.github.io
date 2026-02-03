@@ -13,5 +13,4 @@ Willkommen in der Benutzerdokumentation des GoalFinder Projekts. Unser Ziel ist 
 ### Benutzung
 - ^[Häufige Fragen](content/user/de/faq.md)
 
-
 #end

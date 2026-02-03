@@ -13,5 +13,4 @@ Welcome to the user documentation of the GoalFinder project. Our goal is to prov
 ### Usage
 - ^[Frequently Asked Questions](content/user/en/faq.md)
 
-
 #end
