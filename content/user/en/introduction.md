@@ -1,6 +1,9 @@
 # User Documentation
 Welcome to the user documentation of the GoalFinder project. Our goal is to provide the most comprehensive documentation possible on this page.
 
+#wh Notice
+#wb The user documentation is still in development and is still seeing active changes and therefore might not reflect the final version.
+
 ## Table of Contents
 ### Setup
 - ^[Getting to Know GoalFinder](content/user/en/getting-to-know.md)
