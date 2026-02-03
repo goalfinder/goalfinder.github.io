@@ -564,15 +564,15 @@ function lightDarkModeToggle() {
 
 	// Toggle mode switch button content (only update src and text, preserve DOM for smooth transition)
 	if (html.classList.contains("dark-mode")) {
-		const lightSrc = baseUrl ? `${baseUrl}/assets/img/svg/light.svg` : '/assets/img/svg/light.svg';
-		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-shadow.png` : '/assets/img/logos/goalfinder/logo-shadow.png';
+		const lightSrc = baseUrl ? `${baseUrl}/assets/img/svg/light.svg` : "/assets/img/svg/light.svg";
+		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-shadow.png` : "/assets/img/logos/goalfinder/logo-shadow.png";
 		toggleIcon.src = lightSrc;
 		toggleText.textContent = t("light-mode");
 		localStorage.setItem("theme", "dark");
 		if (headerIcon) headerIcon.src = logoSrc;
 	} else {
-		const darkSrc = baseUrl ? `${baseUrl}/assets/img/svg/dark.svg` : '/assets/img/svg/dark.svg';
-		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.png` : '/assets/img/logos/goalfinder/logo-black-shadow.png';
+		const darkSrc = baseUrl ? `${baseUrl}/assets/img/svg/dark.svg` : "/assets/img/svg/dark.svg";
+		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.png` : "/assets/img/logos/goalfinder/logo-black-shadow.png";
 		toggleIcon.src = darkSrc;
 		toggleText.textContent = t("dark-mode");
 		localStorage.setItem("theme", "light");
@@ -1265,6 +1265,21 @@ async function setupEventListeners() {
 	 * Set up click handlers for Previous/Next navigation buttons
 	 */
 	setupEndButtonListeners();
+
+	/**
+	 * Set up click handlers for page links
+	 */
+	const pageLinks = document.querySelectorAll(".markdown-page-link");
+
+	pageLinks.forEach((button) => {
+		if (button) {
+			button.addEventListener("click", () => {
+				const currentButton = button;
+				const path = currentButton.dataset.path;
+				navigateToSearchResult(path);
+			});
+		}
+	});
 }
 
 /**
@@ -1793,21 +1808,6 @@ async function initMarkdownDocumentation(config = {}) {
 	} catch (e) {
 		// ignore
 	}
-
-	/**
-	 * Set up click handlers for inter page links
-	 */
-	const pageLinks = document.querySelectorAll(".markdown-page-link");
-
-	pageLinks.forEach((button) => {
-		if (button) {
-			button.addEventListener("click", () => {
-				const currentButton = button;
-				const path = currentButton.dataset.path;
-				navigateToSearchResult(path);
-			});
-		}
-	});
 }
 
 export { initMarkdownDocumentation, updateMarkdownDocumentationTranslations };

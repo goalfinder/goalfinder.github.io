@@ -896,7 +896,7 @@ footer a:hover {
 }
 
 .markdown-end-container {
-	gap: 3rem;
+	gap: 1rem;
 }
 
 @media (max-width: 768px) {

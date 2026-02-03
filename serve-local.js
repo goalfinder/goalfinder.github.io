@@ -122,10 +122,10 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`\n🚀 Local development server running!`);
-  console.log(`📍 http://localhost:${PORT}`);
-  console.log(`\n📂 Serving files from: ${ROOT_DIR}`);
-  console.log(`\n💡 This server processes Jekyll variables for local development`);
+  console.log(`\n Local development server running!`);
+  console.log(`\n http://localhost:${PORT}`);
+  console.log(`\n Serving files from: ${ROOT_DIR}`);
+  console.log(`\n This server processes Jekyll variables for local development`);
   console.log(`   Your GitHub Pages deployment will remain unaffected\n`);
   console.log(`Press Ctrl+C to stop the server\n`);
 });
