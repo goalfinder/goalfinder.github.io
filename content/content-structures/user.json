@@ -32,6 +32,12 @@
         "de": "Verbinden",
         "en": "Connecting",
         "path": "connecting.md"
+      },
+      {
+        "type": "page",
+        "de": "Spiele",
+        "en": "Games",
+        "path": "games.md"
       }
     ]
   },

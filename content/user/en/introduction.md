@@ -1,1 +1,14 @@
-# User Dokumentation
+# User Documentation
+Welcome to the user documentation of the GoalFinder project. Our goal is to provide the most comprehensive documentation possible on this page.
+
+## Table of Contents
+### Setup
+- ^[Getting to Know GoalFinder](content/user/en/getting-to-know.md)
+- ^[Mounting](content/user/en/mounting.md)
+- ^[Connecting](content/user/en/connecting.md)
+- ^[Games](content/user/en/games.md)
+### Usage
+- ^[Frequently Asked Questions](content/user/en/faq.md)
+
+
+#end
