@@ -8,7 +8,7 @@ Willkommen in der Benutzerdokumentation des GoalFinder Projekts. Unser Ziel ist 
 ### Aufsetzen
 - ^[Kennenlernen des GoalFinders](content/user/de/getting-to-know.md)
 - ^[Montage](content/user/de/mounting.md)
-- ^[Verbinden](content/user/de/connecting.md)
+- ^[Web App](content/user/de/webapp.md)
 - ^[Spiele](content/user/de/games.md)
 ### Benutzung
 - ^[Häufige Fragen](content/user/de/faq.md)

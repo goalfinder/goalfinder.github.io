@@ -628,7 +628,7 @@ class MarkdownConverter {
 			let item = `<div class="markdown-end-container">`;
 
 			// If previous item exists
-			if (this.currentPageIndex !== 0) {
+			if (this.currentPageIndex > 0) {
 				const previousPath = this.flatStructure[this.currentPageIndex - 1];
 				const previousName = this.getPageName(previousPath);
 				item += `<div class="markdown-end-next" data-path="${previousPath}">
@@ -641,7 +641,7 @@ class MarkdownConverter {
 			}
 
 			// If next item exists
-			if (this.currentPageIndex !== this.flatStructure.length - 1) {
+			if (this.currentPageIndex >= 0 && this.currentPageIndex < this.flatStructure.length - 1) {
 				const nextPath = this.flatStructure[this.currentPageIndex + 1];
 				const nextName = this.getPageName(nextPath);
 				item += `<div class="markdown-end-next" data-path="${nextPath}">
@@ -828,7 +828,8 @@ class MarkdownConverter {
 	 * @returns {string} - Display name of the page or "Unknown Page"
 	 */
 	getPageName(path) {
-		const fileName = path.split('/').pop();
+		if (!path) return "Unknown Page";
+		const fileName = path.split("/").pop();
 		const findName = (items) => {
 			for (const item of items) {
 				if (item.path === fileName) {
