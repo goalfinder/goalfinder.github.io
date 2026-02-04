@@ -29,9 +29,9 @@
       },
       {
         "type": "page",
-        "de": "Verbinden",
-        "en": "Connecting",
-        "path": "connecting.md"
+        "de": "Web-App",
+        "en": "Web App",
+        "path": "webapp.md"
       },
       {
         "type": "page",
