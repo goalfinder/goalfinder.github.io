@@ -5,7 +5,7 @@ In addition to wireless communication via WiFi, the GoalFinder has an external U
 
 ## Connecting
 As soon as the GoalFinder is connected, it automatically opens a WiFi network named `GoalFinder`.
-Help with connecting to WiFi networks: [Android Guide](https://support.google.com/android/answer/9075847?hl=en), [iOS](https://support.apple.com/en-us/111107)
+Help with connecting to WiFi networks: [Android Guide](https://support.google.com/android/answer/9075847?hl=en), [iOS Guide](https://support.apple.com/en-us/111107)
 The web app can be accessed either [here](http://192.168.4.1) or by opening the IP address `192.168.4.1` in a web browser.
 The complete guide to the web app can be found ^[here](content/user/en/webapp.md).
 

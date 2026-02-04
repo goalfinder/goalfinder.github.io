@@ -1,5 +1,5 @@
 # Benutzerdokumentation
-Willkommen in der Benutzerdokumentation des GoalFinder Projekts. Unser Ziel ist es auf dieser Seite eine möglichst umfangreiche Dokumentation zur Verfügung zu stellen.
+Willkommen in der Benutzerdokumentation des GoalFinder Projekts. Unser Ziel ist es, auf dieser Seite eine möglichst umfangreiche Dokumentation zur Verfügung zu stellen.
 
 #wh Anmerkung
 #wb Diese Benutzerdokumentation befindet sich noch in der Entwicklung und spiegelt möglicherweise nicht immer den endgültigen Stand wider.
