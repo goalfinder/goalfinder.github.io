@@ -31,6 +31,10 @@ include:
 
 # Exclude these from the build
 exclude:
+    - AGENTS.md
+    - serve-local.js
+    - package.json
+    - .prettierignore
     - README.md
     - LICENSE
     - credits.md
