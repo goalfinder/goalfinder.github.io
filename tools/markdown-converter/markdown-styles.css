@@ -23,7 +23,7 @@
 
 	/* === Markdown Code Styling === */
 	--md-code-bg-color: #f5f5f5; /* Code block background */
-	--md-inline-code-bg: #f4f4f4; /* Inline code background */
+	--md-inline-code-bg: #ececec; /* Inline code background */
 	--md-code-block-bg: #f8f9fa; /* Code block background (main) */
 	--md-code-block-border: #e9ecef; /* Code block border color */
 	--md-greyed-out: #a6a6a6; /* Disabled/muted text color */
