@@ -81,10 +81,19 @@
         "path": "contribute-general.md"
       },
       {
-        "type": "page",
+        "type": "category",
         "de": "GitHub",
         "en": "GitHub",
-        "path": "github.md"
+        "path": "github.md",
+        "collapsed": true,
+        "children": [
+          {
+            "type": "page",
+            "de": "GitHub Pages Veröffentlichen",
+            "en": "Deploy GitHub Pages",
+            "path": "pr.md"
+          }
+        ]
       },
       {
         "type": "page",
