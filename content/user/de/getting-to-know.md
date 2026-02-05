@@ -10,7 +10,7 @@ Die Web App kann entweder [hier](http://192.168.4.1) oder durch öffnen der IP A
 Die vollständige Anleitung zur Web-App kann ^[hier](content/user/de/webapp.md) gefunden werden.
 
 ## Funktionsweise
-Der GoalFinder hat 2 Sensoren, die zur Erkennung des Spiels dienen.
+Der GoalFinder hat 2 Sensoren, die zur Erkennung des Spielgeschehens dienen.
 ![SchüttelSensor](assets/img/assembly/P1440892-N.JPG)(623x450)
 Schüttel Sensor (1)
 ![Abstandssensor](assets/img/showcase/P1440908-N.JPG)(403x450)
