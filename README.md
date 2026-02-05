@@ -4,6 +4,10 @@ This repository is used for deploying the [GoalFinder website](https://goalfinde
 
 Visit the project repository [here](https://github.com/htl-leo-club-embedded-iot/GoalFinder).
 
+## Documentation
+
+Visit the [technical documentation](https://goalfinder.github.io/technical) for more information
+
 ## Branches
 
 `deploy`: The GitHub pages deployment branch
