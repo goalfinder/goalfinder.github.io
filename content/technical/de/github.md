@@ -1,94 +1,81 @@
-## GitHub
+# GitHub-Projekte
+## Projekte
+### Iterative Entwicklung
+Das Iterative Entwicklung Projekt hat mehrere Ansichten:
 
-### Projects
+Feature Requests, User stories, Features Ansicht werden verwendet, um Issues mit den entsprechenden Labels sowie das Iteration Board mit folgenden Spalten anzuzeigen:
+- **Backlog**: User stories, die in feature-requests oder features unterteilt werden müssen
+- **Feature Request**: Spezifischere Ideen, die noch überprüft werden müssen
+- **Feature**: Spezifische Funktion, die implementiert werden soll und in Tasks unterteilt wird
+- **Todo** — Bereit zur Bearbeitung; noch nicht begonnen.
+- **In Progress** — Arbeit ist aktiv im Gange.
+- **Review** — Änderung ist implementiert und wartet auf Verifizierung durch ein anderes Teammitglied.
+- **Done** — Das Issue ist erledigt und geschlossen.
 
-#### Iterative Development
+**Verfahren für neue Issues:**
+1. Triage: schließen, wenn das Issue irrelevant oder außerhalb des Geltungsbereichs ist.
+2. Reproduzieren: versuchen, das Problem zu reproduzieren; bei Bedarf weitere Informationen anfordern.
+3. Klassifizieren: wenn reproduzierbar, entscheiden, ob es sich um einen Bug, eine User Story oder eine Feature Request handelt. Für User Stories/Features das Issue nach Überprüfung in die `Feature`-Spalte konvertieren oder verschieben.
+4. Zuweisen: entsprechende Tags hinzufügen und einem Teammitglied zuweisen.
+5. Planen: das Issue zur Planung in `Todo` verschieben.
+6. Arbeiten: wenn die Arbeit beginnt, das Issue in `In Progress` verschieben.
+7. Verifizieren: nach Implementierung in `Review` zur Verifizierung verschieben.
+8. Schließen: sobald ein Reviewer die Änderung akzeptiert, das Issue in `Done` verschieben.
 
-The Iterative Development Project has multiple views:
+### Bug Tracker
+Der Bug Tracker verwendet ein einzelnes Board mit diesen Spalten:
 
-Feature Requests, User stories, Features view are used to view issues with the corresponding labels as well as the Iteration board with following columns:
+- **Identified** — Das Issue wurde gemeldet und anerkannt.
+- **Todo** — Bereit zur Bearbeitung; noch nicht begonnen.
+- **In Progress** — Arbeit ist aktiv im Gange.
+- **Review** — Änderung ist implementiert und wartet auf Verifizierung durch ein anderes Teammitglied.
+- **Done** — Das Issue ist gelöst und geschlossen.
 
-- **Backlog**: User stories that need to be sub-issued into feature-requests or features
-- **Feature Request**: More specific ideas that still need review
-- **Feature**: Specific feature to be implemented and sub-issued into tasks
-- **Todo** — Ready to be worked on; not yet started.
-- **In Progress** — Work is actively underway.
-- **Review** — Change is implemented and awaiting verification by another team member.
-- **Done** — The issue is done and closed.
+**Verfahren für neue Issues:**
+1. Das Issue triagieren: schließen, wenn irrelevant oder außerhalb des Geltungsbereichs.
+2. Wenn die Informationen nicht ausreichen; weitere Informationen anfordern.
+3. Wenn reproduzierbar, ein Schweregrad-Label zuweisen (`severe`, `major` oder `minor`) — bei Unsicherheit das Team konsultieren.
+6. Das Issue zur Planung in `Todo` verschieben.
+7. Wenn die Arbeit beginnt, in `In Progress` verschieben.
+8. Nach Implementierung in `Review` zur Verifizierung verschieben.
+9. Ein Reviewer verifiziert die Korrektur; wenn akzeptiert, das Issue in `Done` verschieben.
 
-Procedure for new issues:
+## Labels
+Folgende benutzerdefinierte Labels können auf Issues angewendet werden. Eine Beschreibung jedes Labels und wann es zu verwenden ist, wird unten bereitgestellt:
 
-1. Triage: close if the issue is irrelevant or out of scope.
-2. Reproduce: attempt to reproduce the problem; request more information if needed.
-3. Classify: if reproducible, decide whether it is a bug, user story, or feature request. For user stories/features, convert or move the issue to the `Feature` column after review.
-4. Assign: add appropriate tags and assign a team member.
-5. Plan: move the issue to `Todo` for planning.
-6. Work: when work begins, move the issue to `In Progress`.
-7. Verify: after implementation, move it to `Review` for verification.
-8. Close: once a reviewer accepts the change, move the issue to `Done`.
+### Bugs
+ - `bug` — Identifizierter Bug
+ - `bug-fix` — Bug-Fixing-Task
+ - `severe` — Schwerer Bug
+ - `major` — Großer Bug
+ - `minor` — Kleiner Bug
+Wenden Sie ein Schweregrad-Label auf jedes Bug-Issue an.
 
-#### Bug Tracker
+### Kategorien
+ - `cad` — Bezieht sich auf das CAD-Design (Gehäuse, Montage, ...)
+ - `doc` — Bezieht sich auf die interne / technische Dokumentation
+ - `hardware` — Bezieht sich auf die Hardware
+ - `firmware` — Bezieht sich auf die Firmware
+ - `web-app` — Bezieht sich auf den Web-Zugangspunkt des GoalFinder-Geräts
+ - `pages` — Bezieht sich auf die Webseite
+ - `pcb` — Bezieht sich auf das PCB-Design
+ - `infrastructure` — Bezieht sich auf die Infrastruktur
 
-The Bug Tracker uses a single board with these columns:
+Wenden Sie ein Kategorie-Label auf Features und übergeordnete Tasks an
 
-- **Identified** — The issue has been reported and acknowledged.
-- **Todo** — Ready to be worked on; not yet started.
-- **In Progress** — Work is actively underway.
-- **Review** — Change is implemented and awaiting verification by another team member.
-- **Done** — The issue is resolved and closed.
+### Priorität
+ - `p0` - `p4` — Priorität von höchster zu niedrigster
+Wenden Sie ein Prioritäts-Label auf jedes nicht User Story / Feature (Request) Issue an
 
-Procedure for new issues:
-
-1. Triage the issue: close if irrelevant or out of scope.
-2. If not information is not sufficient; request more information.
-3. If reproducible, assign a severity label (`severe`, `major`, or `minor`) — consult the team when unsure.
-6. Move the issue to `Todo` for planning.
-7. When work starts, move it to `In Progress`.
-8. After implementation, move it to `Review` for verification.
-9. A reviewer verifies the fix; if accepted, move the issue to `Done`.
-
-### Labels
-
-Following custom labels can be applied to issues. A description of each label and when to use it is provided below:
-
-#### Bugs
-
- - `bug` — Identified bug
- - `bug-fix` — Bug fixing task
- - `severe` — Severe bug
- - `major` — Major bug
- - `minor` — Minor bug
-
-Apply a severity label to each bug issue.
-
-#### Categories
-
- - `cad` — Relates to the CAD design (housing, mounting, ...)
- - `doc` — Relates to the internal / technical documentation
- - `hardware` — Relates to the hardware
- - `firmware` — Relates to the firmware
- - `web-app` — Relates to the web access point of the GoalFinder device
- - `pages` — Relates to the web page
- - `pcb` — Relates to the PCB design
- - `infrastructure` — Relates to the infrastructure
-
-Apply a category label to features and parent tasks
-
-#### Priority
-
- - `p0` - `p4` — Priority from highest to lowest
-  
-Apply a priority label to every non User Story / Feature (Request) issue
-
-#### Iterative Development
-
+### Iterative Entwicklung
  - `user-story` — User Story
  - `feature-request` — Feature Request
  - `feature` — Feature
 
-#### Other
+### Andere
+ - `enhancement` — Task, die keines anderen Labels würdig ist
+ - `notice` — Hinweis - Nicht zu bearbeiten
+ - `review` — Einfache Review-Task
+ - `task` — Task, die mit keinem anderen Label kategorisiert ist
 
- - `enhancement` — Task not worthy of any other label
- - `notice` — Notice - Not to be worked on
- - `review` — Simple review task
- - `task` — Task not categorized with any other label
+#end
