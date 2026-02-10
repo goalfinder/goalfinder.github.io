@@ -81,6 +81,29 @@ body {
     color: white;
 }
 
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.lang-toggle {
+    background-color: var(--blog-card-bg);
+    border: 2px solid var(--blog-border);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--blog-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lang-toggle:hover {
+    border-color: var(--blog-primary);
+    color: var(--blog-primary);
+}
+
 /* Controls */
 .blog-controls {
     display: flex;

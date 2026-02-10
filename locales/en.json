@@ -86,5 +86,24 @@
   "help": {
     "h-title": "Help",
     "h-desc": "This page contains help with the web page"
+  },
+  "blog": {
+    "blog-title": "Blog",
+    "blog-home": "Home",
+    "blog-search": "Search posts...",
+    "blog-sort-newest": "Newest First",
+    "blog-sort-oldest": "Oldest First",
+    "blog-sort-title-asc": "Title A-Z",
+    "blog-sort-title-desc": "Title Z-A",
+    "blog-no-results": "No posts found matching your search.",
+    "blog-no-posts": "No blog posts yet.",
+    "blog-load-error": "Failed to load blog posts. Please try again later.",
+    "blog-read-more": "Read More",
+    "blog-back": "Back to Posts",
+    "blog-latest": "Latest Post",
+    "blog-view-all": "View All Blog Posts",
+    "blog-welcome-title": "Welcome",
+    "blog-welcome-text": "Welcome to GoalFinder! This is your central hub for information about the project. Stay tuned for updates and new content.",
+    "blog-quick-links": "Quick Links"
   }
 }

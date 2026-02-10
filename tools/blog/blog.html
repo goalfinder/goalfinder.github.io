@@ -4,29 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
+
+    <!-- Base URL for JavaScript (empty for standalone) -->
+    <script>
+        window.siteBaseUrl = "../..";
+    </script>
+
     <link rel="stylesheet" href="blog.css">
     <link rel="stylesheet" href="../markdown-converter/markdown-styles.css">
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.documentElement.classList.add("dark-mode");
+            }
+        })();
+    </script>
 </head>
 <body>
     <div class="blog-container">
         <!-- Header -->
         <header class="blog-header">
-            <h1 class="blog-title">Blog</h1>
-            <a href="index.html" class="home-link">Home</a>
+            <h1 class="blog-title" data-i18n="blog-title">Blog</h1>
+            <div class="header-controls">
+                <button id="lang-toggle" class="lang-toggle">
+                    <span id="lang-toggle-text">DE</span>
+                </button>
+                <a href="index.html" class="home-link" data-i18n="blog-home">Home</a>
+            </div>
         </header>
 
         <!-- Search and Filter Section -->
         <div class="blog-controls">
             <div class="search-container">
-                <input type="text" id="search-input" class="search-input" placeholder="Search posts...">
+                <input type="text" id="search-input" class="search-input" data-i18n="blog-search" placeholder="Search posts...">
                 <button id="search-clear" class="search-clear" aria-label="Clear search">&times;</button>
             </div>
             <div class="filter-container">
                 <select id="sort-select" class="sort-select">
-                    <option value="newest">Newest First</option>
-                    <option value="oldest">Oldest First</option>
-                    <option value="title-asc">Title A-Z</option>
-                    <option value="title-desc">Title Z-A</option>
+                    <option value="newest" data-i18n="blog-sort-newest">Newest First</option>
+                    <option value="oldest" data-i18n="blog-sort-oldest">Oldest First</option>
+                    <option value="title-asc" data-i18n="blog-sort-title-asc">Title A-Z</option>
+                    <option value="title-desc" data-i18n="blog-sort-title-desc">Title Z-A</option>
                 </select>
             </div>
         </div>
@@ -40,7 +60,7 @@
 
             <!-- Single Post View -->
             <div id="post-view" class="post-view hidden">
-                <button id="back-button" class="back-button">&larr; Back to Posts</button>
+                <button id="back-button" class="back-button"><span>&larr;</span> <span data-i18n="blog-back">Back to Posts</span></button>
                 <article id="post-content" class="post-content">
                     <!-- Post content will be dynamically inserted here -->
                 </article>
@@ -48,7 +68,7 @@
 
             <!-- No Results Message -->
             <div id="no-results" class="no-results hidden">
-                <p>No posts found matching your search.</p>
+                <p data-i18n="blog-no-results">No posts found matching your search.</p>
             </div>
         </main>
 

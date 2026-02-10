@@ -1,0 +1,93 @@
+---
+layout: null
+permalink: /blog
+description: GoalFinder Blog - Updates, tutorials and news
+title: Blog
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ page.description }}" />
+
+    <!-- Base URL for JavaScript -->
+    <script>
+        window.siteBaseUrl = "{{ site.baseurl | default: '' }}";
+    </script>
+
+    <link rel="stylesheet" href="{{ site.baseurl }}/tools/blog/blog.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/tools/markdown-converter/markdown-styles.css">
+    <link rel="icon" href="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-shadow.png" type="image/png" />
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.documentElement.classList.add("dark-mode");
+            }
+        })();
+    </script>
+
+    <title data-i18n="blog-title">Blog</title>
+</head>
+<body>
+    <div class="blog-container">
+        <!-- Header -->
+        <header class="blog-header">
+            <h1 class="blog-title" data-i18n="blog-title">Blog</h1>
+            <div class="header-controls">
+                <button id="lang-toggle" class="lang-toggle">
+                    <span id="lang-toggle-text">DE</span>
+                </button>
+                <a href="{{ site.baseurl }}/" class="home-link" data-i18n="blog-home">Home</a>
+            </div>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <div class="blog-controls">
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" data-i18n="blog-search" placeholder="Search posts...">
+                <button id="search-clear" class="search-clear" aria-label="Clear search">&times;</button>
+            </div>
+            <div class="filter-container">
+                <select id="sort-select" class="sort-select">
+                    <option value="newest" data-i18n="blog-sort-newest">Newest First</option>
+                    <option value="oldest" data-i18n="blog-sort-oldest">Oldest First</option>
+                    <option value="title-asc" data-i18n="blog-sort-title-asc">Title A-Z</option>
+                    <option value="title-desc" data-i18n="blog-sort-title-desc">Title Z-A</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <main class="blog-main">
+            <!-- Posts List View -->
+            <div id="posts-list" class="posts-list">
+                <!-- Posts will be dynamically inserted here -->
+            </div>
+
+            <!-- Single Post View -->
+            <div id="post-view" class="post-view hidden">
+                <button id="back-button" class="back-button"><span>&larr;</span> <span data-i18n="blog-back">Back to Posts</span></button>
+                <article id="post-content" class="post-content">
+                    <!-- Post content will be dynamically inserted here -->
+                </article>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="no-results" class="no-results hidden">
+                <p data-i18n="blog-no-results">No posts found matching your search.</p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="blog-footer">
+            <p>&copy; 2026 GoalFinder Blog</p>
+        </footer>
+    </div>
+
+    <script type="module" src="{{ site.baseurl }}/tools/blog/blog.js"></script>
+</body>
+</html>

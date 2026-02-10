@@ -4,7 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalFinder - Home</title>
+
+    <!-- Base URL for JavaScript (standalone testing) -->
+    <script>
+        window.siteBaseUrl = "../..";
+    </script>
+
     <link rel="stylesheet" href="blog.css">
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.documentElement.classList.add("dark-mode");
+            }
+        })();
+    </script>
+
     <style>
         /* Page-specific styles */
         .page-container {
@@ -29,6 +45,13 @@
             color: var(--blog-text-muted);
             max-width: 600px;
             margin: 0 auto;
+        }
+
+        .header-actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
         }
 
         .content-grid {
@@ -124,20 +147,21 @@
         <header class="page-header">
             <h1>GoalFinder</h1>
             <p>Your journey to achievement starts here. Explore our blog for tips, updates, and insights.</p>
+            <div class="header-actions">
+                <button id="lang-toggle" class="lang-toggle">
+                    <span id="lang-toggle-text">DE</span>
+                </button>
+            </div>
         </header>
 
         <!-- Content Grid -->
         <div class="content-grid">
             <!-- Main Content -->
             <main class="main-content">
-                <h2>Welcome</h2>
-                <p>
+                <h2 data-i18n="blog-welcome-title">Welcome</h2>
+                <p data-i18n="blog-welcome-text">
                     Welcome to GoalFinder! This is your central hub for information about the project. 
                     Stay tuned for updates and new content.
-                </p>
-                <p>
-                    Check out our latest blog posts for tutorials, announcements, and helpful guides 
-                    to get you started.
                 </p>
             </main>
 
@@ -155,9 +179,9 @@
 
                 <!-- Navigation Links -->
                 <section class="sidebar-section">
-                    <h3>Quick Links</h3>
+                    <h3 data-i18n="blog-quick-links">Quick Links</h3>
                     <nav class="nav-links">
-                        <a href="blog.html" class="nav-link">View All Blog Posts</a>
+                        <a href="blog.html" class="nav-link" data-i18n="blog-view-all">View All Blog Posts</a>
                     </nav>
                 </section>
             </aside>
@@ -165,6 +189,27 @@
     </div>
 
     <script type="module">
+        import { loadLang, getCurrentLang, setCurrentLang, getTranslations } from '../../scripts/i18n.js';
+
+        let currentLang = getCurrentLang();
+        const baseUrl = window.siteBaseUrl || "";
+
+        /**
+         * Get translation from i18n
+         */
+        function t(key) {
+            const translations = getTranslations();
+            return translations[key] || key;
+        }
+
+        /**
+         * Get localized value from post data
+         */
+        function getLocalizedValue(post, key) {
+            const langKey = `${key}-${currentLang}`;
+            return post[langKey] || post[key] || '';
+        }
+
         /**
          * Load and display the latest blog post widget
          */
@@ -173,7 +218,7 @@
             
             try {
                 // Load the posts manifest
-                const manifestResponse = await fetch('./content/posts.json');
+                const manifestResponse = await fetch(`${baseUrl}/tools/blog/content/posts.json`);
                 if (!manifestResponse.ok) {
                     throw new Error('Failed to load posts manifest');
                 }
@@ -182,7 +227,7 @@
                 if (manifest.posts.length === 0) {
                     widgetContainer.innerHTML = `
                         <div class="widget-content" style="text-align: center; padding: 40px;">
-                            <p style="color: var(--blog-text-muted);">No blog posts yet.</p>
+                            <p style="color: var(--blog-text-muted);">${t('blog-no-posts')}</p>
                         </div>
                     `;
                     return;
@@ -190,7 +235,7 @@
 
                 // Load all posts metadata to find the latest one
                 const postPromises = manifest.posts.map(async (postRef) => {
-                    const postPath = `./content/${postRef.folder}/${postRef.id}.json`;
+                    const postPath = `${baseUrl}/tools/blog/content/${postRef.folder}/${postRef.id}.json`;
                     const response = await fetch(postPath);
                     if (!response.ok) return null;
                     const postData = await response.json();
@@ -198,7 +243,7 @@
                         ...postData,
                         id: postRef.id,
                         folder: postRef.folder,
-                        basePath: `./content/${postRef.folder}/`
+                        basePath: `${baseUrl}/tools/blog/content/${postRef.folder}/`
                     };
                 });
 
@@ -216,7 +261,7 @@
                 if (!latestPost) {
                     widgetContainer.innerHTML = `
                         <div class="widget-content" style="text-align: center; padding: 40px;">
-                            <p style="color: var(--blog-text-muted);">No blog posts yet.</p>
+                            <p style="color: var(--blog-text-muted);">${t('blog-no-posts')}</p>
                         </div>
                     `;
                     return;
@@ -225,7 +270,8 @@
                 // Format date
                 const formatDate = (dateStr) => {
                     const date = parseDate(dateStr);
-                    return date.toLocaleDateString('en-US', {
+                    const locale = currentLang === 'de' ? 'de-DE' : 'en-US';
+                    return date.toLocaleDateString(locale, {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
@@ -236,15 +282,18 @@
                 const thumbnailPath = latestPost['thumbnail-path']
                     ? `${latestPost.basePath}${latestPost['thumbnail-path'].replace('./', '')}`
                     : '';
+                    
+                const title = getLocalizedValue(latestPost, 'title');
+                const shortDesc = getLocalizedValue(latestPost, 'short-desc');
 
                 // Render the widget
                 widgetContainer.innerHTML = `
                     <div class="widget-header">
-                        <h3>Latest Post</h3>
+                        <h3>${t('blog-latest')}</h3>
                     </div>
                     ${thumbnailPath ? `
                         <div class="widget-thumbnail">
-                            <img src="${thumbnailPath}" alt="${latestPost.title}" loading="lazy">
+                            <img src="${thumbnailPath}" alt="${title}" loading="lazy">
                         </div>
                     ` : `
                         <div class="widget-thumbnail widget-thumbnail-placeholder">
@@ -252,10 +301,10 @@
                         </div>
                     `}
                     <div class="widget-content">
-                        <h4 class="widget-title">${latestPost.title}</h4>
+                        <h4 class="widget-title">${title}</h4>
                         <p class="widget-date">${formatDate(latestPost.date)}</p>
-                        <p class="widget-description">${latestPost['short-desc']}</p>
-                        <a href="blog.html#${latestPost.id}" class="widget-link">Read More</a>
+                        <p class="widget-description">${shortDesc}</p>
+                        <a href="blog.html#${latestPost.id}" class="widget-link">${t('blog-read-more')}</a>
                     </div>
                 `;
 
@@ -263,14 +312,43 @@
                 console.error('Error loading latest post:', error);
                 widgetContainer.innerHTML = `
                     <div class="widget-content" style="text-align: center; padding: 40px;">
-                        <p style="color: var(--blog-text-muted);">Could not load latest post.</p>
+                        <p style="color: var(--blog-text-muted);">${t('blog-load-error')}</p>
                     </div>
                 `;
             }
         }
 
+        /**
+         * Switch language
+         */
+        function switchLang() {
+            const newLang = currentLang === 'de' ? 'en' : 'de';
+            setCurrentLang(newLang);
+            loadLang(newLang, () => {
+                currentLang = newLang;
+                const langText = document.getElementById('lang-toggle-text');
+                if (langText) {
+                    langText.textContent = newLang.toUpperCase();
+                }
+                loadLatestPost();
+            });
+        }
+
         // Initialize
-        loadLatestPost();
+        async function init() {
+            await new Promise((resolve) => {
+                loadLang(currentLang, resolve);
+            });
+            
+            const langButton = document.getElementById('lang-toggle');
+            if (langButton) {
+                langButton.addEventListener('click', switchLang);
+            }
+            
+            loadLatestPost();
+        }
+        
+        init();
     </script>
 </body>
 </html>

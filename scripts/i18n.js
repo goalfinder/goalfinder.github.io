@@ -93,6 +93,15 @@ function t(key) {
 function translatePage() {
 	document.querySelectorAll("[data-i18n]").forEach((el) => {
 		const key = el.getAttribute("data-i18n");
-		el.textContent = t(key);
+		const translated = t(key);
+		
+		// Handle input elements - set placeholder instead of textContent
+		if (el.tagName === "INPUT" && el.hasAttribute("placeholder")) {
+			el.placeholder = translated;
+		} else if (el.tagName === "OPTION") {
+			el.textContent = translated;
+		} else {
+			el.textContent = translated;
+		}
 	});
 }

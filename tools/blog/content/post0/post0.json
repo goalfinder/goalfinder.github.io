@@ -1,7 +1,10 @@
 {
     "date": "01.01.2026",
-    "title": "First Post",
-    "short-desc": "This is the first post",
+    "title-de": "Erster Beitrag",
+    "title-en": "First Post",
+    "short-desc-de": "Das ist der erste Beitrag",
+    "short-desc-en": "This is the first post",
     "thumbnail-path": "./post0.jpg",
-    "content-path": "./post0.md"
+    "content-path-de": "./post0-de.md",
+    "content-path-en": "./post0-en.md"
 }
