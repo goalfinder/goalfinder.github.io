@@ -13,7 +13,7 @@ Help with connecting to Wi-Fi networks: [Android Guide](https://support.google.c
 #wb On Android 15 devices, especially Samsung, in version 1.1 no prompt to open the Web App will appear.
 #wb Work on fixing this bug is in progress.
 When connecting to the device for the first time, a notification will appear that redirects to the Web App or the Web App will open itself. **Furthermore, we recommend bookmarking the Web App in the browser to return more easily.**
-The Web App can otherwise be opened either [here](http://192.168.4.1) or by opening the IP address `192.168.4.1` in a web browser.
+The Web App can otherwise be opened either [here](http://192.168.4.1) or by opening the IP address `192.168.4.1` in a web browser. **This only works if you are connected to the GoalFinder's network**
 The complete guide to the Web App can be found ^[here](content/user/en/webapp.md).
 
 ## How it Works
