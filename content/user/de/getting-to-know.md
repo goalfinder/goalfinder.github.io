@@ -4,14 +4,21 @@
 Neben kabelloser Kommunikation über Wi-Fi hat der GoalFinder noch einen äußeren USB-C-Stecker als Stromanschluss und zur Datenübertragung, sowie einen Stecker für die LED-Leiste (2).
 
 ## Verbinden
-Sobald der GoalFinder angeschlossen wurde, öffnet er automatisch ein Wi-Fi-Netzwerk unter dem Namen `GoalFinder`. 
+Sobald der GoalFinder angeschlossen wurde, öffnet er automatisch ein Wi-Fi-Netzwerk unter dem Namen `GoalFinder` gefolgt von 2 Zahlen.
+(Der Name des Geräts kann in der Web App geändert werden) 
 Hilfe beim Verbinden mit Wi-Fi-Netzwerken: [Android-Anleitung](https://support.google.com/android/answer/9075847?hl=en), [iOS-Anleitung](https://support.apple.com/en-us/111107)
-Die Web App kann entweder [hier](http://192.168.4.1) oder durch öffnen der IP Adresse `192.168.4.1` in einem Webbrowser. 
+
+### Öffnen der Web App
+#wh Anmerkung für Android
+#wb Auf Android 15 Geräten, besonders Samsung, wird in Version 1.1 keine Anzeige zum Öffnen der Web App erscheinen.
+#wb Auf der Behebung dieses Fehlers wird gearbeitet.
+Bei dem ersten Verbinden mit dem Gerät wird eine Benachrichtigung erscheinen die auf die Web App weiterleitet erscheinen oder die Web App sich selbst öffnen. **Weiters empfehlen wir sich die Web App im Browser zu markieren um besser zurückkehren zu können.**
+Die Web App kann sonst entweder [hier](http://192.168.4.1) oder durch öffnen der IP Adresse `192.168.4.1` in einem Webbrowser geöffnet werden. 
 Die vollständige Anleitung zur Web-App kann ^[hier](content/user/de/webapp.md) gefunden werden.
 
 ## Funktionsweise
 Der GoalFinder hat 2 Sensoren, die zur Erkennung des Spielgeschehens dienen.
-![SchüttelSensor](assets/img/assembly/P1440892-N.JPG)(623x450)
+![SchüttelSensor](assets/img/assembly/general/P1440892-N.JPG)(623x450)
 Schüttel Sensor (1)
 ![Abstandssensor](assets/img/showcase/P1440908-N.JPG)(403x450)
 Abstandssensor (2)
