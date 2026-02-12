@@ -1,0 +1,98 @@
+{
+    "latest": {
+        "version": "v2.1.0",
+        "date": "2026-02-10",
+        "size": "14.2 MB",
+        "downloadUrl": "#",
+        "changelog": {
+            "en": {
+                "features": [
+                    "Enhanced audio feedback system for improved user guidance",
+                    "New game mode: Timed Challenge",
+                    "Advanced customization options in the web app"
+                ],
+                "improvements": [
+                    "Optimized device communication protocol",
+                    "Faster web app loading times",
+                    "Better error handling and recovery"
+                ],
+                "bugfixes": [
+                    "Fixed connection timeout issues",
+                    "Resolved audio sync problems",
+                    "Corrected display brightness calculation"
+                ]
+            },
+            "de": {
+                "features": [
+                    "Verbessertes Audiorückmeldesystem für bessere Benutzerführung",
+                    "Neuer Spielmodus: Timed Challenge",
+                    "Erweiterte Anpassungsoptionen in der Web-App"
+                ],
+                "improvements": [
+                    "Optimiertes Gerätekommunikationsprotokoll",
+                    "Schnellere Web-App-Ladezeiten",
+                    "Bessere Fehlerbehandlung und -wiederherstellung"
+                ],
+                "bugfixes": [
+                    "Verbindungszeitüberschreitungsprobleme behoben",
+                    "Audiosynchronisationsprobleme gelöst",
+                    "Berechnung der Anzeigehelligkeit korrigiert"
+                ]
+            }
+        }
+    },
+    "previous": [
+        {
+            "version": "v2.0.0",
+            "date": {
+                "en": "2026-01-15",
+                "de": "15.01.2026"
+            },
+            "size": "13.8 MB",
+            "downloadUrl": "#",
+            "notes": {
+                "en": "Major release with redesigned web app",
+                "de": "Große Veröffentlichung mit neu gestalteter Web-App"
+            }
+        },
+        {
+            "version": "v1.2.0",
+            "date": {
+                "en": "2025-11-20",
+                "de": "20.11.2025"
+            },
+            "size": "12.1 MB",
+            "downloadUrl": "#",
+            "notes": {
+                "en": "Added new game modes and improved stability",
+                "de": "Neue Spielmodi hinzugefügt und Stabilität verbessert"
+            }
+        },
+        {
+            "version": "v1.1.0",
+            "date": {
+                "en": "2025-09-05",
+                "de": "05.09.2025"
+            },
+            "size": "11.4 MB",
+            "downloadUrl": "#",
+            "notes": {
+                "en": "Performance improvements and bug fixes",
+                "de": "Leistungsverbesserungen und Fehlerbehebungen"
+            }
+        },
+        {
+            "version": "v1.0.0",
+            "date": {
+                "en": "2025-06-01",
+                "de": "01.06.2025"
+            },
+            "size": "10.5 MB",
+            "downloadUrl": "#",
+            "notes": {
+                "en": "Initial release",
+                "de": "Erstveröffentlichung"
+            }
+        }
+    ]
+}

@@ -1,0 +1,93 @@
+---
+layout: null
+permalink: /download
+description: GoalFinder Software Downloads
+title: Downloads
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="{{ page.description }}" />
+
+		<!-- Base URL for JavaScript -->
+		<script>
+			window.siteBaseUrl = "{{ site.baseurl | default: '' }}";
+		</script>
+
+		<link rel="stylesheet" href="{{ site.baseurl }}/styles/main.css" />
+		<link rel="icon" href="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-shadow.png" type="image/png" />
+
+		<script>
+			(function () {
+				const savedTheme = localStorage.getItem("theme");
+				if (savedTheme === "dark") {
+					document.documentElement.classList.add("dark-mode");
+				}
+			})();
+		</script>
+
+		<script type="module" src="{{ site.baseurl }}/scripts/i18n.js"></script>
+		<script type="module" src="{{ site.baseurl }}/scripts/downloads.js"></script>
+
+		<title data-i18n="dl-page-title">Downloads</title>
+	</head>
+	<body>
+		<main class="download-page">
+			<!-- Header controls -->
+			<nav class="dl-header">
+				<a href="{{ site.baseurl }}/" class="dl-header-logo">
+					<img src="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-shadow.png" alt="GoalFinder Logo" />
+					<span>GoalFinder</span>
+				</a>
+				<div class="dl-header-controls">
+					<button id="dl-dark-toggle" class="dl-control-btn" aria-label="Toggle dark mode">
+						<img class="icon" src="{{ site.baseurl }}/assets/img/svg/dark.svg" alt="mode-icon" />
+						<span class="icon-text" data-i18n="dark-mode">Dark Mode</span>
+					</button>
+					<button id="dl-lang-toggle" class="dl-control-btn" aria-label="Switch language">
+						<span class="icon">DE</span>
+					</button>
+				</div>
+			</nav>
+
+			<!-- Hero section -->
+			<section class="dl-hero">
+				<div class="dl-hero-content">
+					<h1 data-i18n="dl-page-title">Downloads</h1>
+					<p data-i18n="dl-hero-text">GoalFinder is an actively developing project. We continuously push updates to deliver new functionality, improve stability, and provide a better experience. Check back regularly for the latest releases.</p>
+				</div>
+			</section>
+
+			<!-- Latest version -->
+			<section class="dl-latest">
+				<h2 data-i18n="dl-latest-title">Latest Version</h2>
+				<div id="dl-latest-container">
+					<!-- Dynamically rendered from versions.json -->
+				</div>
+			</section>
+
+			<!-- Changelog -->
+			<section class="dl-changelog" id="dl-changelog-container">
+				<!-- Dynamically rendered from versions.json -->
+			</section>
+
+			<!-- Older versions -->
+			<section class="dl-older">
+				<h2 data-i18n="dl-older-title">Previous Versions</h2>
+				<div class="dl-version-list" id="dl-versions-container">
+					<!-- Dynamically rendered from versions.json -->
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<footer class="site-footer">
+				<div class="footer-inner">
+					<p>© 2026 GoalFinder • <a href="{{ site.baseurl }}/credits" data-i18n="credits"></a> • <a href="{{ site.baseurl }}/help" data-i18n="help"></a></p>
+				</div>
+			</footer>
+		</main>
+	</body>
+</html>

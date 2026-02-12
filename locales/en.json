@@ -62,6 +62,20 @@
       "home-download-title": "Downloads",
       "home-download-content": "Keep your GoalFinder up to date and download the latest version of the software.",
       "home-download-btn": "Go to Downloads"
+    },
+    "download-page": {
+      "dl-page-title": "Downloads",
+      "dl-hero-text": "GoalFinder is an actively developing project. We continuously push updates to deliver new functionality, improve stability, and provide a better experience. Check back regularly for the latest releases.",
+      "dl-latest-title": "Latest Version",
+      "dl-latest-badge": "Latest",
+      "dl-date-label": "Date:",
+      "dl-size-label": "Size:",
+      "dl-download-btn": "Download",
+      "dl-older-title": "Previous Versions",
+      "dl-changelog-title": "What's New",
+      "dl-changelog-features": "Features",
+      "dl-changelog-improvements": "Improvements",
+      "dl-changelog-bugfixes": "Bug Fixes"
     }
   },
   "misc": {
