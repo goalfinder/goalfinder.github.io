@@ -57,6 +57,11 @@
       "td-title-short": "Technische Dokumentation",
       "ud-title": "GoalFinder Benutzerdokumentation",
       "ud-title-short": "Benutzerdokumentation"
+    },
+    "downloads": {
+      "home-download-title": "Downloads",
+      "home-download-content": "Halten Sie Ihren GoalFinder auf dem neusten Entwicklungsstand und laden Sie sich die neuste Version der Software herunter.",
+      "home-download-btn": "Zu dem Downloads"
     }
   },
   "misc": {
