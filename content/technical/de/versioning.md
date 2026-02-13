@@ -6,9 +6,7 @@ Aktualisieren Sie die in der Web-App angezeigte Version mit dem `update-version.
 
 **Dev-Builds:**: `python update-version.py X.Y.Z-dev`
 **Reguläre Builds:**: `python update-version.py X.Y.Z`
-
 **Das Format der Versionen wird erzwungen und die Versionierung schlägt fehl, wenn es nicht ordnungsgemäß angegeben wird**
-
 ## Release auf GitHub
 Taggen und pushen, um automatischen Build auszulösen
 

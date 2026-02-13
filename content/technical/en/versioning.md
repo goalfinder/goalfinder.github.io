@@ -6,9 +6,7 @@ Update the version displayed in the web app using the `update-version.py` script
 
 **Dev builds:**: `python update-version.py X.Y.Z-dev`
 **Regular builds:**: `python update-version.py X.Y.Z`
-
 **The format of versions is enforced and versioning will fail if not specified properly**
-
 ## Release to GitHub
 Tag and push to trigger automatic build
 ```bash
