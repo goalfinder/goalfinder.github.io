@@ -1,96 +1,122 @@
 {
     "latest": {
-        "version": "v2.1.0",
-        "date": "2026-02-10",
-        "size": "14.2 MB",
-        "downloadUrl": "#",
+        "version": "v0.1.0a",
+        "date": "13.02.2026",
+        "size": "? MB",
+        "downloadUrl": "?",
         "changelog": {
             "en": {
                 "features": [
-                    "Enhanced audio feedback system for improved user guidance",
-                    "New game mode: Timed Challenge",
-                    "Advanced customization options in the web app"
+                    "Option to factory reset device",
+                    "Added Software Updates over the air",
+                    "Improved device network naming for better clarity"
                 ],
                 "improvements": [
-                    "Optimized device communication protocol",
-                    "Faster web app loading times",
-                    "Better error handling and recovery"
+                    "Optimized usage of device API",
+                    "Improved user experience on smaller width devices",
+                    "Removed unused code"
                 ],
                 "bugfixes": [
-                    "Fixed connection timeout issues",
-                    "Resolved audio sync problems",
-                    "Corrected display brightness calculation"
+                    "Fixed image loading in the Web App",
+                    "Resolved crashing occurrences",
+                    "Corrected player skip issue"
                 ]
             },
             "de": {
                 "features": [
-                    "Verbessertes Audiorückmeldesystem für bessere Benutzerführung",
-                    "Neuer Spielmodus: Timed Challenge",
-                    "Erweiterte Anpassungsoptionen in der Web-App"
+                    "Möglichkeit das Gerät zurückzusetzen",
+                    "Kabellose Software Updates sind ab sofort möglich",
+                    "Verbesserte Benennung des Netzwerkes"
                 ],
                 "improvements": [
-                    "Optimiertes Gerätekommunikationsprotokoll",
-                    "Schnellere Web-App-Ladezeiten",
-                    "Bessere Fehlerbehandlung und -wiederherstellung"
+                    "Optimierte Verwendung der API",
+                    "Verbessertes Layout für schmalere Geräte",
+                    "Ungenutzten Code entfernt"
                 ],
                 "bugfixes": [
-                    "Verbindungszeitüberschreitungsprobleme behoben",
-                    "Audiosynchronisationsprobleme gelöst",
-                    "Berechnung der Anzeigehelligkeit korrigiert"
+                    "Probleme beim Laden von Bildern in der Web App gelöst",
+                    "Absturzursachen behoben",
+                    "Spieler Überspringen Funktion wurde korrigiert"
                 ]
             }
         }
     },
     "previous": [
         {
-            "version": "v2.0.0",
+            "version": "v0.0.3a",
             "date": {
-                "en": "2026-01-15",
-                "de": "15.01.2026"
+                "en": "24.09.2025",
+                "de": "24.09.2025"
             },
-            "size": "13.8 MB",
-            "downloadUrl": "#",
+            "size": "1.2 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.0.3a/firmware.bin",
             "notes": {
-                "en": "Major release with redesigned web app",
-                "de": "Große Veröffentlichung mit neu gestalteter Web-App"
+                "en": "Small code adjustments",
+                "de": "Kleine Code-Anpassungen"
             }
         },
         {
-            "version": "v1.2.0",
+            "version": "v0.0.3",
             "date": {
-                "en": "2025-11-20",
-                "de": "20.11.2025"
+                "en": "24.09.2025",
+                "de": "24.09.2025"
             },
-            "size": "12.1 MB",
-            "downloadUrl": "#",
+            "size": "1.2 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.0.3/firmware.bin",
             "notes": {
-                "en": "Added new game modes and improved stability",
-                "de": "Neue Spielmodi hinzugefügt und Stabilität verbessert"
+                "en": "Hit detection distance configurable & compressed Web App",
+                "de": "Treffermessdistanz konfigurierbar & komprimierte Web App"
             }
         },
         {
-            "version": "v1.1.0",
+            "version": "v0.0.2b",
             "date": {
-                "en": "2025-09-05",
-                "de": "05.09.2025"
+                "en": "10.03.2025",
+                "de": "10.03.2025"
             },
-            "size": "11.4 MB",
-            "downloadUrl": "#",
+            "size": "1.04 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.0.2b/firmware.bin",
             "notes": {
-                "en": "Performance improvements and bug fixes",
-                "de": "Leistungsverbesserungen und Fehlerbehebungen"
+                "en": "Bug fixes",
+                "de": "Fehlerbehebungen"
             }
         },
         {
-            "version": "v1.0.0",
+            "version": "v0.0.2a",
             "date": {
-                "en": "2025-06-01",
-                "de": "01.06.2025"
+                "en": "10.03.2025",
+                "de": "10.03.2025"
             },
-            "size": "10.5 MB",
-            "downloadUrl": "#",
+            "size": "1.04 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.0.2a/firmware.bin",
             "notes": {
-                "en": "Initial release",
+                "en": "Bug fixes",
+                "de": "Fehlerbehebungen"
+            }
+        },
+        {
+            "version": "v0.0.2",
+            "date": {
+                "en": "10.03.2025",
+                "de": "10.03.2025"
+            },
+            "size": "1.04 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.0.2/firmware.bin",
+            "notes": {
+                "en": "Automatische Treffer- und Fehlschuss-Erkennung",
+                "de": "Automatic hit and miss detection"
+            }
+        },
+        {
+            "version": "v0.0.1",
+            "date": {
+                "en": "10.03.2025",
+                "de": "10.03.2025"
+            },
+            "size": "1.03 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.0.1/firmware.bin",
+            "notes": {
+                "en": "Initial Release",
                 "de": "Erstveröffentlichung"
             }
         }
