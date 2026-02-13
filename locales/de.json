@@ -75,7 +75,9 @@
       "dl-changelog-title": "Neuerungen",
       "dl-changelog-features": "Neue Funktionen",
       "dl-changelog-improvements": "Verbesserungen",
-      "dl-changelog-bugfixes": "Fehlerbehebungen"
+      "dl-changelog-bugfixes": "Fehlerbehebungen",
+      "dl-documentation-text": "Mehr Informationen zum Installieren der Updates finden sie in der ",
+      "dl-documentation-button": "Benutzerdokumentation"
     }
   },
   "misc": {

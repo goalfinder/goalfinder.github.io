@@ -75,7 +75,9 @@
       "dl-changelog-title": "What's New",
       "dl-changelog-features": "Features",
       "dl-changelog-improvements": "Improvements",
-      "dl-changelog-bugfixes": "Bug Fixes"
+      "dl-changelog-bugfixes": "Bug Fixes",
+      "dl-documentation-text": "Find more information on how to install Software Updates in the ",
+      "dl-documentation-button": "User Documentation"
     }
   },
   "misc": {
