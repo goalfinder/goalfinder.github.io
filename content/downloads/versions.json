@@ -1,26 +1,26 @@
 {
     "latest": {
-        "version": "v0.2.0",
-        "date": "14.02.2026",
+        "version": "v0.2.1a",
+        "date": "17.02.2026",
         "size": "1.03 MB",
-        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.2.0/firmware.bin",
+        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.2.1a/firmware.bin",
         "changelog": {
             "en": {
                 "features": [
-                    "Adjustment of the Web Apps accent color",
+                    "Setting for WiFi Network Password Protection"/* ,
                     "Web App password authentication",
-                    "Manual language and mode switching"
+                    "Manual language and mode switching" */
                 ],
                 "improvements": [
-                    "Improved Design of Web App",
+                    "Better handling of password saving" /*,
                     "More accurate translations",
-                    "Added Links to GoalFinder website and Developers"
-                ],
+                    "Added Links to GoalFinder website and Developers" */
+                ]/*,
                 "bugfixes": [
                     "Fixed \"style twitching\"",
                     "Resolved inconsistent translations",
                     "Corrected differences in Web App styling"
-                ]
+                ]*/
             },
             "de": {
                 "features": [
@@ -43,12 +43,25 @@
     },
     "previous": [
         {
+            "version": "v0.2.0a",
+            "date": {
+                "en": "14.02.2026",
+                "de": "14.02.2026"
+            },
+            "size": "1.03 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.2.0/firmware.bin",
+            "notes": {
+                "en": "Major Web App Overhaul",
+                "de": "Überarbeitung der Web App"
+            }
+        },
+        {
             "version": "v0.1.0a",
             "date": {
                 "en": "13.02.2026",
                 "de": "13.02.2026"
             },
-            "size": "1.2 MB",
+            "size": "1.02 MB",
             "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.1.3/firmware.bin",
             "notes": {
                 "en": "Small code adjustments",
@@ -61,7 +74,7 @@
                 "en": "24.09.2025",
                 "de": "24.09.2025"
             },
-            "size": "1.2 MB",
+            "size": "1.02 MB",
             "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.0.3a/firmware.bin",
             "notes": {
                 "en": "Small code adjustments",
@@ -74,7 +87,7 @@
                 "en": "24.09.2025",
                 "de": "24.09.2025"
             },
-            "size": "1.2 MB",
+            "size": "1.02 MB",
             "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.0.3/firmware.bin",
             "notes": {
                 "en": "Hit detection distance configurable & compressed Web App",
