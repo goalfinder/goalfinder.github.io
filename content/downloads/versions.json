@@ -7,36 +7,36 @@
         "changelog": {
             "en": {
                 "features": [
-                    "Setting for WiFi Network Password Protection"/* ,
-                    "Web App password authentication",
-                    "Manual language and mode switching" */
+                    "Setting for WiFi Network Password Protection",
+                    "",
+                    ""
                 ],
                 "improvements": [
-                    "Better handling of password saving" /*,
-                    "More accurate translations",
-                    "Added Links to GoalFinder website and Developers" */
-                ]/*,
+                    "Better handling of password saving",
+                    "",
+                    ""
+                ],
                 "bugfixes": [
-                    "Fixed \"style twitching\"",
-                    "Resolved inconsistent translations",
-                    "Corrected differences in Web App styling"
-                ]*/
+                    "",
+                    "",
+                    ""
+                ]
             },
             "de": {
                 "features": [
-                    "Änderbare Akzentfarbe der Web App",
-                    "Web App Passwort-Sicherung",
-                    "Manuelles Sprach- und Modulwechseln"
+                    "Möglichkeit das Netzwerk mit einem Kennwort zu schützen.",
+                    "",
+                    ""
                 ],
                 "improvements": [
-                    "Optimierte Übersetzungen",
-                    "Verbessertes Design der Web App",
-                    "Links zur Webseite und Entwicklern hinzugefügt"
+                    "Besseres speichern von Kennwörtern.",
+                    "",
+                    ""
                 ],
                 "bugfixes": [
-                    "Layout-Verschiebungen gelöst",
-                    "Inkonsistente Übersetzungen behoben",
-                    "Web App Layout korrigiert"
+                    "",
+                    "",
+                    ""
                 ]
             }
         }
