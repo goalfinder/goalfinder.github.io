@@ -96,10 +96,25 @@
         ]
       },
       {
-        "type": "page",
-        "de": "Versionierung",
-        "en": "Versioning",
-        "path": "versioning.md"
+        "type": "category",
+        "de": "Arbeitsflüsse",
+        "en": "Workflows",
+        "path": "workflow.md",
+        "collapsed": false,
+        "children": [
+          {
+            "type": "page",
+            "de": "Veröffentlichungen",
+            "en": "Releases",
+            "path": "release.md"
+          },
+          {
+            "type": "page",
+            "de": "Upload Tool",
+            "en": "Upload Tool",
+            "path": "ult.md"
+          }
+        ]
       }
     ]
   }
