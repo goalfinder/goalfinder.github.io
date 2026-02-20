@@ -1,35 +1,58 @@
 {
     "latest": {
-        "version": "v0.2.1a",
-        "date": "17.02.2026",
-        "size": "1.03 MB",
-        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.2.1a/firmware.bin",
+        "version": "v0.3.0b",
+        "date": "20.02.2026",
+        "size": "1.04 MB",
+        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.3.0b/firmware.bin",
         "changelog": {
             "en": {
                 "features": [
-                    "Setting for WiFi Network Password Protection"
+                    "Added New \"Free Play\" Game Mode",
+                    "New Distance Only Hit Detection"
                 ],
                 "improvements": [
-                    "Better handling of password saving"
+                    "Improved Timing of Reset Function"
+                ],
+                "bug-fixes": [
+                    "Fixed WiFi password not being relaid to the GoalFinder Device",
+                    "Minimal Code-Changes to reduce error logs"
                 ]
             },
             "de": {
                 "features": [
-                    "Möglichkeit das Netzwerk mit einem Kennwort zu schützen."
+                    "Neuer Spielmodus \"Freies Spiel\"",
+                    "Neue Möglichkeit Treffer nur anhand von Abstand zu erkennen"
                 ],
                 "improvements": [
-                    "Besseres speichern von Kennwörtern."
+                    "Verbessertes Timing der Reset Funktion"
+                ],
+                "bug-fixes": [
+                    "Probleme beim Übertragen des WiFi Kennworts behoben",
+                    "Minimale Code Änderungen für die Verringerung von Fehlermeldungen"
                 ]
             }
         }
     },
     "recommended": {
-        "version": "v0.2.1a",
-        "date": "17.02.2026",
-        "size": "1.03MB",
-        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.2.1a/firmware.bin"
+        "version": "v0.3.0b",
+        "date": "20.02.2026",
+        "size": "1.04MB",
+        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.3.0b/firmware.bin"
     },
     "previous": [
+        {
+            "version": "v0.2.1a",
+            "date": {
+                "en": "17.02.2026",
+                "de": "17.02.2026"
+            },
+            "size": "1.03 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.2.1a/firmware.bin",
+            "notes": {
+                "en": "Network Password Web App Protection",
+                "de": "Kennwort Sicherung der Web App"
+            }
+        },
         {
             "version": "v0.2.0a",
             "date": {
