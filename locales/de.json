@@ -93,6 +93,10 @@
     "dark-mode": "Dunkler Modus",
     "light-mode": "Heller Modus"
   },
+  "contact": {
+    "contact-title": "Kontaktiere Uns",
+    "contact-content": "Haben Sie Fragen oder möchten Sie mehr über den GoalFinder herrausfinden"
+  },
   "credits": {
     "c-title": "Credits",
     "c-desc": "Diese Seite enthält eine Anerkennung externer Ressourcen für GoalFinder: Recherchequellen, die Website, das Gerät und alle damit verbundenen Soft- und Hardwarekomponenten.",

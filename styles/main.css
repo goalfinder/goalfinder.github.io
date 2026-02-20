@@ -836,6 +836,59 @@ a:hover {
 	box-shadow: 0 0 10px var(--gradient-start);
 }
 
+/* Contact */
+
+.contact {
+	min-height: 35vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4rem 5vw;
+	background: var(--variable-gradient);
+	position: relative;
+}
+
+.contact-content {
+	text-align: center;
+	max-width: 700px;
+}
+
+.contact-content h2 {
+	font-size: clamp(2rem, 4vw, 3.5rem);
+	font-weight: 800;
+	margin-bottom: 1rem;
+	color: var(--text-inverted);
+}
+
+.contact-content p {
+	font-size: clamp(1.1rem, 2vw, 1.4rem);
+	color: var(--90-bg);
+	margin-bottom: 2rem;
+	line-height: 1.6;
+}
+
+.contact-email {
+	display: inline-block;
+	font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+	font-weight: 600;
+	color: var(--text-inverted);
+	text-decoration: none;
+	padding: 1rem 2.5rem;
+	background: var(--item-background);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: var(--award-border);
+	border-radius: 50px;
+	transition: all 0.3s var(--transition-smooth);
+}
+
+.contact-email:hover {
+	background: var(--item-child-background);
+	transform: translateY(-2px);
+	box-shadow: var(--item-child-shadow);
+	color: var(--text-inverted);
+}
+
 /* Footer */
 
 .site-footer {
