@@ -31,9 +31,39 @@ function renderVersions() {
 	const lang = getCurrentLang();
 	const t = getTranslations();
 
+	renderRecommendedVersion(lang, t);
 	renderLatestVersion(lang, t);
 	renderChangelog(lang, t);
 	renderPreviousVersions(lang, t);
+}
+
+/**
+ * Renders the recommended version card
+ */
+function renderRecommendedVersion(lang, t) {
+	const recommended = versionsData.recommended;
+	const container = document.getElementById("dl-recommended-container");
+	if (!container || !recommended) return;
+
+	container.innerHTML = `
+		<a href="${recommended.downloadUrl}" class="dl-latest-card dl-recommended-card">
+			<div class="dl-latest-info">
+				<span class="dl-version-badge dl-recommended-badge">${t["dl-recommended-badge"] || "Recommended"}</span>
+				<h3 class="dl-latest-name">GoalFinder ${recommended.version}</h3>
+				<div class="dl-latest-meta">
+					<span class="dl-meta-item">
+						<strong>${t["dl-date-label"] || "Date:"}</strong> ${recommended.date}
+					</span>
+					<span class="dl-meta-item">
+						<strong>${t["dl-size-label"] || "Size:"}</strong> ${recommended.size}
+					</span>
+				</div>
+			</div>
+			<div class="dl-latest-action">
+				<span class="dl-download-btn">${t["dl-download-btn"] || "Download"}</span>
+			</div>
+		</a>
+	`;
 }
 
 /**
@@ -67,6 +97,7 @@ function renderLatestVersion(lang, t) {
 
 /**
  * Renders the changelog section for the latest version
+ * Dynamically supports any number of categories with any number of items
  */
 function renderChangelog(lang, t) {
 	const changelog = versionsData.latest?.changelog?.[lang];
@@ -76,27 +107,26 @@ function renderChangelog(lang, t) {
 	const titleKey = `dl-changelog-title-${versionsData.latest.version}`;
 	const title = t[titleKey] || t["dl-changelog-title"] || `What's New in ${versionsData.latest.version}`;
 
+	// Generate columns dynamically from all categories in the changelog
+	const columns = Object.entries(changelog)
+		.map(([categoryKey, items]) => {
+			// Look for translation, fallback to capitalized category key
+			const categoryTitle = t[`dl-changelog-${categoryKey}`] || categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1);
+			return `
+				<div class="dl-changelog-column">
+					<h3>${categoryTitle}</h3>
+					<ul>
+						${items.map((item) => `<li>${item}</li>`).join("")}
+					</ul>
+				</div>
+			`;
+		})
+		.join("");
+
 	container.innerHTML = `
 		<h2>${title.replace("{version}", versionsData.latest.version)}</h2>
 		<div class="dl-changelog-content">
-			<div class="dl-changelog-column">
-				<h3>${t["dl-changelog-features"] || "Features"}</h3>
-				<ul>
-					${changelog.features.map((item) => `<li>${item}</li>`).join("")}
-				</ul>
-			</div>
-			<div class="dl-changelog-column">
-				<h3>${t["dl-changelog-improvements"] || "Improvements"}</h3>
-				<ul>
-					${changelog.improvements.map((item) => `<li>${item}</li>`).join("")}
-				</ul>
-			</div>
-			<div class="dl-changelog-column">
-				<h3>${t["dl-changelog-bugfixes"] || "Bug Fixes"}</h3>
-				<ul>
-					${changelog.bugfixes.map((item) => `<li>${item}</li>`).join("")}
-				</ul>
-			</div>
+			${columns}
 		</div>
 	`;
 }

@@ -77,7 +77,9 @@
       "dl-changelog-improvements": "Improvements",
       "dl-changelog-bugfixes": "Bug Fixes",
       "dl-documentation-text": "Find more information on how to install Software Updates in the ",
-      "dl-documentation-button": "User Documentation"
+      "dl-documentation-button": "User Documentation",
+      "dl-recommended-title": "Empfohlen",
+      "dl-recommended-badge": "Recommended"
     }
   },
   "misc": {

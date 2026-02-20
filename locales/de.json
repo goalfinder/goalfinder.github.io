@@ -77,7 +77,9 @@
       "dl-changelog-improvements": "Verbesserungen",
       "dl-changelog-bugfixes": "Fehlerbehebungen",
       "dl-documentation-text": "Mehr Informationen zum Installieren der Updates finden sie in der ",
-      "dl-documentation-button": "Benutzerdokumentation"
+      "dl-documentation-button": "Benutzerdokumentation",
+      "dl-recommended-title": "Empfohlen",
+      "dl-recommended-badge": "Empfohlen"
     }
   },
   "misc": {

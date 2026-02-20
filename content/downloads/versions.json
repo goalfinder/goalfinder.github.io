@@ -7,39 +7,27 @@
         "changelog": {
             "en": {
                 "features": [
-                    "Setting for WiFi Network Password Protection",
-                    "",
-                    ""
+                    "Setting for WiFi Network Password Protection"
                 ],
                 "improvements": [
-                    "Better handling of password saving",
-                    "",
-                    ""
-                ],
-                "bugfixes": [
-                    "",
-                    "",
-                    ""
+                    "Better handling of password saving"
                 ]
             },
             "de": {
                 "features": [
-                    "Möglichkeit das Netzwerk mit einem Kennwort zu schützen.",
-                    "",
-                    ""
+                    "Möglichkeit das Netzwerk mit einem Kennwort zu schützen."
                 ],
                 "improvements": [
-                    "Besseres speichern von Kennwörtern.",
-                    "",
-                    ""
-                ],
-                "bugfixes": [
-                    "",
-                    "",
-                    ""
+                    "Besseres speichern von Kennwörtern."
                 ]
             }
         }
+    },
+    "recommended": {
+        "version": "v0.2.1a",
+        "date": "17.02.2026",
+        "size": "1.03MB",
+        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.2.1a/firmware.bin"
     },
     "previous": [
         {

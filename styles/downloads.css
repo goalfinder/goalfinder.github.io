@@ -216,15 +216,17 @@ body {
 	margin-top: 1.5rem;
 }
 
-/* Latest Version */
+/* Latest Version & Recommended Version */
 
-.dl-latest {
+.dl-latest,
+.dl-recommended {
 	padding: 0 5vw 3rem;
 	max-width: 800px;
 	margin: 0 auto;
 }
 
-.dl-latest h2 {
+.dl-latest h2,
+.dl-recommended h2 {
 	font-size: clamp(1.5rem, 3vw, 2rem);
 	font-weight: 700;
 	color: var(--text);
@@ -234,7 +236,8 @@ body {
 	display: block;
 }
 
-.dl-latest h2::after {
+.dl-latest h2::after,
+.dl-recommended h2::after {
 	content: "";
 	position: absolute;
 	bottom: -0.5rem;
