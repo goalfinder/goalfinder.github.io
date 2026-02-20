@@ -1,6 +1,9 @@
 # Local Build & Deploy
 The GoalFinder website uses Jekyll to clean up urls. This page contains a description on how to build and deploy jekyll locally.
-Local testing is made possible by both Bundle and the `serve-local.js` script.
+Local testing is made possible by Node.js, Bundle and the `serve-local.js` script.
+
+## Node.js
+Simply run `npm run dev` for local testing with live updates.
 
 ## Bundle
 **1. Build**: `bundle exec jekyll build`
