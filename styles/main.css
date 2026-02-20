@@ -71,6 +71,14 @@ body {
 	height: 100%;
 }
 
+a {
+	color: var(--primary);
+}
+
+a:hover {
+	color: var(--primary-dark);
+}
+
 /* Classes */
 
 .pager {
