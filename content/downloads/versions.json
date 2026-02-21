@@ -1,34 +1,36 @@
 {
     "latest": {
-        "version": "v0.3.0b",
-        "date": "20.02.2026",
-        "size": "1.04 MB",
-        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.3.0b/firmware.bin",
+        "version": "v0.4.0a",
+        "date": "21.02.2026",
+        "size": "2.41 MB",
+        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.4.0a/system.gfpkg",
         "changelog": {
             "en": {
                 "features": [
-                    "Added New \"Free Play\" Game Mode",
-                    "New Distance Only Hit Detection"
+                    "Over the Air updates for the Web App are now possible",
+                    "Warning for updating using .bin instead of .gfpkg files"
                 ],
                 "improvements": [
-                    "Improved Timing of Reset Function"
+                    "Improved Modal Styling",
+                    "Better Handling of Redirect"
                 ],
                 "bug-fixes": [
-                    "Fixed WiFi password not being relaid to the GoalFinder Device",
-                    "Minimal Code-Changes to reduce error logs"
+                    "Fixed Success Response on Software Update",
+                    "Resolved File System Error logs"
                 ]
             },
             "de": {
                 "features": [
-                    "Neuer Spielmodus \"Freies Spiel\"",
-                    "Neue Möglichkeit Treffer nur anhand von Abstand zu erkennen"
+                    "Kabellose Updates der Web App sind ab sofort möglich",
+                    "Update Warnung bei Hochladen von .bin statt .gfpkg Dateien"
                 ],
                 "improvements": [
-                    "Verbessertes Timing der Reset Funktion"
+                    "Verbesserter Style für Pop-Ups",
+                    "Bessere Behandlung von Weiterleitungen"
                 ],
                 "bug-fixes": [
-                    "Probleme beim Übertragen des WiFi Kennworts behoben",
-                    "Minimale Code Änderungen für die Verringerung von Fehlermeldungen"
+                    "Probleme bei der Erfolgs-Rückmeldung von Updates behoben",
+                    "Datei System Fehler Meldungen behoben"
                 ]
             }
         }
@@ -40,6 +42,19 @@
         "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.3.0b/firmware.bin"
     },
     "previous": [
+        {
+            "version": "v0.3.0b",
+            "date": {
+                "en": "20.02.2026",
+                "de": "20.02.2026"
+            },
+            "size": "1.03 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.3.0b/firmware.bin",
+            "notes": {
+                "en": "Improved Production Usability",
+                "de": "Umfangreiche Verbesserungen in der Verwendbarkeit"
+            }
+        },
         {
             "version": "v0.2.1a",
             "date": {
