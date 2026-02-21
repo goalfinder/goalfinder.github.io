@@ -27,7 +27,6 @@ Distance Sensor (2)
 #ib Due to technical limitations, the GoalFinder cannot detect shots that do not touch the board. For this reason, there is the possibility to mark a miss in the Web App.
 
 The following steps are performed to evaluate a shot:
-
 1. The shake sensor (1) constantly performs measurements to detect vibrations.
 2. As soon as a vibration is detected, a 5-second window opens in which a successful hit is recognized.
 3. If the distance sensor (2) detects a hit through the ring, a hit is scored. If the time runs out, it is counted as a miss.

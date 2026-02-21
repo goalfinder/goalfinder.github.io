@@ -1,8 +1,8 @@
-# User Documentation
-Welcome to the user documentation of the GoalFinder project. Our goal is to provide the most comprehensive documentation possible on this page.
+# User Documentation 
+Welcome to the official user documentation for the GoalFinder project. Our objective is to provide clear, comprehensive, and up-to-date information to help you successfully set up and your GoalFinder Device.
 
 #wh Notice
-#wb The user documentation is still in development and is still seeing active changes and therefore might not reflect the final version.
+#wb This user documentation is currently under active development. Content may be updated regularly and may not yet reflect the final version.
 
 ## Table of Contents
 ### Setup
@@ -10,6 +10,10 @@ Welcome to the user documentation of the GoalFinder project. Our goal is to prov
 - ^[Mounting](content/user/en/mounting.md)
 - ^[Web App](content/user/en/webapp.md)
 - ^[Games](content/user/en/games.md)
+
+### Maintenance
+- ^[Updating](content/user/en/update.md)
+
 ### Usage
 - ^[Frequently Asked Questions](content/user/en/faq.md)
 

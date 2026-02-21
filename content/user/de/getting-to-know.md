@@ -27,7 +27,6 @@ Abstandssensor (2)
 #ib Aufgrund von technischen Limitationen kann der GoalFinder Schüsse, die das Brett nicht berühren, nicht erkennen. Aus diesem Grund besteht die Möglichkeit, einen Fehlschuss in der Web-App zu kennzeichnen.
 
 Folgende Schritte werden ausgeführt, um einen Schuss auszuwerten:
-
 1. Der Schüttel Sensor (1) führt konstant Messungen aus, um Vibrationen zu erkennen.
 2. Sobald eine Vibration erkannt wird, wird ein 5-Sekunden-Fenster geöffnet in dem ein erfolgreicher Treffer erkannt wird.
 3. Wenn der Abstandssensor (2) einen Treffer durch den Ring erkennt, wird ein Treffer gewertet. Läuft die Zeit ab, wird es als Fehlschuss gewertet.

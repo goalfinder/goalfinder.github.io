@@ -43,6 +43,19 @@
   },
   {
     "type": "category",
+    "de": "Verwaltung",
+    "en": "Maintenance",
+    "children": [
+      {
+        "type": "page",
+        "de": "Update",
+        "en": "Updating",
+        "path": "update.md"
+      }
+    ]
+  },
+  {
+    "type": "category",
     "de": "Benutzung",
     "en": "Usage",
     "children": []

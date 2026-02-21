@@ -376,7 +376,7 @@ body {
 	text-decoration: none;
 	color: inherit;
 	transition: all 0.25s var(--transition-smooth);
-    box-shadow: 0 4px 15px var(--shadow);
+	box-shadow: 0 4px 15px var(--shadow);
 }
 
 .dl-version-item:hover {
