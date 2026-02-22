@@ -19,6 +19,6 @@ Wählen Sie die empfohlene Version aus; anschließend wird automatisch eine `sys
 4. Ein Fortschrittsfenster zeigt den Status des Updates an und bestätigt den erfolgreichen Abschluss
 
 ## Weitere Versionen
-Einige Alpha- und Beta-Versionen sind möglicherweise nicht auf der offiziellen [GoalFinder Download-Seite](https://goalfinder.github.io/download) verfügbar, können jedoch über die [GoalFinder GitHub Releases](https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases) bezogen werden.
+Einige fehlerhafte oder veraltete Versionen sind möglicherweise nicht auf der offiziellen [GoalFinder Download-Seite](https://goalfinder.github.io/download) verfügbar, können jedoch über die [GoalFinder GitHub Releases](https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases) bezogen werden.
 
 #end

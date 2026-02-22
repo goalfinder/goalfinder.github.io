@@ -19,6 +19,6 @@ Select the recommended version and the page will download a `system.gfpkg` file 
 4. A progress modal will display the update status and confirm completion
 
 ## Other Releases
-Certain alpha and beta releases may not be found on the official [GoalFinder Downloads Page](https://goalfinder.github.io/download) but can still be obtained through [GoalFinder GitHub Releases](https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases)
+Certain faulty or deprecated releases may not be found on the official [GoalFinder Downloads Page](https://goalfinder.github.io/download) but can still be obtained through [GoalFinder GitHub Releases](https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases)
 
 #end
