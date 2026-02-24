@@ -1,45 +1,39 @@
 {
     "latest": {
-        "version": "v0.4.1a",
-        "date": "22.02.2026",
-        "size": "2.41 MB",
-        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.4.1a/system.gfpkg",
+        "version": "v0.4.2b",
+        "date": "24.02.2026",
+        "size": "2.42 MB",
+        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.4.2b/system.gfpkg",
         "changelog": {
             "en": {
-                "features": [
-                    "Restart Warning when Changing certain Settings",
-                    "Option for Automatic Restarting"
-                ],
+                "features": [],
                 "improvements": [
-                    "Better Wording of Text in Settings",
-                    "Improved certain Front-end Logic",
-                    "Safeguarded Handling of DNS"
+                    "Improved Schedulability",
+                    "Added small audio timeouts"
                 ],
                 "bug-fixes": [
-                    "Initializing Issue Resolved"
+                    "Fixed sound selection not working",
+                    "Resolved issue when setting measuring distance"
                 ]
             },
             "de": {
-                "features": [
-                    "Restart Warning when ",
-                    "Update Warnung bei Hochladen von .bin statt .gfpkg Dateien"
-                ],
+                "features": [],
                 "improvements": [
-                    "Verbesserter Style für Pop-Ups",
-                    "Bessere Behandlung von Weiterleitungen"
+                    "Planbarkeit verbessert",
+                    "Kleine Audio Timeouts hinzugefügt"
                 ],
                 "bug-fixes": [
-                    "Probleme bei der Erfolgs-Rückmeldung von Updates behoben",
-                    "Datei System Fehler Meldungen behoben"
+                    "Fehler in der Tonauswahl behoben",
+                    "Messdistanzlimitierung entfernt"
                 ]
             }
         }
     },
     "recommended": {
-        "version": "v0.3.0b",
-        "date": "20.02.2026",
-        "size": "1.04MB",
-        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.3.0b/firmware.bin"
+        "version": "v0.4.2b",
+        "date": "24.02.2026",
+        "size": "2.42MB",
+        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.4.2b/system.gfpkg"
     },
     "previous": [
         {
