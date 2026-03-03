@@ -56,7 +56,9 @@
       "td-title": "GoalFinder Technische Dokumentation",
       "td-title-short": "Technische Dokumentation",
       "ud-title": "GoalFinder Benutzerdokumentation",
-      "ud-title-short": "Benutzerdokumentation"
+      "ud-title-short": "Benutzerdokumentation",
+      "bg-title": "GoalFinder Bauanleitung",
+      "bg-title-short": "Bauanleitung"
     },
     "downloads": {
       "home-download-title": "Downloads",

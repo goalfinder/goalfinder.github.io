@@ -1,0 +1,13 @@
+[
+  {
+    "type": "config",
+    "content-base-path": "../content/build-guide/",
+    "default-page": "introduction.md"
+  },
+  {
+    "type": "page",
+    "de": "Willkommen",
+    "en": "Welcome",
+    "path": "introduction.md"
+  }
+]
