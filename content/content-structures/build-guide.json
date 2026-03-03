@@ -6,8 +6,14 @@
   },
   {
     "type": "page",
-    "de": "Willkommen",
-    "en": "Welcome",
+    "de": "Einleitung",
+    "en": "Introduction",
     "path": "introduction.md"
+  },
+  {
+    "type": "page",
+    "de": "Teile",
+    "en": "Parts",
+    "path": "parts.md"
   }
 ]
