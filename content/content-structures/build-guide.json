@@ -29,15 +29,15 @@
       },
       {
         "type": "page",
-        "de": "Platine",
-        "en": "PCB",
-        "path": "pcb.md"
-      },
-      {
-        "type": "page",
         "de": "Elektronik",
         "en": "Electronics",
         "path": "electronics.md"
+      },
+      {
+        "type": "page",
+        "de": "Platine",
+        "en": "PCB",
+        "path": "pcb.md"
       }
     ]
   }
