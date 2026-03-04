@@ -690,6 +690,7 @@ class MarkdownConverter {
 				}) // Images with optional dimensions
 				.replace(/\^\[([^\]]+)\]\(([^)]+)\)/g, (match, text, link) => `<span class="markdown-page-link" data-path="${link}">${text}</span>`) // Inter page link
 				.replace(/\[\[([^\]]+)\]\(([^)]+)\)\]/g, '<span id="$2" class="markdown-button">$1</span>') // Button links with ID
+				.replace(/\/\[([^\]]*)\]\(([^)]+)\)/g, '<a href="$2" download class="markdown-link markdown-download">$1</a>') // Download links (slash-prefixed)
 				.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="markdown-link">$1</a>') // Links
 				.replace(/~~(.*?)~~/g, '<del class="markdown-strikethrough">$1</del>') // Strikethrough
 				.replace(/\*\*(.*?)\*\*/g, '<strong class="markdown-bold">$1</strong>') // Bold
