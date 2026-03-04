@@ -12,7 +12,7 @@ Hier sind alle für die Montage erforderlichen Bauteile aufgelistet:
 - 1x 35k SMD-Widerstand
 - 1x IRLML2502 SMD-MOSFET
 
-- 2x 2-polige weibliche JST-Buchse
+- 3x 2-polige weibliche JST-Buchse
 - 1x 2-polige männliche JST-Buchse
 - 1x 3-polige weibliche JST-Buchse
 - 30x 2,54mm Stiftleiste (längste: 10 Pins)
