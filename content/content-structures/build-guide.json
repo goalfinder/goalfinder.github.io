@@ -40,5 +40,30 @@
         "path": "pcb.md"
       }
     ]
+  },
+  {
+    "type": "category",
+    "de": "Bauanleitung",
+    "en": "Assembly Steps",
+    "children": [
+      {
+        "type": "page",
+        "de": "Platine",
+        "en": "PCB Assembly",
+        "path": "assemble-pcb.md"
+      },
+      {
+        "type": "page",
+        "de": "Gehäuse",
+        "en": "Housing Assembly",
+        "path": "assemble-housing.md"
+      },
+      {
+        "type": "page",
+        "de": "Endmontage",
+        "en": "Final Assembly",
+        "path": "assemble-final.md"
+      }
+    ]
   }
 ]
