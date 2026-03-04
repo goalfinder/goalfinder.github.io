@@ -11,9 +11,34 @@
     "path": "introduction.md"
   },
   {
-    "type": "page",
+    "type": "category",
     "de": "Teile",
     "en": "Parts",
-    "path": "parts.md"
+    "children": [
+      {
+        "type": "page",
+        "de": "Übersicht",
+        "en": "Summary",
+        "path": "parts.md"
+      },
+      {
+        "type": "page",
+        "de": "Gehäuse",
+        "en": "Housing",
+        "path": "housing.md"
+      },
+      {
+        "type": "page",
+        "de": "Platine",
+        "en": "PCB",
+        "path": "pcb.md"
+      },
+      {
+        "type": "page",
+        "de": "Elektronik",
+        "en": "Electronics",
+        "path": "electronics.md"
+      }
+    ]
   }
 ]

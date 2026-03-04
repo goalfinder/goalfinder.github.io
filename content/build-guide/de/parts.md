@@ -11,7 +11,7 @@ Diese Seite enthält eine Übersicht aller Komponenten, die für den vollständi
 
 ## Gehäuse & Elektronik
  - ^[Gehäuse](../content/build-guide/en/hosuing.md)
- - ^[Leiterplatte](../content/build-guide/en/pcb.md)
+ - ^[Platine](../content/build-guide/en/pcb.md)
  - ^[Elektronik](../content/build-guide/en/electronics.md)
 
 #end
