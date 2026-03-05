@@ -1,5 +1,4 @@
 # Endmontage
-
 ## 7. Leiterplatte auf Haupt-Halterung montieren
 Verbinden Sie den Erschütterungssensor mit dem 3-poligen JST-Stecker und den Audio-Treiber mit dem Verstärker. Setzen Sie die Leiterplatte auf die Haupt-Halterung – die Durchgangslöcher ermöglichen ein einfaches Einrasten ohne zusätzliche Befestigung.
 ![PCB Connecting](assets/img/assembly/steps/high_res/GF_assembly_45.jpg)(1020x1228)

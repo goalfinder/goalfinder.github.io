@@ -1,5 +1,4 @@
 # Gehäusemontage
-
 ## 3. Audio-Treiber montieren
 Befestigen Sie den Audio-Treiber mit vier Schrauben und Unterlegscheiben an der unteren Gehäuseplatte.
 ![Audio-Treiber montiert](assets/img/assembly/steps/high_res/GF_assembly_34.jpg)(1020x1228)

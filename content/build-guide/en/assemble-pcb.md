@@ -1,5 +1,4 @@
 # PCB Assembly
-
 ## 1. Assemble the PCB
 Follow the provided schematics and sources to assemble the PCB. The ToF sensor and amplifier should be mounted directly onto the PCB.
 ![Schematic](assets/img/assembly/doc/schematic.png)

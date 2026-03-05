@@ -1,5 +1,4 @@
 # Housing Assembly
-
 ## 3. Mount the Audio Driver
 Attach the audio driver to the bottom housing plate using four screws and flat washers.
 ![Audio Driver Mounted](assets/img/assembly/steps/high_res/GF_assembly_34.jpg)(1020x1228)

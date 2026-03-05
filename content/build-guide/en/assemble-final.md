@@ -1,5 +1,4 @@
 # Final Assembly
-
 ## 7. Mount the PCB on the Main Bracket
 Connect the shake sensor using the 3-pin JST connector and connect the audio driver to the amplifier. Place the PCB onto the main bracket—the through holes should allow the PCB to snap into place without additional fasteners.
 ![PCB Connecting](assets/img/assembly/steps/high_res/GF_assembly_45.jpg)(1020x1228)

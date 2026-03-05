@@ -1,5 +1,4 @@
 # Zusammenbau der Leiterplatte
-
 ## 1. Leiterplatte montieren
 Montieren Sie die elektronischen Komponenten auf der Platine. Als Hilfestellung können der Schaltplan und dass [KiCad-Projekt](https://github.com/htl-leo-club-embedded-iot/GoalFinder/tree/main/blueprint/pcb/1.5) weiterhelfen. Der ToF-Sensor und der Verstärker werden direkt auf der Leiterplatte angebracht.
 ![Schaltplan](assets/img/assembly/doc/schematic.png)
