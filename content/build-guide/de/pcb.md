@@ -19,7 +19,7 @@ Hier sind alle für die Montage erforderlichen Bauteile aufgelistet:
 
 ## Downloads
 #ih Teileliste
-#ib Wenn Sie die SMD-Bauteile fertigen lassen möchten, besuchen Sie das [Projekt-Repository](https://github.com/htl-leo-club-embedded-iot/GoalFinder/tree/main/blueprint/pcb/1.5) und erstellen Sie eine Teileliste aus dem KiCAD-Projekt.
+#ib Wenn du die SMD-Bauteile fertigen lassen möchtest, besuche das [Projekt-Repository](https://github.com/htl-leo-club-embedded-iot/GoalFinder/tree/main/blueprint/pcb/1.5) und erstelle eine Teileliste aus dem KiCAD-Projekt.
 #ib
 
 /[Geber-Dateien herunterladen](content/build-guide/download/gf-1.5-pcb.zip)

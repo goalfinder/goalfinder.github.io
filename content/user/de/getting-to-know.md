@@ -12,9 +12,9 @@ Hilfe beim Verbinden mit Wi-Fi-Netzwerken: [Android-Anleitung](https://support.g
 #wh Anmerkung für Android
 #wb Auf Android 15 Geräten, besonders Samsung, wird in Version 1.1 keine Anzeige zum Öffnen der Web App erscheinen.
 #wb Auf der Behebung dieses Fehlers wird gearbeitet.
-Bei dem ersten Verbinden mit dem Gerät wird eine Benachrichtigung erscheinen die auf die Web App weiterleitet erscheinen oder die Web App sich selbst öffnen. **Weiters empfehlen wir sich die Web App im Browser zu markieren um besser zurückkehren zu können.**
-Die Web App kann sonst entweder [hier](http://192.168.4.1) oder durch öffnen der IP Adresse `192.168.4.1` in einem Webbrowser geöffnet werden.  **Dies funktioniert nur wenn man mit dem Netzwerk des GoalFinders verbunden ist**
-Die vollständige Anleitung zur Web-App kann ^[hier](content/user/de/webapp.md) gefunden werden.
+Bei dem ersten Verbinden mit dem Gerät wird eine Benachrichtigung erscheinen die auf die Web App weiterleitet erscheinen oder die Web App sich selbst öffnen. **Weiters empfehlen wir, die Web App im Browser zu markieren, um besser zurückkehren zu können.**
+Die Web App kann sonst entweder [hier](http://192.168.4.1) oder durch Öffnen der IP-Adresse `192.168.4.1` in einem Webbrowser geöffnet werden.  **Dies funktioniert nur, wenn man mit dem Netzwerk des GoalFinders verbunden ist.**
+Die vollständige Anleitung zur Web-App findest du ^[hier](content/user/de/webapp.md).
 
 ## Funktionsweise
 Der GoalFinder hat 2 Sensoren, die zur Erkennung des Spielgeschehens dienen.
