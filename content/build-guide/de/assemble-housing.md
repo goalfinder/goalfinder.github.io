@@ -20,4 +20,3 @@ Schraube die untere Platte (mit Audio-Treiber) an die innere Halterung.
 *Untere Platte und innere Halterung montiert*
 
 #end
-x
