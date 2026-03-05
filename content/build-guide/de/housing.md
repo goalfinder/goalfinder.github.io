@@ -2,6 +2,8 @@
 #ih Downloads
 #ib Alle Maße der `.obj`-Dateien sind in Millimetern (mm).
 
+/[Kombinierter Download aller Dateien](/content/build-guide/download/gf-1.10-housing.zip)
+
 ## Innere Halterungen
 Die inneren Halterungen bestehen aus drei speziellen Halterungen für die Leiterplatte (PCB), Sensoren und Zubehör. Sie sorgen für eine sichere Befestigung und eine einfache Installation aller internen Komponenten.
 

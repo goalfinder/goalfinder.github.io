@@ -2,6 +2,8 @@
 #ih Downloads
 #ib All `.obj` file measurements are in millimeters (mm).
 
+/[Download the archive containing all files](/content/build-guide/download/gf-1.10-housing.zip)
+
 ## Inner Mounts
 The inner mounts consist of three brackets designed for the PCB, sensors, and accessories. These ensure secure placement and easy installation of all internal components.
 
