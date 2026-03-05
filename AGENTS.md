@@ -6,3 +6,7 @@ This is a embedded project aiming to help visually impaired people play basketba
 
  - Don't mess with new lines in any given `.md` file, this is due to spacing rules of the markdown converter.
  - Always assume that a function already exists, however always fact check it really does.
+
+# Language
+
+ - When addressing the user in german find a middle ground between being too polite and too direct.

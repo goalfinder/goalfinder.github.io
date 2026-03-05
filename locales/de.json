@@ -62,12 +62,12 @@
     },
     "downloads": {
       "home-download-title": "Downloads",
-      "home-download-content": "Halten Sie Ihren GoalFinder auf dem neusten Entwicklungsstand und laden Sie sich die neuste Version der Software herunter.",
-      "home-download-btn": "Zu dem Downloads"
+      "home-download-content": "Halte deinen GoalFinder auf dem neuesten Stand und lade dir die neueste Version der Software herunter.",
+      "home-download-btn": "Zu den Downloads"
     },
     "download-page": {
       "dl-page-title": "Downloads",
-      "dl-hero-text": "GoalFinder ist ein aktiv weiterentwickeltes Projekt. Wir arbeiten kontinuierlich an Updates, um neue Funktionen bereitzustellen und ein besseres Erlebnis zu bieten. Schauen Sie regelmäßig vorbei, um die neuesten Versionen herunterzuladen.",
+      "dl-hero-text": "GoalFinder ist ein aktiv weiterentwickeltes Projekt. Wir arbeiten kontinuierlich an Updates, um neue Funktionen bereitzustellen und ein besseres Erlebnis zu bieten. Schau regelmäßig vorbei, um die neuesten Versionen herunterzuladen.",
       "dl-latest-title": "Neueste Version",
       "dl-latest-badge": "Aktuell",
       "dl-date-label": "Datum:",
@@ -78,7 +78,7 @@
       "dl-changelog-features": "Neue Funktionen",
       "dl-changelog-improvements": "Verbesserungen",
       "dl-changelog-bugfixes": "Fehlerbehebungen",
-      "dl-documentation-text": "Mehr Informationen zum Installieren der Updates finden sie in der ",
+      "dl-documentation-text": "Mehr Informationen zum Installieren der Updates findest du in der ",
       "dl-documentation-button": "Benutzerdokumentation",
       "dl-recommended-title": "Empfohlen",
       "dl-recommended-badge": "Empfohlen"
@@ -103,8 +103,8 @@
     "bg-cta-btn": "Bauanleitung"
   },
   "contact": {
-    "contact-title": "Kontaktiere Uns",
-    "contact-content": "Haben Sie Fragen oder möchten Sie mehr über den GoalFinder herrausfinden"
+    "contact-title": "Kontaktiere uns",
+    "contact-content": "Hast du Fragen oder möchtest du mehr über den GoalFinder herausfinden?"
   },
   "credits": {
     "c-title": "Credits",
@@ -129,15 +129,15 @@
     "blog-sort-oldest": "Älteste zuerst",
     "blog-sort-title-asc": "Titel A-Z",
     "blog-sort-title-desc": "Titel Z-A",
-    "blog-no-results": "Keine Beiträge gefunden, die Ihrer Suche entsprechen.",
+    "blog-no-results": "Keine Beiträge gefunden, die deiner Suche entsprechen.",
     "blog-no-posts": "Noch keine Blogbeiträge vorhanden.",
-    "blog-load-error": "Blogbeiträge konnten nicht geladen werden. Bitte versuchen Sie es später erneut.",
+    "blog-load-error": "Blogbeiträge konnten nicht geladen werden. Bitte versuche es später erneut.",
     "blog-read-more": "Weiterlesen",
     "blog-back": "Zurück zu den Beiträgen",
     "blog-latest": "Neuester Beitrag",
     "blog-view-all": "Alle Blogbeiträge anzeigen",
     "blog-welcome-title": "Willkommen",
-    "blog-welcome-text": "Willkommen bei GoalFinder! Dies ist die zentrale Anlaufstelle für Informationen rund um das Projekt. Bleiben Sie dran für Updates und neue Inhalte.",
+    "blog-welcome-text": "Willkommen bei GoalFinder! Dies ist die zentrale Anlaufstelle für Informationen rund um das Projekt. Bleib dran für Updates und neue Inhalte.",
     "blog-quick-links": "Schnellzugriffe"
   }
 }
