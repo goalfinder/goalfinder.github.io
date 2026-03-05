@@ -18,10 +18,6 @@ Hier sind alle für die Montage erforderlichen Bauteile aufgelistet:
 - 30x 2,54mm Stiftleiste (längste: 10 Pins)
 
 ## Downloads
-#ih Teileliste
-#ib Wenn du die SMD-Bauteile fertigen lassen möchtest, besuche das [Projekt-Repository](https://github.com/htl-leo-club-embedded-iot/GoalFinder/tree/main/blueprint/pcb/1.5) und erstelle eine Teileliste aus dem KiCAD-Projekt.
-#ib
-
 /[Geber-Dateien herunterladen](content/build-guide/download/gf-1.5-pcb.zip)
 
 #end

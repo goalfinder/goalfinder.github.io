@@ -18,10 +18,6 @@ Below is a list of all utility parts needed for assembly:
 - 30x 2.54mm Pin Header (longest: 10 pins)
 
 ## Downloads
-#ih Parts List
-#ib If you want to have the SMD parts manufactured, visit the [project repository](https://github.com/htl-leo-club-embedded-iot/GoalFinder/tree/main/blueprint/pcb/1.5) and create a parts list from the KiCAD project.
-#ib
-
 /[Download Gerber Files](content/build-guide/download/gf-1.5-pcb.zip)
 
 #end
