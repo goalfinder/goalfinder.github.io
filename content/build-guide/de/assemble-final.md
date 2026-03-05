@@ -18,6 +18,6 @@ Montieren Sie die vier vertikalen Gehäuseplatten rund um das Gerät und befesti
 Besuchen Sie das [GoalFinder Repository](), klonen Sie das Projekt und laden Sie die Firmware mit PlatformIO hoch. Führen Sie `pio run -t upload` und `pio run -t uploadfs` im Verzeichnis `client/embedded/` aus.
 
 ## 10. Weitere Informationen
-Wenn Sie diesen Schritt erreicht haben, ist Ihr GoalFinder fertig montiert. Haben Sie Probleme gehabt oder Ideen zur Verbesserung? Kontaktieren Sie uns gerne – wir freuen uns über jedes Feedback.
+Wenn Sie diesen Schritt erreicht haben, ist Ihr GoalFinder fertig montiert. Haben Sie Probleme gehabt oder Ideen zur Verbesserung? Kontaktieren Sie uns gerne, wir freuen uns über jedes Feedback.
 
 #end
