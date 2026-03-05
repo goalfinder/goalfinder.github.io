@@ -97,6 +97,11 @@
     "dark-mode": "Dark Mode",
     "light-mode": "Light Mode"
   },
+  "build-guide-home": {
+    "bg-cta-title": "Build Your Own GoalFinder",
+    "bg-cta-content": "GoalFinder is fully open source. Follow our step-by-step build guide to assemble your own device from scratch.",
+    "bg-cta-btn": "Build Guide"
+  },
   "contact": {
     "contact-title": "Contact Us",
     "contact-content": "Have questions or want to learn more about GoalFinder?"

@@ -97,6 +97,11 @@
     "dark-mode": "Dunkler Modus",
     "light-mode": "Heller Modus"
   },
+  "build-guide-home": {
+    "bg-cta-title": "Eigenen GoalFinder bauen",
+    "bg-cta-content": "GoalFinder ist vollständig Open Source. Folge unserer Schritt-für-Schritt-Bauanleitung und baue dein eigenes Gerät von Grund auf.",
+    "bg-cta-btn": "Bauanleitung"
+  },
   "contact": {
     "contact-title": "Kontaktiere Uns",
     "contact-content": "Haben Sie Fragen oder möchten Sie mehr über den GoalFinder herrausfinden"
