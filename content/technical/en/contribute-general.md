@@ -11,6 +11,6 @@ If you find a bug or incorrect behavior, open an issue with the `bug` label and 
 Fork the repository and submit a pull request with a concise summary of your changes, related issues, and any tests or screenshots that demonstrate the update.
 
 ## Already a project member?
-Read the documentation on our ^[GitHub](github.md) setup for more detailed instructions.
+Read the documentation on our ^[GitHub](../content/technical/en/github.md) setup for more detailed instructions.
 
 #end

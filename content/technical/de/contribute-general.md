@@ -11,6 +11,6 @@ Wenn du einen Fehler oder falsches Verhalten findest, öffne ein Issue mit dem `
 Forke das Repository und reiche einen Pull Request mit einer prägnanten Zusammenfassung deiner Änderungen, verwandten Issues und allen Tests oder Screenshots ein, die das Update demonstrieren.
 
 ### Bereits ein Projektmitglied?
-Lies dir die Dokumentation zu unserem ^[GitHub Verzeichnis](github.md) durch, für detaillierte Anweisungen.
+Lies dir die Dokumentation zu unserem ^[GitHub Verzeichnis](../content/technical/de/github.md) durch, für detaillierte Anweisungen.
 
 #end

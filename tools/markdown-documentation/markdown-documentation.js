@@ -461,25 +461,16 @@ function setupSearchResultClickHandlers() {
 async function navigateToSearchResult(path, searchTerm) {
 	if (!path) return;
 
-	// Find and select the corresponding topic button
-	const targetButton = document.querySelector(`[data-path="${path}"]`);
-
-	// Deselect current selections
-	if (currentlySelectedTopic) {
-		currentlySelectedTopic.classList.remove("topic-selected");
-		currentlySelectedTopic.classList.add("topic-unselected");
-	}
-	if (currentlySelectedCategory) {
-		currentlySelectedCategory.classList.remove("topic-category-button-selected");
-		currentlySelectedCategory = null;
+	// Expand parent categories if the target page is inside a collapsed category
+	const parentCategories = findParentCategories(browser.contentStructure, path);
+	if (parentCategories && parentCategories.length > 0) {
+		for (const categoryName of parentCategories) {
+			await expandCategoryByName(categoryName);
+		}
 	}
 
-	// If the button exists in the DOM, select it
-	if (targetButton) {
-		targetButton.classList.remove("topic-unselected");
-		targetButton.classList.add("topic-selected");
-		currentlySelectedTopic = targetButton;
-	}
+	// Select the target in the sidebar (handles both topic and category buttons)
+	selectNavigationTarget(path);
 
 	// Load and display the content
 	const md = await converter.loadMarkdown(path);
@@ -492,6 +483,7 @@ async function navigateToSearchResult(path, searchTerm) {
 	rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 	setupRightPanelListeners(rightPanelHeader);
 	setupEndButtonListeners();
+	setupPageLinkListeners();
 
 	// Save state
 	saveContentStructureState();
@@ -657,7 +649,8 @@ function generateCategoryChildrenHTML(categoryItem) {
 
 				// Generate HTML for all categories - let DOM state management handle visibility
 				if (item.path) {
-					html += `<p class="topic-category-button-unselected topic-category-button" id="topic-category-topic-${itemName}">${itemName}</p>`;
+					const categoryPath = browser.getItemPath(item);
+					html += `<p class="topic-category-button-unselected topic-category-button" id="topic-category-topic-${itemName}" data-path="${categoryPath}">${itemName}</p>`;
 				} else {
 					html += `<p class="topic-category" id="topic-category-${itemName}">${itemName}</p>`;
 				}
@@ -780,6 +773,7 @@ async function restoreSelectedPage(savedPagePath, savedCategoryName) {
 			rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 			setupRightPanelListeners(rightPanelHeader);
 			setupEndButtonListeners();
+			setupPageLinkListeners();
 		}
 	} else if (savedCategoryName) {
 		// Find and select the category button
@@ -802,6 +796,7 @@ async function restoreSelectedPage(savedPagePath, savedCategoryName) {
 				rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 				setupRightPanelListeners(rightPanelHeader);
 				setupEndButtonListeners();
+				setupPageLinkListeners();
 			}
 		}
 	}
@@ -949,6 +944,8 @@ function setupEventListenersForNewElements() {
 				saveContentStructureState();
 				await onToggle(button);
 			}
+
+			setupPageLinkListeners();
 		});
 	});
 
@@ -982,7 +979,56 @@ function setupEventListenersForNewElements() {
 			rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 			setupRightPanelListeners(rightPanelHeader);
 			setupEndButtonListeners();
+			setupPageLinkListeners();
 		});
+	});
+}
+
+/**
+ * Select a navigation target in the sidebar, handling both topic buttons and category buttons.
+ * Deselects the current selection and applies appropriate highlighting.
+ * @param {string} path - The data-path of the target to select
+ */
+function selectNavigationTarget(path) {
+	const targetButton = document.querySelector(`[data-path="${path}"]`);
+
+	// Deselect current selections
+	if (currentlySelectedTopic) {
+		currentlySelectedTopic.classList.remove("topic-selected");
+		currentlySelectedTopic.classList.add("topic-unselected");
+		currentlySelectedTopic = null;
+	}
+	if (currentlySelectedCategory) {
+		currentlySelectedCategory.classList.remove("topic-category-button-selected");
+		currentlySelectedCategory = null;
+	}
+
+	if (!targetButton) return;
+
+	// Check if target is a category button or a regular topic button
+	if (targetButton.classList.contains("topic-category-button")) {
+		targetButton.classList.add("topic-category-button-selected");
+		currentlySelectedCategory = targetButton;
+	} else {
+		targetButton.classList.remove("topic-unselected");
+		targetButton.classList.add("topic-selected");
+		currentlySelectedTopic = targetButton;
+	}
+}
+
+/**
+ * Set up click handlers for page links in the current preview content
+ */
+function setupPageLinkListeners() {
+	const pageLinks = document.querySelectorAll(".markdown-page-link");
+	pageLinks.forEach((button) => {
+		if (button) {
+			button.addEventListener("click", () => {
+				const currentButton = button;
+				const path = currentButton.dataset.path;
+				navigateToSearchResult(path);
+			});
+		}
 	});
 }
 
@@ -997,46 +1043,40 @@ function setupEndButtonListeners() {
 		button.addEventListener("click", async () => {
 			const path = button.dataset.path;
 			if (path) {
-				// Find and select the corresponding topic button
-				const targetButton = document.querySelector(`[data-path="${path}"]`);
-				if (targetButton) {
-					// Deselect current topic
-					if (currentlySelectedTopic) {
-						currentlySelectedTopic.classList.remove("topic-selected");
-						currentlySelectedTopic.classList.add("topic-unselected");
+				// Expand parent categories if the target is inside a collapsed category
+				const parentCategories = findParentCategories(browser.contentStructure, path);
+				if (parentCategories && parentCategories.length > 0) {
+					for (const categoryName of parentCategories) {
+						await expandCategoryByName(categoryName);
 					}
-
-					// Clear the currently selected category
-					if (currentlySelectedCategory) {
-						currentlySelectedCategory.classList.remove("topic-category-button-selected");
-						currentlySelectedCategory = null;
-					}
-
-					// Select the new topic button
-					targetButton.classList.remove("topic-unselected");
-					targetButton.classList.add("topic-selected");
-					currentlySelectedTopic = targetButton;
-
-					// Load and display the content
-					const md = await converter.loadMarkdown(path);
-					currentMarkdownContent = md;
-					const html = converter.convert(md, path);
-					preview.innerHTML = html;
-
-					const rightPanelHeader = document.getElementById("right-panel-header");
-					const headings = await getMarkdownHeaders(path);
-					rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
-					setupRightPanelListeners(rightPanelHeader);
-
-					// Scroll to top of display window instantly
-					const displayWindow = document.querySelector(".display-window");
-					if (displayWindow) {
-						displayWindow.scrollTop = 0;
-					}
-
-					// Re-setup event listeners for new end buttons
-					setupEndButtonListeners();
 				}
+
+				// Select the target in the sidebar (handles both topic and category buttons)
+				selectNavigationTarget(path);
+
+				// Load and display the content
+				const md = await converter.loadMarkdown(path);
+				currentMarkdownContent = md;
+				const html = converter.convert(md, path);
+				preview.innerHTML = html;
+
+				const rightPanelHeader = document.getElementById("right-panel-header");
+				const headings = await getMarkdownHeaders(path);
+				rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
+				setupRightPanelListeners(rightPanelHeader);
+
+				// Scroll to top of display window instantly
+				const displayWindow = document.querySelector(".display-window");
+				if (displayWindow) {
+					displayWindow.scrollTop = 0;
+				}
+
+				// Save the selected page state
+				saveContentStructureState();
+
+				// Re-setup event listeners for new content
+				setupEndButtonListeners();
+				setupPageLinkListeners();
 			}
 		});
 	});
@@ -1045,49 +1085,40 @@ function setupEndButtonListeners() {
 		button.addEventListener("click", async () => {
 			const path = button.dataset.path;
 			if (path) {
-				// Find and select the corresponding topic button
-				const targetButton = document.querySelector(`[data-path="${path}"]`);
-				if (targetButton) {
-					// Deselect current topic
-					if (currentlySelectedTopic) {
-						currentlySelectedTopic.classList.remove("topic-selected");
-						currentlySelectedTopic.classList.add("topic-unselected");
+				// Expand parent categories if the target is inside a collapsed category
+				const parentCategories = findParentCategories(browser.contentStructure, path);
+				if (parentCategories && parentCategories.length > 0) {
+					for (const categoryName of parentCategories) {
+						await expandCategoryByName(categoryName);
 					}
-
-					// Clear the currently selected category
-					if (currentlySelectedCategory) {
-						currentlySelectedCategory.classList.remove("topic-category-button-selected");
-						currentlySelectedCategory = null;
-					}
-
-					// Select the new topic button
-					targetButton.classList.remove("topic-unselected");
-					targetButton.classList.add("topic-selected");
-					currentlySelectedTopic = targetButton;
-
-					// Load and display the content
-					const md = await converter.loadMarkdown(path);
-					currentMarkdownContent = md;
-					const html = converter.convert(md, path);
-					preview.innerHTML = html;
-
-					const rightPanelHeader = document.getElementById("right-panel-header");
-					const headings = await getMarkdownHeaders(path);
-					rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
-					setupRightPanelListeners(rightPanelHeader);
-
-					// Scroll to top of display window instantly
-					const displayWindow = document.querySelector(".display-window");
-					if (displayWindow) {
-						displayWindow.scrollTop = 0;
-					}
-
-					// Save the selected page state
-					saveContentStructureState();
-
-					// Re-setup event listeners for new end buttons
-					setupEndButtonListeners();
 				}
+
+				// Select the target in the sidebar (handles both topic and category buttons)
+				selectNavigationTarget(path);
+
+				// Load and display the content
+				const md = await converter.loadMarkdown(path);
+				currentMarkdownContent = md;
+				const html = converter.convert(md, path);
+				preview.innerHTML = html;
+
+				const rightPanelHeader = document.getElementById("right-panel-header");
+				const headings = await getMarkdownHeaders(path);
+				rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
+				setupRightPanelListeners(rightPanelHeader);
+
+				// Scroll to top of display window instantly
+				const displayWindow = document.querySelector(".display-window");
+				if (displayWindow) {
+					displayWindow.scrollTop = 0;
+				}
+
+				// Save the selected page state
+				saveContentStructureState();
+
+				// Re-setup event listeners for new content
+				setupEndButtonListeners();
+				setupPageLinkListeners();
 			}
 		});
 	});
@@ -1117,8 +1148,6 @@ async function setupEventListeners() {
 		}
 
 		if (categoryItem) {
-			const isExpanded = !categoryItem.collapsed;
-
 			// Check if children exist in DOM to determine actual UI state
 			let hasChildrenInDOM = false;
 			if (categoryItem.children && categoryItem.children.length > 0) {
@@ -1237,6 +1266,7 @@ async function setupEventListeners() {
 			rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 			setupRightPanelListeners(rightPanelHeader);
 			setupEndButtonListeners();
+			setupPageLinkListeners();
 
 			// Save the selected page state
 			saveContentStructureState();
@@ -1259,6 +1289,7 @@ async function setupEventListeners() {
 		rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 		setupRightPanelListeners(rightPanelHeader);
 		setupEndButtonListeners();
+		setupPageLinkListeners();
 	}
 
 	/**
@@ -1269,17 +1300,7 @@ async function setupEventListeners() {
 	/**
 	 * Set up click handlers for page links
 	 */
-	const pageLinks = document.querySelectorAll(".markdown-page-link");
-
-	pageLinks.forEach((button) => {
-		if (button) {
-			button.addEventListener("click", () => {
-				const currentButton = button;
-				const path = currentButton.dataset.path;
-				navigateToSearchResult(path);
-			});
-		}
-	});
+	setupPageLinkListeners();
 }
 
 /**
@@ -1318,6 +1339,7 @@ async function onToggle(button) {
 			rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 			setupRightPanelListeners(rightPanelHeader);
 			setupEndButtonListeners();
+			setupPageLinkListeners();
 
 			// Save the selected category state
 			saveContentStructureState();
@@ -1426,6 +1448,7 @@ function selectInitialLoadedTopic(path) {
 		const html = converter.convert(md, path);
 		preview.innerHTML = html;
 		setupEndButtonListeners();
+		setupPageLinkListeners();
 	});
 
 	const rightPanelHeader = document.getElementById("right-panel-header");
@@ -1640,6 +1663,7 @@ async function switchLang() {
 						rightPanelHeader.innerHTML = await generateHtmlRightHeader(headings);
 						setupRightPanelListeners(rightPanelHeader);
 						setupEndButtonListeners();
+						setupPageLinkListeners();
 
 						// Save new state
 						saveContentStructureState();

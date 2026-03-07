@@ -116,7 +116,8 @@ class ContentBrowser {
 
 					// Generate HTML for categories that are not collapsed
 					if (item.path) {
-						html += `<p class="topic-category-button-collapsed topic-category-button" id="topic-category-topic-${currentItemName}">${currentItemName}</p>`;
+						const categoryPath = this.getItemPath(item);
+						html += `<p class="topic-category-button-collapsed topic-category-button" id="topic-category-topic-${currentItemName}" data-path="${categoryPath}">${currentItemName}</p>`;
 					} else if (!item.collapsed) {
 						html += `<p class="topic-category" id="topic-category-${currentItemName}">${currentItemName}</p>`;
 					}
