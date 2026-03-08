@@ -5,11 +5,19 @@ class ContentBrowser {
 	contentBasePath; // Contains the base path to the content
 	defaultPage; // Contains the default page to load
 
+	// Section support
+	sections; // Array of section objects (big categories)
+	activeSectionUid; // UID of the currently active section
+	defaultSectionUid; // UID of the default section from config
+
 	// Constructor initializes an empty content structure
 	constructor() {
 		this.contentStructure = [];
 		this.contentBasePath = "";
 		this.defaultPage = "";
+		this.sections = [];
+		this.activeSectionUid = "";
+		this.defaultSectionUid = "";
 	}
 
 	/**
@@ -80,15 +88,29 @@ class ContentBrowser {
 			return null;
 		}
 
-		// Extract config item if present and filter it out of the structure
-		this.contentStructure = rawStructure.filter((item) => {
+		// Extract config, sections, and regular items
+		this.sections = [];
+		this.defaultSectionUid = "";
+
+		const remaining = rawStructure.filter((item) => {
 			if (item.type === "config") {
 				this.contentBasePath = item["content-base-path"] || "";
 				this.defaultPage = item["default-page"] || "";
-				return false; // Remove config from content structure
+				this.defaultSectionUid = item["default-section"] || "";
+				return false;
+			}
+			if (item.type === "section") {
+				this.sections.push(item);
+				return false;
 			}
 			return true;
 		});
+
+		if (this.sections.length > 0) {
+			this.setActiveSection(this.defaultSectionUid || this.sections[0].uid);
+		} else {
+			this.contentStructure = remaining;
+		}
 	}
 
 	/**
@@ -185,6 +207,119 @@ class ContentBrowser {
 
 		traverse(structure); // Start traversal from the root structure
 		return flatStructure;
+	}
+
+	/**
+	 * Sets the active section by UID, updating contentStructure and contentBasePath
+	 * @param {string} uid - The UID of the section to activate
+	 * @returns {boolean} - True if section was found and activated
+	 */
+	setActiveSection(uid) {
+		const section = this.sections.find((s) => s.uid === uid);
+		if (!section) return false;
+
+		this.activeSectionUid = uid;
+		this.contentStructure = section.children || [];
+		this.contentBasePath = section["content-base-path"] || "";
+		this.defaultPage = section["default-page"] || "";
+		return true;
+	}
+
+	/**
+	 * Returns whether the content structure uses sections
+	 * @returns {boolean}
+	 */
+	hasSections() {
+		return this.sections.length > 0;
+	}
+
+	/**
+	 * Returns all sections
+	 * @returns {Array} - Array of section objects
+	 */
+	getSections() {
+		return this.sections;
+	}
+
+	/**
+	 * Returns the currently active section object
+	 * @returns {Object|null}
+	 */
+	getActiveSection() {
+		return this.sections.find((s) => s.uid === this.activeSectionUid) || null;
+	}
+
+	/**
+	 * Gets the full path for an item within a specific section
+	 * @param {Object} item - The item to get the path for
+	 * @param {string} sectionUid - The UID of the section
+	 * @returns {string} - The full resolved path
+	 */
+	getItemPathInSection(item, sectionUid) {
+		const section = this.sections.find((s) => s.uid === sectionUid);
+		if (!section) return this.getItemPath(item);
+		if (!item.path) return "";
+		if (item.path.startsWith("..") || item.path.startsWith("/")) {
+			return item.path;
+		}
+		return `${section["content-base-path"]}${getCurrentLang()}/${item.path}`;
+	}
+
+	/**
+	 * Finds an item by its UID across all sections
+	 * @param {string} uid - The UID to search for
+	 * @returns {Object|null} - Object with { item, section } or null
+	 */
+	findItemByUid(uid) {
+		for (const section of this.sections) {
+			if (section.uid === uid) return { item: section, section };
+			const found = this._searchByUid(section.children, uid);
+			if (found) return { item: found, section };
+		}
+		return null;
+	}
+
+	/**
+	 * Recursively searches for an item by UID
+	 * @param {Array} items - Items to search through
+	 * @param {string} uid - The UID to find
+	 * @returns {Object|null}
+	 */
+	_searchByUid(items, uid) {
+		if (!items) return null;
+		for (const item of items) {
+			if (item.uid === uid) return item;
+			if (item.children) {
+				const found = this._searchByUid(item.children, uid);
+				if (found) return found;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Flattens all sections into a single array with section context
+	 * @returns {Array} - Array of { path, item, sectionUid } objects
+	 */
+	flattenAllSections() {
+		const result = [];
+		for (const section of this.sections) {
+			const basePath = section["content-base-path"] || "";
+			const traverse = (items) => {
+				items.forEach((item) => {
+					if (item.path) {
+						result.push({
+							path: `${basePath}${getCurrentLang()}/${item.path}`,
+							item,
+							sectionUid: section.uid,
+						});
+					}
+					if (item.children) traverse(item.children);
+				});
+			};
+			if (section.children) traverse(section.children);
+		}
+		return result;
 	}
 }
 

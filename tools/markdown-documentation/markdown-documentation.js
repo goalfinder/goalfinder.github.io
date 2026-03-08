@@ -28,6 +28,9 @@ let currentlySelectedTopic;
 let currentlySelectedCategory;
 let suppressInitialSelection = false;
 
+// Track the currently active section UID (for section-based structures)
+let currentSectionUid = null;
+
 // Assign mode switch variable to the button for improved onclick event
 window.lightDarkModeToggle = lightDarkModeToggle;
 
@@ -111,6 +114,17 @@ function updateMarkdownDocumentationTranslations(newTranslations) {
 
 	if (searchPopup && searchPopup.classList.contains("visible")) {
 		searchbarSearch();
+	}
+
+	// Update section nav buttons with localized names
+	const navContainer = document.getElementById("sectionNav");
+	if (navContainer && browser.hasSections()) {
+		navContainer.querySelectorAll(".section-nav-btn").forEach((btn) => {
+			const section = browser.getSections().find((s) => s.uid === btn.dataset.section);
+			if (section) {
+				btn.textContent = browser.getItemName(section);
+			}
+		});
 	}
 }
 
@@ -259,45 +273,76 @@ async function searchbarSearch() {
 
 		const resultsByCategory = {};
 
-		// Recursive function to search through the content structure
-		const searchInStructure = async (items, parentCategory = "General") => {
-			for (const item of items) {
-				if (item.type === "page" || (item.type === "category" && item.path)) {
-					// This item has a markdown file to search
-					const itemPath = browser.getItemPath(item);
-					const itemName = browser.getItemName(item);
-					try {
-						const markdown = await converter.loadMarkdown(itemPath);
-						const lowerMarkdown = markdown.toLowerCase();
+		if (browser.hasSections()) {
+			// Cross-section search: iterate all sections
+			for (const section of browser.getSections()) {
+				const sectionName = browser.getItemName(section);
 
-						if (lowerMarkdown.includes(searchTerm)) {
-							// Find all matches and create snippets
-							const snippets = findSnippets(markdown, searchTerm);
-
-							if (!resultsByCategory[parentCategory]) {
-								resultsByCategory[parentCategory] = [];
+				const searchInSectionItems = async (items, parentCategory) => {
+					for (const item of items) {
+						if (item.type === "page" || (item.type === "category" && item.path)) {
+							const itemPath = browser.getItemPathInSection(item, section.uid);
+							const itemName = browser.getItemName(item);
+							try {
+								const markdown = await converter.loadMarkdown(itemPath);
+								const lowerMarkdown = markdown.toLowerCase();
+								if (lowerMarkdown.includes(searchTerm)) {
+									const snippets = findSnippets(markdown, searchTerm);
+									const categoryKey = `${sectionName} › ${parentCategory}`;
+									if (!resultsByCategory[categoryKey]) {
+										resultsByCategory[categoryKey] = [];
+									}
+									resultsByCategory[categoryKey].push({
+										name: itemName,
+										path: itemPath,
+										snippets: snippets,
+										sectionUid: section.uid,
+									});
+								}
+							} catch (err) {
+								console.warn(`Failed to search in ${itemPath}:`, err);
 							}
-
-							resultsByCategory[parentCategory].push({
-								name: itemName,
-								path: itemPath,
-								snippets: snippets,
-							});
 						}
-					} catch (err) {
-						console.warn(`Failed to search in ${itemPath}:`, err);
+						if (item.type === "category" && item.children) {
+							await searchInSectionItems(item.children, browser.getItemName(item));
+						}
+					}
+				};
+
+				await searchInSectionItems(section.children || [], sectionName);
+			}
+		} else {
+			// Legacy single-structure search
+			const searchInStructure = async (items, parentCategory = "General") => {
+				for (const item of items) {
+					if (item.type === "page" || (item.type === "category" && item.path)) {
+						const itemPath = browser.getItemPath(item);
+						const itemName = browser.getItemName(item);
+						try {
+							const markdown = await converter.loadMarkdown(itemPath);
+							const lowerMarkdown = markdown.toLowerCase();
+							if (lowerMarkdown.includes(searchTerm)) {
+								const snippets = findSnippets(markdown, searchTerm);
+								if (!resultsByCategory[parentCategory]) {
+									resultsByCategory[parentCategory] = [];
+								}
+								resultsByCategory[parentCategory].push({
+									name: itemName,
+									path: itemPath,
+									snippets: snippets,
+								});
+							}
+						} catch (err) {
+							console.warn(`Failed to search in ${itemPath}:`, err);
+						}
+					}
+					if (item.type === "category" && item.children) {
+						await searchInStructure(item.children, browser.getItemName(item));
 					}
 				}
-
-				// If it's a category, search its children
-				if (item.type === "category" && item.children) {
-					// Use this category's name as the parent for its children
-					await searchInStructure(item.children, browser.getItemName(item));
-				}
-			}
-		};
-
-		await searchInStructure(browser.contentStructure);
+			};
+			await searchInStructure(browser.contentStructure);
+		}
 
 		// Generate and display results HTML
 		displaySearchResults(resultsByCategory, searchResults, searchTerm);
@@ -370,8 +415,9 @@ function displaySearchResults(resultsByCategory, container, searchTerm) {
 		html += `<li class="search-category-header">${category}</li>`;
 
 		for (const result of resultsByCategory[category]) {
+			const sectionAttr = result.sectionUid ? ` data-section="${result.sectionUid}"` : "";
 			html += `<li class="search-result-item">`;
-			html += `<div class="search-result-title-row" data-path="${result.path}">`;
+			html += `<div class="search-result-title-row" data-path="${result.path}"${sectionAttr}>`;
 			html += `<span class="search-result-title">${result.name}</span>`;
 			html += `</div>`;
 
@@ -380,7 +426,7 @@ function displaySearchResults(resultsByCategory, container, searchTerm) {
 				html += `<div class="search-result-snippets">`;
 				for (const snippet of result.snippets) {
 					const highlightedSnippet = highlightSearchTerm(snippet.text, searchTerm);
-					html += `<div class="search-result-snippet" data-path="${result.path}" data-search="${escapeHtml(snippet.searchTerm)}">`;
+					html += `<div class="search-result-snippet" data-path="${result.path}" data-search="${escapeHtml(snippet.searchTerm)}"${sectionAttr}>`;
 					html += `<span class="snippet-text">${highlightedSnippet}</span>`;
 					html += `</div>`;
 				}
@@ -439,7 +485,7 @@ function setupSearchResultClickHandlers() {
 	titleRows.forEach((item) => {
 		item.addEventListener("click", async (e) => {
 			e.stopPropagation();
-			await navigateToSearchResult(item.dataset.path, null);
+			await navigateToSearchResult(item.dataset.path, null, item.dataset.section || null);
 		});
 	});
 
@@ -448,7 +494,7 @@ function setupSearchResultClickHandlers() {
 		item.addEventListener("click", async (e) => {
 			e.stopPropagation();
 			const searchTerm = item.dataset.search;
-			await navigateToSearchResult(item.dataset.path, searchTerm);
+			await navigateToSearchResult(item.dataset.path, searchTerm, item.dataset.section || null);
 		});
 	});
 }
@@ -457,9 +503,15 @@ function setupSearchResultClickHandlers() {
  * Navigate to a search result and optionally scroll to the matching text
  * @param {string} path - Path to the markdown file
  * @param {string|null} searchTerm - The search term to scroll to, or null to just navigate
+ * @param {string|null} sectionUid - Optional section UID if result is in a different section
  */
-async function navigateToSearchResult(path, searchTerm) {
+async function navigateToSearchResult(path, searchTerm, sectionUid = null) {
 	if (!path) return;
+
+	// Switch section if needed
+	if (sectionUid && browser.hasSections() && sectionUid !== browser.activeSectionUid) {
+		await switchSection(sectionUid, true);
+	}
 
 	// Expand parent categories if the target page is inside a collapsed category
 	const parentCategories = findParentCategories(browser.contentStructure, path);
@@ -687,6 +739,13 @@ function saveContentStructureState() {
 			selectedCategory: currentlySelectedCategory ? currentlySelectedCategory.textContent : null,
 			language: getCurrentLang(),
 		};
+
+		// Save section-specific state
+		if (browser.hasSections()) {
+			stateToSave.activeSectionUid = browser.activeSectionUid;
+			stateToSave.sectionsStructure = browser.sections;
+		}
+
 		localStorage.setItem("droneContentStructure", JSON.stringify(stateToSave));
 	} catch (error) {
 		console.warn("Failed to save content structure state to localStorage:", error);
@@ -1591,8 +1650,15 @@ async function switchLang() {
 	// Reload content structure for the current doc in the new language
 	// Use the same structure file - paths are resolved dynamically based on current language
 	try {
+		const previousSectionUid = browser.activeSectionUid;
 		const newContentPath = `${getContentStructurePath()}${currentDoc}.json`;
 		await browser.fetchStructure(newContentPath);
+
+		// Restore section if applicable
+		if (browser.hasSections() && previousSectionUid) {
+			browser.setActiveSection(previousSectionUid);
+			renderSectionNav();
+		}
 
 		// Rebuild converter with new flat structure
 		const flatStructure = browser.flattenStructure();
@@ -1723,10 +1789,30 @@ async function initMarkdownDocumentation(config = {}) {
 	let savedCategoryName = null;
 
 	if (savedState) {
-		// Merge the saved collapsed states with the freshly loaded structure
-		browser.contentStructure = mergeContentStructureStates(browser.contentStructure, savedState.contentStructure);
+		if (browser.hasSections() && savedState.activeSectionUid) {
+			// Merge saved section collapsed states
+			if (savedState.sectionsStructure) {
+				for (const savedSection of savedState.sectionsStructure) {
+					const currentSection = browser.sections.find((s) => s.uid === savedSection.uid);
+					if (currentSection && savedSection.children) {
+						currentSection.children = mergeContentStructureStates(currentSection.children, savedSection.children);
+					}
+				}
+			}
+			browser.setActiveSection(savedState.activeSectionUid);
+			currentSectionUid = savedState.activeSectionUid;
+		} else if (!browser.hasSections() && savedState.contentStructure) {
+			// Legacy merge for non-section structures
+			browser.contentStructure = mergeContentStructureStates(browser.contentStructure, savedState.contentStructure);
+		}
 		savedPagePath = savedState.selectedPage;
 		savedCategoryName = savedState.selectedCategory;
+	}
+
+	// Initialize section tracking and render section nav
+	if (browser.hasSections()) {
+		if (!currentSectionUid) currentSectionUid = browser.activeSectionUid;
+		renderSectionNav();
 	}
 
 	// Generate the flat structure and pass it to the MarkdownConverter
@@ -1735,13 +1821,18 @@ async function initMarkdownDocumentation(config = {}) {
 
 	await refresh();
 
-	// Restore the previously selected page or load default
-	if (savedPagePath || savedCategoryName) {
-		await restoreSelectedPage(savedPagePath, savedCategoryName);
-	} else {
-		const defaultPagePath = browser.getDefaultPagePath();
-		if (defaultPagePath) {
-			selectInitialLoadedTopic(defaultPagePath);
+	// Check URL parameters first (page= and term=)
+	const urlHandled = await handleUrlParams();
+
+	if (!urlHandled) {
+		// Restore the previously selected page or load default
+		if (savedPagePath || savedCategoryName) {
+			await restoreSelectedPage(savedPagePath, savedCategoryName);
+		} else {
+			const defaultPagePath = browser.getDefaultPagePath();
+			if (defaultPagePath) {
+				selectInitialLoadedTopic(defaultPagePath);
+			}
 		}
 	}
 
@@ -1832,6 +1923,122 @@ async function initMarkdownDocumentation(config = {}) {
 	} catch (e) {
 		// ignore
 	}
+}
+
+/**
+ * Render the section navigation bar from the content structure sections
+ */
+function renderSectionNav() {
+	const navContainer = document.getElementById("sectionNav");
+	if (!navContainer || !browser.hasSections()) return;
+
+	let html = '<div class="section-nav-inner">';
+	for (const section of browser.getSections()) {
+		const name = browser.getItemName(section);
+		const isActive = section.uid === browser.activeSectionUid;
+		html += `<button class="section-nav-btn${isActive ? " active" : ""}" data-section="${section.uid}">${name}</button>`;
+	}
+	html += "</div>";
+
+	navContainer.innerHTML = html;
+
+	// Set up click handlers for section buttons
+	const buttons = navContainer.querySelectorAll(".section-nav-btn");
+	buttons.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			switchSection(btn.dataset.section);
+		});
+	});
+}
+
+/**
+ * Update the active state of section nav buttons
+ * @param {string} uid - The UID of the active section
+ */
+function updateSectionNavActive(uid) {
+	const navContainer = document.getElementById("sectionNav");
+	if (!navContainer) return;
+
+	navContainer.querySelectorAll(".section-nav-btn").forEach((btn) => {
+		btn.classList.toggle("active", btn.dataset.section === uid);
+	});
+}
+
+/**
+ * Switch to a different documentation section
+ * @param {string} uid - The UID of the section to switch to
+ * @param {boolean} skipDefaultPage - If true, don't load the section's default page
+ */
+async function switchSection(uid, skipDefaultPage = false) {
+	if (!browser.hasSections()) return;
+	if (!browser.setActiveSection(uid)) return;
+
+	currentSectionUid = uid;
+	updateSectionNavActive(uid);
+
+	// Rebuild converter with new section's flat structure
+	const flatStructure = browser.flattenStructure();
+	converter = new MarkdownConverter(flatStructure, browser.contentStructure);
+
+	// Reset selection state
+	currentlySelectedTopic = null;
+	currentlySelectedCategory = null;
+
+	// Rebuild sidebar
+	await refresh();
+
+	if (!skipDefaultPage) {
+		const defaultPagePath = browser.getDefaultPagePath();
+		if (defaultPagePath) {
+			selectInitialLoadedTopic(defaultPagePath);
+		}
+	}
+
+	saveContentStructureState();
+}
+
+/**
+ * Handle URL parameters for deep linking
+ * - page= : Navigate directly to a page by its UID
+ * - term= : Pre-populate search and trigger search
+ * @returns {boolean} - True if a URL parameter was handled
+ */
+async function handleUrlParams() {
+	const params = new URLSearchParams(window.location.search);
+	const pageUid = params.get("page");
+	const searchTerm = params.get("term");
+
+	if (pageUid) {
+		let result = null;
+		if (browser.hasSections()) {
+			result = browser.findItemByUid(pageUid);
+		}
+		if (result) {
+			const { item, section } = result;
+			const path = browser.getItemPathInSection(item, section.uid);
+
+			// Switch to the correct section if needed
+			if (section.uid !== browser.activeSectionUid) {
+				await switchSection(section.uid, true);
+			}
+
+			// Navigate to the page
+			await navigateToSearchResult(path, null, section.uid);
+			return true;
+		}
+	}
+
+	if (searchTerm) {
+		const searchInput = document.getElementById("searchInput");
+		if (searchInput) {
+			searchInput.value = searchTerm;
+			searchbarFocus();
+			searchbarSearch();
+		}
+		return true;
+	}
+
+	return false;
 }
 
 export { initMarkdownDocumentation, updateMarkdownDocumentationTranslations };

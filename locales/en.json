@@ -95,7 +95,9 @@
     "search-no-results": "No results found",
     "copy": "Copy",
     "dark-mode": "Dark Mode",
-    "light-mode": "Light Mode"
+    "light-mode": "Light Mode",
+    "doc-page-title": "GoalFinder Documentation",
+    "doc-page-title-short": "Documentation"
   },
   "build-guide-home": {
     "bg-cta-title": "Build Your Own GoalFinder",

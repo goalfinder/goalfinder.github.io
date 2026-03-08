@@ -103,6 +103,70 @@ body {
 		color 0.3s ease;
 }
 
+/* Section Navigation Bar */
+.section-nav {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem 7rem;
+	background: var(--bg-color);
+	border-bottom: 1px solid var(--border-color);
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	transition:
+		background-color 0.3s ease,
+		border-color 0.25s ease;
+}
+
+.section-nav::-webkit-scrollbar {
+	display: none;
+}
+
+.section-nav:empty {
+	display: none;
+}
+
+.section-nav-inner {
+	display: flex;
+	gap: 0.5rem;
+	min-width: 0;
+}
+
+.section-nav-btn {
+	padding: 0.5rem 1.25rem;
+	border: 1px solid var(--border-color);
+	border-radius: 6px;
+	background: var(--button-bg);
+	color: var(--button-text);
+	font-family: league-spartan;
+	font-size: 14px;
+	cursor: pointer;
+	white-space: nowrap;
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease,
+		border-color 0.2s ease,
+		transform 0.1s ease;
+}
+
+.section-nav-btn:hover {
+	background-color: var(--hover-bg);
+}
+
+.section-nav-btn:active {
+	transform: none;
+}
+
+.section-nav-btn.active {
+	background: var(--primary);
+	color: var(--text-inverted);
+	border-color: var(--primary);
+}
+
+.section-nav-btn.active:hover {
+	opacity: 0.9;
+}
+
 /* Smooth transitions for theme changes (match copy-button feel) */
 .display-window,
 .topic-selector,
@@ -1082,5 +1146,15 @@ footer a:hover {
 	.markdown-end-previous,
 	.markdown-end-next {
 		-touch-action: manipulation;
+	}
+
+	/* Section nav mobile styles */
+	.section-nav {
+		padding: 0.4rem 1rem;
+	}
+
+	.section-nav-btn {
+		font-size: 13px;
+		padding: 0.4rem 0.75rem;
 	}
 }

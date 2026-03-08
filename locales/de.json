@@ -94,8 +94,10 @@
     "search-loading": "Suche läuft...",
     "search-no-results": "Keine Ergebnisse gefunden",
     "copy": "Kopieren",
-    "dark-mode": "Dunkler Modus",
-    "light-mode": "Heller Modus"
+    "dark-mode": "Dunkel",
+    "light-mode": "Hell",
+    "doc-page-title": "GoalFinder Dokumentation",
+    "doc-page-title-short": "Dokumentation"
   },
   "build-guide-home": {
     "bg-cta-title": "Eigenen GoalFinder bauen",
