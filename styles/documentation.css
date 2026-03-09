@@ -7,6 +7,7 @@
 :root {
 	--accent: #f8f9fa;
 	--accent-hover: #e9ecef;
+	--decal: #e8e8e8;
 	--accent-inverted: #1a1a2e;
 	--background: #ffffff;
 	--primary: #8756b8;
@@ -98,9 +99,15 @@ body {
 	height: 100vh;
 	margin: 0;
 	overflow: hidden;
+	background-image: radial-gradient(var(--decal) 1px, transparent 1.5px);
+	background-size: 22px 22px;
 	transition:
 		background-color 0.3s ease,
 		color 0.3s ease;
+}
+
+header {
+	background-color: var(--accent);
 }
 
 /* Section Navigation (inside sidebar / topic-selector) */
