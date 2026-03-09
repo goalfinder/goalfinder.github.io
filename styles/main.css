@@ -942,6 +942,17 @@ a:hover {
 	border: var(--award-border);
 	border-radius: 50px;
 	transition: all 0.3s var(--transition-smooth);
+
+	-webkit-touch-callout: none;
+	user-select: none;
+	cursor: pointer;
+}
+
+#contact-email-container:hover {
+	background: var(--item-child-background);
+	transform: translateY(-2px);
+	box-shadow: var(--item-child-shadow);
+	border-color: rgba(255, 255, 255, 0.4);
 }
 
 .contact-email:hover {
