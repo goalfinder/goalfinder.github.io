@@ -126,6 +126,11 @@ function updateMarkdownDocumentationTranslations(newTranslations) {
 			}
 		});
 	}
+
+	// Re-render landing page if it's currently visible
+	if (preview && preview.querySelector(".doc-landing")) {
+		showLandingPage();
+	}
 }
 
 /**
@@ -1778,7 +1783,7 @@ async function initMarkdownDocumentation(config = {}) {
 	}
 
 	// Get reference to the topic browser container
-	topicSelector = document.querySelector(".topic-selector");
+	topicSelector = document.getElementById("topicContent");
 	const contentStructurePath = `${getContentStructurePath()}${doc}.json`;
 
 	// Fetch and load topic structure
@@ -1828,6 +1833,9 @@ async function initMarkdownDocumentation(config = {}) {
 		// Restore the previously selected page or load default
 		if (savedPagePath || savedCategoryName) {
 			await restoreSelectedPage(savedPagePath, savedCategoryName);
+		} else if (browser.hasSections()) {
+			// No saved state and no URL params — show the landing page
+			showLandingPage();
 		} else {
 			const defaultPagePath = browser.getDefaultPagePath();
 			if (defaultPagePath) {
@@ -1926,29 +1934,73 @@ async function initMarkdownDocumentation(config = {}) {
 }
 
 /**
- * Render the section navigation bar from the content structure sections
+ * Render the section navigation inside the topic-selector (vertical, one per row)
  */
 function renderSectionNav() {
 	const navContainer = document.getElementById("sectionNav");
 	if (!navContainer || !browser.hasSections()) return;
 
-	let html = '<div class="section-nav-inner">';
+	let html = "";
 	for (const section of browser.getSections()) {
 		const name = browser.getItemName(section);
 		const isActive = section.uid === browser.activeSectionUid;
 		html += `<button class="section-nav-btn${isActive ? " active" : ""}" data-section="${section.uid}">${name}</button>`;
 	}
-	html += "</div>";
 
 	navContainer.innerHTML = html;
 
 	// Set up click handlers for section buttons
-	const buttons = navContainer.querySelectorAll(".section-nav-btn");
-	buttons.forEach((btn) => {
+	navContainer.querySelectorAll(".section-nav-btn").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			switchSection(btn.dataset.section);
 		});
 	});
+}
+
+/**
+ * Show the documentation landing page with section cards
+ */
+function showLandingPage() {
+	if (!browser.hasSections()) return;
+
+	const lang = getCurrentLang();
+	const sections = browser.getSections();
+
+	const title = lang === "de" ? "GoalFinder Dokumentation" : "GoalFinder Documentation";
+	const subtitle = lang === "de" ? "Wähle einen Dokumentationsbereich aus." : "Choose a documentation section to get started.";
+
+	let cardsHtml = "";
+	for (const section of sections) {
+		const name = browser.getItemName(section);
+		const desc = lang === "de" ? section["desc-de"] || "" : section["desc-en"] || "";
+		cardsHtml += `<button class="doc-landing-card" data-section="${section.uid}">
+			<div class="doc-landing-card-title">${name}</div>
+			<div class="doc-landing-card-desc">${desc}</div>
+		</button>`;
+	}
+
+	preview.innerHTML = `<div class="doc-landing">
+		<h1 class="doc-landing-title">${title}</h1>
+		<p class="doc-landing-subtitle">${subtitle}</p>
+		<div class="doc-landing-cards">${cardsHtml}</div>
+	</div>`;
+
+	// Attach click handlers to cards
+	preview.querySelectorAll(".doc-landing-card").forEach((card) => {
+		card.addEventListener("click", () => {
+			switchSection(card.dataset.section);
+		});
+	});
+
+	// Deselect all section nav buttons
+	const navContainer = document.getElementById("sectionNav");
+	if (navContainer) {
+		navContainer.querySelectorAll(".section-nav-btn").forEach((btn) => {
+			btn.classList.remove("active");
+		});
+	}
+
+	currentSectionUid = null;
 }
 
 /**

@@ -8,6 +8,8 @@
         "uid": "user",
         "de": "Benutzer",
         "en": "User",
+        "desc-de": "Anleitungen zur Einrichtung, Montage und täglichen Nutzung des GoalFinders.",
+        "desc-en": "Guides for setting up, mounting and everyday use of the GoalFinder.",
         "content-base-path": "../content/user/",
         "default-page": "introduction.md",
         "children": [
@@ -85,8 +87,10 @@
     {
         "type": "section",
         "uid": "technical",
-        "de": "Technik",
+        "de": "Technische",
         "en": "Technical",
+        "desc-de": "Technische Details zu Hardware, Software, Repository und Mitwirkung am Projekt.",
+        "desc-en": "Technical details on hardware, software, repository and contributing to the project.",
         "content-base-path": "../content/technical/",
         "default-page": "introduction.md",
         "children": [
@@ -225,6 +229,8 @@
         "uid": "build-guide",
         "de": "Bauanleitung",
         "en": "Build Guide",
+        "desc-de": "Schritt-für-Schritt Anleitung zum Zusammenbau eines eigenen GoalFinders.",
+        "desc-en": "Step-by-step instructions for assembling your own GoalFinder.",
         "content-base-path": "../content/build-guide/",
         "default-page": "introduction.md",
         "children": [

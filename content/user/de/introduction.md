@@ -1,4 +1,4 @@
-# User Documentation 
+# Benutzerdokumentation 
 Willkommen zur offiziellen Benutzerdokumentation des GoalFinder-Projekts. Unser Ziel ist es, dir eine klare, umfassende und stets aktuelle Dokumentation bereitzustellen, damit du deinen GoalFinder erfolgreich einrichten und nutzen kannst.
 
 #wh Anmerkung
