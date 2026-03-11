@@ -36,6 +36,8 @@
 }
 
 :root.dark-mode {
+	--accent: #212121;
+	--decal: #313131;
 	--bg-color: #1a1a2e;
 	--text-color: #e0e0e0;
 	--header-text-color: var(--text-inverted);
