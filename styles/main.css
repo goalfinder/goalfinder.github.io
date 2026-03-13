@@ -12,6 +12,8 @@
 	--text: #202027;
 	--text-alternative: #333336;
 	--text-muted: #8a8f9b;
+	--theme-transition-duration: 260ms;
+	--theme-transition-easing: ease;
 }
 
 :root.dark-mode {
@@ -47,9 +49,85 @@ body {
 		sans-serif;
 	color: var(--text);
 	background-color: var(--background);
-	background-image: radial-gradient(var(--decal) 1px, transparent 1.5px);
-	background-size: 22px 22px;
+	position: relative;
 	overflow-x: hidden;
+}
+
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background-image: radial-gradient(currentColor 1px, transparent 1.5px);
+	background-size: 22px 22px;
+	color: var(--decal);
+	pointer-events: none;
+	z-index: 0;
+	transition:
+		color var(--theme-transition-duration) var(--theme-transition-easing),
+		opacity var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+main {
+	position: relative;
+	z-index: 1;
+}
+
+/* Smooth mode changes for color-related properties across the page. */
+body,
+body *,
+body *::before,
+body *::after {
+	transition-property: color, background-color, border-color, text-decoration-color, box-shadow, fill, stroke;
+	transition-duration: var(--theme-transition-duration);
+	transition-timing-function: var(--theme-transition-easing);
+}
+
+.top-controls {
+	position: fixed;
+	top: max(1rem, env(safe-area-inset-top, 0px));
+	right: max(1rem, env(safe-area-inset-right, 0px));
+	display: flex;
+	gap: 0.6rem;
+	z-index: 1000;
+	margin-top: 1rem;
+	margin-right: 1rem;
+}
+
+.top-control-button {
+	position: relative;
+	padding: 0.3rem 0.2rem;
+	border: 0;
+	background: transparent;
+	color: var(--text);
+	font-family: inherit;
+	font-size: 0.95rem;
+	font-weight: 650;
+	letter-spacing: 0.04em;
+	line-height: 1.2;
+	cursor: pointer;
+	transition: color 0.2s ease;
+}
+
+.top-control-button::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0.05rem;
+	width: 100%;
+	height: 2px;
+	background: var(--text);
+	transform: scaleX(0);
+	transform-origin: left center;
+	transition: transform 0.25s ease;
+}
+
+.top-control-button:hover::after,
+.top-control-button:focus-visible::after {
+	transform: scaleX(1);
+}
+
+.top-control-button:focus-visible {
+	outline: none;
 }
 
 main::-webkit-scrollbar {
@@ -113,6 +191,17 @@ p {
 	background: var(--decal);
 }
 
+#htl-logo {
+	margin-top: 2rem;
+	position: absolute;
+	top: max(1rem, env(safe-area-inset-top, 0px));
+	left: 50%;
+	transform: translateX(-50%);
+	width: clamp(110px, 18vw, 240px);
+	height: auto;
+	max-width: 70%;
+}
+
 #title {
 	font-size: clamp(3.5rem, 8vw, 8.5rem);
 	font-weight: 700;
@@ -156,6 +245,17 @@ p {
 	}
 }
 @media (max-width: 768px) {
+	.top-controls {
+		top: max(0.75rem, env(safe-area-inset-top, 0px));
+		right: max(0.75rem, env(safe-area-inset-right, 0px));
+		gap: 0.5rem;
+	}
+
+	.top-control-button {
+		padding: 0.1rem 0;
+		font-size: 0.85rem;
+	}
+
 	h1 {
 		font-size: 2.5rem;
 	}
@@ -166,5 +266,14 @@ p {
 
 	p {
 		font-size: 1rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body,
+	body *,
+	body *::before,
+	body *::after {
+		transition-duration: 0ms !important;
 	}
 }

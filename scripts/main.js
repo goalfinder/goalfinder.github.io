@@ -1,9 +1,11 @@
 import { loadLang, setCurrentLang, getCurrentLang } from "./i18n.js";
 
 const TRANSITION_DURATION = 750;
-const COOLDOWN = 500; 
+const COOLDOWN = 500;
+const THEME_STORAGE_KEY = "theme";
 
 let langButton;
+let themeButton;
 
 function switchLang() {
 	setCurrentLang(getCurrentLang() == "de" ? "en" : "de");
@@ -11,13 +13,54 @@ function switchLang() {
 	if (langButton) langButton.innerHTML = getCurrentLang().toUpperCase();
 }
 
+function getCurrentTheme() {
+	return document.documentElement.classList.contains("dark-mode") ? "dark" : "light";
+}
+
+function updateThemeButtonLabel() {
+	if (!themeButton) return;
+	const currentTheme = getCurrentTheme();
+	themeButton.innerHTML = currentTheme === "dark" ? "LIGHT" : "DARK";
+}
+
+function setTheme(theme, save = true) {
+	const isDark = theme === "dark";
+	document.documentElement.classList.toggle("dark-mode", isDark);
+	if (save) {
+		localStorage.setItem(THEME_STORAGE_KEY, isDark ? "dark" : "light");
+	}
+	updateThemeButtonLabel();
+}
+
+function switchTheme() {
+	setTheme(getCurrentTheme() === "dark" ? "light" : "dark");
+}
+
+function applySavedTheme() {
+	const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+	if (savedTheme === "dark" || savedTheme === "light") {
+		setTheme(savedTheme, false);
+		return;
+	}
+
+	const systemPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+	setTheme(systemPrefersDark ? "dark" : "light", false);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+	applySavedTheme();
+
 	loadLang(getCurrentLang(), () => {
 		typewriterSubtitle();
 	});
 
 	langButton = document.getElementById("lang-button");
 	if (langButton) langButton.onclick = switchLang;
+	if (langButton) langButton.innerHTML = getCurrentLang().toUpperCase();
+
+	themeButton = document.getElementById("theme-button");
+	if (themeButton) themeButton.onclick = switchTheme;
+	updateThemeButtonLabel();
 
 	initPresentationScroll();
 });
@@ -30,11 +73,11 @@ function typewriterSubtitle() {
 	el.textContent = "";
 	el.classList.add("typewriter-active");
 
-	const CHAR_DELAY_BASE = 30;  // ms — baseline speed
+	const CHAR_DELAY_BASE = 30; // ms — baseline speed
 	const CHAR_DELAY_JITTER = 45; // ms — max random extra per character
-	const PAUSE_CHANCE = 0.12;    // probability of a brief mid-word pause
-	const PAUSE_EXTRA = 100;      // ms — extra pause when it hits
-	const CURSOR_LINGER = 1000;   // ms — how long the cursor stays after finishing typing1
+	const PAUSE_CHANCE = 0.12; // probability of a brief mid-word pause
+	const PAUSE_EXTRA = 100; // ms — extra pause when it hits
+	const CURSOR_LINGER = 1000; // ms — how long the cursor stays after finishing typing1
 	let index = 0;
 
 	function typeNext() {
@@ -123,7 +166,7 @@ function initPresentationScroll() {
 			tryAdvance(e.deltaY > 0 ? 1 : -1);
 		},
 		{ passive: false }
-	)
+	);
 
 	container.addEventListener(
 		"touchstart",
@@ -142,7 +185,6 @@ function initPresentationScroll() {
 		{ passive: true }
 	);
 
-	// Keyboard
 	document.addEventListener("keydown", (e) => {
 		if (e.key === "ArrowDown" || e.key === "PageDown") {
 			e.preventDefault();
