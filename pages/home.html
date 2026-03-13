@@ -26,20 +26,38 @@ title: GoalFinder
 		<title>GoalFinder</title>
 	</head>
 	<body>
-		<div class="top-controls" aria-label="Page controls">
-			<button id="lang-button" class="top-control-button" type="button" aria-label="Switch language"></button>
-			<button id="theme-button" class="top-control-button" type="button" aria-label="Toggle dark and light mode"></button>
-		</div>
 		<main>
+			<div class="top-controls" aria-label="Page controls">
+				<button id="lang-button" class="top-control-button" type="button" aria-label="Switch language"></button>
+				<button id="theme-button" class="top-control-button" type="button" aria-label="Toggle dark and light mode"></button>
+			</div>
+
 			<section class="panel hero">
 				<img id="htl-logo" src="{{ site.baseurl }}/assets/img/logos/htlleonding-home.png">
 				<h1 id="title">GOALFINDER</h1>
 				<p data-i18n="sub-title" id="subTitle"></p>
 			</section>
 
-			<section class="panel">
-				<h2>About</h2>
-				<p>This is placeholder content.</p>
+			<section class="panel panel-about" id="about-panel">
+				<div class="about-grid">
+					<div class="about-copy">
+						<h2 id="about-shared-title">GOALFINDER</h2>
+						<p class="about-kicker" data-i18n="about-title"></p>
+						<p data-i18n="about-content"></p>
+					</div>
+
+					<div class="about-gallery">
+						<button id="about-image-stack" class="image-stack" type="button" aria-label="Show next image">
+							<img class="stack-image" data-stack-image src="{{ site.baseurl }}/assets/img/showcase/P1440896.JPG" alt="GoalFinder showcase image 1">
+							<img class="stack-image" data-stack-image src="{{ site.baseurl }}/assets/img/showcase/P1440908.JPG" alt="GoalFinder showcase image 2">
+							<img class="stack-image" data-stack-image src="{{ site.baseurl }}/assets/img/showcase/P1440921.JPG" alt="GoalFinder showcase image 3">
+						</button>
+						<div class="stack-controls" aria-label="Image navigation">
+							<button id="stack-prev" type="button" class="stack-nav" aria-label="Previous image">PREV</button>
+							<button id="stack-next" type="button" class="stack-nav" aria-label="Next image">NEXT</button>
+						</div>
+					</div>
+				</div>
 			</section>
 
 			<section class="panel">
