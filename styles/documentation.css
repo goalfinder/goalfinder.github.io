@@ -66,8 +66,17 @@
 	border-radius: 8px;
 	transition:
 		background-color 0.3s ease,
-		color 0.3s ease,
-		transform 0.1s ease border-color 0.2s ease;
+		border-color 0.3s ease;
+}
+
+.markdown-end-title,
+.markdown-end-label {
+	transition: color 0.3s ease;
+}
+
+.markdown-end-icon,
+.markdown-end-icon-previous {
+	transition: filter 0.3s ease;
 }
 
 :root.dark-mode .markdown-end-previous,
@@ -175,9 +184,9 @@ header {
 	text-align: left;
 	width: 100%;
 	transition:
-		background-color 0.2s ease,
-		color 0.2s ease,
-		border-color 0.2s ease,
+		background-color 0.3s ease,
+		color 0.3s ease,
+		border-color 0.25s ease,
 		transform 0.1s ease;
 }
 
@@ -673,7 +682,11 @@ main {
 
 .topic-button {
 	border-radius: 5px;
-	transition: 0.1s;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		border-color 0.25s ease,
+		transform 0.1s ease;
 	padding: 0.5rem;
 	width: 95%;
 	cursor: pointer;
@@ -745,7 +758,11 @@ main {
 
 .topic-category-button {
 	border-radius: 5px;
-	transition: 0.1s;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		border-color 0.25s ease,
+		transform 0.1s ease;
 	padding: 0.5rem;
 	width: 100%;
 	cursor: pointer;
