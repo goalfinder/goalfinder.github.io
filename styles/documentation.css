@@ -568,6 +568,14 @@ footer {
 	height: 32px;
 	margin-right: 0.5%;
 	cursor: pointer;
+	opacity: 1;
+	transition:
+		opacity 0.15s ease,
+		filter 0.3s ease;
+}
+
+.header-image.is-switching {
+	opacity: 0;
 }
 
 .header-text,

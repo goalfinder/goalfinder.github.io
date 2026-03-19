@@ -608,6 +608,14 @@ function lightDarkModeToggle() {
 	const toggleText = toggleButton.querySelector(".icon-text");
 	const headerIcon = document.getElementById("header-icon");
 	const baseUrl = getBaseUrl();
+	const swapHeaderIcon = (nextSrc) => {
+		if (!headerIcon) return;
+		headerIcon.classList.add("is-switching");
+		setTimeout(() => {
+			headerIcon.src = nextSrc;
+			headerIcon.classList.remove("is-switching");
+		}, 150);
+	};
 
 	html.classList.toggle("dark-mode"); // Change page appearance
 
@@ -618,14 +626,14 @@ function lightDarkModeToggle() {
 		toggleIcon.src = lightSrc;
 		toggleText.textContent = t("light-mode");
 		localStorage.setItem("theme", "dark");
-		if (headerIcon) headerIcon.src = logoSrc;
+		swapHeaderIcon(logoSrc);
 	} else {
 		const darkSrc = baseUrl ? `${baseUrl}/assets/img/svg/dark.svg` : "/assets/img/svg/dark.svg";
 		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.png` : "/assets/img/logos/goalfinder/logo-black-shadow.png";
 		toggleIcon.src = darkSrc;
 		toggleText.textContent = t("dark-mode");
 		localStorage.setItem("theme", "light");
-		if (headerIcon) headerIcon.src = logoSrc;
+		swapHeaderIcon(logoSrc);
 	}
 }
 
