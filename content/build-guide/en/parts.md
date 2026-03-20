@@ -76,8 +76,12 @@ The inner mounts consist of three brackets designed for the PCB, sensors, and ac
 *Top Left and Top Right Brackets*
 
 ### Outer Housing
-![Housing Showcase](assets/img/assembly/steps/low_res/GF_assembly_14.jpg)(510x614)
-*Outer housing made of plexiglas*
+![Outer Housing](assets/img/assembly/steps/high_res/GF_assembly_14.jpg)(482x226)
+*Outer housing*
+![Housing Top](assets/img/assembly/steps/low_res/GF_assembly_19.jpg)(510x614)
+*Top side housing plate*
+![Housing Bottom](assets/img/assembly/steps/low_res/GF_assembly_22.jpg)(510x614)
+*Bottom side housing plate*
 
 The outer housing is made up of six plates. Two of these plates can be replaced with mounting variants, depending on your installation needs. The plates shown are cut from plexiglas, but they can also be easily 3D printed.
 

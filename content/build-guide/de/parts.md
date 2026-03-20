@@ -1,4 +1,3 @@
-```
 # Teile
 Diese Seite bietet einen umfassenden Überblick über alle Komponenten, die für die vollständige Montage des GoalFinder-Geräts erforderlich sind.
 
@@ -79,6 +78,10 @@ Die inneren Halterungen bestehen aus drei Halterungen, die für die Leiterplatte
 ### Äußeres Gehäuse
 ![Gehäuseübersicht](assets/img/assembly/steps/low_res/GF_assembly_14.jpg)(510x614)
 *Äußeres Gehäuse aus Plexiglas*
+![Gehäuse Oberseite](assets/img/assembly/steps/low_res/GF_assembly_19.jpg)(510x614)
+*Oberseite des Gehäuses*
+![Gehäuse Unterseite](assets/img/assembly/steps/low_res/GF_assembly_22.jpg)(510x614)
+*Unterseite des Gehäuses*
 
 Das äußere Gehäuse besteht aus sechs Platten. Zwei dieser Platten können je nach Installationsanforderungen durch Montagevarianten ersetzt werden. Die gezeigten Platten sind aus Plexiglas geschnitten, können jedoch auch problemlos 3D-gedruckt werden.
 
@@ -118,4 +121,3 @@ Nachfolgend ist eine Liste aller benötigten Bauteile für die Montage aufgefüh
 /[Gerber-Dateien herunterladen](content/build-guide/download/gf-1.5-pcb.zip)
 
 #end
-```
