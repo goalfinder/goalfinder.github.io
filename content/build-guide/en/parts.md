@@ -68,11 +68,13 @@ Shake sensor for shot detection.
 
 #### VL53L0X
 Time-of-Flight (ToF) sensor for hit detection.
+![VL53L0X](assets/img/components/vl.png)(400)
 [Product Link](https://www.amazon.de/-/en/AZDelivery-VL53L0X-Flight-Ranging-Sensor/dp/B086V37JJ7/ref=sr_1_4)
 [Documentation](https://cdn.shopify.com/s/files/1/1509/1638/files/VL53L0X_Time_of_Flight_Sensor_Datenblatt_AZ-Delivery_Vertriebs_GmbH.pdf)
 
 #### MAX98357A
 Amplifier for connecting to the audio driver.
+![MAX98357A](assets/img/components/max.png)(400x320)
 [Product Link](https://www.amazon.de/-/en/MAX98357A-Amplifier-Filterless-Breakout-Application/dp/B0F21T7Q3P/ref=sr_1_4)
 [Documentation](https://www.analog.com/media/en/technical-documentation/data-sheets/max98357a-max98357b.pdf)
 
