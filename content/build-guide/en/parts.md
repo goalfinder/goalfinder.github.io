@@ -3,6 +3,10 @@ This page provides a comprehensive overview of all components required for the c
 #wh Notice
 #wb The precise dimensions and specifications of the basic parts are still under review and will be updated once available.
 
+## Downloads and resources
+- [Complete Amazon Item List](https://amzn.eu/04dzXJmA)
+- /[Download the archive containing all files](/content/build-guide/download/gf-1.10-housing.zip)
+
 ## Basic Assembly Parts
 ### Chassis Material
 We recommend 3D-printing the device housing and inner mounts using solid, rigid filaments like `PLA`, `PETG` or `ABS`   

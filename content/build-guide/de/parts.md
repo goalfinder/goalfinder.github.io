@@ -1,7 +1,11 @@
 # Teile
 Diese Seite bietet einen umfassenden Überblick über alle Komponenten, die für die vollständige Montage des GoalFinder-Geräts benötigt werden.
 #wh Hinweis
-#wb Die genauen Maße und Spezifikationen der Grundteile werden derzeit überprüft und bei Verfügbarkeit aktualisiert.
+#wb Die genauen Maße und Spezifikationen der Grundteile werden derzeit überprüft und werden aktualisiert, sobald sie verfügbar sind.
+
+## Downloads und Ressourcen
+- [Komplette Amazon-Artikel-Liste](https://amzn.eu/04dzXJmA)
+- /[Archiv mit allen Dateien herunterladen](/content/build-guide/download/gf-1.10-housing.zip)
 
 ## Grundlegende Montage-Teile
 ### Gehäusematerial
@@ -11,18 +15,18 @@ Wir empfehlen, das Gehäuse und die inneren Halterungen des Geräts mit festen, 
 
 ## Gehäuse
 #ih Downloads
-#ib Alle `.obj`-Dateimaße sind in Millimetern (mm).
+#ib Alle Maße der `.obj`-Dateien sind in Millimetern (mm).
 
 /[Archiv mit allen Dateien herunterladen](/content/build-guide/download/gf-1.10-housing.zip)
 ### Innere Halterungen
-Die inneren Halterungen bestehen aus drei Halterungen für die Platine, Sensoren und Zubehör. Sie sorgen für sicheren Halt und eine einfache Installation aller internen Komponenten.
+Die inneren Halterungen bestehen aus drei Halterungen für die Platine, Sensoren und Zubehör. Diese sorgen für sicheren Halt und eine einfache Installation aller internen Komponenten.
 
 - /[Haupthalterung](/content/build-guide/download/goalfinder-1.10-bracket-inner.obj)
 - /[Obere linke Halterung](/content/build-guide/download/goalfinder-1.10-bracket-top-left.obj)
 - /[Obere rechte Halterung](/content/build-guide/download/goalfinder-1.10-bracket-top-right.obj)
 
 ![Haupthalterung](assets/img/assembly/steps/low_res/GF_assembly_10.jpg)(510x614)
-*Halterung für Platine und Sensoren*
+*Haupthalterung für Platine und Sensoren*
 ![Obere Halterungen](assets/img/assembly/steps/low_res/GF_assembly_12.jpg)(510x614)
 *Obere linke und rechte Halterung*
 
@@ -34,7 +38,7 @@ Die inneren Halterungen bestehen aus drei Halterungen für die Platine, Sensoren
 ![Gehäuse unten](assets/img/assembly/steps/low_res/GF_assembly_22.jpg)(510x614)
 *Untere Gehäuseplatte*
 
-Das äußere Gehäuse besteht aus sechs Platten. Zwei dieser Platten können je nach Installationsbedarf durch Montagevarianten ersetzt werden. Die gezeigten Platten sind aus Plexiglas geschnitten, können aber auch einfach 3D-gedruckt werden.
+Das äußere Gehäuse besteht aus sechs Platten. Zwei dieser Platten können je nach Installationsbedarf durch Montagevarianten ersetzt werden. Die gezeigten Platten sind aus Plexiglas geschnitten, können aber auch problemlos 3D-gedruckt werden.
 
 - /[Unten](/content/build-guide/download/goalfinder-1.10-housing-bottom.obj)
 - /[Hinten](/content/build-guide/download/goalfinder-1.10-housing-back.obj)
@@ -43,8 +47,8 @@ Das äußere Gehäuse besteht aus sechs Platten. Zwei dieser Platten können je 
 - /[Oben](/content/build-guide/download/goalfinder-1.10-housing-top.obj) oder als Montagevariante /[Oben mit Halterung](/content/build-guide/download/goalfinder-1.10-housing-top-mount.obj)
 - /[Vorne](/content/build-guide/download/goalfinder-1.10-housing-front.obj) oder als Montagevariante /[Vorne mit Halterung](/content/build-guide/download/goalfinder-1.10-housing-front-mount.obj)
 
-#### Montage vs. Standardplatten
-![Rückseiten-Montage](assets/img/design/mouting/back-plate.png)(672x346)
+#### Montage- vs. Standardplatten
+![Rückseitenmontage](assets/img/design/mouting/back-plate.png)(672x346)
 *Beispiel: Montage an der Rückplatte*
 ![Obere Montage](assets/img/design/mouting/top-plate.png)(672x346)
 *Beispiel: Montage an der oberen Platte*
@@ -73,9 +77,9 @@ Time-of-Flight (ToF) Sensor zur Treffererkennung.
 [Dokumentation](https://cdn.shopify.com/s/files/1/1509/1638/files/VL53L0X_Time_of_Flight_Sensor_Datenblatt_AZ-Delivery_Vertriebs_GmbH.pdf)
 
 #### MAX98357A
-Verstärker für den Anschluss an den Audiotreiber.
+Verstärker zum Anschluss an den Audiotreiber.
 ![MAX98357A](assets/img/components/max.png)(400x320)
-[Produktlink](https://www.amazon.de/dp/B09PL7DSK5?th=1)
+[Produktlink](https://www.amazon.de/-/en/MAX98357A-Amplifier-Filterless-Breakout-Application/dp/B0F21T7Q3P/ref=sr_1_4)
 [Dokumentation](https://www.analog.com/media/en/technical-documentation/data-sheets/max98357a-max98357b.pdf)
 
 #### Audiotreiber
@@ -85,12 +89,12 @@ Lautsprecher für akustisches Feedback.
 
 ### Weitere Teile
 #### USB-C Breakout
-Breakout-Board für den externen USB-C-Anschluss an der Seitenplatte.
+Breakout-Board für den externen USB-C-Anschluss an der Seitenwand.
 ![USB-C Breakout](assets/img/assembly/steps/high_res/GF_assembly_06.jpg)(510x614)
 
 #### LED-Streifen
-LED-Streifen für visuelles Feedback.
-![USB-C Breakout](assets/img/assembly/steps/high_res/GF_assembly_06.jpg)(510x614)
+LED-Streifen für visuelles Feedback. Die meisten Nutzer bevorzugen den violetten Streifen, da er am auffälligsten ist.
+![LED-Streifen](assets/img/components/led.JPG)(450)
 [Produktlink](https://www.amazon.de/dp/B0BXWV3FD4?th=1)
 
 #### XYQ JST-Steckverbinder
@@ -119,7 +123,7 @@ Nachfolgend eine Liste aller Hilfsteile für die Montage:
 - 3x 2-poliger weiblicher JST-Steckverbinder
 - 1x 2-poliger männlicher JST-Steckverbinder
 - 1x 3-poliger weiblicher JST-Steckverbinder
-- 30x 2.54mm Pin Header (längster: 10 Pins)
+- 30x 2,54mm Pin-Header (längster: 10 Pins)
 
 ### Downloads
 /[Gerber-Dateien herunterladen](content/build-guide/download/gf-1.5-pcb.zip)
