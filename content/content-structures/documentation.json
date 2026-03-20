@@ -242,39 +242,11 @@
                 "path": "introduction.md"
             },
             {
-                "type": "category",
-                "de": "Teile",
-                "en": "Parts",
-                "children": [
-                    {
-                        "type": "page",
-                        "uid": "bg-parts",
-                        "de": "Übersicht",
-                        "en": "Summary",
-                        "path": "parts.md"
-                    },
-                    {
-                        "type": "page",
-                        "uid": "bg-housing",
-                        "de": "Gehäuse",
-                        "en": "Housing",
-                        "path": "housing.md"
-                    },
-                    {
-                        "type": "page",
-                        "uid": "bg-electronics",
-                        "de": "Elektronik",
-                        "en": "Electronics",
-                        "path": "electronics.md"
-                    },
-                    {
-                        "type": "page",
-                        "uid": "bg-pcb",
-                        "de": "Platine",
-                        "en": "PCB",
-                        "path": "pcb.md"
-                    }
-                ]
+                "type": "page",
+                "uid": "bg-parts",
+                "de": "Teileliste   ",
+                "en": "Parts List",
+                "path": "parts.md"
             },
             {
                 "type": "category",
