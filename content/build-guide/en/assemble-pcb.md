@@ -6,6 +6,18 @@ Follow the provided schematics and sources to assemble the PCB. The ToF sensor a
 ![PCB from above](assets/img/assembly/steps/high_res/GF_assembly_01.jpg)(1020x1228)
 ![PCB from below](assets/img/assembly/steps/high_res/GF_assembly_02.jpg)(1020x1228)
 *Expected result after assembling the PCB* 
+
+![PCB Top Rendering](assets/img/render/top.png)(900)
+*Top side of the PCB*
+![PCB Main Rendering](assets/img/render/main.png)(900)
+*Overall view*
+
+### Recommendation: Solder low components first
+We recommend soldering the low-profile components onto the PCB first before mounting larger components. This makes soldering easier and ensures a clean assembly.
+
+### Soldering the VL53L0X Breakout Board
+Solder the VL53L0X breakout board onto the straight pins of the right-angle header, so that the bent pins are on the side opposite the sensor (back side). Insert the bent pins through the main PCB and solder one pin first. Position the breakout board as perpendicular as possible to the main PCB and parallel to the front edge of the PCB. Then solder the remaining pins.
+
 #ih Note
 #ib We recommend cutting of the top layer of the Micro USB breakout to avoid breaking the Microcontrollers port
 

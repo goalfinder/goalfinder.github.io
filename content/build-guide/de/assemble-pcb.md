@@ -6,6 +6,19 @@ Montiere die elektronischen Komponenten auf der Platine. Als Hilfestellung könn
 ![Leiterplatte von oben](assets/img/assembly/steps/high_res/GF_assembly_01.jpg)(1020x1228)
 ![Leiterplatte von unten](assets/img/assembly/steps/high_res/GF_assembly_02.jpg)(1020x1228)
 *Erwartetes Ergebnis nach dem Zusammenbau der Leiterplatte*
+
+![PCB Rendering Vorderseite](assets/img/render/top.png)(900)
+*Oberseite der Leiterplatte*
+![PCB Rendering Rückseite](assets/img/render/main.png)(900)
+*Gesamtansicht*
+
+
+### Empfehlung: Niedrige Komponenten zuerst bestücken
+Wir empfehlen, zuerst die niedrigen Bauteile auf der Leiterplatte zu bestücken und zu löten, bevor größere Komponenten montiert werden. Dies erleichtert das Löten und sorgt für eine saubere Montage.
+
+### VL53L0X Breakout Board löten
+Löten Sie das VL53L0X Breakout-Board auf die geraden Pins des Winkel-Headers, sodass die gebogenen Pins auf der dem Sensor gegenüberliegenden Seite (Rückseite) liegen. Führen Sie die gebogenen Pins durch die Hauptplatine und löten Sie zunächst einen Pin fest. Positionieren Sie das Breakout-Board so senkrecht wie möglich zur Hauptplatine und parallel zur Vorderkante der Platine. Anschließend die restlichen Pins verlöten.
+
 #ih Empfehlung
 #ib Wir empfehlen den oberen Teil des Micro USB Breakout Boards abzuschneiden, um ein mögliches Abbrechen der Buchse des Microcontrollers zu vermeiden
 

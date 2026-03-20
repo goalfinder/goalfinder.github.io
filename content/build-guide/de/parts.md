@@ -109,6 +109,13 @@ Verbindet die Platine mit dem Mikrocontroller über USB.
 ## Leiterplatte (PCB)
 Die Leiterplatte verbindet den Hauptmikrocontroller mit allen elektronischen Komponenten im System.
 
+### PCB-Renderings
+Hier finden Sie Renderings der Leiterplatte zur besseren Visualisierung:
+![PCB Rendering Vorderseite](assets/img/render/top.png)(510x614)
+*Oberseite der Leiterplatte*
+![PCB Rendering Rückseite](assets/img/render/main.png)(510x614)
+*Gesamtansicht*
+
 ### Benötigte Komponenten
 Nachfolgend eine Liste aller Hilfsteile für die Montage:
 

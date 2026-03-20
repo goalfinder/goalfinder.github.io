@@ -53,7 +53,6 @@ The outer housing is made up of six plates. Two of these plates can be replaced 
 ![Top Mounting](assets/img/design/mouting/top-plate.png)(672x346)
 *Example: Mounting on the top plate*
 
-
 ## Electronic Components
 This page lists all electronic components required for assembling the GoalFinder device.
 
@@ -108,6 +107,11 @@ Connects the PCB to the microcontroller via USB.
 
 ## Printed Circuit Board
 The printed circuit board (PCB) connects the main microcontroller to all electronic components in the system.
+
+![PCB Top Rendering](assets/img/render/top.png)(510x614)
+*Top side of the PCB*
+![PCB Main Rendering](assets/img/render/main.png)(510x614)
+*Overall view*
 
 ### Required Components
 Below is a list of all utility parts needed for assembly:
