@@ -89,7 +89,9 @@ Breakout board for external USB-C connection on the side panel.
 ![USB-C Breakout](assets/img/assembly/steps/high_res/GF_assembly_06.jpg)(510x614)
 
 #### LED Strip
-LED strip for visual feedback.
+LED strip for visual feedback. Most users tend to like the purple strip as it is most visually striking.
+![Led Strip](assets/img/components/led.JPG)(450)
+[Product Link](https://www.amazon.de/dp/B0BXWV3FD4?th=1)
 
 #### XYQ JST Connectors
 Connectors for device-to-LED strip connection.

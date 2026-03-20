@@ -1,7 +1,7 @@
 # Teile
 Diese Seite bietet einen umfassenden Überblick über alle Komponenten, die für die vollständige Montage des GoalFinder-Geräts benötigt werden.
 #wh Hinweis
-#wb Die genauen Maße und Spezifikationen der Grundteile werden derzeit überprüft und werden aktualisiert, sobald sie verfügbar sind.
+#wb Die genauen Maße und Spezifikationen der Grundteile werden derzeit überprüft und bei Verfügbarkeit aktualisiert.
 
 ## Grundlegende Montage-Teile
 ### Gehäusematerial
@@ -15,7 +15,7 @@ Wir empfehlen, das Gehäuse und die inneren Halterungen des Geräts mit festen, 
 
 /[Archiv mit allen Dateien herunterladen](/content/build-guide/download/gf-1.10-housing.zip)
 ### Innere Halterungen
-Die inneren Halterungen bestehen aus drei Halterungen für die Platine, Sensoren und Zubehör. Sie sorgen für sicheren Halt und einfache Installation aller internen Komponenten.
+Die inneren Halterungen bestehen aus drei Halterungen für die Platine, Sensoren und Zubehör. Sie sorgen für sicheren Halt und eine einfache Installation aller internen Komponenten.
 
 - /[Haupthalterung](/content/build-guide/download/goalfinder-1.10-bracket-inner.obj)
 - /[Obere linke Halterung](/content/build-guide/download/goalfinder-1.10-bracket-top-left.obj)
@@ -44,7 +44,7 @@ Das äußere Gehäuse besteht aus sechs Platten. Zwei dieser Platten können je 
 - /[Vorne](/content/build-guide/download/goalfinder-1.10-housing-front.obj) oder als Montagevariante /[Vorne mit Halterung](/content/build-guide/download/goalfinder-1.10-housing-front-mount.obj)
 
 #### Montage vs. Standardplatten
-![Rückseitenmontage](assets/img/design/mouting/back-plate.png)(672x346)
+![Rückseiten-Montage](assets/img/design/mouting/back-plate.png)(672x346)
 *Beispiel: Montage an der Rückplatte*
 ![Obere Montage](assets/img/design/mouting/top-plate.png)(672x346)
 *Beispiel: Montage an der oberen Platte*
@@ -68,12 +68,14 @@ Schüttelsensor zur Schusserkennung.
 
 #### VL53L0X
 Time-of-Flight (ToF) Sensor zur Treffererkennung.
+![VL53L0X](assets/img/components/vl.png)(400)
 [Produktlink](https://www.amazon.de/-/en/AZDelivery-VL53L0X-Flight-Ranging-Sensor/dp/B086V37JJ7/ref=sr_1_4)
 [Dokumentation](https://cdn.shopify.com/s/files/1/1509/1638/files/VL53L0X_Time_of_Flight_Sensor_Datenblatt_AZ-Delivery_Vertriebs_GmbH.pdf)
 
 #### MAX98357A
-Verstärker zum Anschluss an den Audiotreiber.
-[Produktlink](https://www.amazon.de/-/en/MAX98357A-Amplifier-Filterless-Breakout-Application/dp/B0F21T7Q3P/ref=sr_1_4)
+Verstärker für den Anschluss an den Audiotreiber.
+![MAX98357A](assets/img/components/max.png)(400x320)
+[Produktlink](https://www.amazon.de/dp/B09PL7DSK5?th=1)
 [Dokumentation](https://www.analog.com/media/en/technical-documentation/data-sheets/max98357a-max98357b.pdf)
 
 #### Audiotreiber
@@ -83,11 +85,13 @@ Lautsprecher für akustisches Feedback.
 
 ### Weitere Teile
 #### USB-C Breakout
-Breakout-Board für den externen USB-C-Anschluss an der Seitenwand.
+Breakout-Board für den externen USB-C-Anschluss an der Seitenplatte.
 ![USB-C Breakout](assets/img/assembly/steps/high_res/GF_assembly_06.jpg)(510x614)
 
 #### LED-Streifen
 LED-Streifen für visuelles Feedback.
+![USB-C Breakout](assets/img/assembly/steps/high_res/GF_assembly_06.jpg)(510x614)
+[Produktlink](https://www.amazon.de/dp/B0BXWV3FD4?th=1)
 
 #### XYQ JST-Steckverbinder
 Steckverbinder für die Verbindung zwischen Gerät und LED-Streifen.
@@ -115,7 +119,7 @@ Nachfolgend eine Liste aller Hilfsteile für die Montage:
 - 3x 2-poliger weiblicher JST-Steckverbinder
 - 1x 2-poliger männlicher JST-Steckverbinder
 - 1x 3-poliger weiblicher JST-Steckverbinder
-- 30x 2,54mm Pin Header (längster: 10 Pins)
+- 30x 2.54mm Pin Header (längster: 10 Pins)
 
 ### Downloads
 /[Gerber-Dateien herunterladen](content/build-guide/download/gf-1.5-pcb.zip)
