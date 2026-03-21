@@ -97,9 +97,9 @@ LED-Streifen für visuelles Feedback. Die meisten Nutzer bevorzugen den violette
 ![LED-Streifen](assets/img/components/led.JPG)(450)
 [Produktlink](https://www.amazon.de/dp/B0BXWV3FD4?th=1)
 
-#### XYQ JST-Steckverbinder
+#### RCY JST-Steckverbinder
 Steckverbinder für die Verbindung zwischen Gerät und LED-Streifen.
-![XYQ JST-Steckverbinder](assets/img/assembly/steps/high_res/GF_assembly_07.jpg)(510x614)
+![RCY JST-Steckverbinder](assets/img/assembly/steps/high_res/GF_assembly_07.jpg)(510x614)
 [Produktlink](https://www.amazon.com/Pairs-Female-Connector-22AWG-Battery/dp/B01HHY9ZKW)
 
 #### Micro USB Breakout
@@ -109,11 +109,9 @@ Verbindet die Platine mit dem Mikrocontroller über USB.
 ## Leiterplatte (PCB)
 Die Leiterplatte verbindet den Hauptmikrocontroller mit allen elektronischen Komponenten im System.
 
-### PCB-Renderings
-Hier finden Sie Renderings der Leiterplatte zur besseren Visualisierung:
-![PCB Rendering Vorderseite](assets/img/render/top.png)(510x614)
+![PCB Rendering Oberseite](assets/img/render/top.png)(510x614)
 *Oberseite der Leiterplatte*
-![PCB Rendering Rückseite](assets/img/render/main.png)(510x614)
+![PCB Rendering Gesamtansicht](assets/img/render/main.png)(510x614)
 *Gesamtansicht*
 
 ### Benötigte Komponenten
@@ -131,6 +129,20 @@ Nachfolgend eine Liste aller Hilfsteile für die Montage:
 - 1x 2-poliger männlicher JST-Steckverbinder
 - 1x 3-poliger weiblicher JST-Steckverbinder
 - 30x 2,54mm Pin-Header (längster: 10 Pins)
+
+### Zusätzliche Verbinder und Hardware
+- 1× JST 2.5 4-polig Stecker & Buchse für USB-Adapter
+- 1× JST 2.5 3-polig Stecker & Buchse für Neigungssensor (Schüttelsensor)
+- 1× JST 2.5 2-polig Stecker & Buchse für LED-Streifen-Adapter (für LED: XYQ JST)
+- 1× JST 2.5 2-polig Stecker für MAX (mit Schraubklemmen); beim Zusammenbau die Pins beim Einstecken leicht auseinanderbiegen (! zur Sicherung der Pins im Sockel), da das Breakout-Board ein 2,54 mm Rastermaß verwendet
+- 1× 6-poliger gewinkelter 2,54 mm Pin-Header für das VL53L0X-Breakout-Board
+- 1× 7-poliger gerader 2,54 mm Pin-Header für MAX
+- 2× 2×10-polige 2,54 mm Buchsenleisten für ESP
+
+#### Schrauben
+- 4× M3×10 bis M3×20 Senkkopfschrauben, Unterlegscheiben, Muttern für Lautsprecherbefestigung
+- 8× M4×10 bis M4×20 Senkkopfschrauben für das Gehäuse
+- 8× M4×6 bis M4×16 Einschraub-Gewindeeinsätze (Gewindebuchsen) für das Gehäuse
 
 ### Downloads
 /[Gerber-Dateien herunterladen](content/build-guide/download/gf-1.5-pcb.zip)

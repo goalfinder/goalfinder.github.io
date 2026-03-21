@@ -12,6 +12,9 @@ Follow the provided schematics and sources to assemble the PCB. The ToF sensor a
 ![PCB Main Rendering](assets/img/render/main.png)(900)
 *Overall view*
 
+#wh Caution regarding the USB socket
+#wb If hardwiring, mount the socket in the housing before soldering it to the PCB, as it can no longer be inserted through the opening afterwards.
+
 ### Recommendation: Solder low components first
 We recommend soldering the low-profile components onto the PCB first before mounting larger components. This makes soldering easier and ensures a clean assembly.
 

@@ -96,9 +96,9 @@ LED strip for visual feedback. Most users tend to like the purple strip as it is
 ![Led Strip](assets/img/components/led.JPG)(450)
 [Product Link](https://www.amazon.de/dp/B0BXWV3FD4?th=1)
 
-#### XYQ JST Connectors
+#### RCY JST Connectors
 Connectors for device-to-LED strip connection.
-![XYQ JST Connector](assets/img/assembly/steps/high_res/GF_assembly_07.jpg)(510x614)
+![RCY JST Connector](assets/img/assembly/steps/high_res/GF_assembly_07.jpg)(510x614)
 [Product Link](https://www.amazon.com/Pairs-Female-Connector-22AWG-Battery/dp/B01HHY9ZKW)
 
 #### Micro USB Breakout
@@ -128,6 +128,20 @@ Below is a list of all utility parts needed for assembly:
 - 1x 2-pin Male JST Connector
 - 1x 3-pin Female JST Connector
 - 30x 2.54mm Pin Header (longest: 10 pins)
+
+### Additional Connectors and Hardware
+- 1× JST 2.5 4-pin Male & Female for USB adapter
+- 1× JST 2.5 3-pin Male & Female for tilt (shake) sensor
+- 1× JST 2.5 2-pin Male & Female for LED strip adapter (for LED: XYQ JST)
+- 1× JST 2.5 2-pin Male for MAX (comes with screw terminals); during assembly, slightly bend the pins apart when the connector is plugged in (! to secure the pins inside the socket), since the breakout board uses a 2.54 mm pitch
+- 1× 6-pin right-angle 2.54 mm pin header for the VL53L0X breakout board
+- 1× 7-pin straight 2.54 mm pin header for MAX
+- 2× 2×10-pin 2.54 mm female headers for ESP
+
+#### Screws
+- 4× M3×10 to M3×20 countersunk screws, washers, nuts for speaker mounting
+- 8× M4×10 to M4×20 countersunk screws for the housing
+- 8× M4×6 to M4×16 heat-set threaded inserts (threaded bushings) for the housing
 
 ### Downloads
 /[Download Gerber Files](content/build-guide/download/gf-1.5-pcb.zip)

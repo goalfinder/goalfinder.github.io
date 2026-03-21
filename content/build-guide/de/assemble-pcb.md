@@ -12,6 +12,8 @@ Montiere die elektronischen Komponenten auf der Platine. Als Hilfestellung könn
 ![PCB Rendering Rückseite](assets/img/render/main.png)(900)
 *Gesamtansicht*
 
+#wh Anmerkung bezüglich der USB-Buchse
+#wb Falls die Buchse fest verdrahtet wird, muss sie vor dem Anlöten an die Leiterplatte im Gehäuse montiert werden, da sie nachträglich nicht mehr durch die Öffnung passt.
 
 ### Empfehlung: Niedrige Komponenten zuerst bestücken
 Wir empfehlen, zuerst die niedrigen Bauteile auf der Leiterplatte zu bestücken und zu löten, bevor größere Komponenten montiert werden. Dies erleichtert das Löten und sorgt für eine saubere Montage.
