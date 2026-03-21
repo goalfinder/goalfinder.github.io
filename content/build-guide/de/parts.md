@@ -38,7 +38,7 @@ Die inneren Halterungen bestehen aus drei Halterungen für die Platine, Sensoren
 ![Gehäuse unten](assets/img/assembly/steps/low_res/GF_assembly_22.jpg)(510x614)
 *Untere Gehäuseplatte*
 
-Das äußere Gehäuse besteht aus sechs Platten. Zwei dieser Platten können je nach Installationsbedarf durch Montagevarianten ersetzt werden. Die gezeigten Platten sind aus Plexiglas geschnitten, können aber auch problemlos 3D-gedruckt werden.
+Das äußere Gehäuse besteht aus sechs Platten. Zwei dieser Platten können je nach Installationsbedarf durch Montagevarianten ersetzt werden. Die gezeigten Platten sind aus Acrylglas geschnitten, können aber auch problemlos 3D-gedruckt werden.
 
 - /[Unten](/content/build-guide/download/goalfinder-1.10-housing-bottom.obj)
 - /[Hinten](/content/build-guide/download/goalfinder-1.10-housing-back.obj)
@@ -82,15 +82,15 @@ Verstärker zum Anschluss an den Audiotreiber.
 [Produktlink](https://www.amazon.de/-/en/MAX98357A-Amplifier-Filterless-Breakout-Application/dp/B0F21T7Q3P/ref=sr_1_4)
 [Dokumentation](https://www.analog.com/media/en/technical-documentation/data-sheets/max98357a-max98357b.pdf)
 
-#### Audiotreiber
+#### Lautsprecher
 Lautsprecher für akustisches Feedback.
-![Audiotreiber](assets/img/assembly/steps/high_res/GF_assembly_28.jpg)(510x614)
+![Lautsprecher](assets/img/assembly/steps/high_res/GF_assembly_28.jpg)(510x614)
 [Produktlink](https://www.amazon.de/-/en/HUAREW-JST-PH2-0-Interface-Motherboard-Electronic/dp/B0CRNZYW1R/ref=sr_1_6)
 
 ### Weitere Teile
-#### USB-C Breakout
-Breakout-Board für den externen USB-C-Anschluss an der Seitenwand.
-![USB-C Breakout](assets/img/assembly/steps/high_res/GF_assembly_06.jpg)(510x614)
+#### USB-C Buchse
+Buchse für den externen USB-C-Anschluss an der Seitenwand.
+![USB-C Buchse](assets/img/assembly/steps/high_res/GF_assembly_06.jpg)(510x614)
 
 #### LED-Streifen
 LED-Streifen für visuelles Feedback. Die meisten Nutzer bevorzugen den violetten Streifen, da er am auffälligsten ist.
