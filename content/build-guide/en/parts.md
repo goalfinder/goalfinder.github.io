@@ -113,37 +113,34 @@ The printed circuit board (PCB) connects the main microcontroller to all electro
 ![PCB Main Rendering](assets/img/render/main.png)(510x614)
 *Overall view*
 
-### Required Components
-Below is a list of all utility parts needed for assembly:
-
-- 1x 22µF Capacitor
-- 1x 4.7µF Capacitor
-- 6x 100nF SMD Capacitor
-- 2x 100k SMD Resistor
-- 1x 1k SMD Resistor
-- 1x 35k SMD Resistor
-- 1x IRLML2502 SMD MOSFET
-
-- 3x 2-pin Female JST Connector
-- 1x 2-pin Male JST Connector
-- 1x 3-pin Female JST Connector
-- 30x 2.54mm Pin Header (longest: 10 pins)
-
-### Additional Connectors and Hardware
-- 1× JST 2.5 4-pin Male & Female for USB adapter
-- 1× JST 2.5 3-pin Male & Female for tilt (shake) sensor
-- 1× JST 2.5 2-pin Male & Female for LED strip adapter (for LED: XYQ JST)
-- 1× JST 2.5 2-pin Male for MAX (comes with screw terminals); during assembly, slightly bend the pins apart when the connector is plugged in (! to secure the pins inside the socket), since the breakout board uses a 2.54 mm pitch
-- 1× 6-pin right-angle 2.54 mm pin header for the VL53L0X breakout board
-- 1× 7-pin straight 2.54 mm pin header for MAX
-- 2× 2×10-pin 2.54 mm female headers for ESP
-
-#### Screws
-- 4× M3×10 to M3×20 countersunk screws, washers, nuts for speaker mounting
-- 8× M4×10 to M4×20 countersunk screws for the housing
-- 8× M4×6 to M4×16 heat-set threaded inserts (threaded bushings) for the housing
-
 ### Downloads
 /[Download Gerber Files](content/build-guide/download/gf-1.5-pcb.zip)
+
+### Required Components
+Below is a table of all utility parts needed for assembly:
+
+| Quantity | Name | Description |
+|----------|------|-------------|
+| 1 | 22µF Capacitor | SMD, for power supply |
+| 1 | 4.7µF Capacitor | SMD, for power supply |
+| 6 | 100nF SMD Capacitor | Decoupling and buffering |
+| 2 | 100k SMD Resistor | Standard resistor |
+| 1 | 1k SMD Resistor | Standard resistor |
+| 1 | 35k SMD Resistor | Standard resistor |
+| 1 | IRLML2502 SMD MOSFET | Switching transistor |
+| 3 | 2-pin Female JST Connector | For component connections |
+| 1 | 2-pin Male JST Connector | For component connections |
+| 1 | 3-pin Female JST Connector | For component connections |
+| 30 | 2.54mm Pin Header (longest: 10 pins) | Pin headers for connections |
+| 1 | JST 2.5 4-pin Male & Female | For USB adapter |
+| 1 | JST 2.5 3-pin Male & Female | For tilt (shake) sensor |
+| 1 | JST 2.5 2-pin Male & Female | For LED strip adapter (for LED: XYQ JST) |
+| 1 | JST 2.5 2-pin Male for MAX | Comes with screw terminals; during assembly, slightly bend the pins apart when the connector is plugged in (! to secure the pins inside the socket), since the breakout board uses a 2.54 mm pitch |
+| 1 | 6-pin right-angle 2.54 mm pin header | For the VL53L0X breakout board |
+| 1 | 7-pin straight 2.54 mm pin header | For MAX |
+| 2 | 2×10-pin 2.54 mm female headers | For ESP |
+| 4 | M3×10 to M3×20 countersunk screws, washers, nuts | For speaker mounting |
+| 8 | M4×10 to M4×20 countersunk screws | For the housing |
+| 8 | M4×6 to M4×16 heat-set threaded inserts (threaded bushings) | For the housing |
 
 #end

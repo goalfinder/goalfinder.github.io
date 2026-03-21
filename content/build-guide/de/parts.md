@@ -114,37 +114,35 @@ Die Leiterplatte verbindet den Hauptmikrocontroller mit allen elektronischen Kom
 ![PCB Rendering Gesamtansicht](assets/img/render/main.png)(510x614)
 *Gesamtansicht*
 
-### Benötigte Komponenten
-Nachfolgend eine Liste aller Hilfsteile für die Montage:
-
-- 1x 22µF Kondensator
-- 1x 4.7µF Kondensator
-- 6x 100nF SMD-Kondensator
-- 2x 100k SMD-Widerstand
-- 1x 1k SMD-Widerstand
-- 1x 35k SMD-Widerstand
-- 1x IRLML2502 SMD-MOSFET
-
-- 3x 2-poliger weiblicher JST-Steckverbinder
-- 1x 2-poliger männlicher JST-Steckverbinder
-- 1x 3-poliger weiblicher JST-Steckverbinder
-- 30x 2,54mm Pin-Header (längster: 10 Pins)
-
-### Zusätzliche Verbinder und Hardware
-- 1× JST 2.5 4-polig Stecker & Buchse für USB-Adapter
-- 1× JST 2.5 3-polig Stecker & Buchse für Neigungssensor (Schüttelsensor)
-- 1× JST 2.5 2-polig Stecker & Buchse für LED-Streifen-Adapter (für LED: XYQ JST)
-- 1× JST 2.5 2-polig Stecker für MAX (mit Schraubklemmen); beim Zusammenbau die Pins beim Einstecken leicht auseinanderbiegen (! zur Sicherung der Pins im Sockel), da das Breakout-Board ein 2,54 mm Rastermaß verwendet
-- 1× 6-poliger gewinkelter 2,54 mm Pin-Header für das VL53L0X-Breakout-Board
-- 1× 7-poliger gerader 2,54 mm Pin-Header für MAX
-- 2× 2×10-polige 2,54 mm Buchsenleisten für ESP
-
-#### Schrauben
-- 4× M3×10 bis M3×20 Senkkopfschrauben, Unterlegscheiben, Muttern für Lautsprecherbefestigung
-- 8× M4×10 bis M4×20 Senkkopfschrauben für das Gehäuse
-- 8× M4×6 bis M4×16 Einschraub-Gewindeeinsätze (Gewindebuchsen) für das Gehäuse
-
 ### Downloads
 /[Gerber-Dateien herunterladen](content/build-guide/download/gf-1.5-pcb.zip)
+
+### Benötigte Komponenten
+Nachfolgend eine Tabelle aller Hilfsteile für die Montage:
+
+| Menge | Bezeichnung | Beschreibung |
+|-------|-------------|--------------|
+| 1 | 22µF Kondensator | SMD, für die Stromversorgung |
+| 1 | 4.7µF Kondensator | SMD, für die Stromversorgung |
+| 6 | 100nF SMD-Kondensator | Entstörung und Pufferung |
+| 2 | 100k SMD-Widerstand | Standardwiderstand |
+| 1 | 1k SMD-Widerstand | Standardwiderstand |
+| 1 | 35k SMD-Widerstand | Standardwiderstand |
+| 1 | IRLML2502 SMD-MOSFET | Schalttransistor |
+| 3 | 2-poliger weiblicher JST-Steckverbinder | Für Verbindungen zu Komponenten |
+| 1 | 2-poliger männlicher JST-Steckverbinder | Für Verbindungen zu Komponenten |
+| 1 | 3-poliger weiblicher JST-Steckverbinder | Für Verbindungen zu Komponenten |
+| 30 | 2,54mm Pin-Header (längster: 10 Pins) | Stiftleisten für Steckverbindungen |
+| 1 | JST 2.5 4-polig Stecker & Buchse | Für USB-Adapter |
+| 1 | JST 2.5 3-polig Stecker & Buchse | Für Neigungssensor (Schüttelsensor) |
+| 1 | JST 2.5 2-polig Stecker & Buchse | Für LED-Streifen-Adapter (für LED: XYQ JST) |
+| 1 | JST 2.5 2-polig Stecker für MAX | Mit Schraubklemmen; beim Zusammenbau die Pins beim Einstecken leicht auseinanderbiegen (! zur Sicherung der Pins im Sockel), da das Breakout-Board ein 2,54 mm Rastermaß verwendet |
+| 1 | 6-poliger gewinkelter 2,54 mm Pin-Header | Für das VL53L0X-Breakout-Board |
+| 1 | 7-poliger gerader 2,54 mm Pin-Header | Für MAX |
+| 2 | 2×10-polige 2,54 mm Buchsenleisten | Für ESP |
+| 4 | M3×10 bis M3×20 Senkkopfschrauben, Unterlegscheiben, Muttern | Für Lautsprecherbefestigung |
+| 8 | M4×10 bis M4×20 Senkkopfschrauben | Für das Gehäuse |
+| 8 | M4×6 bis M4×16 Einschraub-Gewindeeinsätze (Gewindebuchsen) | Für das Gehäuse |
+| 8 | M4×6 bis M4×16 | Einschraub-Gewindeeinsätze (Gewindebuchsen) für das Gehäuse |
 
 #end
