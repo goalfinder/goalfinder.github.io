@@ -63,6 +63,7 @@ let langToggle;
 // Track current doc so language switch can reload the right structure
 let currentDoc = "user";
 let currentDefaultPagePath = ""; // Will be set dynamically
+const MOBILE_LAYOUT_BREAKPOINT = 1500;
 
 /**
  * Translate a key using the current translations
@@ -151,7 +152,8 @@ async function getMarkdownHeaders(path) {
 		if (match) {
 			// Add match to heading array
 			const text = match[2].trim();
-			headings.push({ text, id });
+			const level = match[1].length;
+			headings.push({ text, id, level });
 			id++;
 		}
 	}
@@ -180,7 +182,7 @@ function searchbarBlur() {
 
 		// On mobile collapse the search bar back to icon-only
 		try {
-			if (window.innerWidth <= 768) {
+			if (window.innerWidth <= MOBILE_LAYOUT_BREAKPOINT) {
 				const bar = document.querySelector(".header-search-bar");
 				if (bar) {
 					bar.classList.remove("expanded");
@@ -201,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function applyMobileState() {
 		if (!searchBar) return;
-		if (window.innerWidth <= 768) {
+		if (window.innerWidth <= MOBILE_LAYOUT_BREAKPOINT) {
 			// default collapsed state on mobile
 			if (!searchBar.classList.contains("expanded")) {
 				searchBar.classList.add("mobile-collapsed");
@@ -219,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (searchIcon) {
 		searchIcon.addEventListener("click", (e) => {
-			if (window.innerWidth > 768) return; // default behavior on desktop
+			if (window.innerWidth > MOBILE_LAYOUT_BREAKPOINT) return; // default behavior on desktop
 
 			const bar = searchIcon.closest(".header-search-bar");
 			if (!bar) return;
@@ -645,7 +647,8 @@ function lightDarkModeToggle() {
 function generateHtmlRightHeader(headings) {
 	let html = '<ul class="right-bar-list">';
 	headings.forEach((heading) => {
-		html += `<li class="right-bar-items"><a href="#${heading.id}">${heading.text}</a></li>`;
+		const level = Math.min(Math.max(heading.level || 1, 1), 6);
+		html += `<li class="right-bar-items right-bar-level-${level}"><a href="#${heading.id}">${heading.text}</a></li>`;
 	});
 	html += "</ul>";
 	return html;
@@ -1884,7 +1887,7 @@ async function initMarkdownDocumentation(config = {}) {
 		if (!topicClose) return;
 
 		const isSidebarOpen = document.body.classList.contains("sidebar-open");
-		const shouldShowClose = isSidebarOpen && window.innerWidth <= 768;
+		const shouldShowClose = isSidebarOpen && window.innerWidth <= MOBILE_LAYOUT_BREAKPOINT;
 
 		topicClose.hidden = !shouldShowClose;
 		topicClose.setAttribute("aria-hidden", (!shouldShowClose).toString());
@@ -1935,7 +1938,7 @@ async function initMarkdownDocumentation(config = {}) {
 	});
 
 	window.addEventListener("resize", () => {
-		if (window.innerWidth > 768) closeSidebar();
+		if (window.innerWidth > MOBILE_LAYOUT_BREAKPOINT) closeSidebar();
 		syncSidebarControls();
 	});
 
