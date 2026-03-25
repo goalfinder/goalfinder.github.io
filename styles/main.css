@@ -175,15 +175,17 @@ p {
 
 .panel-about {
 	text-align: left;
-	align-items: stretch;
+	align-items: center;
+	justify-content: center;
 }
 
 .about-grid {
-	width: min(1600px, calc(100vw - 4rem));
+	width: min(1400px, 90vw);
 	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: clamp(1.5rem, 2.6vw, 3rem);
+	grid-template-columns: 1fr 1fr;
+	gap: clamp(4rem, 8vw, 8rem);
 	align-items: center;
+	justify-items: center;
 }
 
 .about-copy {
@@ -192,6 +194,11 @@ p {
 	gap: 1rem;
 	width: min(96%, 760px);
 	margin-inline: auto;
+	text-align: center;
+}
+
+.about-content {
+	text-align: center;
 }
 
 #about-shared-title {
@@ -412,9 +419,9 @@ p {
 	}
 
 	.about-grid {
-		grid-template-columns: 1fr;
-		gap: 1.3rem;
-		width: min(100%, calc(100vw - 2rem));
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		width: min(100%, calc(100vw - 1rem));
 	}
 
 	.about-gallery {
