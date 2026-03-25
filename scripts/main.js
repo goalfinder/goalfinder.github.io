@@ -8,6 +8,21 @@ let langButton;
 let themeButton;
 let titleMorphLock = false;
 let scroll_block = false;
+let touchOnlyMode = false;
+let alternateScrollEnabled = true;
+
+function setTouchOnlyMode(enabled) {
+	if (touchOnlyMode === enabled) return;
+	touchOnlyMode = enabled;
+	alternateScrollEnabled = !enabled;
+	document.documentElement.classList.toggle("touch-only", enabled);
+}
+
+function isTouchOnlyDevice() {
+	const hasTouchPoints = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
+	const hasFinePointer = window.matchMedia && window.matchMedia("(any-pointer: fine)").matches;
+	return hasTouchPoints && !hasFinePointer;
+}
 
 function switchLang() {
 	setCurrentLang(getCurrentLang() == "de" ? "en" : "de");
@@ -67,6 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	initSharedTitle();
 	initAboutImageStack();
 
+	const touchOnly = isTouchOnlyDevice();
+	setTouchOnlyMode(touchOnly);
 	initPresentationScroll();
 });
 
@@ -122,14 +139,18 @@ function createTitleMorph(fromHeroToAbout = true) {
 	const sourceRect = source.getBoundingClientRect();
 	if (!sourceRect.width) return;
 
+	const subtitleFade = createSubtitleFade(fromHeroToAbout);
+	const sourceCenterX = sourceRect.left + sourceRect.width / 2;
+	const sourceCenterY = sourceRect.top + sourceRect.height / 2;
+
 	titleMorphLock = true;
 	scroll_block = true;
 
 	const clone = source.cloneNode(true);
 	clone.removeAttribute("id");
 	clone.classList.add("morph-title-clone");
-	clone.style.left = `${sourceRect.left}px`;
-	clone.style.top = `${sourceRect.top}px`;
+	clone.style.left = `${sourceCenterX}px`;
+	clone.style.top = `${sourceCenterY}px`;
 	clone.style.whiteSpace = "nowrap";
 
 	const sourceStyle = getComputedStyle(source);
@@ -145,7 +166,7 @@ function createTitleMorph(fromHeroToAbout = true) {
 
 	source.classList.add("morph-hidden");
 	target.classList.add("morph-hidden");
-	clone.style.transform = "translate(0px, 0px)";
+	clone.style.transform = "translate(0px, 0px) translate(-50%, -50%)";
 
 	let cleanedUp = false;
 
@@ -153,14 +174,19 @@ function createTitleMorph(fromHeroToAbout = true) {
 		const targetRect = target.getBoundingClientRect();
 		if (!targetRect.width || !targetRect.height) return;
 
-		const dx = (targetRect.left - sourceRect.left) * easedProgress;
-		const dy = (targetRect.top - sourceRect.top) * easedProgress;
+		const targetCenterX = targetRect.left + targetRect.width / 2;
+		const targetCenterY = targetRect.top + targetRect.height / 2;
+
+		const dx = (targetCenterX - sourceCenterX) * easedProgress;
+		const dy = (targetCenterY - sourceCenterY) * easedProgress;
 		const fontSize = sourceFontSize + (targetFontSize - sourceFontSize) * easedProgress;
 		const letterSpacing = sourceLetterSpacing + (targetLetterSpacing - sourceLetterSpacing) * easedProgress;
 
-		clone.style.transform = `translate(${dx}px, ${dy}px)`;
+		clone.style.transform = `translate(${dx}px, ${dy}px) translate(-50%, -50%)`;
 		clone.style.fontSize = `${fontSize}px`;
 		clone.style.letterSpacing = `${letterSpacing}px`;
+
+		if (subtitleFade) subtitleFade.update(easedProgress);
 	}
 
 	function cleanup() {
@@ -178,6 +204,7 @@ function createTitleMorph(fromHeroToAbout = true) {
 		update,
 		finish: () => {
 			update(1);
+			if (subtitleFade) subtitleFade.finish();
 			cleanup();
 		},
 		cancel: cleanup,
@@ -191,9 +218,18 @@ function createSubtitleFade(fromHeroToAbout = true) {
 	const currentOpacity = parseFloat(getComputedStyle(subtitle).opacity);
 	const fromOpacity = Number.isFinite(currentOpacity) ? currentOpacity : fromHeroToAbout ? 1 : 0;
 	const toOpacity = fromHeroToAbout ? 0 : 1;
+	const fadeOutGain = 50; // very fast fade-out to avoid overlap
+	const fadeInDelay = 0.85; // wait until title is nearly settled before fading back
+	const fadeInSpan = 1 - fadeInDelay;
 
 	function update(easedProgress) {
-		const nextOpacity = fromOpacity + (toOpacity - fromOpacity) * easedProgress;
+		let shaped = easedProgress;
+		if (fromHeroToAbout) {
+			shaped = Math.min(1, easedProgress * fadeOutGain);
+		} else {
+			shaped = Math.min(1, Math.max(0, (easedProgress - fadeInDelay) / fadeInSpan));
+		}
+		const nextOpacity = fromOpacity + (toOpacity - fromOpacity) * shaped;
 		subtitle.style.opacity = `${nextOpacity}`;
 	}
 
@@ -310,16 +346,13 @@ function initPresentationScroll() {
 
 		const shouldMorph = (currentIndex === 0 && targetIndex === 1) || (currentIndex === 1 && targetIndex === 0);
 		const morph = shouldMorph ? createTitleMorph(currentIndex === 0) : null;
-		const subtitleFade = shouldMorph ? createSubtitleFade(currentIndex === 0) : null;
 
 		const started = scrollToPanel(targetIndex, {
 			onProgress: (_progress, easedProgress) => {
 				if (morph) morph.update(easedProgress);
-				if (subtitleFade) subtitleFade.update(easedProgress);
 			},
 			onDone: () => {
 				if (morph) morph.finish();
-				if (subtitleFade) subtitleFade.finish();
 				setTimeout(() => {
 					cooldownTimer = null;
 				}, COOLDOWN);
@@ -328,7 +361,6 @@ function initPresentationScroll() {
 
 		if (!started) {
 			if (morph) morph.cancel();
-			if (subtitleFade) subtitleFade.cancel();
 			cooldownTimer = null;
 		}
 	}
@@ -336,6 +368,8 @@ function initPresentationScroll() {
 	container.addEventListener(
 		"wheel",
 		(e) => {
+			setTouchOnlyMode(false);
+			if (!alternateScrollEnabled) return;
 			e.preventDefault();
 			tryAdvance(e.deltaY > 0 ? 1 : -1);
 		},
@@ -345,6 +379,8 @@ function initPresentationScroll() {
 	container.addEventListener(
 		"touchstart",
 		(e) => {
+			setTouchOnlyMode(true);
+			if (!alternateScrollEnabled) return;
 			touchStartY = e.touches[0].clientY;
 		},
 		{ passive: true }
@@ -353,6 +389,7 @@ function initPresentationScroll() {
 	container.addEventListener(
 		"touchend",
 		(e) => {
+			if (!alternateScrollEnabled) return;
 			const diff = touchStartY - e.changedTouches[0].clientY;
 			if (Math.abs(diff) > 30) tryAdvance(diff > 0 ? 1 : -1);
 		},
@@ -360,6 +397,7 @@ function initPresentationScroll() {
 	);
 
 	document.addEventListener("keydown", (e) => {
+		if (!alternateScrollEnabled) return;
 		if (e.key === "ArrowDown" || e.key === "PageDown") {
 			e.preventDefault();
 			tryAdvance(1);

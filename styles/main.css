@@ -26,6 +26,21 @@
 	--text-muted: #8a8f9b;
 }
 
+:root.touch-only main {
+	scroll-padding-top: 1rem;
+}
+
+:root.touch-only .panel {
+	height: auto;
+	min-height: 90vh;
+	padding: 1.5rem 1.25rem;
+}
+
+:root.touch-only .panel:not(:last-child)::after {
+	bottom: 20px;
+	width: 90px;
+}
+
 main {
 	height: 100vh;
 	overflow-y: auto;
