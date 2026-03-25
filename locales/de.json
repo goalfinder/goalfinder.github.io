@@ -82,6 +82,10 @@
       "dl-documentation-button": "Benutzerdokumentation",
       "dl-recommended-title": "Empfohlen",
       "dl-recommended-badge": "Empfohlen"
+    },
+    "words": {
+      "previous": "ZURÜCK",
+      "next": "VOR"
     }
   },
   "misc": {
