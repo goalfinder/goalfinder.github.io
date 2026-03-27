@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	initSharedTitle();
 	initAboutImageStack();
+	initMissionCards();
 
 	const touchOnly = isTouchOnlyDevice();
 	setTouchOnlyMode(touchOnly);
@@ -407,4 +408,145 @@ function initPresentationScroll() {
 			tryAdvance(-1);
 		}
 	});
+}
+
+function initMissionCards() {
+	const section = document.getElementById("missions");
+	const container = document.getElementById("missions-container");
+	const cards = Array.from(document.querySelectorAll("[data-mission-card]"));
+	const icons = cards.map((card) => card.querySelector(".mission-card-icon")).filter(Boolean);
+	const scrollRoot = document.querySelector("main");
+	if (!section || !container || !cards.length || !scrollRoot) return;
+
+	cards.forEach((card, idx) => {
+		card.style.setProperty("--card-index", idx.toString());
+	});
+
+	let resizeFrame = null;
+	const updateMissionLayoutState = () => {
+		if (!cards.length) return;
+
+		const firstCardTop = cards[0].offsetTop;
+		const cardsWrapped = cards.some((card) => Math.abs(card.offsetTop - firstCardTop) > 1);
+
+		let iconsWrapped = false;
+		if (icons.length > 1) {
+			const firstIconTop = icons[0].getBoundingClientRect().top;
+			iconsWrapped = icons.some((icon) => Math.abs(icon.getBoundingClientRect().top - firstIconTop) > 1);
+		}
+
+		container.classList.toggle("hide-mission-icons", cardsWrapped || iconsWrapped);
+	};
+
+	const scheduleLayoutUpdate = () => {
+		if (resizeFrame !== null) return;
+		resizeFrame = window.requestAnimationFrame(() => {
+			resizeFrame = null;
+			updateMissionLayoutState();
+		});
+	};
+
+	if ("ResizeObserver" in window) {
+		const resizeObserver = new ResizeObserver(scheduleLayoutUpdate);
+		resizeObserver.observe(container);
+		cards.forEach((card) => resizeObserver.observe(card));
+	} else {
+		window.addEventListener("resize", scheduleLayoutUpdate);
+	}
+
+	window.addEventListener("load", scheduleLayoutUpdate, { once: true });
+	scheduleLayoutUpdate();
+
+	const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	const revealTimers = [];
+	let revealFrame = null;
+	let wasIntersecting = false;
+	let revealedOnCurrentEntry = false;
+	let scrollingDown = false;
+	let lastScrollTop = scrollRoot.scrollTop;
+
+	const clearRevealTimers = () => {
+		if (revealFrame !== null) {
+			window.cancelAnimationFrame(revealFrame);
+			revealFrame = null;
+		}
+
+		while (revealTimers.length) {
+			window.clearTimeout(revealTimers.pop());
+		}
+	};
+
+	const updateScrollDirection = (currentTop) => {
+		scrollingDown = currentTop > lastScrollTop;
+		lastScrollTop = currentTop;
+	};
+
+	const handleRootScroll = () => {
+		updateScrollDirection(scrollRoot.scrollTop);
+	};
+
+	const handleWindowScroll = () => {
+		if (scrollRoot !== document.documentElement) return;
+		updateScrollDirection(window.scrollY);
+	};
+
+	scrollRoot.addEventListener("scroll", handleRootScroll, { passive: true });
+	window.addEventListener("scroll", handleWindowScroll, { passive: true });
+
+	const hasReachedRevealPoint = () => {
+		const sectionRect = section.getBoundingClientRect();
+		const rootTop = scrollRoot === document.documentElement ? 0 : scrollRoot.getBoundingClientRect().top;
+		const rootHeight = scrollRoot === document.documentElement ? window.innerHeight : scrollRoot.clientHeight;
+		const revealLine = rootTop + rootHeight * 0.65;
+
+		return sectionRect.top <= revealLine && sectionRect.bottom > rootTop;
+	};
+
+	const reveal = () => {
+		clearRevealTimers();
+		cards.forEach((card) => card.classList.remove("is-visible"));
+		cards[0].getBoundingClientRect();
+
+		revealFrame = window.requestAnimationFrame(() => {
+			revealFrame = null;
+
+			cards.forEach((card, idx) => {
+				if (prefersReducedMotion) {
+					card.classList.add("is-visible");
+					return;
+				}
+
+				const timer = window.setTimeout(() => card.classList.add("is-visible"), idx * 140);
+				revealTimers.push(timer);
+			});
+		});
+	};
+
+	if (!("IntersectionObserver" in window)) {
+		reveal();
+		return;
+	}
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			const visible = entries.some((entry) => entry.isIntersecting);
+			if (!visible) {
+				wasIntersecting = false;
+				revealedOnCurrentEntry = false;
+				clearRevealTimers();
+				cards.forEach((card) => card.classList.remove("is-visible"));
+				return;
+			}
+
+			if (!revealedOnCurrentEntry && scrollingDown && hasReachedRevealPoint()) {
+				reveal();
+				revealedOnCurrentEntry = true;
+			}
+
+			wasIntersecting = true;
+		},
+		{ root: scrollRoot, threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] }
+	);
+
+	observer.observe(section);
 }

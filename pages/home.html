@@ -33,7 +33,7 @@ title: GoalFinder
 			</div>
 
 			<section class="panel hero">
-				<img id="htl-logo" src="{{ site.baseurl }}/assets/img/logos/htlleonding-home.png">
+				<img id="htl-logo" src="{{ site.baseurl }}/assets/img/logos/htlleonding-home.png" />
 				<h1 id="title">GOALFINDER</h1>
 				<p data-i18n="sub-title" id="subTitle"></p>
 			</section>
@@ -48,14 +48,55 @@ title: GoalFinder
 
 					<div class="about-gallery">
 						<button id="about-image-stack" class="image-stack" type="button" aria-label="Show next image">
-							<img class="stack-image" data-stack-image src="{{ site.baseurl }}/assets/img/usage/P1440954.JPG" alt="GoalFinder showcase image 1">
-							<img class="stack-image" data-stack-image src="{{ site.baseurl }}/assets/img/mounting/P1440942.JPG" alt="GoalFinder showcase image 2">
-							<img class="stack-image" data-stack-image src="{{ site.baseurl }}/assets/img/showcase/P1440934.JPG" alt="GoalFinder showcase image 3">
+							<img class="stack-image" data-stack-image src="{{ site.baseurl }}/assets/img/usage/P1440954.JPG" alt="GoalFinder showcase image 1" />
+							<img class="stack-image" data-stack-image src="{{ site.baseurl }}/assets/img/mounting/P1440942.JPG" alt="GoalFinder showcase image 2" />
+							<img class="stack-image" data-stack-image src="{{ site.baseurl }}/assets/img/showcase/P1440934.JPG" alt="GoalFinder showcase image 3" />
 						</button>
 						<div class="stack-controls" aria-label="Image navigation">
 							<button id="stack-prev" type="button" class="stack-nav" data-i18n="previous"></button>
 							<button id="stack-next" type="button" class="stack-nav" data-i18n="next"></button>
 						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="panel panel-missions" id="missions">
+				<div class="mission-inner">
+					<div class="mission-header">
+						<h2 data-i18n="mission-title">Our Mission</h2>
+					</div>
+
+					<div class="mission-card-grid" id="missions-container">
+						<article class="mission-card" data-mission-card>
+							<div class="mission-card-icon">
+								<img src="{{ site.baseurl }}/assets/img/mission-cards/accessibility.svg" alt="Accessibility icon" />
+							</div>
+							<div class="mission-card-body">
+								<h3 data-i18n="mission-0-title"></h3>
+								<p data-i18n="mission-0-content"></p>
+							</div>
+						</article>
+
+						<article class="mission-card" data-mission-card>
+							<div class="mission-card-icon">
+								<img src="{{ site.baseurl }}/assets/img/mission-cards/open-source.svg" alt="Open source icon" />
+							</div>
+							<div class="mission-card-body">
+								<h3 data-i18n="mission-1-title"></h3>
+								<p data-i18n="mission-1-content"></p>
+								<a class="mission-link" href="https://github.com/htl-leo-club-embedded-iot/GoalFinder" target="_blank" rel="noreferrer noopener">GitHub Repository</a>
+							</div>
+						</article>
+
+						<article class="mission-card" data-mission-card>
+							<div class="mission-card-icon">
+								<img src="{{ site.baseurl }}/assets/img/mission-cards/community.svg" alt="Community icon" />
+							</div>
+							<div class="mission-card-body">
+								<h3 data-i18n="mission-2-title"></h3>
+								<p data-i18n="mission-2-content"></p>
+							</div>
+						</article>
 					</div>
 				</div>
 			</section>
