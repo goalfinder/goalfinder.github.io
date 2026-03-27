@@ -583,6 +583,11 @@ function initMissionCards() {
 		});
 	};
 
+	const revealWithoutAnimation = () => {
+		clearRevealTimers();
+		cards.forEach((card) => card.classList.add("is-visible"));
+	};
+
 	if (!("IntersectionObserver" in window)) {
 		reveal();
 	} else {
@@ -596,8 +601,12 @@ function initMissionCards() {
 					cards.forEach((card) => card.classList.remove("is-visible"));
 					return;
 				} else {					
-					if (!revealedOnCurrentEntry && scrollingDown && hasReachedRevealPoint()) {
-						reveal();
+					if (!revealedOnCurrentEntry && hasReachedRevealPoint()) {
+						if (scrollingDown && !prefersReducedMotion) {
+							reveal();
+						} else {
+							revealWithoutAnimation();
+						}
 						revealedOnCurrentEntry = true;
 					}
 					
