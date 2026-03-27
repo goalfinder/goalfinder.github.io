@@ -282,9 +282,47 @@ function initPresentationScroll() {
 	let isAnimating = false;
 	let cooldownTimer = null;
 	let touchStartY = 0;
+	let wheelGestureLocked = false;
+	let wheelLockTimer = null;
+	let wheelAccumulationTimer = null;
+	let wheelAccumulatedDelta = 0;
+	let wheelDirection = 0;
+
+	const WHEEL_TRIGGER_DELTA = 45;
+	const WHEEL_IDLE_RESET_MS = 220;
+	const WHEEL_GESTURE_LOCK_MS = TRANSITION_DURATION + COOLDOWN;
 
 	function easeInOutCubic(t) {
 		return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+	}
+
+	function normalizeWheelDelta(event) {
+		if (event.deltaMode === 1) return event.deltaY * 16;
+		if (event.deltaMode === 2) return event.deltaY * window.innerHeight;
+		return event.deltaY;
+	}
+
+	function resetWheelAccumulation() {
+		wheelAccumulatedDelta = 0;
+		wheelDirection = 0;
+	}
+
+	function scheduleWheelAccumulationReset() {
+		if (wheelAccumulationTimer) window.clearTimeout(wheelAccumulationTimer);
+		wheelAccumulationTimer = window.setTimeout(() => {
+			resetWheelAccumulation();
+			wheelAccumulationTimer = null;
+		}, WHEEL_IDLE_RESET_MS);
+	}
+
+	function lockWheelGesture() {
+		wheelGestureLocked = true;
+		resetWheelAccumulation();
+		if (wheelLockTimer) window.clearTimeout(wheelLockTimer);
+		wheelLockTimer = window.setTimeout(() => {
+			wheelGestureLocked = false;
+			wheelLockTimer = null;
+		}, WHEEL_GESTURE_LOCK_MS);
 	}
 
 	function scrollToPanel(index, callbacks = {}) {
@@ -339,7 +377,7 @@ function initPresentationScroll() {
 	}
 
 	function tryAdvance(direction) {
-		if (isAnimating || cooldownTimer || scroll_block) return;
+		if (isAnimating || cooldownTimer || scroll_block) return false;
 		const currentIndex = closestPanelIndex();
 		const targetIndex = currentIndex + direction;
 
@@ -363,7 +401,10 @@ function initPresentationScroll() {
 		if (!started) {
 			if (morph) morph.cancel();
 			cooldownTimer = null;
+			return false;
 		}
+
+		return true;
 	}
 
 	container.addEventListener(
@@ -372,7 +413,28 @@ function initPresentationScroll() {
 			setTouchOnlyMode(false);
 			if (!alternateScrollEnabled) return;
 			e.preventDefault();
-			tryAdvance(e.deltaY > 0 ? 1 : -1);
+
+			const delta = normalizeWheelDelta(e);
+			if (!Number.isFinite(delta) || delta === 0) return;
+			if (wheelGestureLocked) return;
+
+			scheduleWheelAccumulationReset();
+
+			const direction = delta > 0 ? 1 : -1;
+			if (wheelDirection !== 0 && wheelDirection !== direction) {
+				wheelAccumulatedDelta = 0;
+			}
+
+			wheelDirection = direction;
+			wheelAccumulatedDelta += delta;
+			if (Math.abs(wheelAccumulatedDelta) < WHEEL_TRIGGER_DELTA) return;
+
+			const started = tryAdvance(direction);
+			if (started) {
+				lockWheelGesture();
+			} else {
+				resetWheelAccumulation();
+			}
 		},
 		{ passive: false }
 	);
@@ -498,7 +560,6 @@ function initMissionCards() {
 		const rootTop = scrollRoot === document.documentElement ? 0 : scrollRoot.getBoundingClientRect().top;
 		const rootHeight = scrollRoot === document.documentElement ? window.innerHeight : scrollRoot.clientHeight;
 		const revealLine = rootTop + rootHeight * 0.65;
-
 		return sectionRect.top <= revealLine && sectionRect.bottom > rootTop;
 	};
 
@@ -524,29 +585,28 @@ function initMissionCards() {
 
 	if (!("IntersectionObserver" in window)) {
 		reveal();
-		return;
+	} else {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visible = entries.some((entry) => entry.isIntersecting);
+				if (!visible) {
+					wasIntersecting = false;
+					revealedOnCurrentEntry = false;
+					clearRevealTimers();
+					cards.forEach((card) => card.classList.remove("is-visible"));
+					return;
+				} else {					
+					if (!revealedOnCurrentEntry && scrollingDown && hasReachedRevealPoint()) {
+						reveal();
+						revealedOnCurrentEntry = true;
+					}
+					
+					wasIntersecting = true;
+				}
+			},
+			{ root: scrollRoot, threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] }
+		);
+
+		observer.observe(section);
 	}
-
-	const observer = new IntersectionObserver(
-		(entries) => {
-			const visible = entries.some((entry) => entry.isIntersecting);
-			if (!visible) {
-				wasIntersecting = false;
-				revealedOnCurrentEntry = false;
-				clearRevealTimers();
-				cards.forEach((card) => card.classList.remove("is-visible"));
-				return;
-			}
-
-			if (!revealedOnCurrentEntry && scrollingDown && hasReachedRevealPoint()) {
-				reveal();
-				revealedOnCurrentEntry = true;
-			}
-
-			wasIntersecting = true;
-		},
-		{ root: scrollRoot, threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] }
-	);
-
-	observer.observe(section);
 }
