@@ -10,7 +10,7 @@
 	--primary: #764ba2;
 	--secondary: #2563eb;
 	--text: #202027;
-	--text-alternative: #333336;
+	--text-alternative: #48484b;
 	--text-muted: #8a8f9b;
 	--theme-transition-duration: 260ms;
 	--theme-transition-easing: ease;
@@ -22,7 +22,7 @@
 	--primary: #764ba2;
 	--secondary: #2563eb;
 	--text: #f0f0f0;
-	--text-alternative: #c9c9cd;
+	--text-alternative: #b7b7bc;
 	--text-muted: #8a8f9b;
 }
 
@@ -302,6 +302,8 @@ p {
 }
 
 .about-copy p {
+	color: var(--text-alternative);
+	font-size: larger;
 	max-width: none;
 }
 
