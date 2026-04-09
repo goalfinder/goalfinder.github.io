@@ -114,14 +114,22 @@
   },
   "credits": {
     "c-title": "Credits",
-    "c-desc": "Diese Seite enthält eine Anerkennung externer Ressourcen für GoalFinder: Recherchequellen, die Website, das Gerät und alle damit verbundenen Soft- und Hardwarekomponenten.",
-    "c-icons": "Icons",
+    "c-desc": "Diese Seite listet externe Ressourcen von der GoalFinder Webseite",
+    "c-icons": "Icon-Credits",
+    "c-icons-merged-desc": "Icon-Quellen aus Hauptseite und Dokumentation.",
     "c-main-site": "Hauptseite",
     "c-main-site-desc": "Icons die in der Hauptseite verwendet wurden",
     "c-documentation": "Dokumentation",
     "c-documentation-desc": "Icons die in der MarkDown Dokumentations Suite verwendet wurden",
     "c-icons-flaticon": "Flaticon Icons",
-    "c-icons-fontawesome": "FontAwesome Icons"
+    "c-icons-fontawesome": "FontAwesome Icons",
+    "c-tag-main-site": "Hauptseite",
+    "c-tag-documentation": "Dokumentation",
+    "c-contributors": "Mitwirkende",
+    "c-contributors-desc": "Hier findest du die Mitwirkenden und Projektbereiche von GoalFinder auf GitHub.",
+    "c-link-contributors": "Repository-Mitwirkende",
+    "c-link-repository": "GoalFinder Repository",
+    "c-link-organization": "HTL Leo Club Organisation"
   },
   "help": {
     "h-title": "Hilfe",

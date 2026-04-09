@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	initSharedTitle();
 	initAboutImageStack();
 	initMissionCards();
+	initCreditsAccordion();
 
 	const touchOnly = isTouchOnlyDevice();
 	setTouchOnlyMode(touchOnly);
@@ -279,6 +280,7 @@ function initPresentationScroll() {
 	if (!container) return;
 
 	const getPanels = () => Array.from(document.querySelectorAll(".panel"));
+	if (getPanels().length <= 1) return;
 	let isAnimating = false;
 	let cooldownTimer = null;
 	let touchStartY = 0;
@@ -472,6 +474,105 @@ function initPresentationScroll() {
 	});
 }
 
+function initCreditsAccordion() {
+	const categories = Array.from(document.querySelectorAll(".credits-category"));
+	if (!categories.length) return;
+
+	const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	if (prefersReducedMotion) return;
+
+	const DURATION = 280;
+	const EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
+
+	categories.forEach((category) => {
+		const summary = category.querySelector("summary");
+		const content = category.querySelector(".credits-category-content");
+		if (!summary || !content || typeof category.animate !== "function") return;
+
+		let animation = null;
+		let isClosing = false;
+		let isExpanding = false;
+
+		const cleanupAnimationState = () => {
+			category.classList.remove("is-animating");
+			category.style.height = "";
+			animation = null;
+			isClosing = false;
+			isExpanding = false;
+		};
+
+		const expand = () => {
+			isExpanding = true;
+
+			const startHeight = `${category.offsetHeight}px`;
+			const endHeight = `${summary.offsetHeight + content.offsetHeight}px`;
+
+			if (animation) animation.cancel();
+			category.classList.add("is-animating");
+			animation = category.animate(
+				{
+					height: [startHeight, endHeight],
+					opacity: [0.98, 1],
+				},
+				{ duration: DURATION, easing: EASING }
+			);
+
+			animation.onfinish = () => {
+				cleanupAnimationState();
+			};
+
+			animation.oncancel = () => {
+				cleanupAnimationState();
+			};
+		};
+
+		const open = () => {
+			category.style.height = `${category.offsetHeight}px`;
+			category.open = true;
+
+			window.requestAnimationFrame(() => {
+				expand();
+			});
+		};
+
+		const close = () => {
+			isClosing = true;
+
+			const startHeight = `${category.offsetHeight}px`;
+			const endHeight = `${summary.offsetHeight}px`;
+
+			if (animation) animation.cancel();
+			category.classList.add("is-animating");
+			animation = category.animate(
+				{
+					height: [startHeight, endHeight],
+					opacity: [1, 0.98],
+				},
+				{ duration: DURATION, easing: EASING }
+			);
+
+			animation.onfinish = () => {
+				category.open = false;
+				cleanupAnimationState();
+			};
+
+			animation.oncancel = () => {
+				cleanupAnimationState();
+			};
+		};
+
+		summary.addEventListener("click", (event) => {
+			event.preventDefault();
+
+			if (isClosing || !category.open) {
+				open();
+			} else if (isExpanding || category.open) {
+				close();
+			}
+		});
+	});
+}
+
 function initMissionCards() {
 	const section = document.getElementById("missions");
 	const container = document.getElementById("missions-container");
@@ -600,7 +701,7 @@ function initMissionCards() {
 					clearRevealTimers();
 					cards.forEach((card) => card.classList.remove("is-visible"));
 					return;
-				} else {					
+				} else {
 					if (!revealedOnCurrentEntry && hasReachedRevealPoint()) {
 						if (scrollingDown && !prefersReducedMotion) {
 							reveal();
@@ -609,7 +710,7 @@ function initMissionCards() {
 						}
 						revealedOnCurrentEntry = true;
 					}
-					
+
 					wasIntersecting = true;
 				}
 			},
