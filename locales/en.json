@@ -125,11 +125,11 @@
     "c-icons-fontawesome": "Icons from FontAwesome",
     "c-tag-main-site": "Main Page",
     "c-tag-documentation": "Documentation",
-    "c-contributors": "Contributors",
-    "c-contributors-desc": "Find the people and project spaces behind GoalFinder on GitHub.",
-    "c-link-contributors": "Repository contributors",
-    "c-link-repository": "GoalFinder repository",
-    "c-link-organization": "HTL Leo Club organization"
+    "c-contributors": "Supporters",
+    "c-contributors-desc": "Organizations and Institutions supporting the GoalFinder Project.",
+    "c-people": "Contributors",
+    "c-people-desc": "The People behind the GoalFinder Project.",
+    "c-link-university-vienna": "University Vienna"
   },
   "help": {
     "h-title": "Help",
