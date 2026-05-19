@@ -12,6 +12,7 @@
 	--text: #202027;
 	--text-alternative: #48484b;
 	--text-muted: #8a8f9b;
+	--mission-icon-filter: brightness(0) saturate(100%);
 	--theme-transition-duration: 260ms;
 	--theme-transition-easing: ease;
 }
@@ -24,6 +25,7 @@
 	--text: #f0f0f0;
 	--text-alternative: #b7b7bc;
 	--text-muted: #8a8f9b;
+	--mission-icon-filter: brightness(0) saturate(100%) invert(1);
 }
 
 :root.touch-only main {
@@ -507,6 +509,8 @@ p {
 	width: 36px;
 	height: 36px;
 	object-fit: contain;
+	filter: var(--mission-icon-filter);
+	transition: filter var(--theme-transition-duration) var(--theme-transition-easing);
 }
 
 .mission-card.is-visible .mission-card-icon {
