@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	updateThemeButtonLabel();
 
 	initSharedTitle();
+	initHeroSplit();
 	initAboutImageStack();
 	initMissionCards();
 	initCreditsAccordion();
@@ -94,6 +95,35 @@ function initSharedTitle() {
 	const aboutTitle = document.getElementById("about-shared-title");
 	if (!heroTitle || !aboutTitle) return;
 	aboutTitle.textContent = heroTitle.textContent.trim();
+}
+
+function initHeroSplit() {
+	const hero = document.querySelector("[data-hero]");
+	if (!hero) return;
+	const slices = Array.from(hero.querySelectorAll("[data-hero-slice]"));
+	if (!slices.length) return;
+
+	const scrollRoot = document.querySelector("main") || document.documentElement;
+	const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+	const setVisible = (visible) => {
+		slices.forEach((slice) => slice.classList.toggle("is-visible", visible));
+	};
+
+	if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+		setVisible(true);
+		return;
+	}
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			const visible = entries.some((entry) => entry.isIntersecting);
+			setVisible(visible);
+		},
+		{ root: scrollRoot, threshold: 0.1 }
+	);
+
+	observer.observe(hero);
 }
 
 function initAboutImageStack() {
@@ -129,6 +159,21 @@ function initAboutImageStack() {
 	render();
 }
 
+function resolveTextColor(style) {
+	const textFill = style.getPropertyValue("-webkit-text-fill-color").trim();
+	const color = style.color;
+	const hasTextFill = textFill !== "";
+
+	if (hasTextFill && textFill !== "transparent" && textFill !== "rgba(0, 0, 0, 0)") return textFill;
+	if (!hasTextFill && color && color !== "transparent" && color !== "rgba(0, 0, 0, 0)") return color;
+
+	const backgroundColor = style.backgroundColor;
+	if (backgroundColor && backgroundColor !== "transparent" && backgroundColor !== "rgba(0, 0, 0, 0)") {
+		return backgroundColor;
+	}
+	return color || backgroundColor;
+}
+
 function createTitleMorph(fromHeroToAbout = true) {
 	if (titleMorphLock) return;
 
@@ -157,6 +202,10 @@ function createTitleMorph(fromHeroToAbout = true) {
 
 	const sourceStyle = getComputedStyle(source);
 	const targetStyle = getComputedStyle(target);
+	const sourceColor = resolveTextColor(sourceStyle);
+	const targetColor = resolveTextColor(targetStyle);
+	const sourceFilter = sourceStyle.filter || "none";
+	const targetFilter = targetStyle.filter || "none";
 	const sourceFontSize = parseFloat(sourceStyle.fontSize) || 0;
 	const targetFontSize = parseFloat(targetStyle.fontSize) || sourceFontSize;
 	const sourceLetterSpacing = parseFloat(sourceStyle.letterSpacing) || 0;
@@ -164,11 +213,26 @@ function createTitleMorph(fromHeroToAbout = true) {
 
 	clone.style.fontSize = `${sourceFontSize}px`;
 	clone.style.letterSpacing = `${sourceLetterSpacing}px`;
+	clone.style.backgroundColor = sourceColor;
+	clone.style.color = sourceColor;
+	clone.style.setProperty("-webkit-text-fill-color", sourceColor);
+	clone.style.filter = sourceFilter;
+	clone.style.transitionProperty = "color, background-color, filter, -webkit-text-fill-color";
+	clone.style.transitionDuration = `${TRANSITION_DURATION}ms`;
+	clone.style.transitionTimingFunction = "ease-in-out";
 	document.body.appendChild(clone);
 
 	source.classList.add("morph-hidden");
 	target.classList.add("morph-hidden");
 	clone.style.transform = "translate(0px, 0px) translate(-50%, -50%)";
+
+	requestAnimationFrame(() => {
+		if (!clone.isConnected) return;
+		clone.style.backgroundColor = targetColor;
+		clone.style.color = targetColor;
+		clone.style.setProperty("-webkit-text-fill-color", targetColor);
+		clone.style.filter = targetFilter;
+	});
 
 	let cleanedUp = false;
 
@@ -194,11 +258,13 @@ function createTitleMorph(fromHeroToAbout = true) {
 	function cleanup() {
 		if (!cleanedUp) {
 			cleanedUp = true;
-			clone.remove();
 			source.classList.remove("morph-hidden");
 			target.classList.remove("morph-hidden");
-			titleMorphLock = false;
-			scroll_block = false;
+			requestAnimationFrame(() => {
+				if (clone.isConnected) clone.remove();
+				titleMorphLock = false;
+				scroll_block = false;
+			});
 		}
 	}
 
@@ -378,6 +444,11 @@ function initPresentationScroll() {
 		return closest;
 	}
 
+	function updateHeroState() {
+		const isHero = closestPanelIndex() === 0;
+		document.documentElement.classList.toggle("hero-active", isHero);
+	}
+
 	function tryAdvance(direction) {
 		if (isAnimating || cooldownTimer || scroll_block) return false;
 		const currentIndex = closestPanelIndex();
@@ -440,6 +511,16 @@ function initPresentationScroll() {
 		},
 		{ passive: false }
 	);
+
+	container.addEventListener(
+		"scroll",
+		() => {
+			updateHeroState();
+		},
+		{ passive: true }
+	);
+
+	updateHeroState();
 
 	container.addEventListener(
 		"touchstart",
@@ -588,6 +669,12 @@ function initMissionCards() {
 	let resizeFrame = null;
 	const updateMissionLayoutState = () => {
 		if (!cards.length) return;
+
+		const isMobileViewport = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+		if (!isMobileViewport) {
+			container.classList.remove("hide-mission-icons");
+			return;
+		}
 
 		const firstCardTop = cards[0].offsetTop;
 		const cardsWrapped = cards.some((card) => Math.abs(card.offsetTop - firstCardTop) > 1);

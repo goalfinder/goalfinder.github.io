@@ -18,9 +18,9 @@ title: GoalFinder
 		</script>
 
 		<script>
-			const theme = localStorage.getItem('theme');
-			if (theme === 'dark') {
-				document.documentElement.classList.add('dark-mode');
+			const theme = localStorage.getItem("theme");
+			if (theme === "dark") {
+				document.documentElement.classList.add("dark-mode");
 			}
 		</script>
 
@@ -39,10 +39,23 @@ title: GoalFinder
 				<button id="theme-button" class="top-control-button" type="button" aria-label="Toggle dark and light mode"></button>
 			</div>
 
-			<section class="panel hero">
+			<section class="panel hero" data-hero>
+				<div class="hero-media" aria-hidden="true">
+					<div class="hero-slice" data-hero-slice>
+						<img class="hero-image" src="{{ site.baseurl }}/assets/img/usage/P1440954.JPG" alt="" />
+					</div>
+					<div class="hero-slice" data-hero-slice>
+						<img class="hero-image" src="{{ site.baseurl }}/assets/img/usage/P1440955.JPG" alt="" />
+					</div>
+					<div class="hero-slice" data-hero-slice>
+						<img class="hero-image" src="{{ site.baseurl }}/assets/img/usage/P1440956.JPG" alt="" />
+					</div>
+				</div>
 				<img id="htl-logo" src="{{ site.baseurl }}/assets/img/logos/htlleonding-home.png" />
-				<h1 id="title">GOALFINDER</h1>
-				<p data-i18n="sub-title" id="subTitle"></p>
+				<div class="hero-content">
+					<h1 id="title">GOALFINDER</h1>
+					<p data-i18n="sub-title" id="subTitle"></p>
+				</div>
 			</section>
 
 			<section class="panel panel-about" id="about-panel">
