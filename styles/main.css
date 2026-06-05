@@ -23,17 +23,14 @@
 	--theme-transition-easing: ease;
 
 	/* Typographic scale */
-	--text-xxs: 0.78rem;
-	--text-xs: 0.82rem;
-	--text-sm: 0.85rem;
-	--text-smish: 0.9rem;
-	--text-base: 0.95rem;
-	--text-body: 1.1rem;
-	--text-md: 1.1rem;
-	--text-lg: 1.2rem;
-	--text-xl: 1.3rem;
-	--text-2xl: 1.35rem;
-	--text-3xl: 1.5rem;
+	--text-xxs: 1rem;
+	--text-xs: 1.15rem;
+	--text-sm: 1.35rem;
+	--text-base: 1.5rem;
+	--text-body: 1.5rem;
+	--text-xl: 1.75rem;
+	--text-2xl: 2rem;
+	--text-3xl: 2.5rem;
 
 	/* Heading sizes */
 	--heading-hero: clamp(3.5rem, 8vw, 8.5rem);
@@ -827,7 +824,7 @@ p {
 
 .about-copy p {
 	color: var(--text-alternative);
-	font-size: var(--text-2xl);
+	font-size: var(--text-base);
 	max-width: none;
 }
 
@@ -1000,7 +997,6 @@ p {
 	transition:
 		opacity 600ms cubic-bezier(0.21, 1, 0.27, 1),
 		transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
-	transition-delay: 200ms;
 	width: min(1200px, 94vw);
 }
 
@@ -1024,40 +1020,22 @@ p {
 	align-items: center;
 }
 
-@media (min-width: 768px) {
-	.panel-testimonial {
-		justify-content: center;
-		margin: auto;
-	}
-
-	.testimonial-block {
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		gap: 2rem;
-	}
-
-	.testimonial-block blockquote {
-		flex: 1;
-		text-align: right;
-	}
-
-	.testimonial-block cite {
-		flex: 0 0 auto;
-		text-align: left;
-		border-left: 2px solid var(--decal);
-		padding-left: 1.5rem;
-		max-width: 260px;
-	}
-}
-
 .testimonial-block blockquote {
-	font-size: var(--text-2xl);
+	font-size: var(--text-base);
 	line-height: 1.7;
 	color: var(--text-alternative);
 	font-weight: 450;
 	quotes: none;
 	max-width: 800px;
+}
+
+.testimonial-block blockquote::after {
+	content: "";
+	display: block;
+	width: 80px;
+	height: 2px;
+	background: var(--decal);
+	margin: 1.2rem auto 0;
 }
 
 .testimonial-block cite {
@@ -1066,6 +1044,7 @@ p {
 	letter-spacing: 0.02em;
 	color: var(--text-muted);
 	font-weight: 600;
+	padding-top: 0.5rem;
 }
 
 .awards-sidebar {
@@ -1086,7 +1065,9 @@ p {
 
 .awards-list {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
 	gap: 1rem;
 }
 
@@ -1097,6 +1078,8 @@ p {
 	gap: 0.4rem;
 	padding: 2.4rem 1.2rem;
 	min-height: 180px;
+	flex: 1 1 300px;
+	max-width: 400px;
 	border-radius: 1.25rem;
 	background: color-mix(in srgb, var(--background) 88%, var(--decal) 12%);
 	border: 1px solid color-mix(in srgb, var(--decal) 72%, transparent);
@@ -1110,6 +1093,20 @@ p {
 	position: relative;
 	overflow: hidden;
 	text-align: center;
+	opacity: 0;
+	transform: translateY(32px) scale(0.98);
+	transition:
+		opacity 600ms cubic-bezier(0.21, 1, 0.27, 1),
+		transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+		background 240ms ease,
+		border-color 240ms ease,
+		box-shadow 240ms ease;
+	transition-delay: calc(var(--award-card-index, 0) * 120ms);
+}
+
+.award-card.is-visible {
+	opacity: 1;
+	transform: translateY(0) scale(1);
 }
 
 .award-card:hover,
@@ -1120,8 +1117,8 @@ p {
 }
 
 .award-card-logo {
-	width: 48px;
-	height: 48px;
+	width: 96px;
+	height: 96px;
 	object-fit: contain;
 	margin-bottom: 0.3rem;
 	position: relative;
@@ -1149,7 +1146,7 @@ p {
 }
 
 .award-card-desc {
-	font-size: var(--text-base);
+	font-size: var(--text-xs);
 	line-height: 1.4;
 	color: var(--text-muted);
 	margin-top: 0.2rem;
@@ -1157,16 +1154,14 @@ p {
 	z-index: 1;
 }
 
+@media (min-width: 901px) {
+	.award-card {
+		min-height: 260px;
+		padding: 3.2rem 2rem;
+	}
+}
+
 @media (max-width: 900px) {
-	.testimonial-block {
-		text-align: center;
-		align-items: center;
-	}
-
-	.testimonial-block blockquote {
-		text-align: center;
-	}
-
 	.awards-sidebar {
 		align-items: center;
 	}
@@ -1194,7 +1189,7 @@ p {
 
 	.top-control-button {
 		padding: 0.1rem 0;
-		font-size: var(--text-sm);
+		font-size: var(--text-xxs);
 	}
 
 	h1 {

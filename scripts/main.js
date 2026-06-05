@@ -575,22 +575,60 @@ function initTestimonialAwards() {
 		if (testimonialBlock) testimonialBlock.classList.remove("is-visible");
 	};
 
+	awardCards.forEach((card, idx) => {
+		card.style.setProperty("--award-card-index", idx.toString());
+	});
+
+	const revealTimers = [];
+	let revealFrame = null;
+	let revealedOnCurrentEntry = false;
+
+	const clearRevealTimers = () => {
+		if (revealFrame !== null) {
+			window.cancelAnimationFrame(revealFrame);
+			revealFrame = null;
+		}
+		while (revealTimers.length) {
+			window.clearTimeout(revealTimers.pop());
+		}
+	};
+
 	const revealAwards = () => {
 		if (awardsSidebar) awardsSidebar.classList.add("is-visible");
-		awardCards.forEach((card, idx) => {
-			card.style.setProperty("--award-card-index", idx.toString());
-			card.classList.add("is-visible");
+		clearRevealTimers();
+		awardCards.forEach((card) => card.classList.remove("is-visible"));
+		awardCards[0].getBoundingClientRect();
+
+		revealFrame = window.requestAnimationFrame(() => {
+			revealFrame = null;
+
+			awardCards.forEach((card, idx) => {
+				if (prefersReducedMotion) {
+					card.classList.add("is-visible");
+					return;
+				}
+
+				const timer = window.setTimeout(() => card.classList.add("is-visible"), idx * 140);
+				revealTimers.push(timer);
+			});
 		});
+	};
+
+	const revealAwardsWithoutAnimation = () => {
+		if (awardsSidebar) awardsSidebar.classList.add("is-visible");
+		clearRevealTimers();
+		awardCards.forEach((card) => card.classList.add("is-visible"));
 	};
 
 	const hideAwards = () => {
 		if (awardsSidebar) awardsSidebar.classList.remove("is-visible");
+		clearRevealTimers();
 		awardCards.forEach((card) => card.classList.remove("is-visible"));
 	};
 
 	if (prefersReducedMotion || !("IntersectionObserver" in window)) {
 		revealTestimonial();
-		revealAwards();
+		revealAwardsWithoutAnimation();
 		return;
 	}
 
@@ -613,13 +651,22 @@ function initTestimonialAwards() {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				const visible = entries.some((entry) => entry.isIntersecting);
-				if (visible) {
-					revealAwards();
-				} else {
+				if (!visible) {
+					revealedOnCurrentEntry = false;
 					hideAwards();
+					return;
+				} else {
+					if (!revealedOnCurrentEntry) {
+						if (!prefersReducedMotion) {
+							revealAwards();
+						} else {
+							revealAwardsWithoutAnimation();
+						}
+						revealedOnCurrentEntry = true;
+					}
 				}
 			},
-			{ root: scrollRoot, threshold: 0.15 }
+			{ root: scrollRoot, threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] }
 		);
 		observer.observe(awardsSection);
 	}
