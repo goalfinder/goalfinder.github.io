@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 /**
+ * Prefer to use bundle exec jekyll build for local testing
  * Simple local development server for Jekyll sites
  * Serves files and replaces Jekyll variables with empty strings for local development
  * This allows you to test the site locally without breaking GitHub Pages deployment
@@ -32,20 +33,16 @@ const MIME_TYPES = {
 };
 
 function processJekyllVariables(content, ext) {
-  // Only process HTML, CSS, and JS files
   if (!['.html', '.css', '.js'].includes(ext)) {
     return content;
   }
 
   let processed = content;
   
-  // Replace Jekyll front matter
   processed = processed.replace(/^---[\s\S]*?---\n*/m, '');
   
-  // Replace all {{ site.baseurl }} variations (with filters, defaults, etc) with empty string
   processed = processed.replace(/\{\{\s*site\.baseurl[^}]*\}\}/g, '');
   
-  // Replace {{ page.* }} variables with empty or default values
   processed = processed.replace(/\{\{\s*page\.description\s*\}\}/g, 'GoalFinder Documentation');
   processed = processed.replace(/\{\{\s*page\.title\s*\}\}/g, 'Documentation');
   processed = processed.replace(/\{\{\s*page\.\w+\s*\}\}/g, '');
@@ -54,10 +51,8 @@ function processJekyllVariables(content, ext) {
 }
 
 const server = http.createServer((req, res) => {
-  // Log requests for debugging
   console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${req.url}`);
   
-  // Handle root redirect to /user
   if (req.url === '/') {
     res.writeHead(302, { 'Location': '/user' });
     res.end();
@@ -66,10 +61,8 @@ const server = http.createServer((req, res) => {
 
   let filePath = path.join(ROOT_DIR, req.url);
   
-  // Remove query string
   filePath = filePath.split('?')[0];
   
-  // Security check - prevent directory traversal
   if (!filePath.startsWith(ROOT_DIR)) {
     res.writeHead(403);
     res.end('Forbidden');
@@ -79,18 +72,14 @@ const server = http.createServer((req, res) => {
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
-  // Try to read the file
   function tryReadFile(filepath, isRetry = false) {
     fs.readFile(filepath, (err, content) => {
       if (err) {
         if (err.code === 'ENOENT') {
-          // If no extension, try multiple locations
           if (!ext && !isRetry) {
-            // Try /pages/{name}.html first
             const pagesPath = path.join(ROOT_DIR, 'pages', path.basename(filepath) + '.html');
             tryReadFile(pagesPath, true);
           } else if (!ext && isRetry) {
-            // Try adding .html extension
             tryReadFile(filepath + '.html', true);
           } else {
             res.writeHead(404);
@@ -101,11 +90,9 @@ const server = http.createServer((req, res) => {
           res.end('Server Error');
         }
       } else {
-        // Determine content type from file extension
         const fileExt = path.extname(filepath).toLowerCase();
         const finalContentType = MIME_TYPES[fileExt] || 'application/octet-stream';
         
-        // Process Jekyll variables for text files
         if (['.html', '.css', '.js'].includes(fileExt)) {
           const processed = processJekyllVariables(content.toString(), fileExt);
           res.writeHead(200, { 'Content-Type': finalContentType });

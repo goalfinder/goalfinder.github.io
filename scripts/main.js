@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	initHeroSplit();
 	initAboutImageStack();
 	initMissionCards();
+	initTestimonialAwards();
 	initCreditsAccordion();
 
 	const touchOnly = isTouchOnlyDevice();
@@ -553,6 +554,75 @@ function initPresentationScroll() {
 			tryAdvance(-1);
 		}
 	});
+}
+
+function initTestimonialAwards() {
+	const testimonialSection = document.getElementById("testimonial");
+	const awardsSection = document.getElementById("awards");
+	const testimonialBlock = document.querySelector("[data-testimonial-block]");
+	const awardsSidebar = document.querySelector("[data-awards-sidebar]");
+	const awardCards = Array.from(document.querySelectorAll("[data-award-card]"));
+	const scrollRoot = document.querySelector("main");
+	if ((!testimonialSection && !awardsSection) || !scrollRoot) return;
+
+	const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+	const revealTestimonial = () => {
+		if (testimonialBlock) testimonialBlock.classList.add("is-visible");
+	};
+
+	const hideTestimonial = () => {
+		if (testimonialBlock) testimonialBlock.classList.remove("is-visible");
+	};
+
+	const revealAwards = () => {
+		if (awardsSidebar) awardsSidebar.classList.add("is-visible");
+		awardCards.forEach((card, idx) => {
+			card.style.setProperty("--award-card-index", idx.toString());
+			card.classList.add("is-visible");
+		});
+	};
+
+	const hideAwards = () => {
+		if (awardsSidebar) awardsSidebar.classList.remove("is-visible");
+		awardCards.forEach((card) => card.classList.remove("is-visible"));
+	};
+
+	if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+		revealTestimonial();
+		revealAwards();
+		return;
+	}
+
+	if (testimonialSection) {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visible = entries.some((entry) => entry.isIntersecting);
+				if (visible) {
+					revealTestimonial();
+				} else {
+					hideTestimonial();
+				}
+			},
+			{ root: scrollRoot, threshold: 0.15 }
+		);
+		observer.observe(testimonialSection);
+	}
+
+	if (awardsSection) {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visible = entries.some((entry) => entry.isIntersecting);
+				if (visible) {
+					revealAwards();
+				} else {
+					hideAwards();
+				}
+			},
+			{ root: scrollRoot, threshold: 0.15 }
+		);
+		observer.observe(awardsSection);
+	}
 }
 
 function initCreditsAccordion() {
