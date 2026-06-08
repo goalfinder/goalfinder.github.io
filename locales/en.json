@@ -60,6 +60,14 @@
       "bg-title": "GoalFinder Build Guide",
       "bg-title-short": "Build Guide"
     },
+    "doc-contrib": {
+      "doc-card-title": "Documentation",
+      "doc-card-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "doc-card-btn": "View Documentation",
+      "contrib-card-title": "Contribute",
+      "contrib-card-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "contrib-card-btn": "Go to GitHub"
+    },
     "downloads": {
       "home-download-title": "Downloads",
       "home-download-content": "Keep your GoalFinder up to date and download the latest version of the software.",

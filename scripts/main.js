@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	initHeroSplit();
 	initAboutImageStack();
 	initMissionCards();
+	initDocContribCards();
 	initTestimonialAwards();
 	initCreditsAccordion();
 
@@ -923,4 +924,89 @@ function initMissionCards() {
 
 		observer.observe(section);
 	}
+}
+
+function initDocContribCards() {
+	const section = document.getElementById("doc-contrib");
+	const cards = Array.from(document.querySelectorAll("[data-doc-contrib-card]"));
+	const scrollRoot = document.querySelector("main");
+	if (!section || !cards.length || !scrollRoot) return;
+
+	cards.forEach((card, idx) => {
+		card.style.setProperty("--card-index", idx.toString());
+	});
+
+	const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+	const revealTimers = [];
+	let revealFrame = null;
+	let revealedOnCurrentEntry = false;
+
+	const clearRevealTimers = () => {
+		if (revealFrame !== null) {
+			window.cancelAnimationFrame(revealFrame);
+			revealFrame = null;
+		}
+		while (revealTimers.length) {
+			window.clearTimeout(revealTimers.pop());
+		}
+	};
+
+	const reveal = () => {
+		clearRevealTimers();
+		cards.forEach((card) => card.classList.remove("is-visible"));
+		cards[0].getBoundingClientRect();
+
+		revealFrame = window.requestAnimationFrame(() => {
+			revealFrame = null;
+
+			cards.forEach((card, idx) => {
+				if (prefersReducedMotion) {
+					card.classList.add("is-visible");
+					return;
+				}
+
+				const timer = window.setTimeout(() => card.classList.add("is-visible"), idx * 120);
+				revealTimers.push(timer);
+			});
+		});
+	};
+
+	const revealWithoutAnimation = () => {
+		clearRevealTimers();
+		cards.forEach((card) => card.classList.add("is-visible"));
+	};
+
+	const hideCards = () => {
+		clearRevealTimers();
+		cards.forEach((card) => card.classList.remove("is-visible"));
+	};
+
+	if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+		revealWithoutAnimation();
+		return;
+	}
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			const visible = entries.some((entry) => entry.isIntersecting);
+			if (!visible) {
+				revealedOnCurrentEntry = false;
+				hideCards();
+				return;
+			} else {
+				if (!revealedOnCurrentEntry) {
+					if (!prefersReducedMotion) {
+						reveal();
+					} else {
+						revealWithoutAnimation();
+					}
+					revealedOnCurrentEntry = true;
+				}
+			}
+		},
+		{ root: scrollRoot, threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] }
+	);
+
+	observer.observe(section);
 }
