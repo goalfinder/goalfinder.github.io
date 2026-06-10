@@ -23,7 +23,7 @@
 	--theme-transition-easing: ease;
 
 	/* Typographic scale */
-	--text-xxs: 1rem;
+	--text-xxs: clamp(0.5rem, 8vw, 1rem);
 	--text-xs: 1.15rem;
 	--text-sm: 1.35rem;
 	--text-base: 1.5rem;
@@ -591,7 +591,7 @@ p {
 }
 
 .doc-contrib-card h3 {
-	font-size: var(--text-2xl);
+	font-size: var(--heading-2);
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
 	color: var(--text);
@@ -769,9 +769,11 @@ p {
 .mission-card-body p {
 	margin: 0;
 	color: var(--text-muted);
+	font-size: var(--text-sm);
 }
 
 .mission-link {
+	font-size: var(--text-sm);
 	display: inline-flex;
 	align-items: center;
 	gap: 0.35rem;
@@ -1232,7 +1234,7 @@ p {
 }
 
 .award-card-desc {
-	font-size: var(--text-xs);
+	font-size: var(--text-sm);
 	line-height: 1.4;
 	color: var(--text-muted);
 	margin-top: 0.2rem;
@@ -1278,15 +1280,9 @@ p {
 		font-size: var(--text-xxs);
 	}
 
-	h1 {
-		font-size: var(--heading-1-mobile);
-	}
-
-	h2 {
-		font-size: var(--heading-2-mobile);
-	}
-
-	p {
+	.mission-card-body p,
+	.mission-link,
+	.award-card-desc {
 		font-size: var(--text-body-mobile);
 	}
 

@@ -27,7 +27,7 @@ function isTouchOnlyDevice() {
 function switchLang() {
 	setCurrentLang(getCurrentLang() == "de" ? "en" : "de");
 	loadLang(getCurrentLang());
-	if (langButton) langButton.innerHTML = getCurrentLang().toUpperCase();
+	if (langButton) langButton.innerHTML = getCurrentLang() == "de" ? "EN" : "DE";
 }
 
 function getCurrentTheme() {
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	langButton = document.getElementById("lang-button");
 	if (langButton) langButton.onclick = switchLang;
-	if (langButton) langButton.innerHTML = getCurrentLang().toUpperCase();
+	if (langButton) langButton.innerHTML = getCurrentLang() == "de" ? "EN" : "DE";
 
 	themeButton = document.getElementById("theme-button");
 	if (themeButton) themeButton.onclick = switchTheme;

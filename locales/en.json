@@ -1,18 +1,18 @@
 {
   "main": {
-    "sub-title": "ASSISTIVE BASKETBALL DEVICE FOR VISUALLY IMPAIRED",
+    "sub-title": "Assistive basketball device for visually impaired",
     "about": {
       "about-title": "About",
-      "about-content": "The GoalFinder device assists visually impaired players by playing sounds and illuminating a target strip to indicate the basket, and by providing visual and auditory feedback for successful or missed shots. It’s easy to configure through the GoalFinder Web App, which lets users set up and play different games and challenges."
+      "about-content": "The GoalFinder is a device aimed at assisting visually impaired and blind  at playing basketball by playing sounds and illuminating a target strip to indicate the basket. It also provides visual and auditory feedback for successful shots. Furthermore, it's easy to set up and configure the GoalFinder web app, which lets users set up and play different games and challenges."
     },
     "mission": {
       "mission-title": "Our Mission",
       "mission-0-title": "Accessibility",
-      "mission-0-content": "People with visual impairments should be full members of society, not a burden—equally included in everyday life and in sports. That's why we created the GoalFinder device, to make it easier for blind and low‑vision players to enjoy basketball.",
+      "mission-0-content": "People with visual impairments should be full societal members, not burdens; equally included in daily life and sports. Thus, we developed the GoalFinder to allow everyone to play basketball equally.",
       "mission-1-title": "Open Source",
-      "mission-1-content": "GoalFinder should serve its purpose efficiently while remaining accessible to everyone. By making the project 100% open source, we ensure that the full functionality is available to all, maximizing its impact and usefulness.",
+      "mission-1-content": "GoalFinder should not only provide accessibility but also stay accessible to everyone. By keeping the project 100% open source, we ensure the full functionality is available to all at any time.",
       "mission-2-title": "Community",
-      "mission-2-content": "A real open source project thrives only when supported by its community. We deeply appreciate feedback from our users and encourage developers to contribute their ideas and skills."
+      "mission-2-content": "A real open-source project thrives only when supported by its community. We deeply appreciate feedback from our users and encourage developers to contribute their skills and ideas."
     },
     "features": {
       "features-title": "How It Works",
@@ -58,14 +58,14 @@
       "ud-title": "GoalFinder User Documentation",
       "ud-title-short": "User Documentation",
       "bg-title": "GoalFinder Build Guide",
-      "bg-title-short": "Build Guide"
+      "bg-title-short": "Build Guide" 
     },
     "doc-contrib": {
       "doc-card-title": "Documentation",
-      "doc-card-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "doc-card-content": "Our documentation provides basic information about how the GoalFinder works, instructions on mounting, setting up, and usage, a comprehensive build guide, as well as a deep dive into the technology powering the device.",
       "doc-card-btn": "View Documentation",
       "contrib-card-title": "Contribute",
-      "contrib-card-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "contrib-card-content": "Ready to contribute?\nBecome a part of our community and help make basketball more accessible to visually impaired.\nNo matter if you only want to give feedback or want to actively take part. All contributions are welcome.",
       "contrib-card-btn": "Go to GitHub"
     },
     "downloads": {
