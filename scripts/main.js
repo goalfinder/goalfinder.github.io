@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	initDocContribCards();
 	initTestimonialAwards();
 	initCreditsAccordion();
+	initContactSection();
 
 	const touchOnly = isTouchOnlyDevice();
 	setTouchOnlyMode(touchOnly);
@@ -923,6 +924,55 @@ function initMissionCards() {
 		);
 
 		observer.observe(section);
+	}
+}
+
+function initContactSection() {
+	const emailBtn = document.querySelector("[data-email-base64]");
+	const emailTextSpan = emailBtn ? emailBtn.querySelector("[data-email-text]") : null;
+	const copiedTextSpan = emailBtn ? emailBtn.querySelector(".email-copied-text") : null;
+
+	// Decode and display email from base64
+	if (emailBtn && emailTextSpan) {
+		const encoded = emailBtn.dataset.emailBase64;
+		try {
+			const decoded = atob(encoded);
+			emailTextSpan.textContent = decoded;
+		} catch (e) {
+			console.error("Failed to decode email base64", e);
+		}
+	}
+
+	// Copy to clipboard on click
+	if (emailBtn && emailTextSpan && copiedTextSpan) {
+		let copyTimer = null;
+		emailBtn.addEventListener("click", () => {
+			if (copyTimer) return;
+
+			const encoded = emailBtn.dataset.emailBase64;
+			const email = atob(encoded);
+
+			navigator.clipboard.writeText(email).catch(() => {
+				// Fallback for older browsers
+				const textarea = document.createElement("textarea");
+				textarea.value = email;
+				textarea.style.position = "fixed";
+				textarea.style.opacity = "0";
+				document.body.appendChild(textarea);
+				textarea.select();
+				document.execCommand("copy");
+				document.body.removeChild(textarea);
+			});
+
+			emailTextSpan.classList.add("email-text-fade-out");
+			copiedTextSpan.classList.add("is-visible");
+
+			copyTimer = setTimeout(() => {
+				copiedTextSpan.classList.remove("is-visible");
+				emailTextSpan.classList.remove("email-text-fade-out");
+				copyTimer = null;
+			}, 2000);
+		});
 	}
 }
 

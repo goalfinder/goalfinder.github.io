@@ -118,7 +118,8 @@
   },
   "contact": {
     "contact-title": "Kontaktiere uns",
-    "contact-content": "Hast du Fragen oder möchtest du mehr über den GoalFinder herausfinden?"
+    "contact-content": "Hast du Fragen oder möchtest du mehr über den GoalFinder herausfinden?",
+    "contact-email-copied": "Kopiert!"
   },
   "credits": {
     "c-title": "Credits",
