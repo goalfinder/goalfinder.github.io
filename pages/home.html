@@ -81,8 +81,8 @@ title: GoalFinder
 
 			<section class="panel panel-testimonial" id="testimonial">
 				<div class="testimonial-block" data-testimonial-block>
-					<blockquote data-i18n="quote"></blockquote>
-					<cite data-i18n="quote-cite"></cite>
+					<blockquote data-scroll-reveal data-i18n="quote"></blockquote>
+					<cite data-scroll-reveal data-i18n="quote-cite"></cite>
 				</div>
 			</section>
 
@@ -149,12 +149,12 @@ title: GoalFinder
 
 			<section class="panel panel-doc-contrib" id="doc-contrib">
 				<div class="doc-contrib-grid">
-					<article class="doc-contrib-card" data-doc-contrib-card>
+					<article data-scroll-reveal class="doc-contrib-card">
 						<h3 data-i18n="doc-card-title"></h3>
 						<p data-i18n="doc-card-content"></p>
 						<a href="https://goalfinder.github.io/doc?page=user-welcome" class="doc-contrib-btn" target="_blank" rel="noopener noreferrer" data-i18n="doc-card-btn"></a>
 					</article>
-					<article class="doc-contrib-card" data-doc-contrib-card>
+					<article data-scroll-reveal class="doc-contrib-card">
 						<h3 data-i18n="contrib-card-title"></h3>
 						<p data-i18n="contrib-card-content"></p>
 						<a href="https://github.com/htl-leo-club-embedded-iot/GoalFinder" class="doc-contrib-btn" target="_blank" rel="noopener noreferrer" data-i18n="contrib-card-btn"></a>
@@ -165,24 +165,28 @@ title: GoalFinder
 			<section class="panel panel-contact" id="contact">
 				<div class="contact-inner">
 					<div class="contact-body">
-						<h2 data-i18n="contact-title">Contact Us</h2>
-						<p data-i18n="contact-content"></p>
+						<div data-scroll-reveal>
+							<h2 data-i18n="contact-title">Contact Us</h2>
+							<p data-i18n="contact-content"></p>
+							
+							<button class="doc-contrib-btn contact-email-btn" type="button" data-email-base64="Z29hbGZpbmRlckBodGwtbGVvbmRpbmcuYWMuYXQ=">
+								<span data-email-text></span>
+								<span class="email-copied-text" data-i18n="contact-email-copied"></span>
+							</button>
+						</div>
 
-						<button class="doc-contrib-btn contact-email-btn" type="button" data-email-base64="Z29hbGZpbmRlckBodGwtbGVvbmRpbmcuYWMuYXQ=">
-							<span data-email-text></span>
-							<span class="email-copied-text" data-i18n="contact-email-copied"></span>
-						</button>
-
-						<h3 class="contact-sponsor-title" data-i18n="support-title">Support & Cooperation</h3>
-						<div class="contact-sponsors">
-							<a href="https://google.com" target="_blank" rel="noreferrer noopener" class="contact-sponsor-link">
-								<img class="contact-sponsor-logo" src="{{ site.baseurl }}/assets/img/logos/htlleonding-only.png" alt="HTL Leonding" id="contact-htl-img" />
-								<span data-i18n="sponsor-0"></span>
-							</a>
-							<a href="https://google.com" target="_blank" rel="noreferrer noopener" class="contact-sponsor-link">
-								<img class="contact-sponsor-logo" src="{{ site.baseurl }}/assets/img/logos/univie-only.png" alt="University Vienna" id="contact-uni-img" />
-								<span data-i18n="sponsor-1"></span>
-							</a>
+						<div data-scroll-reveal>	
+							<h3 class="contact-sponsor-title" data-i18n="support-title">Support & Cooperation</h3>
+							<div class="contact-sponsors">
+								<a href="https://google.com" target="_blank" rel="noreferrer noopener" class="contact-sponsor-link">
+									<img class="contact-sponsor-logo" src="{{ site.baseurl }}/assets/img/logos/htlleonding-only.png" alt="HTL Leonding" id="contact-htl-img" />
+									<span data-i18n="sponsor-0"></span>
+								</a>
+								<a href="https://google.com" target="_blank" rel="noreferrer noopener" class="contact-sponsor-link">
+									<img class="contact-sponsor-logo" src="{{ site.baseurl }}/assets/img/logos/univie-only.png" alt="University Vienna" id="contact-uni-img" />
+									<span data-i18n="sponsor-1"></span>
+								</a>
+							</div>
 						</div>
 					</div>
 

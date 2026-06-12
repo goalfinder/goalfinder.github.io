@@ -558,32 +558,45 @@ function initPresentationScroll() {
 	});
 }
 
-function initTestimonialAwards() {
-	const testimonialSection = document.getElementById("testimonial");
-	const awardsSection = document.getElementById("awards");
-	const testimonialBlock = document.querySelector("[data-testimonial-block]");
-	const awardsSidebar = document.querySelector("[data-awards-sidebar]");
-	const awardCards = Array.from(document.querySelectorAll("[data-award-card]"));
-	const scrollRoot = document.querySelector("main");
-	if ((!testimonialSection && !awardsSection) || !scrollRoot) return;
+const REVEAL_STAGGER_MS = 100;
+const REVEAL_POINT_RATIO = 0.42;
+const REVEAL_SETTLE_MS = 320;
+
+function getActivePanel(scrollRoot) {
+	const panels = Array.from(document.querySelectorAll(".panel"));
+	if (!panels.length || !scrollRoot) return null;
+
+	const scrollTop = scrollRoot.scrollTop;
+	let closestPanel = panels[0];
+	let minDist = Infinity;
+
+	panels.forEach((panel) => {
+		const dist = Math.abs(panel.offsetTop - scrollTop);
+		if (dist < minDist) {
+			minDist = dist;
+			closestPanel = panel;
+		}
+	});
+
+	return closestPanel;
+}
+
+function initStaggeredScrollReveal({ section, items, scrollRoot, staggerMs = REVEAL_STAGGER_MS, indexCssVar = "--reveal-index", revealPointRatio = REVEAL_POINT_RATIO, revealSettleMs = REVEAL_SETTLE_MS }) {
+	if (!section || !items.length || !scrollRoot) return;
 
 	const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-	const revealTestimonial = () => {
-		if (testimonialBlock) testimonialBlock.classList.add("is-visible");
-	};
-
-	const hideTestimonial = () => {
-		if (testimonialBlock) testimonialBlock.classList.remove("is-visible");
-	};
-
-	awardCards.forEach((card, idx) => {
-		card.style.setProperty("--award-card-index", idx.toString());
+	items.forEach((item, idx) => {
+		item.style.setProperty(indexCssVar, idx.toString());
 	});
 
 	const revealTimers = [];
 	let revealFrame = null;
+	let revealSettleTimer = null;
 	let revealedOnCurrentEntry = false;
+	let wasActive = false;
+
+	const isSectionActive = () => getActivePanel(scrollRoot) === section;
 
 	const clearRevealTimers = () => {
 		if (revealFrame !== null) {
@@ -595,82 +608,114 @@ function initTestimonialAwards() {
 		}
 	};
 
-	const revealAwards = () => {
-		if (awardsSidebar) awardsSidebar.classList.add("is-visible");
+	const cancelRevealSettle = () => {
+		if (revealSettleTimer !== null) {
+			window.clearTimeout(revealSettleTimer);
+			revealSettleTimer = null;
+		}
+	};
+
+	const hasReachedRevealPoint = () => {
+		const sectionRect = section.getBoundingClientRect();
+		const rootTop = scrollRoot === document.documentElement ? 0 : scrollRoot.getBoundingClientRect().top;
+		const rootHeight = scrollRoot === document.documentElement ? window.innerHeight : scrollRoot.clientHeight;
+		const revealLine = rootTop + rootHeight * revealPointRatio;
+		return sectionRect.top <= revealLine && sectionRect.bottom > rootTop + rootHeight * 0.12;
+	};
+
+	const hideItems = () => {
+		cancelRevealSettle();
 		clearRevealTimers();
-		awardCards.forEach((card) => card.classList.remove("is-visible"));
-		awardCards[0].getBoundingClientRect();
+		items.forEach((item) => item.classList.remove("is-visible"));
+	};
+
+	const revealInstant = () => {
+		cancelRevealSettle();
+		clearRevealTimers();
+		items.forEach((item) => item.classList.add("is-visible"));
+	};
+
+	const reveal = () => {
+		cancelRevealSettle();
+		clearRevealTimers();
+		items.forEach((item) => item.classList.remove("is-visible"));
+		items[0].getBoundingClientRect();
 
 		revealFrame = window.requestAnimationFrame(() => {
 			revealFrame = null;
 
-			awardCards.forEach((card, idx) => {
+			items.forEach((item, idx) => {
 				if (prefersReducedMotion) {
-					card.classList.add("is-visible");
+					item.classList.add("is-visible");
 					return;
 				}
 
-				const timer = window.setTimeout(() => card.classList.add("is-visible"), idx * 140);
+				const timer = window.setTimeout(() => item.classList.add("is-visible"), idx * staggerMs);
 				revealTimers.push(timer);
 			});
 		});
 	};
 
-	const revealAwardsWithoutAnimation = () => {
-		if (awardsSidebar) awardsSidebar.classList.add("is-visible");
-		clearRevealTimers();
-		awardCards.forEach((card) => card.classList.add("is-visible"));
+	const scheduleRevealIfReady = () => {
+		if (!isSectionActive() || revealedOnCurrentEntry || revealSettleTimer !== null) return;
+		if (!hasReachedRevealPoint()) return;
+
+		revealSettleTimer = window.setTimeout(() => {
+			revealSettleTimer = null;
+			if (!isSectionActive() || revealedOnCurrentEntry || !hasReachedRevealPoint()) return;
+			reveal();
+			revealedOnCurrentEntry = true;
+		}, revealSettleMs);
 	};
 
-	const hideAwards = () => {
-		if (awardsSidebar) awardsSidebar.classList.remove("is-visible");
-		clearRevealTimers();
-		awardCards.forEach((card) => card.classList.remove("is-visible"));
+	const handleScroll = () => {
+		const active = isSectionActive();
+
+		if (!active) {
+			if (wasActive) {
+				revealedOnCurrentEntry = false;
+				hideItems();
+			}
+			wasActive = false;
+			return;
+		}
+
+		wasActive = true;
+		scheduleRevealIfReady();
 	};
 
-	if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-		revealTestimonial();
-		revealAwardsWithoutAnimation();
+	if (prefersReducedMotion) {
+		revealInstant();
 		return;
 	}
 
+	scrollRoot.addEventListener("scroll", handleScroll, { passive: true });
+	window.requestAnimationFrame(() => handleScroll());
+}
+
+function initTestimonialAwards() {
+	const testimonialSection = document.getElementById("testimonial");
+	const awardsSection = document.getElementById("awards");
+	const awardCards = Array.from(document.querySelectorAll("[data-award-card]"));
+	const scrollRoot = document.querySelector("main");
+	if ((!testimonialSection && !awardsSection) || !scrollRoot) return;
+
 	if (testimonialSection) {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				const visible = entries.some((entry) => entry.isIntersecting);
-				if (visible) {
-					revealTestimonial();
-				} else {
-					hideTestimonial();
-				}
-			},
-			{ root: scrollRoot, threshold: 0.15 }
-		);
-		observer.observe(testimonialSection);
+		const testimonialItems = Array.from(testimonialSection.querySelectorAll("[data-scroll-reveal]"));
+		initStaggeredScrollReveal({
+			section: testimonialSection,
+			items: testimonialItems,
+			scrollRoot,
+		});
 	}
 
-	if (awardsSection) {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				const visible = entries.some((entry) => entry.isIntersecting);
-				if (!visible) {
-					revealedOnCurrentEntry = false;
-					hideAwards();
-					return;
-				} else {
-					if (!revealedOnCurrentEntry) {
-						if (!prefersReducedMotion) {
-							revealAwards();
-						} else {
-							revealAwardsWithoutAnimation();
-						}
-						revealedOnCurrentEntry = true;
-					}
-				}
-			},
-			{ root: scrollRoot, threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] }
-		);
-		observer.observe(awardsSection);
+	if (awardsSection && awardCards.length) {
+		initStaggeredScrollReveal({
+			section: awardsSection,
+			items: awardCards,
+			scrollRoot,
+			indexCssVar: "--award-card-index",
+		});
 	}
 }
 
@@ -781,10 +826,6 @@ function initMissionCards() {
 	const scrollRoot = document.querySelector("main");
 	if (!section || !container || !cards.length || !scrollRoot) return;
 
-	cards.forEach((card, idx) => {
-		card.style.setProperty("--card-index", idx.toString());
-	});
-
 	let resizeFrame = null;
 	const updateMissionLayoutState = () => {
 		if (!cards.length) return;
@@ -826,105 +867,12 @@ function initMissionCards() {
 	window.addEventListener("load", scheduleLayoutUpdate, { once: true });
 	scheduleLayoutUpdate();
 
-	const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-	const revealTimers = [];
-	let revealFrame = null;
-	let wasIntersecting = false;
-	let revealedOnCurrentEntry = false;
-	let scrollingDown = false;
-	let lastScrollTop = scrollRoot.scrollTop;
-
-	const clearRevealTimers = () => {
-		if (revealFrame !== null) {
-			window.cancelAnimationFrame(revealFrame);
-			revealFrame = null;
-		}
-
-		while (revealTimers.length) {
-			window.clearTimeout(revealTimers.pop());
-		}
-	};
-
-	const updateScrollDirection = (currentTop) => {
-		scrollingDown = currentTop > lastScrollTop;
-		lastScrollTop = currentTop;
-	};
-
-	const handleRootScroll = () => {
-		updateScrollDirection(scrollRoot.scrollTop);
-	};
-
-	const handleWindowScroll = () => {
-		if (scrollRoot !== document.documentElement) return;
-		updateScrollDirection(window.scrollY);
-	};
-
-	scrollRoot.addEventListener("scroll", handleRootScroll, { passive: true });
-	window.addEventListener("scroll", handleWindowScroll, { passive: true });
-
-	const hasReachedRevealPoint = () => {
-		const sectionRect = section.getBoundingClientRect();
-		const rootTop = scrollRoot === document.documentElement ? 0 : scrollRoot.getBoundingClientRect().top;
-		const rootHeight = scrollRoot === document.documentElement ? window.innerHeight : scrollRoot.clientHeight;
-		const revealLine = rootTop + rootHeight * 0.65;
-		return sectionRect.top <= revealLine && sectionRect.bottom > rootTop;
-	};
-
-	const reveal = () => {
-		clearRevealTimers();
-		cards.forEach((card) => card.classList.remove("is-visible"));
-		cards[0].getBoundingClientRect();
-
-		revealFrame = window.requestAnimationFrame(() => {
-			revealFrame = null;
-
-			cards.forEach((card, idx) => {
-				if (prefersReducedMotion) {
-					card.classList.add("is-visible");
-					return;
-				}
-
-				const timer = window.setTimeout(() => card.classList.add("is-visible"), idx * 140);
-				revealTimers.push(timer);
-			});
-		});
-	};
-
-	const revealWithoutAnimation = () => {
-		clearRevealTimers();
-		cards.forEach((card) => card.classList.add("is-visible"));
-	};
-
-	if (!("IntersectionObserver" in window)) {
-		reveal();
-	} else {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				const visible = entries.some((entry) => entry.isIntersecting);
-				if (!visible) {
-					wasIntersecting = false;
-					revealedOnCurrentEntry = false;
-					clearRevealTimers();
-					cards.forEach((card) => card.classList.remove("is-visible"));
-					return;
-				} else {
-					if (!revealedOnCurrentEntry && hasReachedRevealPoint()) {
-						if (scrollingDown && !prefersReducedMotion) {
-							reveal();
-						} else {
-							revealWithoutAnimation();
-						}
-						revealedOnCurrentEntry = true;
-					}
-
-					wasIntersecting = true;
-				}
-			},
-			{ root: scrollRoot, threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] }
-		);
-
-		observer.observe(section);
-	}
+	initStaggeredScrollReveal({
+		section,
+		items: cards,
+		scrollRoot,
+		indexCssVar: "--card-index",
+	});
 }
 
 function initContactSection() {
@@ -974,89 +922,28 @@ function initContactSection() {
 			}, 2000);
 		});
 	}
+
+	const contactSection = document.getElementById("contact");
+	const scrollRoot = document.querySelector("main");
+	if (contactSection && scrollRoot) {
+		const contactItems = Array.from(contactSection.querySelectorAll("[data-scroll-reveal]"));
+		initStaggeredScrollReveal({
+			section: contactSection,
+			items: contactItems,
+			scrollRoot,
+		});
+	}
 }
 
 function initDocContribCards() {
 	const section = document.getElementById("doc-contrib");
-	const cards = Array.from(document.querySelectorAll("[data-doc-contrib-card]"));
+	const items = section ? Array.from(section.querySelectorAll("[data-scroll-reveal]")) : [];
 	const scrollRoot = document.querySelector("main");
-	if (!section || !cards.length || !scrollRoot) return;
+	if (!section || !items.length || !scrollRoot) return;
 
-	cards.forEach((card, idx) => {
-		card.style.setProperty("--card-index", idx.toString());
+	initStaggeredScrollReveal({
+		section,
+		items,
+		scrollRoot,
 	});
-
-	const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-	const revealTimers = [];
-	let revealFrame = null;
-	let revealedOnCurrentEntry = false;
-
-	const clearRevealTimers = () => {
-		if (revealFrame !== null) {
-			window.cancelAnimationFrame(revealFrame);
-			revealFrame = null;
-		}
-		while (revealTimers.length) {
-			window.clearTimeout(revealTimers.pop());
-		}
-	};
-
-	const reveal = () => {
-		clearRevealTimers();
-		cards.forEach((card) => card.classList.remove("is-visible"));
-		cards[0].getBoundingClientRect();
-
-		revealFrame = window.requestAnimationFrame(() => {
-			revealFrame = null;
-
-			cards.forEach((card, idx) => {
-				if (prefersReducedMotion) {
-					card.classList.add("is-visible");
-					return;
-				}
-
-				const timer = window.setTimeout(() => card.classList.add("is-visible"), idx * 120);
-				revealTimers.push(timer);
-			});
-		});
-	};
-
-	const revealWithoutAnimation = () => {
-		clearRevealTimers();
-		cards.forEach((card) => card.classList.add("is-visible"));
-	};
-
-	const hideCards = () => {
-		clearRevealTimers();
-		cards.forEach((card) => card.classList.remove("is-visible"));
-	};
-
-	if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-		revealWithoutAnimation();
-		return;
-	}
-
-	const observer = new IntersectionObserver(
-		(entries) => {
-			const visible = entries.some((entry) => entry.isIntersecting);
-			if (!visible) {
-				revealedOnCurrentEntry = false;
-				hideCards();
-				return;
-			} else {
-				if (!revealedOnCurrentEntry) {
-					if (!prefersReducedMotion) {
-						reveal();
-					} else {
-						revealWithoutAnimation();
-					}
-					revealedOnCurrentEntry = true;
-				}
-			}
-		},
-		{ root: scrollRoot, threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] }
-	);
-
-	observer.observe(section);
 }
