@@ -45,7 +45,7 @@
 
 :root.dark-mode {
 	--background: #141414;
-	--decal: #343434;
+	--decal: #444444;
 	--primary: #764ba2;
 	--secondary: #2563eb;
 	--text: #f0f0f0;
@@ -1530,9 +1530,17 @@ p {
 .contact-footer {
 	text-align: center;
 	padding: clamp(1.2rem, 3vw, 2rem) clamp(1.5rem, 6vw, 5rem);
-	border-top: 1px solid color-mix(in srgb, var(--decal) 50%, transparent);
 	margin-top: auto;
 	width: 100%;
+}
+
+.contact-footer::before {
+	content: "";
+	display: block;
+	width: 80px;
+	height: 2px;
+	background: var(--decal);
+	margin: 0 auto 1rem;
 }
 
 .contact-footer p {
