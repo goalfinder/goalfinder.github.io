@@ -12,17 +12,14 @@ let touchOnlyMode = false;
 let alternateScrollEnabled = true;
 
 function setTouchOnlyMode(enabled) {
-	if (touchOnlyMode === enabled) return;
-	touchOnlyMode = enabled;
-	alternateScrollEnabled = !enabled;
-	document.documentElement.classList.toggle("touch-only", enabled);
+	if (touchOnlyMode !== enabled) {
+		touchOnlyMode = enabled;
+		alternateScrollEnabled = !enabled;
+		document.documentElement.classList.toggle("touch-only", enabled);
+	}
 }
 
-function isTouchOnlyDevice() {
-	const hasTouchPoints = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
-	const hasFinePointer = window.matchMedia && window.matchMedia("(any-pointer: fine)").matches;
-	return hasTouchPoints && !hasFinePointer;
-}
+const isTouchOnlyDevice = () => (navigator.maxTouchPoints > 0 || "ontouchstart" in window) && !(window.matchMedia && window.matchMedia("(any-pointer: fine)").matches);
 
 function switchLang() {
 	setCurrentLang(getCurrentLang() == "de" ? "en" : "de");
@@ -35,9 +32,10 @@ function getCurrentTheme() {
 }
 
 function updateThemeButtonLabel() {
-	if (!themeButton) return;
-	const currentTheme = getCurrentTheme();
-	themeButton.innerHTML = currentTheme === "dark" ? "LIGHT" : "DARK";
+	if (themeButton) {
+		const currentTheme = getCurrentTheme();
+		themeButton.innerHTML = currentTheme === "dark" ? "LIGHT" : "DARK";
+	}
 }
 
 function setTheme(theme, save = true) {
@@ -57,11 +55,10 @@ function applySavedTheme() {
 	const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
 	if (savedTheme === "dark" || savedTheme === "light") {
 		setTheme(savedTheme, false);
-		return;
+	} else {
+		const systemPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+		setTheme(systemPrefersDark ? "dark" : "light", false);
 	}
-
-	const systemPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-	setTheme(systemPrefersDark ? "dark" : "light", false);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -91,13 +88,116 @@ document.addEventListener("DOMContentLoaded", () => {
 	const touchOnly = isTouchOnlyDevice();
 	setTouchOnlyMode(touchOnly);
 	initPresentationScroll();
+	initQuickNav();
 });
 
 function initSharedTitle() {
 	const heroTitle = document.getElementById("title");
 	const aboutTitle = document.getElementById("about-shared-title");
-	if (!heroTitle || !aboutTitle) return;
-	aboutTitle.textContent = heroTitle.textContent.trim();
+	if (heroTitle && aboutTitle) {
+		aboutTitle.textContent = heroTitle.textContent.trim();
+	}
+}
+
+function setNavVisibility(visible) {
+	const nav = document.getElementById("quick-nav");
+	if (nav) {
+		nav.classList.toggle("is-visible", visible);
+	}
+}
+
+let navScrollAnimating = false;
+
+function scrollToPanelByIndex(index) {
+	const container = document.querySelector("main");
+	if (!navScrollAnimating && container) {
+		const panels = Array.from(document.querySelectorAll(".panel"));
+		if (index >= 0 && index < panels.length) {
+			const target = panels[index].offsetTop;
+			const start = container.scrollTop;
+			const distance = target - start;
+			if (Math.abs(distance) >= 2) {
+				navScrollAnimating = true;
+				
+				const startTime = performance.now();
+				const duration = TRANSITION_DURATION;
+				
+				const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+				function step(now) {
+					const elapsed = now - startTime;
+					const progress = Math.min(elapsed / duration, 1);
+					const eased = easeInOutCubic(progress);
+					container.scrollTop = start + distance * eased;
+					if (progress < 1) {
+						requestAnimationFrame(step);
+					} else {
+						container.scrollTop = target;
+						navScrollAnimating = false;
+					}
+				}
+				requestAnimationFrame(step);
+			}
+		}
+	}
+}
+
+function initQuickNav() {
+	const nav = document.getElementById("quick-nav");
+	if (nav) {
+		const links = Array.from(nav.querySelectorAll(".quick-nav-link"));
+		if (links.length) {
+			const panels = Array.from(document.querySelectorAll(".panel"));
+
+			links.forEach((link) => {
+				link.addEventListener("click", (e) => {
+					e.preventDefault();
+					const sectionId = link.getAttribute("data-nav-section");
+					const panelIndex = panels.findIndex((p) => p.id === sectionId || p.dataset.navSection === sectionId);
+					if (panelIndex > 0) {
+						scrollToPanelByIndex(panelIndex);
+					}
+				});
+			});
+
+			const container = document.querySelector("main");
+			if (container) {
+				let visibilityFrame = null;
+
+				function updateNavVisibility() {
+					if (visibilityFrame === null) {
+
+						visibilityFrame = requestAnimationFrame(() => {
+							visibilityFrame = null;
+							const panels = Array.from(document.querySelectorAll(".panel"));
+							if (panels.length) {
+								const scrollTop = container.scrollTop;
+								let closestIndex = 0;
+								let minDist = Infinity;
+								panels.forEach((panel, i) => {
+									const dist = Math.abs(panel.offsetTop - scrollTop);
+									if (dist < minDist) {
+										minDist = dist;
+										closestIndex = i;
+									}
+								});
+								setNavVisibility(closestIndex > 0);
+							}
+						});
+					} 
+				}
+
+				setNavVisibility(false);
+
+				container.addEventListener("scroll", updateNavVisibility, { passive: true });
+				window.addEventListener("resize", updateNavVisibility, { passive: true });
+			}
+		}
+	}
+}
+
+function updateNavFromTransition(closestIndex) {
+	setNavVisibility(closestIndex > 0);
 }
 
 function initHeroSplit() {
@@ -462,12 +562,21 @@ function initPresentationScroll() {
 		const shouldMorph = (currentIndex === 0 && targetIndex === 1) || (currentIndex === 1 && targetIndex === 0);
 		const morph = shouldMorph ? createTitleMorph(currentIndex === 0) : null;
 
+		// Hide nav immediately when transitioning upward from About toward Hero
+		if (currentIndex === 1 && targetIndex === 0) {
+			setNavVisibility(false);
+		}
+
 		const started = scrollToPanel(targetIndex, {
 			onProgress: (_progress, easedProgress) => {
 				if (morph) morph.update(easedProgress);
 			},
 			onDone: () => {
 				if (morph) morph.finish();
+				// Show nav after Hero→About transition completes
+				if (currentIndex === 0 && targetIndex === 1) {
+					setNavVisibility(true);
+				}
 				setTimeout(() => {
 					cooldownTimer = null;
 				}, COOLDOWN);
