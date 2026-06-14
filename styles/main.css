@@ -23,7 +23,7 @@
 	--theme-transition-easing: ease;
 
 	/* Typographic scale */
-	--text-xxs: clamp(0.5rem, 2vw, 1rem);
+	--text-xxs: clamp(1rem, 2vw, 1rem);
 	--text-xs: 1.15rem;
 	--text-sm: 1.35rem;
 	--text-base: 1.5rem;
@@ -42,7 +42,7 @@
 	--heading-2-mobile: 2rem;
 	--text-body-mobile: 1rem;
 
-	--animation-delay: 150ms /* Animation delay */;
+	--animation-delay: 150ms;
 }
 
 :root.dark-mode {
@@ -792,13 +792,10 @@ p {
 	text-align: center;
 	opacity: 0;
 	transform: translateY(32px) scale(0.98);
-	transition:
-		opacity 600ms cubic-bezier(0.21, 1, 0.27, 1),
-		transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
-		background 240ms ease,
-		border-color 240ms ease,
-		box-shadow 240ms ease;
-	/* transition-delay: calc(var(--award-card-index, 0) * var(--animation-delay)); */
+	transition-property: opacity, transform, background, border-color, box-shadow;
+	transition-duration: 600ms, 650ms, 240ms, 240ms, 240ms;
+	transition-timing-function: cubic-bezier(0.21, 1, 0.27, 1), cubic-bezier(0.22, 1, 0.36, 1), ease, ease, ease;
+	transition-delay: calc(var(--card-index, 0) * var(--animation-delay)), calc(var(--card-index, 0) * var(--animation-delay)), 0ms, 0ms, 0ms;
 }
 
 .mission-card::after {
@@ -1278,13 +1275,10 @@ p {
 	text-align: center;
 	opacity: 0;
 	transform: translateY(32px) scale(0.98);
-	transition:
-		opacity 600ms cubic-bezier(0.21, 1, 0.27, 1),
-		transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
-		background 240ms ease,
-		border-color 240ms ease,
-		box-shadow 240ms ease;
-	/* transition-delay: calc(var(--award-card-index, 0) * var(--animation-delay)); */
+	transition-property: opacity, transform, background, border-color, box-shadow;
+	transition-duration: 600ms, 650ms, 240ms, 240ms, 240ms;
+	transition-timing-function: cubic-bezier(0.21, 1, 0.27, 1), cubic-bezier(0.22, 1, 0.36, 1), ease, ease, ease;
+	transition-delay: calc(var(--award-card-index, 0) * var(--animation-delay)), calc(var(--award-card-index, 0) * var(--animation-delay)), 0ms, 0ms, 0ms;
 }
 
 .award-card.is-visible {

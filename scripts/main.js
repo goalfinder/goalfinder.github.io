@@ -786,12 +786,14 @@ function initStaggeredScrollReveal({ section, items, scrollRoot, staggerMs = REV
 		if (!isSectionActive() || revealedOnCurrentEntry || revealSettleTimer !== null) return;
 		if (!hasReachedRevealPoint()) return;
 
+		const effectiveSettleMs = touchOnlyMode ? 80 : revealSettleMs;
+
 		revealSettleTimer = window.setTimeout(() => {
 			revealSettleTimer = null;
 			if (!isSectionActive() || revealedOnCurrentEntry || !hasReachedRevealPoint()) return;
 			reveal();
 			revealedOnCurrentEntry = true;
-		}, revealSettleMs);
+		}, effectiveSettleMs);
 	};
 
 	const handleScroll = () => {
