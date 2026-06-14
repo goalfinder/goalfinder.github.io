@@ -1,5 +1,13 @@
 {
   "home": {
+    "nav": {
+      "nav.0": "Über GoalFinder",
+      "nav.1": "Empfehlung",
+      "nav.2": "Wettbewerbe",
+      "nav.3": "Mission",
+      "nav.4": "Dokumentation",
+      "nav.5": "Kontakt"
+    },
     "sub-title": "Basketballhilfe für Sehbeeinträchtigte",
     "about": {
       "about-title": "Über das Projekt",
@@ -118,7 +126,7 @@
   },
   "contact": {
     "contact-title": "Kontakt",
-    "contact-content": "Hast Sie Fragen oder möchten Sie mehr über GoalFinder herausfinden?",
+    "contact-content": "Habe Sie Fragen oder möchten Sie mehr über GoalFinder herausfinden?",
     "contact-email-copied": "Kopiert!"
   },
   "credits": {

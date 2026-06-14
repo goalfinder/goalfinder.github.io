@@ -1,5 +1,13 @@
 {
   "main": {
+    "nav": {
+      "nav.0": "About",
+      "nav.1": "Testimonial",
+      "nav.2": "Award",
+      "nav.3": "Mission",
+      "nav.4": "Docs",
+      "nav.5": "Contact"
+    },
     "sub-title": "Assistive basketball device for visually impaired",
     "about": {
       "about-title": "About",
