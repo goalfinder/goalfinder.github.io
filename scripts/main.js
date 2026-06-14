@@ -27,9 +27,8 @@ function switchLang() {
 	if (langButton) langButton.innerHTML = getCurrentLang() == "de" ? "EN" : "DE";
 }
 
-function getCurrentTheme() {
-	return document.documentElement.classList.contains("dark-mode") ? "dark" : "light";
-}
+const getCurrentTheme = () => document.documentElement.classList.contains("dark-mode") ? "dark" : "light";
+
 
 function updateThemeButtonLabel() {
 	if (themeButton) {
@@ -94,9 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
 function initSharedTitle() {
 	const heroTitle = document.getElementById("title");
 	const aboutTitle = document.getElementById("about-shared-title");
-	if (heroTitle && aboutTitle) {
-		aboutTitle.textContent = heroTitle.textContent.trim();
-	}
+	if (!heroTitle || !aboutTitle) return;
+	aboutTitle.textContent = heroTitle.textContent.trim();
 }
 
 function setNavVisibility(visible) {
@@ -109,91 +107,112 @@ function setNavVisibility(visible) {
 let navScrollAnimating = false;
 
 function scrollToPanelByIndex(index) {
+	if (navScrollAnimating) return;
 	const container = document.querySelector("main");
-	if (!navScrollAnimating && container) {
-		const panels = Array.from(document.querySelectorAll(".panel"));
-		if (index >= 0 && index < panels.length) {
-			const target = panels[index].offsetTop;
-			const start = container.scrollTop;
-			const distance = target - start;
-			if (Math.abs(distance) >= 2) {
-				navScrollAnimating = true;
-				
-				const startTime = performance.now();
-				const duration = TRANSITION_DURATION;
-				
-				const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+	if (!container) return;
 
-				function step(now) {
-					const elapsed = now - startTime;
-					const progress = Math.min(elapsed / duration, 1);
-					const eased = easeInOutCubic(progress);
-					container.scrollTop = start + distance * eased;
-					if (progress < 1) {
-						requestAnimationFrame(step);
-					} else {
-						container.scrollTop = target;
-						navScrollAnimating = false;
-					}
-				}
-				requestAnimationFrame(step);
-			}
+	const panels = Array.from(document.querySelectorAll(".panel"));
+	if (index < 0 || index >= panels.length) return;
+
+	const target = panels[index].offsetTop;
+	const start = container.scrollTop;
+	const distance = target - start;
+	if (Math.abs(distance) < 2) return;
+
+	navScrollAnimating = true;
+
+	const startTime = performance.now();
+	const duration = TRANSITION_DURATION;
+
+	function easeInOutCubic(t) {
+		return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+	}
+
+	function step(now) {
+		const elapsed = now - startTime;
+		const progress = Math.min(elapsed / duration, 1);
+		const eased = easeInOutCubic(progress);
+		container.scrollTop = start + distance * eased;
+		if (progress < 1) {
+			requestAnimationFrame(step);
+		} else {
+			container.scrollTop = target;
+			navScrollAnimating = false;
 		}
 	}
+	requestAnimationFrame(step);
 }
 
 function initQuickNav() {
 	const nav = document.getElementById("quick-nav");
-	if (nav) {
-		const links = Array.from(nav.querySelectorAll(".quick-nav-link"));
-		if (links.length) {
-			const panels = Array.from(document.querySelectorAll(".panel"));
+	if (!nav) return;
 
-			links.forEach((link) => {
-				link.addEventListener("click", (e) => {
-					e.preventDefault();
-					const sectionId = link.getAttribute("data-nav-section");
-					const panelIndex = panels.findIndex((p) => p.id === sectionId || p.dataset.navSection === sectionId);
-					if (panelIndex > 0) {
-						scrollToPanelByIndex(panelIndex);
-					}
-				});
+	const links = Array.from(nav.querySelectorAll(".quick-nav-link"));
+	if (!links.length) return;
+
+	const panels = Array.from(document.querySelectorAll(".panel"));
+
+	links.forEach((link) => {
+		link.addEventListener("click", (e) => {
+			e.preventDefault();
+			const href = link.getAttribute("href");
+			if (!href || !href.startsWith("#")) return;
+			const targetId = href.slice(1);
+			const panelIndex = panels.findIndex((p) => p.id === targetId);
+			if (panelIndex > 0) {
+				scrollToPanelByIndex(panelIndex);
+			}
+		});
+	});
+
+	const container = document.querySelector("main");
+	if (!container) return;
+
+	let visibilityFrame = null;
+
+	function updateNavVisibility() {
+		if (visibilityFrame !== null) return;
+		visibilityFrame = requestAnimationFrame(() => {
+			visibilityFrame = null;
+			const panels = Array.from(document.querySelectorAll(".panel"));
+			if (!panels.length) return;
+			const scrollTop = container.scrollTop;
+			let closestIndex = 0;
+			let minDist = Infinity;
+			panels.forEach((panel, i) => {
+				const dist = Math.abs(panel.offsetTop - scrollTop);
+				if (dist < minDist) {
+					minDist = dist;
+					closestIndex = i;
+				}
 			});
 
-			const container = document.querySelector("main");
-			if (container) {
-				let visibilityFrame = null;
-
-				function updateNavVisibility() {
-					if (visibilityFrame === null) {
-
-						visibilityFrame = requestAnimationFrame(() => {
-							visibilityFrame = null;
-							const panels = Array.from(document.querySelectorAll(".panel"));
-							if (panels.length) {
-								const scrollTop = container.scrollTop;
-								let closestIndex = 0;
-								let minDist = Infinity;
-								panels.forEach((panel, i) => {
-									const dist = Math.abs(panel.offsetTop - scrollTop);
-									if (dist < minDist) {
-										minDist = dist;
-										closestIndex = i;
-									}
-								});
-								setNavVisibility(closestIndex > 0);
-							}
-						});
-					} 
+			let visible = closestIndex > 0;
+			if (visible && closestIndex === 1) {
+				const heroOffset = panels[0].offsetTop;
+				const aboutOffset = panels[1].offsetTop;
+				const range = aboutOffset - heroOffset;
+				const progress = (scrollTop - heroOffset) / range;
+				if (progress < 0.15) {
+					visible = false;
 				}
-
-				setNavVisibility(false);
-
-				container.addEventListener("scroll", updateNavVisibility, { passive: true });
-				window.addEventListener("resize", updateNavVisibility, { passive: true });
 			}
-		}
+			setNavVisibility(visible);
+
+			const activePanel = panels[closestIndex];
+			links.forEach((link) => {
+				const href = link.getAttribute("href");
+				if (!href || !href.startsWith("#")) return;
+				const targetId = href.slice(1);
+				link.classList.toggle("is-active", activePanel && activePanel.id === targetId && closestIndex > 0);
+			});
+		});
 	}
+
+	setNavVisibility(false);
+
+	container.addEventListener("scroll", updateNavVisibility, { passive: true });
+	window.addEventListener("resize", updateNavVisibility, { passive: true });
 }
 
 function updateNavFromTransition(closestIndex) {
@@ -389,8 +408,8 @@ function createSubtitleFade(fromHeroToAbout = true) {
 	const currentOpacity = parseFloat(getComputedStyle(subtitle).opacity);
 	const fromOpacity = Number.isFinite(currentOpacity) ? currentOpacity : fromHeroToAbout ? 1 : 0;
 	const toOpacity = fromHeroToAbout ? 0 : 1;
-	const fadeOutGain = 50; // very fast fade-out to avoid overlap
-	const fadeInDelay = 0.85; // wait until title is nearly settled before fading back
+	const fadeOutGain = 50; 
+	const fadeInDelay = 0.85;
 	const fadeInSpan = 1 - fadeInDelay;
 
 	function update(easedProgress) {
@@ -562,7 +581,6 @@ function initPresentationScroll() {
 		const shouldMorph = (currentIndex === 0 && targetIndex === 1) || (currentIndex === 1 && targetIndex === 0);
 		const morph = shouldMorph ? createTitleMorph(currentIndex === 0) : null;
 
-		// Hide nav immediately when transitioning upward from About toward Hero
 		if (currentIndex === 1 && targetIndex === 0) {
 			setNavVisibility(false);
 		}
@@ -573,7 +591,6 @@ function initPresentationScroll() {
 			},
 			onDone: () => {
 				if (morph) morph.finish();
-				// Show nav after Hero→About transition completes
 				if (currentIndex === 0 && targetIndex === 1) {
 					setNavVisibility(true);
 				}
@@ -989,7 +1006,6 @@ function initContactSection() {
 	const emailTextSpan = emailBtn ? emailBtn.querySelector("[data-email-text]") : null;
 	const copiedTextSpan = emailBtn ? emailBtn.querySelector(".email-copied-text") : null;
 
-	// Decode and display email from base64
 	if (emailBtn && emailTextSpan) {
 		const encoded = emailBtn.dataset.emailBase64;
 		try {
@@ -1000,7 +1016,6 @@ function initContactSection() {
 		}
 	}
 
-	// Copy to clipboard on click
 	if (emailBtn && emailTextSpan && copiedTextSpan) {
 		let copyTimer = null;
 		emailBtn.addEventListener("click", () => {
@@ -1010,7 +1025,6 @@ function initContactSection() {
 			const email = atob(encoded);
 
 			navigator.clipboard.writeText(email).catch(() => {
-				// Fallback for older browsers
 				const textarea = document.createElement("textarea");
 				textarea.value = email;
 				textarea.style.position = "fixed";

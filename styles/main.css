@@ -220,6 +220,8 @@ body *::after {
 
 .quick-nav-link {
 	display: block;
+	padding: 0.3rem;
+	padding-left: 1rem;
 	font-family: inherit;
 	font-size: var(--text-base);
 	font-weight: 450;
@@ -228,15 +230,36 @@ body *::after {
 	color: var(--text-muted);
 	transition:
 		color 220ms ease,
-		background 220ms ease,
-		border-color 220ms ease;
+		border-color 220ms ease,
+		font-size 220ms ease,
+		padding-left 220ms ease;
 	white-space: nowrap;
-	line-height: 1.3;
 }
 
 .quick-nav-link:hover,
 .quick-nav-link:focus-visible {
 	color: var(--text);
+	outline: none;
+}
+
+.quick-nav-link.is-active {
+	color: var(--text);
+	font-size: var(--text-xl);
+	position: relative;
+}
+
+.quick-nav-link.is-active::before {
+	content: "";
+	position: absolute;
+	left: 0.35rem;
+	top: 16px;
+	transform: translateY(-50%);
+	width: 2px;
+	height: 1.2rem;
+	border-radius: 999px;
+	background: var(--text);
+	transition:
+		color 220ms ease,
 }
 
 @media (max-width: 1023px) {
