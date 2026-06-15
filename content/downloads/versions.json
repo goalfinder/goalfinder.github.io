@@ -47,7 +47,8 @@
             "notes": {
                 "en": "Major Utility Update",
                 "de": "Umfangreiches Nützlichkeits Update"
-            }
+            },
+            "recommended": true
         },
         {
             "version": "v0.3.0b",

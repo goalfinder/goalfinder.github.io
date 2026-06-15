@@ -34,26 +34,21 @@ title: Downloads
 
 		<title data-i18n="dl-page-title">Downloads</title>
 	</head>
-	<body>
+	<body class="no-transition">
 		<main class="download-page">
-			<!-- Header controls -->
 			<nav class="dl-header">
 				<a href="{{ site.baseurl }}/" class="dl-header-logo">
 					<img src="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-shadow.png" alt="GoalFinder Logo" />
 					<span>GoalFinder</span>
 				</a>
 				<div class="dl-header-controls">
-					<button id="dl-dark-toggle" class="dl-control-btn" aria-label="Toggle dark mode">
-						<img class="icon" src="{{ site.baseurl }}/assets/img/svg/dark.svg" alt="mode-icon" />
-						<span class="icon-text" data-i18n="dark-mode">Dark Mode</span>
-					</button>
+					<img class="icon" id="mode-switch-icon" src="{{ site.baseurl }}/assets/img/svg/dark.svg" alt="mode-icon" />
 					<button id="dl-lang-toggle" class="dl-control-btn" aria-label="Switch language">
 						<span class="icon">DE</span>
 					</button>
 				</div>
 			</nav>
 
-			<!-- Hero section -->
 			<section class="dl-hero">
 				<div class="dl-hero-content">
 					<h1 data-i18n="dl-page-title">Downloads</h1>
@@ -62,21 +57,11 @@ title: Downloads
 				</div>
 			</section>
 
-			<!-- Recommended version -->
-			<section class="dl-recommended">
-				<h2 data-i18n="dl-recommended-title">Recommended Version</h2>
-				<div id="dl-recommended-container">
-					<!-- Dynamically rendered from versions.json -->
-				</div>
-			</section>
-
 			<!-- Latest version -->
-			<section class="dl-latest">
 				<h2 data-i18n="dl-latest-title">Latest Version</h2>
 				<div id="dl-latest-container">
 					<!-- Dynamically rendered from versions.json -->
 				</div>
-			</section>
 
 			<!-- Changelog -->
 			<section class="dl-changelog" id="dl-changelog-container">
