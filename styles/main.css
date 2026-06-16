@@ -1617,14 +1617,14 @@ p {
 	width: 100%;
 }
 
-.contact-footer::before {
+/* .contact-footer::before {
 	content: "";
 	display: block;
 	width: 80px;
 	height: 2px;
 	background: var(--decal);
 	margin: 0 auto 1rem;
-}
+} */
 
 .contact-footer p {
 	margin: 0 auto;

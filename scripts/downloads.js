@@ -73,35 +73,36 @@ function renderLatestVersion(lang, t) {
 function renderChangelog(lang, t) {
 	const changelog = versionsData.latest?.changelog?.[lang];
 	const container = document.getElementById("dl-changelog-container");
-	if (!container || !changelog) return;
-
-	const titleKey = `dl-changelog-title-${versionsData.latest.version}`;
-	const title = t[titleKey] || t["dl-changelog-title"] || `What's New in ${versionsData.latest.version}`;
-
-	// Generate columns dynamically from all non-empty categories in the changelog
-	const columns = Object.entries(changelog)
+	if (container && changelog) {
+		const titleKey = `dl-changelog-title-${versionsData.latest.version}`;
+		const title = t[titleKey] || t["dl-changelog-title"] || `What's New in ${versionsData.latest.version}`;
+		
+		// Generate columns dynamically from all non-empty categories in the changelog
+		const columns = Object.entries(changelog)
 		.filter(([_, items]) => Array.isArray(items) && items.length > 0)
 		.map(([categoryKey, items]) => {
 			// Look for translation (supporting keys with or without hyphens), fallback to capitalized formatted category key
 			const lookupKey = `dl-changelog-${categoryKey.replace(/-/g, "")}`;
 			const categoryTitle = t[lookupKey] || t[`dl-changelog-${categoryKey}`] || categoryKey.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+			console.log(items);
 			return `
-				<div class="dl-changelog-column">
-					<h3>${categoryTitle}</h3>
-					<ul>
-						${items.map((item) => `<li>${item}</li>`).join("")}
-					</ul>
-				</div>
+			<div class="dl-changelog-column">
+			<h3>${categoryTitle}</h3>
+			<ul>
+			${items.map((item) => `<li class="dl-changelog-item">${item}</li>`).join("")}
+			</ul>
+			</div>
 			`;
 		})
 		.join("");
-
-	container.innerHTML = `
+		
+		container.innerHTML = `
 		<h2>${title.replace("{version}", versionsData.latest.version)}</h2>
 		<div class="dl-changelog-content">
-			${columns}
+		${columns}
 		</div>
-	`;
+		`;
+	} 
 }
 
 /**
