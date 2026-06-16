@@ -8,7 +8,7 @@
         "uid": "doc",
         "de": "Dokumentation",
         "en": "Documentation",
-        "content-base-path": "../doc/",
+        "content-base-path": "../content/doc/",
         "default-page": "intro.md",
         "children": [
             {
@@ -56,33 +56,6 @@
             },
             {
                 "type": "category",
-                "en": "Technical Documentation",
-                "de": "Technische Dokumentation",
-                "children": [
-                    {
-                        "type": "page",
-                        "uid": "t-wa-extra",
-                        "de": "Erweiterte Web-App Einstellungen",
-                        "en": "Advanced Web App Settings",
-                        "path": "t-webapp-advanced"
-                    },
-                    {
-                        "type": "page",
-                        "uid": "t-br-fr",
-                        "de": "Bugs melden oder Ideen einreichen",
-                        "en": "Report Bug or Suggest Feature",
-                        "path": "t-bug-report-feature-req.md"
-                    },
-                    {
-                        "type": "page",
-                        "uid": "t-cg",
-                        "de": "Richtlinien für Beiträge",
-                        "en": "Contribution Guidelines" 
-                    }
-                ]
-            },
-            {
-                "type": "category",
                 "de": "Bauanleitung",
                 "en": "Build Guide",
                 "children": [
@@ -106,6 +79,33 @@
                         "de": "Bauanleitung",
                         "en": "Assembly",
                         "path": "bg-assembly.md"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "en": "Technical Documentation",
+                "de": "Technische Dokumentation",
+                "children": [
+                    {
+                        "type": "page",
+                        "uid": "t-wa-extra",
+                        "de": "Erweiterte Web-App Einstellungen",
+                        "en": "Advanced Web App Settings",
+                        "path": "t-webapp-advanced"
+                    },
+                    {
+                        "type": "page",
+                        "uid": "t-br-fr",
+                        "de": "Bugs melden oder Ideen einreichen",
+                        "en": "Report Bug or Suggest Feature",
+                        "path": "t-bug-report-feature-req.md"
+                    },
+                    {
+                        "type": "page",
+                        "uid": "t-cg",
+                        "de": "Richtlinien für Beiträge",
+                        "en": "Contribution Guidelines" 
                     }
                 ]
             }
