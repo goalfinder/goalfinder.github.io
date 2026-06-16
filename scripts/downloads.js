@@ -192,7 +192,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	langButton = document.getElementById("dl-lang-toggle");
 	if (langButton) {
-		langButton.textContent = getCurrentLang() === "de" ? "EN" : "DE";
+		const iconSpan = langButton.querySelector(".icon");
+		if (iconSpan) {
+			iconSpan.textContent = getCurrentLang() === "de" ? "EN" : "DE";
+		}
 		langButton.onclick = switchLang;
 	}
 

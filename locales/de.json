@@ -83,7 +83,7 @@
     },
     "download-page": {
       "dl-page-title": "Downloads",
-      "dl-hero-text": "GoalFinder ist ein aktiv weiterentwickeltes Projekt. Wir arbeiten kontinuierlich an Updates, um neue Funktionen bereitzustellen und ein besseres Erlebnis zu bieten. Schau regelmäßig vorbei, um die neuesten Versionen herunterzuladen.",
+      "dl-hero-text": "GoalFinder ist ein aktiv weiterentwickeltes Projekt. Wir arbeiten kontinuierlich an Updates, um neue Funktionen bereitzustellen und ein besseres Erlebnis zu bieten. Alle alten und neuen Updates können auf dieser Seite gefunden werden.",
       "dl-latest-title": "Neueste Version",
       "dl-latest-badge": "Aktuell",
       "dl-date-label": "Datum:",
@@ -94,7 +94,7 @@
       "dl-changelog-features": "Neue Funktionen",
       "dl-changelog-improvements": "Verbesserungen",
       "dl-changelog-bugfixes": "Fehlerbehebungen",
-      "dl-documentation-text": "Mehr Informationen zum Installieren der Updates findest du in der ",
+      "dl-documentation-text": "Mehr Informationen zum Installieren von Updates finden sich in der ",
       "dl-documentation-button": "Benutzerdokumentation",
       "dl-recommended-title": "Empfohlen",
       "dl-recommended-badge": "Empfohlen"

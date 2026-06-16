@@ -230,6 +230,7 @@ body *::after {
 	filter: brightness(0) saturate(100%) invert(0%);
 	transition: filter 0.3s ease;
 	object-fit: contain;
+	margin-bottom: 2px;
 }
 
 :root.dark-mode #mode-switch-icon {
