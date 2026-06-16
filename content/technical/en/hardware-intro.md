@@ -1,3 +1,0 @@
-# Hardware Documentation
-
-#end
