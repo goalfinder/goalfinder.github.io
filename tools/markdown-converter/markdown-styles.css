@@ -5,21 +5,21 @@
 
 /* === UI Theme Colors (Light Mode) === */
 :root {
-	--bg-color: #f6f6f6; /* Main background color */
-	--text-color: #0a0a0a; /* Primary text color */
-	--header-text-color: #0a0a0a; /* Header text color */
+	--bg-color: #f8f9fa; /* Main background color */
+	--text-color: #202027; /* Primary text color */
+	--header-text-color: #202027; /* Header text color */
 	--border-color: rgba(0, 0, 0, 0.1); /* Border and divider color */
 	--hover-bg: rgba(0, 0, 0, 0.1); /* Background on hover state */
-	--button-bg: #f0f0f0; /* Button and container background */
-	--button-text: #0a0a0a; /* Button text color */
-	--primary: #6c35e4; /* Active/selected element color */
+	--button-bg: #e9ecef; /* Button and container background */
+	--button-text: #202027; /* Button text color */
+	--primary: #48484b; /* Active/selected element color */
 
-	--primary-08: rgba(113, 51, 246, 0.8);
+	--primary-08: rgba(72, 72, 75, 0.8);
 
 	/* === Links === */
-	--md-link: #1f35dc;
-	--md-link-hover: #5161dc;
-	--md-link-visited: #5019da;
+	--md-link: #202027;
+	--md-link-hover: #48484b;
+	--md-link-visited: #48484b;
 
 	/* === Markdown Code Styling === */
 	--md-code-bg-color: #f5f5f5; /* Code block background */
@@ -73,22 +73,22 @@
 
 /* === UI Theme Colors (Dark Mode) === */
 :root.dark-mode {
-	--bg-color: #1e1e1e; /* Dark background color */
-	--text-color: #e0e0e0; /* Light text for dark mode */
-	--header-text-color: #ffffff; /* Bright header text */
+	--bg-color: #141414; /* Dark background color */
+	--text-color: #f0f0f0; /* Light text for dark mode */
+	--header-text-color: #f0f0f0; /* Bright header text */
 	--border-color: rgba(255, 255, 255, 0.1); /* Light border color */
 	--hover-bg: rgba(255, 255, 255, 0.1); /* Light hover background */
-	--button-bg: #2d2d2d; /* Dark button background */
-	--button-text: #e0e0e0; /* Light button text */
-	--topic-selected-hover-bg: rgba(134, 59, 246, 0.2); /* Selected element hover background */
-	--primary: #9362fd; /* Active/selected element color */
+	--button-bg: #141414; /* Dark button background */
+	--button-text: #f0f0f0; /* Light button text */
+	--topic-selected-hover-bg: rgba(72, 72, 75, 0.2); /* Selected element hover background */
+	--primary: #48484b; /* Active/selected element color */
 
-	--primary-08: rgba(113, 51, 246, 0.8);
+	--primary-08: rgba(72, 72, 75, 0.8);
 
 	/* === Links === */
-	--md-link: #acb6fe;
-	--md-link-hover: #697afd;
-	--md-link-visited: #ad90f8;
+	--md-link: #b7b7bc;
+	--md-link-hover: #f0f0f0;
+	--md-link-visited: #b7b7bc;
 
 	/* === Markdown Code Styling (Dark Mode) === */
 	--md-code-bg-color: #2d2d2d; /* Dark code block background */
