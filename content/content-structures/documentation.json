@@ -7,6 +7,108 @@
         "type": "section",
         "uid": "doc",
         "de": "Dokumentation",
-        "en": "Documentation"
+        "en": "Documentation",
+        "content-base-path": "../doc/",
+        "default-page": "intro.md",
+        "children": [
+            {
+                "type": "page",
+                "uid": "welcome",
+                "de": "Übersicht",
+                "en": "Introduction",
+                "path": "intro.md"
+            },
+            {
+                "type": "category",
+                "de": "Benutzerdokumentation",
+                "en": "User Documentation",
+                "children":
+                [
+                    {
+                        "type": "page",
+                        "uid": "u-gtk",
+                        "de": "Kennenlernen des GoalFinders",
+                        "en": "Getting to Know the GoalFinder",
+                        "path": "u-getting-to-know.md"
+                    },
+                    {
+                        "type": "page",
+                        "uid": "u-mounting",
+                        "de": "Montage",
+                        "en": "Mounting",
+                        "path": "u-mounting.md"
+                    },
+                    {
+                        "type": "page",
+                        "uid": "u-webapp",
+                        "de": "Web-App",
+                        "en": "Web App",
+                        "path": "u-webapp.md"
+                    },
+                    {
+                        "type": "page",
+                        "uid": "u-faq",
+                        "de": "Häufige Fragen",
+                        "en": "FAQ",
+                        "path": "u-faq.md"
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "en": "Technical Documentation",
+                "de": "Technische Dokumentation",
+                "children": [
+                    {
+                        "type": "page",
+                        "uid": "t-wa-extra",
+                        "de": "Erweiterte Web-App Einstellungen",
+                        "en": "Advanced Web App Settings",
+                        "path": "t-webapp-advanced"
+                    },
+                    {
+                        "type": "page",
+                        "uid": "t-br-fr",
+                        "de": "Bugs melden oder Ideen einreichen",
+                        "en": "Report Bug or Suggest Feature",
+                        "path": "t-bug-report-feature-req.md"
+                    },
+                    {
+                        "type": "page",
+                        "uid": "t-cg",
+                        "de": "Richtlinien für Beiträge",
+                        "en": "Contribution Guidelines" 
+                    }
+                ]
+            },
+            {
+                "type": "category",
+                "de": "Bauanleitung",
+                "en": "Build Guide",
+                "children": [
+                    {
+                        "type": "page",
+                        "uid": "bg-intro",
+                        "de": "Einleitung",
+                        "en": "Introduction",
+                        "path": "bg-intro.md"
+                    },
+                    {
+                        "type": "page",
+                        "uid": "bg-parts",
+                        "de": "Bauteile",
+                        "en": "Parts",
+                        "path": "bg-parts.md"
+                    },
+                    {
+                        "type": "page",
+                        "uid": "bg-assembly",
+                        "de": "Bauanleitung",
+                        "en": "Assembly",
+                        "path": "bg-assembly.md"
+                    }
+                ]
+            }
+        ]
     }
 ]
