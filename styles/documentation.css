@@ -485,6 +485,7 @@ header {
     position: relative;
     z-index: 1;
     transition: background-color 0.3s ease, color 0.3s ease;
+	user-select: none;
 }
 
 .header-logo {
@@ -760,6 +761,7 @@ main {
 	max-height: calc(100vh - 120px);
 	overflow-x: hidden;
 	padding-right: 1rem;
+	user-select: none;
 }
 
 .topic-selector {
@@ -877,6 +879,7 @@ body.sidebar-open .topic-selector {
 	min-height: 400px;
 	display: flex;
 	flex-direction: column;
+	user-select: none;
 }
 
 #right-panel-header {

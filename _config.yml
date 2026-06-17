@@ -28,6 +28,8 @@ include:
     - scripts
     - styles
     - tools
+    - "*.zip"
+    - "**/*.zip"
 
 # Exclude these from the build
 exclude:
