@@ -49,7 +49,7 @@ Mount the four vertical housing plates around the device, then secure the top pl
 *Mounting the top plate*
 
 ## 9. Upload the Firmware
-Visit the [GoalFinder Repository]() to clone the project and upload the firmware using PlatformIO. Run `pio run -t upload` and `pio run -t uploadfs` from the `client/embedded/` directory.
+Visit the [GoalFinder Repository](https://github.com/htl-leo-club-embedded-iot/GoalFinder) to clone the project and upload the firmware using PlatformIO. Run `pio run -t upload` and `pio run -t uploadfs` from the `client/embedded/` directory.
 
 ## 10. Further Information
 If you've reached this step, your GoalFinder assembly is complete! If you encountered any issues or have suggestions for improvement, please reach out to us—we're always looking to make things better.
