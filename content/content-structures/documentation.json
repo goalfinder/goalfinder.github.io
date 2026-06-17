@@ -105,7 +105,8 @@
                         "type": "page",
                         "uid": "t-cg",
                         "de": "Richtlinien für Beiträge",
-                        "en": "Contribution Guidelines" 
+                        "en": "Contribution Guidelines",
+                        "path": "t-guide-lines.md"
                     }
                 ]
             }

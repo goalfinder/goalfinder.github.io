@@ -143,12 +143,13 @@ async function getMarkdownHeaders(path) {
 		line = line.trim();
 		let match = line.match(/^(#{1,6})\s+(.+)$/); // Look for heading in line
 
-		if (match) {
-			// Add match to heading array
-			const text = match[2].trim();
-			headings.push({ text, id });
-			id++;
-		}
+	if (match) {
+		// Add match to heading array
+		const level = match[1].length;
+		const text = match[2].trim();
+		headings.push({ text, id, level });
+		id++;
+	}
 	}
 
 	return headings;
@@ -631,8 +632,10 @@ function lightDarkModeToggle() {
  */
 function generateHtmlRightHeader(headings) {
 	let html = '<ul class="right-bar-list">';
+	console.log(headings);
 	headings.forEach((heading) => {
-		html += `<li class="right-bar-items"><a href="#${heading.id}">${heading.text}</a></li>`;
+		const indent = "&nbsp;&nbsp;".repeat((heading.level || 1) - 1);
+		html += `<li class="right-bar-items"><a href="#${heading.id}">${indent}${heading.text}</a></li>`;
 	});
 	html += "</ul>";
 	return html;
