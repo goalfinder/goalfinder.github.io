@@ -621,6 +621,9 @@ body {
 	margin: 0 auto;
 	justify-content: space-between;
 	align-items: center;
+	background: var(--bg-color);
+	position: relative;
+	z-index: 100;
 }
 
 .markdown-end-previous,
@@ -692,12 +695,12 @@ body {
 
 .markdown-end-previous:hover,
 .markdown-end-next:hover {
-	border-color: var(--md-button-container-hover);
+	color: var(--md-link-visited);
 }
 
 .markdown-end-previous:hover .markdown-end-title,
 .markdown-end-next:hover .markdown-end-title {
-	color: var(--primary);
+	color: var(--md-link-visited);
 }
 
 .markdown-end-previous {
@@ -721,6 +724,10 @@ body {
 	margin: 0;
 	font-weight: 600;
 	transition: color 0.2s ease;
+}
+
+.markdown-end-title:hover {
+	color: var(--primary);
 }
 
 /* Calculation Display */

@@ -9,7 +9,7 @@
 	--accent-hover: #c5c6c7;
 	--accent-inverted: #141414;
 	--background: #f8f9fa;
-	--primary-dark: #202027;
+	--primary-dark: #d1d1d18a;
 	--gradient-start: #48484b;
 	--gradient-end: #8a8f9b;
 	--text: #202027;
@@ -25,7 +25,7 @@
 	--topic-selected-color: var(--primary);
 	--topic-selected-hover-bg: rgba(115, 115, 116, 0.089);
 	--end-border-color: var(--border);
-	--dots: #a8acb6;
+	--dots: #d5d7dd;
 }
 
 :root.dark-mode {
@@ -40,8 +40,9 @@
 	--topic-selected-color: var(--primary);
 	--topic-selected-hover-bg: rgba(72, 72, 75, 0.2);
 	--end-border-color: rgba(255, 255, 255, 0.08);
-	--dots: #2b2a2a;
+	--dots: #646464;
 	--text-alternative: #c7c7c7;
+	--primary-dark: #3d3d3d7a;
 }
 
 *,
@@ -62,6 +63,31 @@ body::before {
 	transition:
 		color 0.3s ease,
 		opacity 0.3s ease;
+}
+
+::selection {
+    color: var(--background);
+    background-color: var(--text);
+}
+
+::-moz-selection {
+    color: var(--background);
+    background-color: var(--text);
+}
+
+::-o-selection {
+    color: var(--background);
+    background-color: var(--text);
+}
+
+::-ms-selection {
+    color: var(--background);
+    background-color: var(--text);
+}
+
+ ::-webkit-selection {
+    color: var(--background);
+    background-color: var(--text);
 }
 
 .markdown-end-previous,
@@ -455,10 +481,10 @@ footer {
 }
 
 header {
-	-color: var(--background);
-	background: var(--background);
+    background: var(--background);
     position: relative;
     z-index: 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .header-logo {
@@ -899,14 +925,9 @@ body.sidebar-open .topic-selector {
 
 .right-bar-items:hover {
 	cursor: pointer;
-	background-color: rgba(72, 72, 75, 0.08);
-	transform: translateX(2px);
+	background-color: var(--primary-dark);
 	transition: 0.2s ease-in-out;
-}
-
-.right-bar-items:hover a {
-	opacity: 1;
-	color: var(--primary);
+	color: var(--text-alternative);
 }
 
 .markdown-code-block {

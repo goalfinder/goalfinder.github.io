@@ -121,7 +121,7 @@ main {
     background-color: var(--text);
 }
 
- ::-webkit-selection {
+::-webkit-selection {
     color: var(--background);
     background-color: var(--text);
 }
