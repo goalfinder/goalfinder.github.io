@@ -623,7 +623,6 @@ body {
 	margin: 0 auto;
 	justify-content: space-between;
 	align-items: center;
-	background: var(--bg-color);
 	position: relative;
 	z-index: 100;
 	user-select: none;

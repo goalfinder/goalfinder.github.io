@@ -65,6 +65,10 @@ body::before {
 		opacity 0.3s ease;
 }
 
+p {
+	font-size: 18px;
+}
+
 ::selection {
     color: var(--background);
     background-color: var(--text);
@@ -412,7 +416,6 @@ footer {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	min-width: 122px;
 	justify-content: center;
 }
 
