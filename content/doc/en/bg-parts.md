@@ -1,12 +1,12 @@
 # Parts
-This page provides a list of all components required for the complete assembly of the GoalFinder device.
+This page provides a complete list of all components required for assembling the GoalFinder device.
 
 #wh Notice
-#wb The precise dimensions and specifications of the basic parts are still under review and will be updated once available.
+#wb The exact dimensions and specifications of the basic assembly parts are currently under review and will be updated once finalized.
 
 ## Basic Assembly Parts
 - Screws
-- Screw Nuts
+- Nuts
 - Flat Washers
 - Threaded Inserts
 
@@ -19,36 +19,36 @@ Main controller for the GoalFinder device.
 [Documentation](https://cdn.shopify.com/s/files/1/1509/1638/files/D1_Mini_ESP32_Datenblatt_AZ-Delivery_Vertriebs_GmbH.pdf)
 
 **SW420**
-Shake sensor for shot detection.
+Shake sensor used for shot detection.
 ![SW420](assets/img/assembly/steps/high_res/GF_assembly_08.jpg)(510x614)
 [Product Link](https://www.amazon.de/-/en/AZDelivery-Vibration-Shaker-Compatible-Arduino/dp/B07D92XBMS/ref=sr_1_2)
 [Documentation](https://cdn.shopify.com/s/files/1/1509/1638/files/SW420_Vibration_Schuttel_Erschutterung_Sensor_Modul_Datenblatt_AZ-Delivery_Vertriebs_GmbH.pdf)
 
 **VL53L0X**
-Time-of-Flight (ToF) sensor for hit detection.
+Time-of-Flight (ToF) sensor used for hit detection.
 [Product Link](https://www.amazon.de/-/en/AZDelivery-VL53L0X-Flight-Ranging-Sensor/dp/B086V37JJ7/ref=sr_1_4)
 [Documentation](https://cdn.shopify.com/s/files/1/1509/1638/files/VL53L0X_Time_of_Flight_Sensor_Datenblatt_AZ-Delivery_Vertriebs_GmbH.pdf)
 
 **MAX98357A**
-Amplifier for connecting to the audio driver.
+Amplifier used to drive the audio speaker.
 [Product Link](https://www.amazon.de/-/en/MAX98357A-Amplifier-Filterless-Breakout-Application/dp/B0F21T7Q3P/ref=sr_1_4)
 [Documentation](https://www.analog.com/media/en/technical-documentation/data-sheets/max98357a-max98357b.pdf)
 
 **Audio Driver**
-Speaker for acoustic feedback.
+Speaker used for acoustic feedback.
 ![Audio Driver](assets/img/assembly/steps/high_res/GF_assembly_28.jpg)(510x614)
 [Product Link](https://www.amazon.de/-/en/HUAREW-JST-PH2-0-Interface-Motherboard-Electronic/dp/B0CRNZYW1R/ref=sr_1_6)
 
 ### Other Electronic Parts
 **USB-C Breakout**
-Breakout board for external USB-C connection on the side panel.
+Breakout board used for the external USB-C connection on the side panel.
 ![USB-C Breakout](assets/img/assembly/steps/high_res/GF_assembly_06.jpg)(510x614)
 
 **LED Strip**
-LED strip for visual feedback.
+LED strip used for visual feedback.
 
 **XYQ JST Connectors**
-Connectors for device-to-LED strip connection.
+Connectors used for the connection between the device and the LED strip.
 ![XYQ JST Connector](assets/img/assembly/steps/high_res/GF_assembly_07.jpg)(510x614)
 [Product Link](https://www.amazon.com/Pairs-Female-Connector-22AWG-Battery/dp/B01HHY9ZKW)
 
@@ -57,7 +57,7 @@ Connects the PCB to the microcontroller via USB.
 ![Micro USB Breakout](assets/img/assembly/steps/high_res/GF_assembly_29.jpg)(510x614)
 
 ## PCB Components
-Below is a list of all parts needed for PCB assembly:
+Below is a list of all parts required for PCB assembly:
 - 1x 22µF Capacitor
 - 1x 4.7µF Capacitor
 - 6x 100nF SMD Capacitor
@@ -76,40 +76,39 @@ Below is a list of all parts needed for PCB assembly:
 
 ## Housing
 #ih Downloads
-#ib All `.obj` file measurements are in millimeters (mm).
+#ib All `.obj` file dimensions are specified in millimeters (mm).
 
 /[Download the archive containing all files](/content/doc/download/gf-1.10-housing.zip)
 
 ### Inner Mounts
-The inner mounts consist of three brackets designed for the PCB, sensors, and accessories. These ensure secure placement and easy installation of all internal components.
+The inner mounts consist of three brackets designed to hold the PCB, sensors, and accessories. They ensure secure placement and straightforward installation of all internal components.
 
 - /[Main Bracket](/content/doc/download/goalfinder-1.10-bracket-inner.obj)
 - /[Top Left Bracket](/content/doc/download/goalfinder-1.10-bracket-top-left.obj)
 - /[Top Right Bracket](/content/doc/download/goalfinder-1.10-bracket-top-right.obj)
 
 ![Main Bracket](assets/img/assembly/steps/low_res/GF_assembly_10.jpg)(510x614)
-*Main Bracket for PCB and sensors*
+*Main bracket for the PCB and sensors*
 ![Top Brackets](assets/img/assembly/steps/low_res/GF_assembly_12.jpg)(510x614)
-*Top Left and Top Right Brackets*
+*Top left and top right brackets*
 
 ## Outer Housing
 ![Housing Showcase](assets/img/assembly/steps/low_res/GF_assembly_14.jpg)(510x614)
-*Outer housing made of plexiglas*
+*Outer housing made of plexiglass*
 
-The outer housing is made up of six plates. Two of these plates can be replaced with mounting variants, depending on your installation needs. The plates shown are cut from plexiglas, but they can also be easily 3D printed.
+The outer housing consists of six plates. Two of these plates can be replaced with mounting variants, depending on the intended installation method. The examples shown are cut from plexiglass, but the parts can also be easily 3D printed.
 
 - /[Bottom](/content/doc/download/goalfinder-1.10-housing-bottom.obj)
 - /[Back](/content/doc/download/goalfinder-1.10-housing-back.obj)
 - /[Left](/content/doc/download/goalfinder-1.10-housing-left.obj)
 - /[Right](/content/doc/download/goalfinder-1.10-housing-right.obj)
-- /[Top](/content/doc/download/goalfinder-1.10-housing-top.obj) or as mounting variant /[Top with Mount](/content/doc/download/goalfinder-1.10-housing-top-mount.obj)
-- /[Front](/content/doc/download/goalfinder-1.10-housing-front.obj) or as mounting variant /[Front with Mount](/content/doc/download/goalfinder-1.10-housing-front-mount.obj)
+- /[Top](/content/doc/download/goalfinder-1.10-housing-top.obj) or as a mounting variant /[Top with Mount](/content/doc/download/goalfinder-1.10-housing-top-mount.obj)
+- /[Front](/content/doc/download/goalfinder-1.10-housing-front.obj) or as a mounting variant /[Front with Mount](/content/doc/download/goalfinder-1.10-housing-front-mount.obj)
 
 ### Mounting vs. Standard Plates
 ![Back Mounting](assets/img/design/mouting/back-plate.png)(672x346)
 *Example: Mounting on the back plate*
 ![Top Mounting](assets/img/design/mouting/top-plate.png)(672x346)
 *Example: Mounting on the top plate*
-
 
 #end
