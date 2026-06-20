@@ -4,10 +4,10 @@ Willkommen in der GoalFinder-Dokumentation. Hier finden Sie alle Informationen, 
 ## Inhaltsverzeichnis
 
 ### Benutzerdokumentation
-- ^[Das GoalFinder-Gerät kennenlernen](../content/doc/de/u-getting-to-know.md) Eine Einführung in den GoalFinder mit Informationen zu seinem Zweck und seiner Funktionsweise.
-- ^[Montage des GoalFinder-Geräts](../content/doc/de/u-mounting.md) Anweisungen zur Montage des Geräts an einem Basketballkorb.
+- ^[Den GoalFinder kennenlernen](../content/doc/de/u-getting-to-know.md) Eine Einführung in den GoalFinder mit Informationen zu seinem Zweck und seiner Funktionsweise.
+- ^[Montage des GoalFinders](../content/doc/de/u-mounting.md) Anweisungen zur Montage des Geräts an einem Basketballkorb.
 - ^[GoalFinder-Web-App](../content/doc/de/u-webapp.md) Detaillierte Anleitungen zur Verwendung der GoalFinder-Web-App.
-- ^[Aktualisierung des GoalFinder-Geräts](../content/doc/de/u-update.md) Schritte zur Aktualisierung der Gerätesoftware auf die neueste Version.
+- ^[Aktualisierung des GoalFinders](../content/doc/de/u-update.md) Schritte zur Aktualisierung der Gerätesoftware auf die neueste Version.
 - ^[Häufig gestellte Fragen](../content/doc/de/u-faq.md) Antworten auf häufig gestellte Fragen zum GoalFinder.
 
 ### Bauanleitung
