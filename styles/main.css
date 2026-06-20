@@ -342,7 +342,7 @@ p {
 
 .other-page h1 {
 	font-size: var(--heading-1);
-	letter-spacing: 0.12em;
+	letter-spacing: normal;
 	text-align: center;
 	margin-bottom: 1rem;
 	background: var(--text-alternative);

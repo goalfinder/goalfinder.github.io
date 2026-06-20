@@ -1,41 +1,60 @@
 {
     "latest": {
-        "version": "v0.4.2b",
-        "date": "24.02.2026",
+        "version": "v0.5.1a",
+        "date": "12.04.2026", 
         "size": "2.42 MB",
-        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.4.2b/system.gfpkg",
+        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.5.1a/system.gfpkg",
         "changelog": {
             "en": {
                 "features": [],
                 "improvements": [
-                    "Improved Schedulability",
-                    "Added small audio timeouts"
+                    "Translation",
+                    "Security of Web App Password Protection"
                 ],
                 "bug-fixes": [
-                    "Fixed sound selection not working",
-                    "Resolved issue when setting measuring distance"
+                    "Basket Size Setting"
                 ]
             },
             "de": {
                 "features": [],
                 "improvements": [
-                    "Planbarkeit verbessert",
-                    "Kleine Audio Timeouts hinzugefügt"
+                    "Übersetzungen",
+                    "Sicherheit der Passwortsicherung der Web App"
                 ],
                 "bug-fixes": [
-                    "Fehler in der Tonauswahl behoben",
-                    "Messdistanzlimitierung entfernt"
+                    "Einstellung der Korb Größe"
                 ]
             }
         }
     },
-    "recommended": {
-        "version": "v0.4.2b",
-        "date": "24.02.2026",
-        "size": "2.42MB",
-        "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.4.2b/system.gfpkg"
-    },
     "previous": [
+        {
+            "version": "v0.5.0b",
+            "date": {
+                "en": "07.04.2026",
+                "de": "07.04.2026"
+            },
+            "size": "2.42 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.5.0a/system.gfpkg",
+            "notes": {
+                "en": "Performance Improvements",
+                "de": "Verbesserung der Kommunikation zwischen Gerät und Web App"
+            },
+            "recommended": true
+        },
+        {
+            "version": "v0.4.2b",
+            "date": {
+                "en": "24.02.2026",
+                "de": "24.02.2026"
+            },
+            "size": "2.42 MB",
+            "downloadUrl": "https://github.com/htl-leo-club-embedded-iot/GoalFinder/releases/download/v0.4.2b/system.gfpkg",
+            "notes": {
+                "en": "Bug Fixes",
+                "de": "Fehlerbehebungen"
+            }
+        },
         {
             "version": "v0.4.1a",
             "date": {
@@ -47,8 +66,7 @@
             "notes": {
                 "en": "Major Utility Update",
                 "de": "Umfangreiches Nützlichkeits Update"
-            },
-            "recommended": true
+            }
         },
         {
             "version": "v0.3.0b",
