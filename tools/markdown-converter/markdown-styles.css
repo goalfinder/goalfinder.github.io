@@ -150,7 +150,7 @@ body {
 /* Heading Styles */
 .markdown-heading {
 	font-weight: bold;
-	margin: 0.5em 0 0.25em;
+	margin: 0;
 }
 
 .markdown-heading h1 {
@@ -179,7 +179,7 @@ body {
 
 /* Paragraph Styles */
 .markdown-paragraph {
-	margin: 0.25em 0;
+	margin: 0;
 }
 
 /* Unordered Lists */
@@ -698,12 +698,12 @@ body {
 
 .markdown-end-previous:hover,
 .markdown-end-next:hover {
-	color: var(--md-link-visited);
+	color: var(--primary);
 }
 
 .markdown-end-previous:hover .markdown-end-title,
 .markdown-end-next:hover .markdown-end-title {
-	color: var(--md-link-visited);
+	color: var(--primary);
 }
 
 .markdown-end-previous {

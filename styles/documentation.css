@@ -862,6 +862,8 @@ body.sidebar-open .topic-selector {
 	padding: 1rem;
 	overflow-y: auto;
 	max-height: calc(100vh - 120px);
+	position: relative;
+	z-index: 2;
 }
 
 .display-window::-webkit-scrollbar {
