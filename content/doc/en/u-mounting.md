@@ -10,3 +10,5 @@ With the mounting variant the device can be screwed onto the basket.
 
 ## Non-Mounting Variant
 If mounting the mounting variant is not possible, the device in it's base variant can also be mounted using duct tape though this might lead to a worse experience due to less accurate readings.
+
+#end

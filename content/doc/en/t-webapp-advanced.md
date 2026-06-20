@@ -40,3 +40,8 @@ When enabled, the device can be connected to an external (already existing) netw
 
  3. Manual DHCP configuration (optional but recommended): Device IP address, Network default gateway, Network subnet mask and Network DNS server 
  4. Click `Apply network configuration`
+
+#+h AP Fallback
+#+b Should connecting to the external network fail for any reason the device will automatically fall back into access point mode
+
+#end
