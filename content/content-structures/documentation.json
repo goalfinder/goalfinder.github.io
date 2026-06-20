@@ -47,6 +47,13 @@
                     },
                     {
                         "type": "page",
+                        "uid": "u-update",
+                        "de": "Aktualisierung",
+                        "en": "Update",
+                        "path": "u-update.md"
+                    },
+                    {
+                        "type": "page",
                         "uid": "u-faq",
                         "de": "Häufige Fragen",
                         "en": "FAQ",
