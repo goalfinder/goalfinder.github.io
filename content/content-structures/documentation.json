@@ -92,7 +92,7 @@
                         "uid": "t-wa-extra",
                         "de": "Erweiterte Web-App Einstellungen",
                         "en": "Advanced Web App Settings",
-                        "path": "t-webapp-advanced"
+                        "path": "t-webapp-advanced.md"
                     },
                     {
                         "type": "page",
