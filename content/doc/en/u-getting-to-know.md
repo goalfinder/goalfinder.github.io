@@ -13,7 +13,7 @@ A **distance sensor** to detect the ball crossing through the ring to detect hit
 
 ### Output
 A LED Strip and Speaker to provide audio-visual feedback on hits and misses.
-![LED Strip](assets\img\mounting\P1440944.JPG)(650)
+![LED Strip](assets/img/mounting/P1440944.JPG)(650)
 
 The GoalFinder device also features a web app for setting up and controlling the device. Read more about it ^[here](../content/doc/en/u-webapp.md).
 

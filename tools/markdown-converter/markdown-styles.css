@@ -223,6 +223,7 @@ body {
 /* Inline Code */
 .markdown-code {
 	font-family: monospace;
+	font-size: 18px;
 	background-color: var(--md-inline-code-bg);
 	padding: 0.2em 0.4em;
 	border-radius: 4px;

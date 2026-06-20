@@ -632,7 +632,6 @@ function lightDarkModeToggle() {
  */
 function generateHtmlRightHeader(headings) {
 	let html = '<ul class="right-bar-list">';
-	console.log(headings);
 	headings.forEach((heading) => {
 		const indent = "&nbsp;&nbsp;".repeat((heading.level || 1) - 1);
 		html += `<li class="right-bar-items"><a href="#${heading.id}">${indent}${heading.text}</a></li>`;
