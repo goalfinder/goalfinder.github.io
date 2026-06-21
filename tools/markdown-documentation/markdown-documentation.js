@@ -1845,8 +1845,8 @@ async function initMarkdownDocumentation(config = {}) {
 		const toggleButton = document.getElementById("lightDarkToggle");
 		const copyButton = document.getElementById("copyButton");
 		if (toggleButton) {
-			toggleButton.innerHTML = `<img class="icon" src="${lightIconPath}"><span class="icon-text">Light Mode</span>`;
-			copyButton.innerHTML = `<img class="icon" src="${copyIconPath}"></img><span class="icon-text">Copy</span>`;
+			// toggleButton.innerHTML = `<img class="icon" src="${lightIconPath}"><span class="icon-text">Light Mode</span>`;
+			copyButton.innerHTML = `<img class="icon" src="${copyIconPath}" alt="Copy Icon></img><span class="icon-text"">Copy</span>`;
 		}
 		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-shadow.png`;
 	} else {
