@@ -31,11 +31,9 @@ title: GoalFinder Documentation
 					const toggleButton = document.getElementById("lightDarkToggle");
 					if (toggleButton && savedTheme === "dark") {
 						const toggleIcon = toggleButton.querySelector(".icon");
-						const toggleText = toggleButton.querySelector(".icon-text");
 						const baseUrl = window.siteBaseUrl || "";
 						const lightSrc = baseUrl ? `${baseUrl}/assets/img/svg/light.svg` : "/assets/img/svg/light.svg";
 						toggleIcon.src = lightSrc;
-						toggleText.textContent = "Light Mode";
 					}
 				}
 				if (document.readyState === "loading") {
@@ -77,7 +75,7 @@ title: GoalFinder Documentation
 						</div>
 					</div>
 					<button id="lightDarkToggle" onclick="lightDarkModeToggle()" aria-label="Toggle light/dark mode">
-						<img class="icon" src="{{ site.baseurl }}/assets/img/svg/dark.svg" alt="lightDarkToggle" />
+						<img class="icon" src="{{ site.baseurl }}/assets/img/svg/dark.svg" alt="Theme Toggle Icon" />
 					</button>
 					<button id="lang-toggle">
 						<span class="icon" id="lang-toggle-text">DE</span>
@@ -108,8 +106,7 @@ title: GoalFinder Documentation
 				</div>
 				<div class="right-panel">
 					<button class="copy-button" id="copyButton" onclick="copyButtonTrigger()" aria-label="Copy content">
-						<img class="icon" src="{{ site.baseurl }}/assets/img/svg/copy.svg" alt="copy-icon" />
-						<span class="icon-text" data-i18n="copy">Icon Text</span>
+						<img class="icon" src="{{ site.baseurl }}/assets/img/svg/copy.svg" alt="Copy Icon"/>
 					</button>
 					<div id="right-panel-header"></div>
 				</div>
