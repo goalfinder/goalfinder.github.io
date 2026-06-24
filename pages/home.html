@@ -23,6 +23,26 @@ title: GoalFinder
 			}
 		</script>
 
+		<script>
+			(function() {
+				var isTouchDevice = (navigator.maxTouchPoints > 0 || "ontouchstart" in window) && !(window.matchMedia && window.matchMedia("(any-pointer: fine)").matches);
+
+				function updatePageScale() {
+					if (isTouchDevice) {
+						document.documentElement.style.zoom = "";
+						return;
+					}
+					var refWidth = 1400;
+					var scale = window.innerWidth / refWidth;
+					scale = Math.max(0.55, Math.min(1, scale));
+					document.documentElement.style.zoom = scale;
+				}
+
+				updatePageScale();
+				window.addEventListener("resize", updatePageScale);
+			})();
+		</script>
+
 		<script type="module" src="{{ site.baseurl }}/scripts/main.js"></script>
 		<script type="module" src="{{ site.baseurl }}/scripts/i18n.js"></script>
 
@@ -53,10 +73,10 @@ title: GoalFinder
 						<img class="hero-image" src="/assets/img/usage/optimized/P1440954.webp" alt="home-img-1" />
 					</div>
 					<div class="hero-slice" data-hero-slice>
-						<img class="hero-image" src="/assets/img/usage/optimized/P1440955.webp" alt="home-img-2" />
+						<img class="hero-image" src="/assets/img/usage/optimized/P1440955.webp" alt="home-img-3" />
 					</div>
 					<div class="hero-slice" data-hero-slice>
-						<img class="hero-image" src="/assets/img/usage/optimized/P1440956.webp" alt="home-img-3" />
+						<img class="hero-image" src="/assets/img/usage/optimized/GA_Minitrial-1-1536x864.webp" alt="home-img-2" />
 					</div>
 				</div>
 				<img id="htl-logo" src="/assets/img/logos/htlleonding-home.png" alt="HTL Leonding Logo"/>
@@ -178,10 +198,6 @@ title: GoalFinder
 							</div>
 						</div>
 					</div>
-
-					<footer class="contact-footer">
-						<p>© 2026 GoalFinder • <a href="{{ site.baseurl }}/credits" data-i18n="credits">Credits</a></p>
-					</footer>
 				</div>
 			</section>
 
@@ -203,6 +219,9 @@ title: GoalFinder
 						</a>
 					</div>
 				</aside>
+				<footer class="contact-footer">
+					<p>© 2026 GoalFinder • <a href="{{ site.baseurl }}/credits" data-i18n="credits">Credits</a></p>
+				</footer>
 			</section>
 		</main>
 	</body>

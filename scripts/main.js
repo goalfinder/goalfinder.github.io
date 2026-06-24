@@ -77,6 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	initSharedTitle();
 	initHeroSplit();
+	const touchOnly = isTouchOnlyDevice();
+	setTouchOnlyMode(touchOnly);
+
 	initAboutImageStack();
 	initMissionCards();
 	initDocContribCards();
@@ -84,8 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	initCreditsAccordion();
 	initContactSection();
 
-	const touchOnly = isTouchOnlyDevice();
-	setTouchOnlyMode(touchOnly);
 	initPresentationScroll();
 	initQuickNav();
 });
@@ -232,7 +233,7 @@ function initHeroSplit() {
 		slices.forEach((slice) => slice.classList.toggle("is-visible", visible));
 	};
 
-	if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+	if (prefersReducedMotion || !("IntersectionObserver" in window) || touchOnlyMode) {
 		setVisible(true);
 		return;
 	}
@@ -812,7 +813,7 @@ function initStaggeredScrollReveal({ section, items, scrollRoot, staggerMs = REV
 		scheduleRevealIfReady();
 	};
 
-	if (prefersReducedMotion) {
+	if (prefersReducedMotion || touchOnlyMode) {
 		revealInstant();
 		return;
 	}
