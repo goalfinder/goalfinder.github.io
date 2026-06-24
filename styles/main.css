@@ -31,7 +31,7 @@
 	--text-3xl: 2.5rem;
 
 	/* Heading sizes */
-	--heading-hero: clamp(3.5rem, 8vw, 8.5rem);
+	--heading-hero: clamp(3rem, 8vw, 8.5rem);
 	--heading-hero-sub: clamp(2.2rem, 2vw, 6rem);
 	--heading-1: clamp(2.2rem, 6vw, 5rem);
 	--heading-2: clamp(2.2rem, 5vw, 3.6rem);
@@ -285,7 +285,7 @@ body *::after {
 		color 220ms ease,
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 2000px) {
 	#quick-nav {
 		display: none;
 	}
