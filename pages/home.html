@@ -23,6 +23,26 @@ title: GoalFinder
 			}
 		</script>
 
+		<script>
+			(function() {
+				var isTouchDevice = (navigator.maxTouchPoints > 0 || "ontouchstart" in window) && !(window.matchMedia && window.matchMedia("(any-pointer: fine)").matches);
+
+				function updatePageScale() {
+					if (isTouchDevice) {
+						document.documentElement.style.zoom = "";
+						return;
+					}
+					var refWidth = 1400;
+					var scale = window.innerWidth / refWidth;
+					scale = Math.max(0.55, Math.min(1, scale));
+					document.documentElement.style.zoom = scale;
+				}
+
+				updatePageScale();
+				window.addEventListener("resize", updatePageScale);
+			})();
+		</script>
+
 		<script type="module" src="{{ site.baseurl }}/scripts/main.js"></script>
 		<script type="module" src="{{ site.baseurl }}/scripts/i18n.js"></script>
 
@@ -41,10 +61,10 @@ title: GoalFinder
 			<nav id="quick-nav" aria-label="Section navigation">
 				<a data-i18n="nav.0" href="#about-panel" class="quick-nav-link" data-nav-section="about">About</a>
 				<a data-i18n="nav.1" href="#testimonial" class="quick-nav-link" data-nav-section="testimonial">Testimonial</a>
-				<a data-i18n="nav.2" href="#awards" class="quick-nav-link" data-nav-section="awards">Awards</a>
 				<a data-i18n="nav.3" href="#missions" class="quick-nav-link" data-nav-section="missions">Mission</a>
 				<a data-i18n="nav.4" href="#doc-contrib" class="quick-nav-link" data-nav-section="doc-contrib">Docs</a>
 				<a data-i18n="nav.5" href="#contact" class="quick-nav-link" data-nav-section="contact">Contact</a>
+				<a data-i18n="nav.2" href="#awards" class="quick-nav-link" data-nav-section="awards">Awards</a>
 			</nav>
 
 			<section class="panel hero" data-hero>
@@ -53,10 +73,10 @@ title: GoalFinder
 						<img class="hero-image" src="/assets/img/usage/optimized/P1440954.webp" alt="home-img-1" />
 					</div>
 					<div class="hero-slice" data-hero-slice>
-						<img class="hero-image" src="/assets/img/usage/optimized/P1440955.webp" alt="home-img-2" />
+						<img class="hero-image" src="/assets/img/usage/optimized/P1440955.webp" alt="home-img-3" />
 					</div>
 					<div class="hero-slice" data-hero-slice>
-						<img class="hero-image" src="/assets/img/usage/optimized/P1440956.webp" alt="home-img-3" />
+						<img class="hero-image" src="/assets/img/usage/optimized/GA_Minitrial-1-1536x864.webp" alt="home-img-2" />
 					</div>
 				</div>
 				<img id="htl-logo" src="/assets/img/logos/htlleonding-home.png" alt="HTL Leonding Logo"/>
@@ -93,26 +113,6 @@ title: GoalFinder
 					<blockquote data-scroll-reveal data-i18n="quote"></blockquote>
 					<cite data-scroll-reveal data-i18n="quote-cite">cite</cite>
 				</div>
-			</section>
-
-			<section class="panel panel-awards" id="awards">
-				<aside class="awards-sidebar" data-awards-sidebar>
-					<h3 data-i18n="awards-title"></h3>
-					<div class="awards-list">
-						<a href="https://www.behindertenrat.at/projekte/unikate-ideenwettbewerb/unikate-preisverleihung-2025-programm/" target="_blank" class="award-card" data-award-card data-award-index="0">
-							<img class="award-card-logo" src="{{ site.baseurl }}/assets/img/logos/unikate.png" alt="UNIKATE" />
-							<span class="award-card-title" data-i18n="award-0-title-0">Award 0</span>
-							<span class="award-card-subtitle" data-i18n="award-0-title-1">Subtitle</span>
-							<span class="award-card-desc" data-i18n="award-0-content">Description</span>
-						</a>
-						<a href="https://www.missionhumanity.at/news/was-wurde-aus-goalfinder" target="_blank" class="award-card" data-award-card data-award-index="1">
-							<img class="award-card-logo" src="{{ site.baseurl }}/assets/img/logos/jrk.png" alt="mission humanity" />
-							<span class="award-card-title" data-i18n="award-1-title-0">Award 1</span>
-							<span class="award-card-subtitle" data-i18n="award-1-title-1">Subtitle</span>
-							<span class="award-card-desc" data-i18n="award-1-content">Description</span>
-						</a>
-					</div>
-				</aside>
 			</section>
 
 			<section class="panel panel-missions" id="missions">
@@ -198,11 +198,30 @@ title: GoalFinder
 							</div>
 						</div>
 					</div>
-
-					<footer class="contact-footer">
-						<p>© 2026 GoalFinder • <a href="{{ site.baseurl }}/credits" data-i18n="credits">Credits</a></p>
-					</footer>
 				</div>
+			</section>
+
+			<section class="panel panel-awards" id="awards">
+				<aside class="awards-sidebar" data-awards-sidebar>
+					<h3 data-i18n="awards-title"></h3>
+					<div class="awards-list">
+						<a href="https://www.behindertenrat.at/projekte/unikate-ideenwettbewerb/unikate-preisverleihung-2025-programm/" target="_blank" class="award-card" data-award-card data-award-index="0">
+							<img class="award-card-logo" src="{{ site.baseurl }}/assets/img/logos/unikate.png" alt="UNIKATE" />
+							<span class="award-card-title" data-i18n="award-0-title-0">Award 0</span>
+							<span class="award-card-subtitle" data-i18n="award-0-title-1">Subtitle</span>
+							<span class="award-card-desc" data-i18n="award-0-content">Description</span>
+						</a>
+						<a href="https://www.missionhumanity.at/news/was-wurde-aus-goalfinder" target="_blank" class="award-card" data-award-card data-award-index="1">
+							<img class="award-card-logo" src="{{ site.baseurl }}/assets/img/logos/jrk.png" alt="mission humanity" />
+							<span class="award-card-title" data-i18n="award-1-title-0">Award 1</span>
+							<span class="award-card-subtitle" data-i18n="award-1-title-1">Subtitle</span>
+							<span class="award-card-desc" data-i18n="award-1-content">Description</span>
+						</a>
+					</div>
+				</aside>
+				<footer class="contact-footer">
+					<p>© 2026 GoalFinder • <a href="{{ site.baseurl }}/credits" data-i18n="credits">Credits</a></p>
+				</footer>
 			</section>
 		</main>
 	</body>
