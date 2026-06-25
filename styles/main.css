@@ -1387,12 +1387,6 @@ p {
 		font-size: var(--text-xxs);
 	}
 
-	.mission-card-body p,
-	.mission-link,
-	.award-card-desc {
-		font-size: var(--text-body-mobile);
-	}
-
 	.image-stack {
 		width: 100%;
 		max-width: 100%;
