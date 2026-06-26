@@ -495,7 +495,7 @@ body *::after {
 }
 
 .dl-changelog h2 {
-	font-size: var(--heading-3);
+	font-size: var(--heading-2);
 	text-transform: uppercase;
 	font-weight: 700;
 	color: var(--text);
@@ -536,10 +536,9 @@ body *::after {
 }
 
 .dl-changelog-column h3 {
-	font-size: 1.2rem;
 	font-weight: 550;
 	color: var(--text);
-	font-size: var(--text-2xl);
+	font-size: var(--text-xl);
 	margin: 0 0 1rem;
 }
 
@@ -694,13 +693,5 @@ body *::after {
 
 	.dl-changelog-column {
 		padding: 1.25rem;
-	}
-
-	.dl-changelog-column h3 {
-		font-size: 1.1rem;
-	}
-
-	.dl-changelog-column li {
-		font-size: 0.9rem;
 	}
 }

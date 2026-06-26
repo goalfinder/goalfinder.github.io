@@ -11,14 +11,14 @@
     "sub-title": "Basketballhilfe für Sehbeeinträchtigte",
     "about": {
       "about-title": "Über das Projekt",
-      "about-content": "Der GoalFinder ist ein Gerät, dass Blinden und Seebeiträchtigten das Basketballspielen durch Töne und eine leuchtende Lichtleiste im Korbbereich, ermöglicht. Weiters gibt er auch audiovisuelles Feedback zu jedem Treffer oder Fehlschuss. Die Web-App des GoalFinders ermöglicht ein einfaches Einrichten sowie das Starten unterschiedlicher Spiele und Szenarien."
+      "about-content": "GoalFinder ist ein Gerät, mit dem blinden und sehbeeinträchtigten Personen durch Töne und eine leuchtende Lichtleiste im Korbbereich, das Basketballspielen ermöglicht wird. Weiters gibt er auch audiovisuelles Feedback zu jedem Treffer oder Fehlschuss. Die Web-App des GoalFinders vereinfacht die Einrichtung und erlaubt das Starten unterschiedlicher Spiele und Szenarien."
     },
     "mission": {
       "mission-title": "Unsere Motivation",
       "mission-0-title": "Barrierefreiheit",
-      "mission-0-content": "Menschen mit Sehbeeinträchtigungen sollten vollwertige Mitglieder der Gesellschaft sein. Gleichberechtigt im Alltag, wie im Sport. Deshalb haben wir den GoalFinder entwickelt, um Blinden und Sehgeschwächten das Basketballspielen zu erleichtern.",
+      "mission-0-content": "Menschen mit Blindheit oder Sehbeeinträchtigungen sollen die gleichen Möglichkeiten wie Normalsehende im Alltag wie im Sport haben. Wir haben GoalFinder entwickelt, um blinden und sehbeeinträchtigten Personen das Basketballspielen zu ermöglichen.",
       "mission-1-title": "Open Source",
-      "mission-1-content": "Damit der GoalFinder für jeden zugänglich bleibt, halten wir das Projekt 100 % Open Source. So stellen wir sicher, dass die volle Funktionalität für jeden jederzeit verfügbar bleibt.",
+      "mission-1-content": "Damit GoalFinder für jeden zugänglich bleibt, halten wir das Projekt 100 % Open Source. So stellen wir sicher, dass die volle Funktionalität für jeden jederzeit verfügbar bleibt.",
       "mission-2-title": "Gemeinschaft",
       "mission-2-content": "Ein echtes Open-Source-Projekt lebt von seiner Gemeinschaft. Wir schätzen das Feedback unserer Nutzer:innen und ermutigen Entwickler:innen, ihre Ideen und Fähigkeiten einzubringen."
     },
@@ -46,7 +46,7 @@
     },
     "documentation-about": {
       "doc-title": "Dokumentation",
-      "doc-content": "Als Open-Source-Projekt möchten wir so detaillierte Dokumentation wie möglich bereitstellen Sowohl für tagtäglich Nutzer*innen in einer leicht verständlichen, nicht-technischen Form als auch für alle, die sich für die zugrunde liegende Technologie des GoalFinders interessieren.",
+      "doc-content": "Als Open-Source-Projekt möchten wir eine so detaillierte Dokumentation wie möglich bereitstellen. Sowohl für tagtäglich Nutzer:innen in einer leicht verständlichen, nicht-technischen Form als auch für alle, die sich für die zugrunde liegende Technologie des GoalFinders interessieren.",
       "doc-btn-0": "Benutzerdokumentation",
       "doc-btn-1": "Technische Dokumentation"
     },
@@ -70,10 +70,10 @@
     },
     "doc-contrib": {
       "doc-card-title": "Dokumentation",
-      "doc-card-content": "In unserer Dokumentation finden sich grundlegende Informationen über die Funktionsweise des GoalFinders, Anleitungen zur Montage, Einstellung und Verwendung, eine vollständige Bauanleitung sowie einen Deep Dive in die Technik hinter dem Gerät.",
+      "doc-card-content": "In unserer Dokumentation finden sich grundlegende Informationen über die Funktionsweise von GoalFinder, Anleitungen zur Montage, Einstellung und Verwendung, eine vollständige Bauanleitung sowie ein Deep Dive in die Technik hinter GoalFinder.",
       "doc-card-btn": "Zur Dokumentation",
       "contrib-card-title": "Mitwirken",
-      "contrib-card-content": "Bereit mitzumachen?\nWerde Teil unserer Community und hilf dabei, Basketball für Menschen mit Sehbeeinträchtigungen zugänglicher zu machen. Egal ob du nur Feedback geben möchtest oder dich aktiv beteiligen möchtest. Alle Beiträge sind willkommen.",
+      "contrib-card-content": "Bereit mitzumachen?\nWerde Teil unserer Community und hilf dabei, Basketball für Menschen mit Blindheit und Sehbeeinträchtigungen zugänglicher zu machen. Egal ob Sie nur Feedback geben oder sich aktiv beteiligen möchten. Alle Beiträge sind willkommen.",
       "contrib-card-btn": "Zu GitHub"
     },
     "downloads": {
@@ -146,7 +146,7 @@
     "c-contributors-desc": "Organisationen und Institutionen, die das GoalFinder-Projekt unterstützen.",
     "c-people": "Mitwirkende",
     "c-people-desc": "Die Personen hinter dem GoalFinder Projekt.",
-    "c-link-university-vienna": "Universität Wien"
+    "c-link-university-vienna": "Institut für Sport- und Bewegungswissenschaft der Universität Wien"
   },
   "help": {
     "h-title": "Hilfe",

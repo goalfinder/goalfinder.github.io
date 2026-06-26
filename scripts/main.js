@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	setTouchOnlyMode(touchOnly);
 
 	initAboutImageStack();
+	initTouchGapImages();
 	initMissionCards();
 	initDocContribCards();
 	initTestimonialAwards();
@@ -280,6 +281,33 @@ function initAboutImageStack() {
 	if (nextButton) nextButton.addEventListener("click", () => move(1));
 
 	render();
+}
+
+function initTouchGapImages() {
+	const stackImages = document.querySelectorAll("[data-stack-image]");
+	if (!stackImages.length) return;
+
+	const srcs = Array.from(stackImages).map((img) => img.src);
+	for (let i = srcs.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[srcs[i], srcs[j]] = [srcs[j], srcs[i]];
+	}
+
+	const panels = document.querySelectorAll(".panel");
+	if (panels.length < 3) return;
+
+	let idx = 0;
+	for (let i = 2; i < panels.length; i++) {
+		if (idx >= srcs.length) break;
+		const wrapper = document.createElement("div");
+		wrapper.className = "touch-gap-image";
+		const img = document.createElement("img");
+		img.src = srcs[idx++];
+		img.alt = "";
+		img.loading = "lazy";
+		wrapper.appendChild(img);
+		panels[i].before(wrapper);
+	}
 }
 
 function resolveTextColor(style) {
