@@ -284,6 +284,7 @@ function initAboutImageStack() {
 }
 
 function initTouchGapImages() {
+	if (!touchOnlyMode) return;
 	const stackImages = document.querySelectorAll("[data-stack-image]");
 	if (!stackImages.length) return;
 
