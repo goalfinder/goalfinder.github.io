@@ -610,14 +610,14 @@ function lightDarkModeToggle() {
 	// Toggle mode switch button content (only update src and text, preserve DOM for smooth transition)
 	if (html.classList.contains("dark-mode")) {
 		const lightSrc = baseUrl ? `${baseUrl}/assets/img/icons/light.svg` : "/assets/img/icons/light.svg";
-		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-shadow.png` : "/assets/img/logos/goalfinder/logo-shadow.png";
+		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-shadow.webp` : "/assets/img/logos/goalfinder/logo-shadow.webp";
 		toggleIcon.src = lightSrc;
 		toggleText.textContent = t("light-mode");
 		localStorage.setItem("theme", "dark");
 		if (headerIcon) headerIcon.src = logoSrc;
 	} else {
 		const darkSrc = baseUrl ? `${baseUrl}/assets/img/icons/dark.svg` : "/assets/img/icons/dark.svg";
-		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.png` : "/assets/img/logos/goalfinder/logo-black-shadow.png";
+		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.webp` : "/assets/img/logos/goalfinder/logo-black-shadow.webp";
 		toggleIcon.src = darkSrc;
 		toggleText.textContent = t("dark-mode");
 		localStorage.setItem("theme", "light");
@@ -1848,9 +1848,9 @@ async function initMarkdownDocumentation(config = {}) {
 			// toggleButton.innerHTML = `<img class="icon" src="${lightIconPath}"><span class="icon-text">Light Mode</span>`;
 			copyButton.innerHTML = `<img class="icon" src="${copyIconPath}" alt="Copy Icon></img><span class="icon-text"">Copy</span>`;
 		}
-		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-shadow.png`;
+		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-shadow.webp`;
 	} else {
-		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-black-shadow.png`;
+		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-black-shadow.webp`;
 	}
 
 	document.addEventListener("click", (e) => {

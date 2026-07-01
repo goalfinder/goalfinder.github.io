@@ -160,7 +160,7 @@ function updateLogo(isDark, baseUrl) {
 	// Crossfade: fade out, swap src, fade back in
 	logoImg.style.opacity = "0";
 	setTimeout(() => {
-		logoImg.src = baseUrl + (isDark ? "/assets/img/logos/goalfinder/logo-shadow.png" : "/assets/img/logos/goalfinder/logo-black-shadow.png");
+		logoImg.src = baseUrl + (isDark ? "/assets/img/logos/goalfinder/logo-shadow.webp" : "/assets/img/logos/goalfinder/logo-black-shadow.webp");
 		// Let the browser load the new image then fade back in
 		requestAnimationFrame(() => {
 			requestAnimationFrame(() => {
@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const logoImg = document.querySelector(".dl-header-logo img");
 		if (logoImg) {
 			logoImg.style.transition = "none";
-			logoImg.src = baseUrl + (isDark ? "/assets/img/logos/goalfinder/logo-shadow.png" : "/assets/img/logos/goalfinder/logo-black-shadow.png");
+			logoImg.src = baseUrl + (isDark ? "/assets/img/logos/goalfinder/logo-shadow.webp" : "/assets/img/logos/goalfinder/logo-black-shadow.webp");
 			// Re-enable transition after a frame
 			requestAnimationFrame(() => {
 				logoImg.style.transition = "";
