@@ -5,7 +5,7 @@ Mounting the GoalFinder device on a basket can be done in two different ways:
 
 ## Mounting Variant
 As mentioned in the ^[parts list](../content/doc/en/bg-parts.md), the GoalFinder device can be assembled in a mounting variant, as shown below:
-![Mounting Variant](assets/img/design/cad/3d-mounting.png)(600)
+![Mounting Variant](assets/img/design/3d-mounting.webp)(600)
 With the mounting variant, the device can be screwed onto the basket.
 
 ## Non-Mounting Variant

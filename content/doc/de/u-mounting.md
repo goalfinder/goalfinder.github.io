@@ -5,7 +5,7 @@ Die Montage des GoalFinders an einem Korb kann auf zwei verschiedene Arten erfol
 
 ## Montagevariante
 Wie in der ^[Bauteilliste](../content/doc/de/bg-parts.md) beschrieben, kann der GoalFinder in einer Montagevariante zusammengebaut werden, wie unten dargestellt:
-![Montagevariante](assets/img/design/cad/3d-mounting.png)(600)
+![Montagevariante](assets/img/design/3d-mounting.webp)(600)
 Mit der Montagevariante kann das Gerät am Korb festgeschraubt werden.
 
 ## Nicht-Montagevariante

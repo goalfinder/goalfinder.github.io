@@ -7,7 +7,7 @@ Falls diese Benachrichtigung nicht angezeigt wird oder die Web-App lieber über 
 Falls keine dieser Möglichkeiten funktioniert, wenden Sie sich an Ihre Netzwerkadministration oder senden Sie eine E-Mail an `goalfinder@htl-leonding.ac.at`.
 
 ## Steuerelemente
-![Header Controls](content/doc/wa-img/de/1.png)(300)
+![Header Controls](content/doc/wa-img/de/1.webp)(300)
 - **Spiele**: Führt zur Spielauswahl
 - **Einstellungen**: Führt zur Einstellungsseite
 - **Über uns**: Führt zur Informationsseite
@@ -15,11 +15,11 @@ Falls keine dieser Möglichkeiten funktioniert, wenden Sie sich an Ihre Netzwerk
 
 ## Dashboard
 Das Dashboard enthält Verknüpfungen zur Spielauswahl und zur Einstellungsseite.
-![Dashboard View](content/doc/wa-img/de/2.png)(400)
+![Dashboard View](content/doc/wa-img/de/2.webp)(400)
 
 ## Spiele
 Die Spieleseite enthält eine Auswahl von Spielen, die mit dem GoalFinder gespielt werden können.
-![Games View](content/doc/wa-img/de/3.png)(400)
+![Games View](content/doc/wa-img/de/3.webp)(400)
 
 ### Wuf-Challenge
 Die Wurf-Challenge ist der Standard-Spielmodus des GoalFinder. Jeder Spieler erhält 60 Sekunden Zeit, um Treffer oder Fehlwürfe zu erzielen. Anschließend ist der nächste Spieler an der Reihe.
@@ -28,7 +28,7 @@ Das Spiel kann mit der Wiedergabetaste gestartet oder pausiert werden.
 Die Web-App zeigt die verbleibende Zeit des aktuellen Spielers sowie die Treffer und Fehlwürfe aller Spieler an.
 Falls der GoalFinder einen Treffer oder Fehlwurf nicht korrekt erkennt, können die Treffer- und Fehlwurfzähler jedes Spielers über die Schaltflächen `+` und `-` neben dem jeweiligen Namen angepasst werden.
 Das Spiel kann durch Klicken auf die Schaltfläche „Finish“ beendet werden.
-![Throw Challenge](content/doc/wa-img/de/4.png)(400)
+![Throw Challenge](content/doc/wa-img/de/4.webp)(400)
 
 ### Zeitspiel-Challenge
 In der Zeitspiel-Challenge erhält jeder Spieler 120 Sekunden Zeit, um möglichst viele Treffer oder Fehlwürfe zu erzielen.
@@ -37,35 +37,35 @@ Das Spiel kann mit der Wiedergabetaste gestartet oder pausiert werden.
 Die Web-App zeigt die verbleibende Zeit des aktuellen Spielers sowie die Treffer und Fehlwürfe aller Spieler an.
 Falls der GoalFinder einen Treffer oder Fehlwurf nicht korrekt erkennt, können die Treffer- und Fehlwurfzähler jedes Spielers über die Schaltflächen `+` und `-` neben dem jeweiligen Namen angepasst werden.
 Das Spiel kann durch Klicken auf die Schaltfläche „Finish“ beendet werden.
-![Timed Game Challenge](content/doc/wa-img/de/5.png)(400)
+![Timed Game Challenge](content/doc/wa-img/de/5.webp)(400)
 
 ### Freies Spiel
 Im Modus Freies Spiel müssen keine Spieler eingerichtet werden. Das Gerät zählt einfach alle Treffer und Fehlwürfe.
 Das Spiel kann mit der Wiedergabetaste gestartet oder pausiert werden. Der Zähler kann über die Schaltfläche „Reset“ zurückgesetzt werden.
-![Free Play](content/doc/wa-img/de/6.png)(400)
+![Free Play](content/doc/wa-img/de/6.webp)(400)
 
 ## Einstellungen
 ### Audioeinstellungen
 Im Reiter `Audio` können die Lautstärke der Lautsprecher sowie die Töne für Metronom (Tick), Warten, Treffer und Fehlwurf angepasst werden.
-![Audio Settings](content/doc/wa-img/de/7.png)(400)
+![Audio Settings](content/doc/wa-img/de/7.webp)(400)
 
 ### LED-Einstellungen
 Im Reiter  `LED` können die Helligkeit des LED-Streifens sowie die Animation im Leerlaufzustand angepasst werden.
-![LED Settings](content/doc/wa-img/de/8.png)(400)
+![LED Settings](content/doc/wa-img/de/8.webp)(400)
 
 ### Erkennungseinstellungen
 Im Reiter `Erkennung` kann die Erkennungsempfindlichkeit mithilfe einer von vier Voreinstellungen angepasst werden.
-![Detection Settings](content/doc/wa-img/de/9.png)(400)
+![Detection Settings](content/doc/wa-img/de/9.webp)(400)
 
 ### Verbindungseinstellungen
 Im Reiter `Verbindung` können der Gerätename (der Name des WLAN-Netzwerks) geändert und ein Passwort für das WLAN-Netzwerk festgelegt werden.
 Eine detaillierte Anleitung zur Verbindung des Geräts mit bestehenden Netzwerken finden Sie ^[hier](../content/doc/de/t-webapp-advanced.md).
-![Connection Settings](content/doc/wa-img/de/10.png)(400)
+![Connection Settings](content/doc/wa-img/de/10.webp)(400)
 
 ### Systemeinstellungen
 Im Reiter `System` können Design, Akzentfarbe und Sprache der Web-App geändert werden.
 Der GoalFinder kann über die Schaltfläche „Restart“ neu gestartet werden. Die Geräteeinstellungen können über die Schaltfläche „Reset to factory settings“ auf die Werkseinstellungen zurückgesetzt werden.
 Geräteaktualisierungen können ebenfalls über diesen Reiter durchgeführt werden. Detaillierte Anweisungen finden sich im ^[Update-Tutorial](../content/doc/de/u-update.md).
-![Connection Settings](content/doc/wa-img/de/11.png)(400)
+![Connection Settings](content/doc/wa-img/de/11.webp)(400)
 
 #end

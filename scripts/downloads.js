@@ -178,7 +178,7 @@ function toggleDarkMode() {
 	const baseUrl = getBaseUrl();
 	const isDark = html.classList.contains("dark-mode");
 
-	icon.src = baseUrl + (isDark ? "/assets/img/svg/light.svg" : "/assets/img/svg/dark.svg");
+	icon.src = baseUrl + (isDark ? "/assets/img/icons/light.svg" : "/assets/img/icons/dark.svg");
 	localStorage.setItem("theme", isDark ? "dark" : "light");
 
 	updateLogo(isDark, baseUrl);
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const baseUrl = getBaseUrl();
 		const isDark = savedTheme === "dark";
 		if (isDark) {
-			modeIcon.src = baseUrl + "/assets/img/svg/light.svg";
+			modeIcon.src = baseUrl + "/assets/img/icons/light.svg";
 		}
 		// Set logo immediately without animation on initial load
 		const logoImg = document.querySelector(".dl-header-logo img");

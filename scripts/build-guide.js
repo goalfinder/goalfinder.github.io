@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 	// Now initialize markdown documentation with translations already loaded
 	await initMarkdownDocumentation({
 		doc: "build-guide",
-		lightIconPath: `${baseUrl}/assets/img/svg/light.svg`,
-		copyIconPath: `${baseUrl}/assets/img/svg/copy.svg`,
+		lightIconPath: `${baseUrl}/assets/img/icons/light.svg`,
+		copyIconPath: `${baseUrl}/assets/img/icons/copy.svg`,
 	});
 
 	// Update translations in markdown documentation after initialization
