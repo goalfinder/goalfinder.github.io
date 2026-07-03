@@ -32,7 +32,7 @@ title: GoalFinder Documentation
 					if (toggleButton && savedTheme === "dark") {
 						const toggleIcon = toggleButton.querySelector(".icon");
 						const baseUrl = window.siteBaseUrl || "";
-						const lightSrc = baseUrl ? `${baseUrl}/assets/img/svg/light.svg` : "/assets/img/svg/light.svg";
+						const lightSrc = baseUrl ? `${baseUrl}/assets/img/icons/light.svg` : "/assets/img/icons/light.svg";
 						toggleIcon.src = lightSrc;
 					}
 				}
@@ -60,13 +60,13 @@ title: GoalFinder Documentation
 		<header>
 			<div class="header-logo">
 				<button id="topicToggle" class="topic-toggle" aria-label="Toggle sidebar" aria-expanded="false">
-					<img class="topic-toggle-icon" src="{{ site.baseurl }}/assets/img/svg/hamburger.svg" alt="menu" id="header-logo" />
+					<img class="topic-toggle-icon" src="{{ site.baseurl }}/assets/img/icons/hamburger.svg" alt="menu" id="header-logo" />
 				</button>
-				<img src="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-shadow.png" class="header-image" id="header-icon" alt="Logo" />
+				<img src="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-shadow.webp" class="header-image" id="header-icon" alt="Logo" />
 				<p class="header-text" data-i18n="doc-page-title"></p>
 				<div class="header-controls">
 					<div class="header-search-bar">
-						<img class="icon search-icon" src="{{ site.baseurl }}/assets/img/svg/search.svg" alt="search-icon" />
+						<img class="icon search-icon" src="{{ site.baseurl }}/assets/img/icons/search.svg" alt="search-icon" />
 						<input type="text" onfocus="searchbarFocus()" onblur="searchbarBlur()" oninput="searchbarSearch()" id="searchInput" placeholder="Search documentation..." data-i18n="search" />
 						<div id="searchPopup" class="search-popup">
 							<ul class="search-results">
@@ -75,7 +75,7 @@ title: GoalFinder Documentation
 						</div>
 					</div>
 					<button id="lightDarkToggle" onclick="lightDarkModeToggle()" aria-label="Toggle light/dark mode">
-						<img class="icon" src="{{ site.baseurl }}/assets/img/svg/dark.svg" alt="Theme Toggle Icon" />
+						<img class="icon" src="{{ site.baseurl }}/assets/img/icons/dark.svg" alt="Theme Toggle Icon" />
 					</button>
 					<button id="lang-toggle">
 						<span class="icon" id="lang-toggle-text">DE</span>
@@ -95,7 +95,7 @@ title: GoalFinder Documentation
 			<div class="content-container">
 				<div class="topic-selector">
 					<button id="topicClose" class="topic-close" aria-label="Close sidebar">
-						<img src="{{ site.baseurl }}/assets/img/svg/cancel.svg" alt="close" />
+						<img src="{{ site.baseurl }}/assets/img/icons/cancel.svg" alt="close" />
 					</button>
 					<!-- Loading of topics will use class "topic-category" for headers of categories -->
 				</div>
@@ -106,7 +106,7 @@ title: GoalFinder Documentation
 				</div>
 				<div class="right-panel">
 					<button class="copy-button" id="copyButton" onclick="copyButtonTrigger()" aria-label="Copy content">
-						<img class="icon" src="{{ site.baseurl }}/assets/img/svg/copy.svg" alt="Copy Icon"/>
+						<img class="icon" src="{{ site.baseurl }}/assets/img/icons/copy.svg" alt="Copy Icon"/>
 					</button>
 					<div id="right-panel-header"></div>
 				</div>

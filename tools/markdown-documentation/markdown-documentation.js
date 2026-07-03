@@ -609,15 +609,15 @@ function lightDarkModeToggle() {
 
 	// Toggle mode switch button content (only update src and text, preserve DOM for smooth transition)
 	if (html.classList.contains("dark-mode")) {
-		const lightSrc = baseUrl ? `${baseUrl}/assets/img/svg/light.svg` : "/assets/img/svg/light.svg";
-		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-shadow.png` : "/assets/img/logos/goalfinder/logo-shadow.png";
+		const lightSrc = baseUrl ? `${baseUrl}/assets/img/icons/light.svg` : "/assets/img/icons/light.svg";
+		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-shadow.webp` : "/assets/img/logos/goalfinder/logo-shadow.webp";
 		toggleIcon.src = lightSrc;
 		toggleText.textContent = t("light-mode");
 		localStorage.setItem("theme", "dark");
 		if (headerIcon) headerIcon.src = logoSrc;
 	} else {
-		const darkSrc = baseUrl ? `${baseUrl}/assets/img/svg/dark.svg` : "/assets/img/svg/dark.svg";
-		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.png` : "/assets/img/logos/goalfinder/logo-black-shadow.png";
+		const darkSrc = baseUrl ? `${baseUrl}/assets/img/icons/dark.svg` : "/assets/img/icons/dark.svg";
+		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.webp` : "/assets/img/logos/goalfinder/logo-black-shadow.webp";
 		toggleIcon.src = darkSrc;
 		toggleText.textContent = t("dark-mode");
 		localStorage.setItem("theme", "light");
@@ -964,7 +964,7 @@ function setupEventListenersForNewElements() {
 		if (!button.querySelector(".category-arrow")) {
 			const arrow = document.createElement("span");
 			arrow.classList.add("category-arrow");
-			arrow.innerHTML = `<img src="${getBaseUrl()}/assets/img/svg/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">`;
+			arrow.innerHTML = `<img src="${getBaseUrl()}/assets/img/icons/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">`;
 			button.appendChild(arrow);
 		}
 
@@ -1204,7 +1204,7 @@ async function setupEventListeners() {
 		if (!button.querySelector(".category-arrow")) {
 			const arrow = document.createElement("span");
 			arrow.classList.add("category-arrow");
-			arrow.innerHTML = `<img src="${getBaseUrl()}/assets/img/svg/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">`;
+			arrow.innerHTML = `<img src="${getBaseUrl()}/assets/img/icons/arrow.svg" class="category-arrow" alt="arrow" width="15" height="15">`;
 			button.appendChild(arrow);
 		}
 
@@ -1766,7 +1766,7 @@ async function switchLang() {
  */
 async function initMarkdownDocumentation(config = {}) {
 	const baseUrl = getBaseUrl();
-	const { doc = "user", lightIconPath = `${baseUrl}/assets/img/svg/light.svg`, copyIconPath = `${baseUrl}/assets/img/svg/copy.svg` } = config;
+	const { doc = "user", lightIconPath = `${baseUrl}/assets/img/icons/light.svg`, copyIconPath = `${baseUrl}/assets/img/icons/copy.svg` } = config;
 
 	// remember which doc we're showing so switchLang can reload the correct structure
 	currentDoc = doc;
@@ -1848,9 +1848,9 @@ async function initMarkdownDocumentation(config = {}) {
 			// toggleButton.innerHTML = `<img class="icon" src="${lightIconPath}"><span class="icon-text">Light Mode</span>`;
 			copyButton.innerHTML = `<img class="icon" src="${copyIconPath}" alt="Copy Icon></img><span class="icon-text"">Copy</span>`;
 		}
-		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-shadow.png`;
+		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-shadow.webp`;
 	} else {
-		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-black-shadow.png`;
+		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-black-shadow.webp`;
 	}
 
 	document.addEventListener("click", (e) => {

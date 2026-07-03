@@ -23,7 +23,7 @@ import { getCurrentLang } from "../../scripts/i18n.js";
 
 class MarkdownConverter {
 	/** @type {path} - The path where the image assets are found */
-	imagePath = `${window.siteBaseUrl || ""}/assets/img/svg/`;
+	imagePath = `${window.siteBaseUrl || ""}/assets/img/icons/`;
 
 	/** @type {number} - Counter for unique heading IDs */
 	headingCount;

@@ -14,13 +14,13 @@ This page provides a complete list of all components required for assembling the
 ### Breakout Boards
 **ESP32 D1 Mini**
 Main controller for the GoalFinder device.
-![ESP Microcontroller](assets/img/assembly/steps/high_res/GF_assembly_24.jpg)(510x614)
+![ESP Microcontroller](assets/img/assembly/steps/GF_assembly_24.webp)(510x614)
 [Product Link](https://www.amazon.de/-/en/AZDelivery-Bluetooth-Development-Connection-Compatible/dp/B0DHY5C3Q3/ref=sr_1_6)
 [Documentation](https://cdn.shopify.com/s/files/1/1509/1638/files/D1_Mini_ESP32_Datenblatt_AZ-Delivery_Vertriebs_GmbH.pdf)
 
 **SW420**
 Shake sensor used for shot detection.
-![SW420](assets/img/assembly/steps/high_res/GF_assembly_08.jpg)(510x614)
+![SW420](assets/img/assembly/steps/GF_assembly_08.webp)(510x614)
 [Product Link](https://www.amazon.de/-/en/AZDelivery-Vibration-Shaker-Compatible-Arduino/dp/B07D92XBMS/ref=sr_1_2)
 [Documentation](https://cdn.shopify.com/s/files/1/1509/1638/files/SW420_Vibration_Schuttel_Erschutterung_Sensor_Modul_Datenblatt_AZ-Delivery_Vertriebs_GmbH.pdf)
 
@@ -36,25 +36,25 @@ Amplifier used to drive the audio speaker.
 
 **Audio Driver**
 Speaker used for acoustic feedback.
-![Audio Driver](assets/img/assembly/steps/high_res/GF_assembly_28.jpg)(510x614)
+![Audio Driver](assets/img/assembly/steps/GF_assembly_28.webp)(510x614)
 [Product Link](https://www.amazon.de/-/en/HUAREW-JST-PH2-0-Interface-Motherboard-Electronic/dp/B0CRNZYW1R/ref=sr_1_6)
 
 ### Other Electronic Parts
 **USB-C Breakout**
 Breakout board used for the external USB-C connection on the side panel.
-![USB-C Breakout](assets/img/assembly/steps/high_res/GF_assembly_06.jpg)(510x614)
+![USB-C Breakout](assets/img/assembly/steps/GF_assembly_06.webp)(510x614)
 
 **LED Strip**
 LED strip used for visual feedback.
 
 **XYQ JST Connectors**
 Connectors used for the connection between the device and the LED strip.
-![XYQ JST Connector](assets/img/assembly/steps/high_res/GF_assembly_07.jpg)(510x614)
+![XYQ JST Connector](assets/img/assembly/steps/GF_assembly_07.webp)(510x614)
 [Product Link](https://www.amazon.com/Pairs-Female-Connector-22AWG-Battery/dp/B01HHY9ZKW)
 
 **Micro USB Breakout**
 Connects the PCB to the microcontroller via USB.
-![Micro USB Breakout](assets/img/assembly/steps/high_res/GF_assembly_29.jpg)(510x614)
+![Micro USB Breakout](assets/img/assembly/steps/GF_assembly_29.webp)(510x614)
 
 ## PCB Components
 Below is a list of all parts required for PCB assembly:
@@ -87,13 +87,13 @@ The inner mounts consist of three brackets designed to hold the PCB, sensors, an
 - /[Top Left Bracket](/content/doc/download/goalfinder-1.10-bracket-top-left.obj)
 - /[Top Right Bracket](/content/doc/download/goalfinder-1.10-bracket-top-right.obj)
 
-![Main Bracket](assets/img/assembly/steps/low_res/GF_assembly_10.jpg)(510x614)
+![Main Bracket](assets/img/assembly/steps/GF_assembly_10.webp)(510x614)
 *Main bracket for the PCB and sensors*
-![Top Brackets](assets/img/assembly/steps/low_res/GF_assembly_12.jpg)(510x614)
+![Top Brackets](assets/img/assembly/steps/GF_assembly_12.webp)(510x614)
 *Top left and top right brackets*
 
 ## Outer Housing
-![Housing Showcase](assets/img/assembly/steps/low_res/GF_assembly_14.jpg)(510x614)
+![Housing Showcase](assets/img/assembly/steps/GF_assembly_14.webp)(510x614)
 *Outer housing made of plexiglass*
 
 The outer housing consists of six plates. Two of these plates can be replaced with mounting variants, depending on the intended installation method. The examples shown are cut from plexiglass, but the parts can also be easily 3D printed.
@@ -106,9 +106,9 @@ The outer housing consists of six plates. Two of these plates can be replaced wi
 - /[Front](/content/doc/download/goalfinder-1.10-housing-front.obj) or as a mounting variant /[Front with Mount](/content/doc/download/goalfinder-1.10-housing-front-mount.obj)
 
 ### Mounting vs. Standard Plates
-![Back Mounting](assets/img/design/mouting/back-plate.png)(672x346)
+![Back Mounting](assets/img/design/back-plate.webp)(672x346)
 *Example: Mounting on the back plate*
-![Top Mounting](assets/img/design/mouting/top-plate.png)(672x346)
+![Top Mounting](assets/img/design/top-plate.webp)(672x346)
 *Example: Mounting on the top plate*
 
 #end

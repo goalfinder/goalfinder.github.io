@@ -160,7 +160,7 @@ function updateLogo(isDark, baseUrl) {
 	// Crossfade: fade out, swap src, fade back in
 	logoImg.style.opacity = "0";
 	setTimeout(() => {
-		logoImg.src = baseUrl + (isDark ? "/assets/img/logos/goalfinder/logo-shadow.png" : "/assets/img/logos/goalfinder/logo-black-shadow.png");
+		logoImg.src = baseUrl + (isDark ? "/assets/img/logos/goalfinder/logo-shadow.webp" : "/assets/img/logos/goalfinder/logo-black-shadow.webp");
 		// Let the browser load the new image then fade back in
 		requestAnimationFrame(() => {
 			requestAnimationFrame(() => {
@@ -178,7 +178,7 @@ function toggleDarkMode() {
 	const baseUrl = getBaseUrl();
 	const isDark = html.classList.contains("dark-mode");
 
-	icon.src = baseUrl + (isDark ? "/assets/img/svg/light.svg" : "/assets/img/svg/dark.svg");
+	icon.src = baseUrl + (isDark ? "/assets/img/icons/light.svg" : "/assets/img/icons/dark.svg");
 	localStorage.setItem("theme", isDark ? "dark" : "light");
 
 	updateLogo(isDark, baseUrl);
@@ -209,13 +209,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		const baseUrl = getBaseUrl();
 		const isDark = savedTheme === "dark";
 		if (isDark) {
-			modeIcon.src = baseUrl + "/assets/img/svg/light.svg";
+			modeIcon.src = baseUrl + "/assets/img/icons/light.svg";
 		}
 		// Set logo immediately without animation on initial load
 		const logoImg = document.querySelector(".dl-header-logo img");
 		if (logoImg) {
 			logoImg.style.transition = "none";
-			logoImg.src = baseUrl + (isDark ? "/assets/img/logos/goalfinder/logo-shadow.png" : "/assets/img/logos/goalfinder/logo-black-shadow.png");
+			logoImg.src = baseUrl + (isDark ? "/assets/img/logos/goalfinder/logo-shadow.webp" : "/assets/img/logos/goalfinder/logo-black-shadow.webp");
 			// Re-enable transition after a frame
 			requestAnimationFrame(() => {
 				logoImg.style.transition = "";
