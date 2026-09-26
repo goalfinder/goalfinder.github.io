@@ -24,8 +24,15 @@ title: GoalFinder
 		</script>
 
 		<script>
+			// Pre-seeds the desktop page zoom before first paint. scripts/main.js owns the
+			// authoritative input-mode logic and re-asserts this on init, on resize and on
+			// every mode change; keep the touch predicate below in sync with
+			// isTouchOnlyDevice() there. `(any-pointer: fine)` is deliberately not used to
+			// veto touch mode: some Android OEM firmwares (Samsung in particular) report
+			// the touchscreen as a touchpad, so Blink exposes a phantom fine pointer on
+			// phones with no mouse attached.
 			(function() {
-				var isTouchDevice = (navigator.maxTouchPoints > 0 || "ontouchstart" in window) && !(window.matchMedia && window.matchMedia("(any-pointer: fine)").matches);
+				var isTouchDevice = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
 
 				function updatePageScale() {
 					if (isTouchDevice) {

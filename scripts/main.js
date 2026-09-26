@@ -10,16 +10,54 @@ let titleMorphLock = false;
 let scroll_block = false;
 let touchOnlyMode = false;
 let alternateScrollEnabled = true;
+let finePointerSeen = false;
 
 function setTouchOnlyMode(enabled) {
 	if (touchOnlyMode !== enabled) {
 		touchOnlyMode = enabled;
 		alternateScrollEnabled = !enabled;
 		document.documentElement.classList.toggle("touch-only", enabled);
+		updatePageScale();
 	}
 }
 
-const isTouchOnlyDevice = () => (navigator.maxTouchPoints > 0 || "ontouchstart" in window) && !(window.matchMedia && window.matchMedia("(any-pointer: fine)").matches);
+const hasTouchInput = () => navigator.maxTouchPoints > 0 || "ontouchstart" in window;
+
+// Touch capability alone is enough to enter touch mode. `(any-pointer: fine)` and
+// `(hover: hover)` must never be used to veto it: some Android OEM firmwares (Samsung in
+// particular) report the touchscreen to the kernel as a touchpad, so Blink exposes a
+// phantom fine pointer on phones that have no mouse attached. Only an actual fine pointer
+// interaction demotes the page back to the desktop presentation.
+const isTouchOnlyDevice = () => hasTouchInput() && !finePointerSeen;
+
+function watchForFinePointer() {
+	const onFinePointer = (event) => {
+		if (event.pointerType && event.pointerType !== "mouse") return;
+		finePointerSeen = true;
+		detach();
+		setTouchOnlyMode(false);
+	};
+
+	const detach = () => {
+		window.removeEventListener("pointermove", onFinePointer, true);
+		window.removeEventListener("pointerdown", onFinePointer, true);
+		window.removeEventListener("mousemove", onFinePointer, false);
+	};
+
+	window.addEventListener("pointermove", onFinePointer, { capture: true, passive: true });
+	window.addEventListener("pointerdown", onFinePointer, { capture: true, passive: true });
+	window.addEventListener("mousemove", onFinePointer, { passive: true });
+}
+
+function updatePageScale() {
+	if (touchOnlyMode) {
+		document.documentElement.style.zoom = "";
+		return;
+	}
+	const refWidth = 1400;
+	const scale = window.innerWidth / refWidth;
+	document.documentElement.style.zoom = Math.max(0.55, Math.min(1, scale));
+}
 
 function switchLang() {
 	setCurrentLang(getCurrentLang() == "de" ? "en" : "de");
@@ -76,10 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	updateThemeButtonLabel();
 
 	initSharedTitle();
-	initHeroSplit();
 	const touchOnly = isTouchOnlyDevice();
 	setTouchOnlyMode(touchOnly);
+	watchForFinePointer();
+	updatePageScale();
+	window.addEventListener("resize", updatePageScale);
 
+	initHeroSplit();
 	initAboutImageStack();
 	initTouchGapImages();
 	initMissionCards();
@@ -583,7 +624,9 @@ function initPresentationScroll() {
 
 	function closestPanelIndex() {
 		const panels = getPanels();
-		const scrollTop = container.scrollTop;
+		// In touch-only mode `main` is not the scroll container (see styles/main.css),
+		// so the document scroll position is the one that matters.
+		const scrollTop = touchOnlyMode ? window.scrollY : container.scrollTop;
 		let closest = 0;
 		let minDist = Infinity;
 		panels.forEach((panel, i) => {
@@ -642,7 +685,9 @@ function initPresentationScroll() {
 	container.addEventListener(
 		"wheel",
 		(e) => {
-			setTouchOnlyMode(false);
+			// A wheel gesture only proves a fine pointer exists on devices that also
+			// have touch input; on mouse-only devices touch mode is already off.
+			if (hasTouchInput()) setTouchOnlyMode(false);
 			if (!alternateScrollEnabled) return;
 			e.preventDefault();
 
@@ -671,13 +716,15 @@ function initPresentationScroll() {
 		{ passive: false }
 	);
 
-	container.addEventListener(
-		"scroll",
-		() => {
-			updateHeroState();
-		},
-		{ passive: true }
-	);
+	// The scroll container differs per input mode: `main` scrolls in desktop mode, the
+	// document scrolls in touch-only mode. Listening on both keeps `hero-active` correct
+	// across mode flips, since only the active scroller emits events.
+	const handleScroll = () => {
+		updateHeroState();
+	};
+
+	container.addEventListener("scroll", handleScroll, { passive: true });
+	window.addEventListener("scroll", handleScroll, { passive: true });
 
 	updateHeroState();
 

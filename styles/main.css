@@ -59,8 +59,18 @@
 	--hero-slice-border: color-mix(in srgb, var(--decal) 55%, transparent);
 }
 
-:root.touch-only main {
+:root.touch-only {
 	scroll-padding-top: 1rem;
+}
+
+/* In touch-only mode `main` stops being a fixed-height scroll container and the document
+   scrolls instead. Without this, `height: 100vh` below resolves to Android Chrome's large
+   viewport (URL bar hidden), which is taller than the visible area, so the bottom of the
+   page cannot be scrolled into view. */
+:root.touch-only main {
+	height: auto;
+	min-height: 100vh;
+	overflow-y: visible;
 }
 
 :root.touch-only .panel {
@@ -80,6 +90,10 @@
 @supports (height: 100svh) {
 	:root.touch-only .hero {
 		height: 100svh;
+		min-height: 100svh;
+	}
+
+	:root.touch-only main {
 		min-height: 100svh;
 	}
 }
@@ -168,7 +182,9 @@ body {
 	color: var(--text);
 	background-color: var(--background);
 	position: relative;
-	overflow-x: hidden;
+	/* `clip` rather than `hidden`: `hidden` would make body a scroll container and stop
+	   `:root.touch-only main { overflow-y: visible }` from propagating to the viewport. */
+	overflow-x: clip;
 }
 
 body::before {
