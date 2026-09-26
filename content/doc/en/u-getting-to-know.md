@@ -7,14 +7,14 @@ The GoalFinder device uses a combination of input and output components to achie
 
 ### Input
 A **shake sensor** detects the ball hitting the basket.
-![Shake Sensor](assets/img/assembly/general/P1440892-N.JPG)(623x450)
+![Shake Sensor](assets/img/assembly/general/P1440892-N.webp)(623x450)
 
 A **distance sensor** detects the ball passing through the hoop to register successful shots.
-![Distance Sensor](assets/img/showcase/P1440908-N.JPG)(403x450)
+![Distance Sensor](assets/img/showcase/P1440908-N.webp)(403x450)
 
 ### Output
 An LED strip and speaker provide audio-visual feedback on hits and misses.
-![LED Strip](assets/img/mounting/P1440944.JPG)(650)
+![LED Strip](assets/img/mounting/P1440944.webp)(650)
 
 The GoalFinder device also features a web app for configuring and controlling the device. Read more about it ^[here](../content/doc/en/u-webapp.md).
 

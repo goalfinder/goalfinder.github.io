@@ -7,14 +7,14 @@ Der GoalFinder nutzt eine Kombination aus Eingabe- und Ausgabekomponenten, um se
 
 ### Eingabe
 Ein **Erschütterungssensor** erkennt, wenn der Ball den Korb trifft.
-![Shake Sensor](assets/img/assembly/general/P1440892-N.JPG)(623x450)
+![Shake Sensor](assets/img/assembly/general/P1440892-N.webp)(623x450)
 
 Ein **Distanzsensor** erkennt, wenn der Ball durch den Korb fällt, um erfolgreiche Würfe zu registrieren.
-![Distance Sensor](assets/img/showcase/P1440908-N.JPG)(403x450)
+![Distance Sensor](assets/img/showcase/P1440908-N.webp)(403x450)
 
 ### Ausgabe
 Ein LED-Streifen und ein Lautsprecher liefern audiovisuelles Feedback zu Treffern und Fehlwürfen.
-![LED Strip](assets/img/mounting/P1440944.JPG)(650)
+![LED Strip](assets/img/mounting/P1440944.webp)(650)
 
 Der GoalFinder verfügt außerdem über eine Web-App zur Konfiguration und Steuerung des Geräts. Weitere Informationen dazu finden Sie ^[hier](../content/doc/de/u-webapp.md).
 
