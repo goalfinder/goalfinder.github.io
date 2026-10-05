@@ -594,34 +594,53 @@ function scrollToTextInContent(searchTerm) {
 	}
 }
 
+// Half of the 300ms theme transition the rest of the header uses, so the logo
+// swap lands inside the same window as every other theme change.
+const LOGO_FADE_MS = 100;
+
+/**
+ * Cross-fade the header logo to the variant matching the active theme.
+ * @param {boolean} isDark Whether dark mode is active
+ */
+function updateHeaderLogo(isDark) {
+	const logo = document.getElementById("header-icon");
+	if (!logo) return;
+
+	const baseUrl = getBaseUrl();
+	const src = `${baseUrl}/assets/img/logos/goalfinder/${isDark ? "logo-shadow.webp" : "logo-black-shadow.webp"}`;
+
+	// Fade out over the first half of the theme transition, swap the source, then
+	// fade back in over the second half once the browser has the new image.
+	logo.style.transition = `opacity ${LOGO_FADE_MS}ms ease`;
+	logo.style.opacity = "0";
+	setTimeout(() => {
+		logo.src = src;
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				logo.style.opacity = "1";
+			});
+		});
+	}, LOGO_FADE_MS);
+}
+
 /**
  * Toggle between light mode and dark mode
  */
 function lightDarkModeToggle() {
 	const html = document.documentElement;
-	const toggleButton = document.getElementById("lightDarkToggle");
-	const toggleIcon = toggleButton.querySelector(".icon");
-	const toggleText = toggleButton.querySelector(".icon-text");
-	const headerIcon = document.getElementById("header-icon");
-	const baseUrl = getBaseUrl();
+	const toggleIcon = document.getElementById("lightDarkToggle").querySelector(".icon");
 
 	html.classList.toggle("dark-mode"); // Change page appearance
 
-	// Toggle mode switch button content (only update src and text, preserve DOM for smooth transition)
+	// Toggle mode switch button content (only update src, preserve DOM for smooth transition)
 	if (html.classList.contains("dark-mode")) {
-		const lightSrc = baseUrl ? `${baseUrl}/assets/img/icons/light.svg` : "/assets/img/icons/light.svg";
-		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-shadow.webp` : "/assets/img/logos/goalfinder/logo-shadow.webp";
-		toggleIcon.src = lightSrc;
-		toggleText.textContent = t("light-mode");
+		toggleIcon.src = `${getBaseUrl()}/assets/img/icons/light.svg`;
 		localStorage.setItem("theme", "dark");
-		if (headerIcon) headerIcon.src = logoSrc;
+		updateHeaderLogo(true);
 	} else {
-		const darkSrc = baseUrl ? `${baseUrl}/assets/img/icons/dark.svg` : "/assets/img/icons/dark.svg";
-		const logoSrc = baseUrl ? `${baseUrl}/assets/img/logos/goalfinder/logo-black-shadow.webp` : "/assets/img/logos/goalfinder/logo-black-shadow.webp";
-		toggleIcon.src = darkSrc;
-		toggleText.textContent = t("dark-mode");
+		toggleIcon.src = `${getBaseUrl()}/assets/img/icons/dark.svg`;
 		localStorage.setItem("theme", "light");
-		if (headerIcon) headerIcon.src = logoSrc;
+		updateHeaderLogo(false);
 	}
 }
 
@@ -1839,8 +1858,6 @@ async function initMarkdownDocumentation(config = {}) {
 	}
 
 	const savedTheme = localStorage.getItem("theme");
-	const headerIcon = document.getElementById("header-icon");
-	const baseUrlInit = getBaseUrl();
 	if (savedTheme === "dark") {
 		const toggleButton = document.getElementById("lightDarkToggle");
 		const copyButton = document.getElementById("copyButton");
@@ -1848,9 +1865,6 @@ async function initMarkdownDocumentation(config = {}) {
 			// toggleButton.innerHTML = `<img class="icon" src="${lightIconPath}"><span class="icon-text">Light Mode</span>`;
 			copyButton.innerHTML = `<img class="icon" src="${copyIconPath}" alt="Copy Icon></img><span class="icon-text"">Copy</span>`;
 		}
-		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-shadow.webp`;
-	} else {
-		headerIcon.src = `${baseUrlInit}/assets/img/logos/goalfinder/logo-black-shadow.webp`;
 	}
 
 	document.addEventListener("click", (e) => {

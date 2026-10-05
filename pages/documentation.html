@@ -27,19 +27,22 @@ title: GoalFinder Documentation
 				if (savedTheme === "dark") {
 					document.documentElement.classList.add("dark-mode");
 				}
-				function updateToggleButton() {
-					const toggleButton = document.getElementById("lightDarkToggle");
-					if (toggleButton && savedTheme === "dark") {
-						const toggleIcon = toggleButton.querySelector(".icon");
-						const baseUrl = window.siteBaseUrl || "";
-						const lightSrc = baseUrl ? `${baseUrl}/assets/img/icons/light.svg` : "/assets/img/icons/light.svg";
-						toggleIcon.src = lightSrc;
+				function applyThemeAssets() {
+					const baseUrl = window.siteBaseUrl || "";
+					const isDark = document.documentElement.classList.contains("dark-mode");
+					const logo = document.getElementById("header-icon");
+					if (logo) {
+						logo.src = baseUrl + (isDark ? "/assets/img/logos/goalfinder/logo-shadow.webp" : "/assets/img/logos/goalfinder/logo-black-shadow.webp");
+					}
+					const toggleIcon = document.querySelector("#lightDarkToggle .icon");
+					if (toggleIcon) {
+						toggleIcon.src = baseUrl + (isDark ? "/assets/img/icons/light.svg" : "/assets/img/icons/dark.svg");
 					}
 				}
 				if (document.readyState === "loading") {
-					document.addEventListener("DOMContentLoaded", updateToggleButton);
+					document.addEventListener("DOMContentLoaded", applyThemeAssets);
 				} else {
-					updateToggleButton();
+					applyThemeAssets();
 				}
 			})();
 
@@ -62,7 +65,7 @@ title: GoalFinder Documentation
 				<button id="topicToggle" class="topic-toggle" aria-label="Toggle sidebar" aria-expanded="false">
 					<img class="topic-toggle-icon" src="{{ site.baseurl }}/assets/img/icons/hamburger.svg" alt="menu" id="header-logo" />
 				</button>
-				<img src="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-shadow.webp" class="header-image" id="header-icon" alt="Logo" />
+				<img src="{{ site.baseurl }}/assets/img/logos/goalfinder/logo-black-shadow.webp" class="header-image" id="header-icon" alt="Logo" />
 				<p class="header-text" data-i18n="doc-page-title"></p>
 				<div class="header-controls">
 					<div class="header-search-bar">

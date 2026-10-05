@@ -503,6 +503,7 @@ header {
 	height: 32px;
 	margin-right: 0.5%;
 	cursor: pointer;
+	transition: opacity 0.3s ease;
 }
 
 .header-text,
