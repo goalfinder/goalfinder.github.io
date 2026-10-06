@@ -28,11 +28,11 @@ docker build -t goalfinder-website .
 Run (the container listens on port 8080 internally):
 
 ```sh
-docker run --rm -p 8080:8080 goalfinder-website
+docker run -d -p 8080:8080 goalfinder-website
 ```
 
 The WAF starts in **detection-only mode**: attacks such as SQL injection or XSS are logged but not blocked. After checking the logs for false positives, switch to blocking mode:
 
 ```sh
-docker run --rm -p 8080:8080 -e MODSEC_RULE_ENGINE=on goalfinder-website
+docker run -d -p 8080:8080 -e MODSEC_RULE_ENGINE=on goalfinder-website
 ```
