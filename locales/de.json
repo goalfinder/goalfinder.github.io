@@ -172,7 +172,7 @@
     "blog-quick-links": "Schnellzugriffe"
   },
   "error-404": {
-    "nf-title": "Seite nicht gefunden",
+    "nf-title": "404 - Seite nicht gefunden",
     "nf-desc": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
     "nf-home": "Zurück zur Startseite"
   }
