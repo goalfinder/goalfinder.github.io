@@ -16,12 +16,20 @@ COPY . .
 ARG JEKYLL_BASEURL=""
 RUN bundle exec jekyll build --baseurl "$JEKYLL_BASEURL"
 
-# Stage 2: Serve with nginx
-FROM nginx:alpine
+# Stage 2: Serve with nginx + ModSecurity WAF (OWASP Core Rule Set)
+# The base image ships ModSecurity v3, the ModSecurity-nginx connector and
+# CRS rules, all wired up by its entrypoint (envsubst templates + crs setup).
+FROM owasp/modsecurity-crs:4.30.0-nginx-alpine-202610051210
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Start in detection-only mode to rule out false positives first.
+# Switch to blocking at run time: -e MODSEC_RULE_ENGINE=on
+ENV MODSEC_RULE_ENGINE=DetectionOnly
+
+COPY nginx.conf /etc/nginx/templates/conf.d/default.conf.template
 COPY --from=builder /site/_site /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+# The base image healthcheck targets https on 8443, which we do not serve here.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD wget -q -O /dev/null "http://127.0.0.1:${PORT:-8080}/healthz" || exit 1
