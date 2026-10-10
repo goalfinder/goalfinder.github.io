@@ -170,5 +170,10 @@
     "blog-welcome-title": "Welcome",
     "blog-welcome-text": "Welcome to GoalFinder! This is your central hub for information about the project. Stay tuned for updates and new content.",
     "blog-quick-links": "Quick Links"
+  },
+  "error-404": {
+    "nf-title": "Page Not Found",
+    "nf-desc": "The page you are looking for does not exist or has been moved.",
+    "nf-home": "Back to Home"
   }
 }
