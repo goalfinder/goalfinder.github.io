@@ -405,6 +405,10 @@ p {
 	text-align: center;
 }
 
+.center-text p {
+	margin-inline: auto;
+}
+
 .credits-shell {
 	width: min(980px, 100%);
 	margin-inline: auto;

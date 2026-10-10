@@ -172,7 +172,7 @@
     "blog-quick-links": "Quick Links"
   },
   "error-404": {
-    "nf-title": "Page Not Found",
+    "nf-title": "404 - Page Not Found",
     "nf-desc": "The page you are looking for does not exist or has been moved.",
     "nf-home": "Back to Home"
   }
